@@ -1,5 +1,5 @@
 <head>
-    <link rel="stylesheet"type="text/css"href="css/login.css">
+    <link rel="stylesheet"type="text/css"href="css/register.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -7,30 +7,31 @@
 <body>
 <div class='log'>
   <div class="log-deco">
-    <h1 class="log-header">Log In</h1>
+    <h1 class="log-header">Cadastro</h1>
   </div>
   <div>
     <form class='form-deco'>
       <div class="input-deco">
         <div class='icon-deco'>
-          <i class="fa fa-envelope" aria-hidden="true"></i>
+          <i class="fa fa-user" aria-hidden="true"></i>
         </div>
-        <input type="text" value="User ID" class="text-deco">
+        <input type="text" value="Nome" class="text-deco">
       </div>
       <div class="input-deco">
         <div class='icon-deco'>
-          <i class="fa fa-lock" aria-hidden="true"></i>
+          <i class="fa fa-envelope" aria-hidden="true"></i>
         </div>
-        <input type="password" value="User ID" class="text-deco">
+        <input type="text" value="Email" class="text-deco">
       </div>
       <div class="check-deco">
-        <input type="checkbox"> Remember me
+        <p>Sexo :</p>
+        <input type="radio" name="gender">Masculino
+        <input type="radio" name="gender">Feminino
       </div>
-      <button>Log In</button>
+      <button>Cadastrar</button>
     </form>
     <div class="request-deco">
-        <p>Não tem Conta ?</p>
-        <p><a>Solicite Uma</a></p>
+        <p>Um codigo de acesso será gerado e enviado para o email do usuário criado.</p>
     </div>
   </div>
 </div>

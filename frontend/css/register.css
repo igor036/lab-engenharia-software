@@ -70,14 +70,19 @@ body {
   }
   
   .check-deco{
-    margin-top: 3%;
+    margin-top: 10%;
     font-size: 70%;
     width: 100%;
+    text-align: center;
+  }
+
+  .check-deco p {
+    font-size: 100%;
   }
   
   button {
+    margin-top: 10%;
     padding: 3%;
-    margin-top: 6%;
     border-radius: 20px;
     width: 100%;
     font-size: 80%;
@@ -92,7 +97,8 @@ body {
   }
   
   .request-deco{
-    margin-top: 10%;
+    margin-top: 0%;
+    padding: 0% 10%;
   }
   
   p {
