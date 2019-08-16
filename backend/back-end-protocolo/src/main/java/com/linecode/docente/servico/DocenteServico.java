@@ -5,6 +5,7 @@
 package com.linecode.docente.servico;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import com.linecode.docente.dao.DocenteDao;
@@ -30,5 +31,10 @@ public class DocenteServico {
 		Assert.hasText(senha, "Informe a senha para efetuar o login");
 		
 		return docenteDao.getDocentePorEmailSenha(email, senha);
+	}
+	
+	@PreAuthorize("@autorizacaoServico.isAutorizado('ADMIN')")
+	public String teste() {
+		return null;
 	}
 }
