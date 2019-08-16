@@ -15,61 +15,48 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.linecode.configuracao.seguranca.enumerador.ApiPublicaEnumerador;
-import com.linecode.configuracao.seguranca.servico.AutenticacaoServico;
-
 
 @Configuration
 @EnableWebSecurity
 public class SegurancaWebConfig extends WebSecurityConfigurerAdapter {
-	
-	@Autowired
-	private Environment env;
-	
-	@Autowired
-	private AutenticacaoServico autenticacaoServico;
-	
-	/**
-	 * 
-	 * Configuracao de chamadas a API
-	 * 
-	 * 1- Configura as rotas presentes em {com.example.aplicacao.configuracao.seguranca.enumerador}
-	 * como rotas públicas.
-	 * 
-	 * 2 - Adicionar um filtro para requisicoes a  pagina de login para autenticação
-	 * com JWT
-	 * 
-	 * */
-	@Override
-	protected void configure(HttpSecurity httpSecurity) throws Exception {
-		
-		httpSecurity.csrf().disable().authorizeRequests()
-			.antMatchers(ApiPublicaEnumerador.CADASTRO.getUrlApi()).permitAll()
-			.antMatchers(HttpMethod.POST, ApiPublicaEnumerador.LOGIN.getUrlApi()).permitAll()
-			.anyRequest().authenticated()
-			.and()
-			
-			.addFilterBefore(new FiltroLoginJWT("/login", authenticationManager()),
-	                UsernamePasswordAuthenticationFilter.class)
-			
-			.addFilterBefore(new FiltroAutenticacaoJWT(),
-	                UsernamePasswordAuthenticationFilter.class);
-	}
-	
-	/**
-	 * Adiciona um usuário padrão (ADMIN) na  memória.
-	 * 
-	 * @param {@link AuthenticationManagerBuilder} autenticacao
-	 * @throws @{@link Exception}
-	 * 
-	 **/
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		
-		auth
-			.authenticationProvider(autenticacaoServico)
-			.inMemoryAuthentication()
-			.withUser(env.getProperty("usuario.admin.email"))
-			.password(env.getProperty("usuario.admin.senha"))
-			.roles(env.getProperty("usuario.admin.perfil"));
-	}
+
+    @Autowired
+    private Environment env;
+
+    /**
+     * 
+     * Configuracao de chamadas a API
+     * 
+     * 1- Configura as rotas presentes em {com.example.aplicacao.configuracao.seguranca.enumerador} como rotas públicas.
+     * 
+     * 2 - Adicionar um filtro para requisicoes a pagina de login para autenticação com JWT
+     * 
+     */
+    @Override
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
+
+        httpSecurity.csrf().disable().authorizeRequests().antMatchers(ApiPublicaEnumerador.CADASTRO.getUrlApi())
+                .permitAll().antMatchers(HttpMethod.POST, ApiPublicaEnumerador.LOGIN.getUrlApi()).permitAll()
+                .anyRequest().authenticated().and()
+
+                .addFilterBefore(new FiltroLoginJWT(ApiPublicaEnumerador.LOGIN.getUrlApi(), getApplicationContext()),
+                        UsernamePasswordAuthenticationFilter.class)
+
+                .addFilterBefore(new FiltroAutenticacaoJWT(), UsernamePasswordAuthenticationFilter.class);
+    }
+
+    /**
+     * Adiciona um usuário padrão (ADMIN) na memória.
+     * 
+     * @param {@link AuthenticationManagerBuilder} autenticacao
+     * @throws @{@link Exception}
+     * 
+     **/
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+
+        auth.inMemoryAuthentication().withUser(env.getProperty("usuario.admin.email"))
+                .password(env.getProperty("usuario.admin.senha")).roles(env.getProperty("usuario.admin.perfil"));
+    }
+
 }

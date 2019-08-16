@@ -4,6 +4,8 @@
     <comment>Querys relacionadas aos docentes</comment>
 	
 	<entry key="com.linecode.docente.dao.DocenteDao.getDocentePorEmailSenha">
+		SELECT
+			D.MATRICULA,
 			D.NOME,
 			D.EMAIL,
 			R.NOME AS PERFIL

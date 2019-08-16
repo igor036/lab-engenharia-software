@@ -12,6 +12,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -19,28 +21,35 @@ import org.springframework.security.web.authentication.AbstractAuthenticationPro
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.linecode.configuracao.seguranca.dto.LoginDto;
+import com.linecode.configuracao.seguranca.cmd.LoginCmd;
+
 import com.linecode.configuracao.seguranca.servico.TokenJwtAutenticacaoServico;
+import com.linecode.docente.dto.DocenteDto;
+import com.linecode.docente.servico.DocenteServico;
+
+import io.jsonwebtoken.lang.Assert;
 
 
 public class FiltroLoginJWT extends AbstractAuthenticationProcessingFilter  {
 	
-	protected FiltroLoginJWT(String url, AuthenticationManager authManager) {
+    private DocenteServico docenteServico;
+    
+	protected FiltroLoginJWT(String url, ApplicationContext contexto) {
 		super(new AntPathRequestMatcher(url));
-		setAuthenticationManager(authManager);
+		this.docenteServico = contexto.getBean(DocenteServico.class);
 	}
 
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		
-		LoginDto credentials = new ObjectMapper()
-				.readValue(request.getInputStream(), LoginDto.class);
+		LoginCmd credentials = new ObjectMapper()
+				.readValue(request.getInputStream(), LoginCmd.class);
 		
 		return getAuthenticationManager().authenticate(
 				new UsernamePasswordAuthenticationToken(
-						credentials.getUsername(), 
-						credentials.getPassword(), 
+						credentials.getEmail(), 
+						credentials.getSenha(), 
 						Collections.emptyList()
 						)
 				);
@@ -60,5 +69,20 @@ public class FiltroLoginJWT extends AbstractAuthenticationProcessingFilter  {
 		
 		TokenJwtAutenticacaoServico.addAuthentication(response, auth.getName());
 	}
+	
+	@Override
+    public AuthenticationManager getAuthenticationManager() {
+        return (Authentication authentication) -> {
+
+            String email = authentication.getName();
+            String senha = authentication.getCredentials().toString();
+
+            DocenteDto docente = docenteServico.getDocentePorEmailSenha(email, senha);
+            Assert.notNull(docente, "Login e/ou Senha inválidos.");
+
+            return docente;
+
+        };
+    }
 	
 }

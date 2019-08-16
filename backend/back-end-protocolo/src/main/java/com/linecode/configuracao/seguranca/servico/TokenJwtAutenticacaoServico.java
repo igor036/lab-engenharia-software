@@ -10,8 +10,6 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 
@@ -22,9 +20,13 @@ public class TokenJwtAutenticacaoServico {
 	
 	// EXPIRATION_TIME = 10 dias
 	private static final long TOKEN_JWT_TEMPO_EXPIRACAO = 860_000_000;
-	private  static final String TOKEN_JWT_SECRET = "MySecret";
-	private  static final String TOKEN_JWT_PREFIXO = "Bearer";
+	private  static final String TOKEN_JWT_SECRET = "LineCode$ecret";
+	private  static final String TOKEN_JWT_PREFIXO = "LineCode";
 	private  static final String TOKEN_JWT_CABECALHO = "Authorization";
+	
+	private TokenJwtAutenticacaoServico() {
+	    //somente metodos estaticos
+	}
 
 	/**
 	 * Metodo responsavel por adicionar o token JWT
