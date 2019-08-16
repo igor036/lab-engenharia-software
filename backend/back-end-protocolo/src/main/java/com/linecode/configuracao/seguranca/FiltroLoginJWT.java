@@ -13,21 +13,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.ApplicationContext;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.linecode.configuracao.seguranca.cmd.LoginCmd;
-
 import com.linecode.configuracao.seguranca.servico.TokenJwtAutenticacaoServico;
 import com.linecode.docente.dto.DocenteDto;
 import com.linecode.docente.servico.DocenteServico;
-
-import io.jsonwebtoken.lang.Assert;
 
 
 public class FiltroLoginJWT extends AbstractAuthenticationProcessingFilter  {
@@ -39,6 +37,10 @@ public class FiltroLoginJWT extends AbstractAuthenticationProcessingFilter  {
 		this.docenteServico = contexto.getBean(DocenteServico.class);
 	}
 
+	/**
+	 * metodo responsavel por receber as requisições
+	 * e efetuar a autenticacao pelo token. 
+	 */
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
@@ -51,8 +53,14 @@ public class FiltroLoginJWT extends AbstractAuthenticationProcessingFilter  {
                 Collections.emptyList()
          );
 		// @formatter:on
+        
+        Authentication autenticacao = getAuthenticationManager().authenticate(tokenAutenticacao);
+        
+        if (autenticacao == null) {
+        	throw new InternalAuthenticationServiceException("Usuario/senha inválido(a)", null);
+        }
 		
-		return getAuthenticationManager().authenticate(tokenAutenticacao);
+		return autenticacao;
 	}
 	
 	/**
@@ -71,7 +79,20 @@ public class FiltroLoginJWT extends AbstractAuthenticationProcessingFilter  {
 	}
 	
 	/**
-	 * Metodo que efetua o login
+	 * Metodo responsavel por gerar o  cabecalho
+	 * de resposta para acesso negado.
+	 * 
+	 *  Utilizado quando o usuario não é autenticado.
+	 *  
+	 */
+	@Override
+	protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
+			AuthenticationException failed) throws IOException, ServletException {
+		response.sendError(HttpServletResponse.SC_FORBIDDEN,"Authentication Failed");
+	}
+	
+	/**
+	 * Metodo que retornar o manager de login
 	 */
 	@Override
     public AuthenticationManager getAuthenticationManager() {
@@ -80,12 +101,8 @@ public class FiltroLoginJWT extends AbstractAuthenticationProcessingFilter  {
             String email = authentication.getName();
             String senha = authentication.getCredentials().toString();
 
-            DocenteDto docente = docenteServico.getDocentePorEmailSenha(email, senha);
-            Assert.notNull(docente, "Login e/ou Senha inválidos.");
-
-            return docente;
+            return docenteServico.getDocentePorEmailSenha(email, senha);
 
         };
     }
-	
 }

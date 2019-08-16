@@ -10,7 +10,7 @@ public class LoginCmd {
 	private String senha;
 	
 	public LoginCmd() {
-
+		//construtor padrao do jackson
 	}
 	
 	public String getEmail() {

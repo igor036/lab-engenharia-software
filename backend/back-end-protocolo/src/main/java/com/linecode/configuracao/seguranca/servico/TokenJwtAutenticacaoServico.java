@@ -5,6 +5,7 @@
 package com.linecode.configuracao.seguranca.servico;
 
 import java.io.IOException;
+import java.nio.file.AccessDeniedException;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,6 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.linecode.docente.dto.DocenteDto;
-import com.sun.xml.internal.txw2.IllegalAnnotationException;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -40,7 +40,7 @@ public class TokenJwtAutenticacaoServico {
 	 * Metodo responsavel por adicionar o token JWT
 	 * no cabecalho 'Authorization' da resposta
 	 * 
-	 * O token é formado pelo nome do usuario e a data de expiração.
+	 * O token é formado pelo o bjeto do docente {@link DocenteDto} e a data de expiração.
 	 * 
 	 * @param {@link HttpServletResponse} objeto de resposta.
 	 * @param {@link String} username login do usuario.
@@ -73,7 +73,7 @@ public class TokenJwtAutenticacaoServico {
 		String token = request.getHeader(TOKEN_JWT_CABECALHO);
 
 		if (StringUtils.isEmpty(token)) {
-		    throw new IllegalAnnotationException("Token inválido");
+		    return null;
 		}
 		
 		String jsonDocente = Jwts.parser()
