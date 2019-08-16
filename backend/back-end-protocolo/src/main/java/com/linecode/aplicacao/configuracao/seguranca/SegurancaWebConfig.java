@@ -2,7 +2,7 @@
  * Author: Igor Joaquim dos Santos Lima
  * Data: 15/08/2019
  */
-package com.example.aplicacao.configuracao.seguranca;
+package com.linecode.aplicacao.configuracao.seguranca;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +14,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.example.aplicacao.configuracao.seguranca.enumerador.ApiPublicaEnumerador;
+import com.linecode.aplicacao.configuracao.seguranca.enumerador.ApiPublicaEnumerador;
+import com.linecode.aplicacao.configuracao.seguranca.servico.AutenticacaoServico;
 
 
 @Configuration
@@ -23,6 +24,9 @@ public class SegurancaWebConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	private Environment env;
+	
+	@Autowired
+	private AutenticacaoServico autenticacaoServico;
 	
 	/**
 	 * 
@@ -61,11 +65,11 @@ public class SegurancaWebConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		
-		System.out.println();
-		
-		auth.inMemoryAuthentication()
-			.withUser(env.getProperty("usuario.admin.user"))
-			.password(env.getProperty("usuario.admin.password"))
-			.roles(env.getProperty("usuario.admin.roles"));
+		auth
+			.authenticationProvider(autenticacaoServico)
+			.inMemoryAuthentication()
+			.withUser(env.getProperty("usuario.admin.email"))
+			.password(env.getProperty("usuario.admin.senha"))
+			.roles(env.getProperty("usuario.admin.perfil"));
 	}
 }

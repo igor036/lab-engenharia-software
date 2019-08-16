@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>Querys relacionadas aos docentes</comment>
+	
+	<entry key="com.linecode.docente.dao.DocenteDao.getDocentePorEmailSenha">
+			D.NOME,
+			D.EMAIL,
+			R.NOME AS PERFIL
+		FROM TAB_DOCENTE D
+			JOIN TAB_ROLE R ON
+				D.FK_ID_ROLE = R.ID_ROLE
+		WHERE
+			D.EMAIL = ? AND
+			D.SENHA = ?
+	</entry>
+    	
+</properties>

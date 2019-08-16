@@ -2,7 +2,7 @@
  * Author: Igor Joaquim dos Santos Lima
  * Data: 15/08/2019
  */
-package com.example.aplicacao.configuracao.seguranca;
+package com.linecode.aplicacao.configuracao.seguranca;
 
 import java.io.IOException;
 
@@ -12,12 +12,11 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
 
-import com.example.aplicacao.configuracao.seguranca.servico.TokenJwtAutenticacaoServico;
-
-import org.springframework.security.core.Authentication;
+import com.linecode.aplicacao.configuracao.seguranca.servico.TokenJwtAutenticacaoServico;
 
 public class FiltroAutenticacaoJWT extends GenericFilterBean {
 	
