@@ -1,4 +1,8 @@
-package com.example.configuracao;
+/**
+ * Author: Igor Joaquim dos Santos Lima
+ * Data: 15/08/2019
+ */
+package com.example.aplicacao.configuracao.db;
 
 import javax.sql.DataSource;
 
@@ -10,6 +14,12 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 @Configuration
 public class DBConfig {
 
+	/**
+	 * Cria a conexao com o banco a traves
+	 * das propriedades encontradas no application.propperties
+	 * 
+	 * @param {@link Environment} propriedades do ambiente
+	 * */
 	@Bean
 	public DataSource mysqlDataSource(Environment env) {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();

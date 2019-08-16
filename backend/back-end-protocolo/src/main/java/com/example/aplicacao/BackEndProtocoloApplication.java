@@ -1,4 +1,8 @@
-package com.example.configuracao;
+/**
+ * Author: Igor Joaquim dos Santos Lima
+ * Data: 15/08/2019
+ */
+package com.example.aplicacao;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
