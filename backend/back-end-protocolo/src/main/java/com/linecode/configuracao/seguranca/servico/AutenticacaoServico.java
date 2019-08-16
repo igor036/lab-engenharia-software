@@ -1,4 +1,4 @@
-package com.linecode.aplicacao.configuracao.seguranca.servico;
+package com.linecode.configuracao.seguranca.servico;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;

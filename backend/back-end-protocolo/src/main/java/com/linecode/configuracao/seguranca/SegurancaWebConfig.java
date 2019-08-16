@@ -2,7 +2,7 @@
  * Author: Igor Joaquim dos Santos Lima
  * Data: 15/08/2019
  */
-package com.linecode.aplicacao.configuracao.seguranca;
+package com.linecode.configuracao.seguranca;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -14,8 +14,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.linecode.aplicacao.configuracao.seguranca.enumerador.ApiPublicaEnumerador;
-import com.linecode.aplicacao.configuracao.seguranca.servico.AutenticacaoServico;
+import com.linecode.configuracao.seguranca.enumerador.ApiPublicaEnumerador;
+import com.linecode.configuracao.seguranca.servico.AutenticacaoServico;
 
 
 @Configuration

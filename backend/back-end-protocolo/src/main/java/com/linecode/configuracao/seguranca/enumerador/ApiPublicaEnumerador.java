@@ -2,7 +2,7 @@
  * Author: Igor Joaquim dos Santos Lima
  * Data: 15/08/2019
  */
-package com.linecode.aplicacao.configuracao.seguranca.enumerador;
+package com.linecode.configuracao.seguranca.enumerador;
 
 /**
  * Enumerador responsavel por

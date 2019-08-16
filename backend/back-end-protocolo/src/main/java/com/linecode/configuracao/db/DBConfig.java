@@ -2,7 +2,7 @@
  * Author: Igor Joaquim dos Santos Lima
  * Data: 15/08/2019
  */
-package com.linecode.aplicacao.configuracao.db;
+package com.linecode.configuracao.db;
 
 import javax.sql.DataSource;
 

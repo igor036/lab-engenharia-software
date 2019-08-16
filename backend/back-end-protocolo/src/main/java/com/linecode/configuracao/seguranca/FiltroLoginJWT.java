@@ -2,7 +2,7 @@
  * Author: Igor Joaquim dos Santos Lima
  * Data: 15/08/2019
  */
-package com.linecode.aplicacao.configuracao.seguranca;
+package com.linecode.configuracao.seguranca;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -19,8 +19,8 @@ import org.springframework.security.web.authentication.AbstractAuthenticationPro
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.linecode.aplicacao.configuracao.seguranca.dto.LoginDto;
-import com.linecode.aplicacao.configuracao.seguranca.servico.TokenJwtAutenticacaoServico;
+import com.linecode.configuracao.seguranca.dto.LoginDto;
+import com.linecode.configuracao.seguranca.servico.TokenJwtAutenticacaoServico;
 
 
 public class FiltroLoginJWT extends AbstractAuthenticationProcessingFilter  {

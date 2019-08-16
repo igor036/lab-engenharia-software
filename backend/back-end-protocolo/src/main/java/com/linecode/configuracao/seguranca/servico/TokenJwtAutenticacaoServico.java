@@ -2,7 +2,7 @@
  * Author: Igor Joaquim dos Santos Lima
  * Data: 15/08/2019
  */
-package com.linecode.aplicacao.configuracao.seguranca.servico;
+package com.linecode.configuracao.seguranca.servico;
 
 import java.util.Collections;
 import java.util.Date;
