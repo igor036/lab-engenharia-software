@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.MediaType;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StringUtils;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -83,8 +84,8 @@ public class TokenJwtAutenticacaoServico {
                 .getSubject();
 		
 		mapeadorJson.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-       return mapeadorJson.readValue(jsonDocente, DocenteDto.class);
-        
+		
+		return mapeadorJson.readValue(jsonDocente, DocenteDto.class);
 	}
 	
 	private static Date getDataExpiracao() {
