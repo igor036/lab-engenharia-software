@@ -43,16 +43,16 @@ public class FiltroLoginJWT extends AbstractAuthenticationProcessingFilter  {
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		
-		LoginCmd credentials = new ObjectMapper()
-				.readValue(request.getInputStream(), LoginCmd.class);
+		// @formatter:off
+	    LoginCmd credentials = new ObjectMapper().readValue(request.getInputStream(), LoginCmd.class);
+        UsernamePasswordAuthenticationToken tokenAutenticacao = new UsernamePasswordAuthenticationToken(
+                credentials.getEmail(), 
+                credentials.getSenha(), 
+                Collections.emptyList()
+         );
+		// @formatter:on
 		
-		return getAuthenticationManager().authenticate(
-				new UsernamePasswordAuthenticationToken(
-						credentials.getEmail(), 
-						credentials.getSenha(), 
-						Collections.emptyList()
-						)
-				);
+		return getAuthenticationManager().authenticate(tokenAutenticacao);
 	}
 	
 	/**
@@ -65,11 +65,14 @@ public class FiltroLoginJWT extends AbstractAuthenticationProcessingFilter  {
 			HttpServletRequest request, 
 			HttpServletResponse response,
 			FilterChain filterChain,
-			Authentication auth) throws IOException, ServletException {
+			Authentication autenticacao) throws IOException, ServletException {
 		
-		TokenJwtAutenticacaoServico.addAuthentication(response, auth.getName());
+		TokenJwtAutenticacaoServico.addAuthentication(response,(DocenteDto)autenticacao);
 	}
 	
+	/**
+	 * Metodo que efetua o login
+	 */
 	@Override
     public AuthenticationManager getAuthenticationManager() {
         return (Authentication authentication) -> {

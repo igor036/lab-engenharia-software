@@ -4,14 +4,21 @@
  */
 package com.linecode.configuracao.seguranca.servico;
 
-import java.util.Collections;
+import java.io.IOException;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
+import org.springframework.http.MediaType;
+import org.springframework.util.StringUtils;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.linecode.docente.dto.DocenteDto;
+import com.sun.xml.internal.txw2.IllegalAnnotationException;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -20,9 +27,10 @@ public class TokenJwtAutenticacaoServico {
 	
 	// EXPIRATION_TIME = 10 dias
 	private static final long TOKEN_JWT_TEMPO_EXPIRACAO = 860_000_000;
-	private  static final String TOKEN_JWT_SECRET = "LineCode$ecret";
-	private  static final String TOKEN_JWT_PREFIXO = "LineCode";
-	private  static final String TOKEN_JWT_CABECALHO = "Authorization";
+	private static final String TOKEN_JWT_SECRET = "LineCode$ecret";
+	private static final String TOKEN_JWT_PREFIXO = "LineCode";
+	private static final String TOKEN_JWT_CABECALHO = "Authorization";
+	private static ObjectMapper mapeadorJson = new ObjectMapper();
 	
 	private TokenJwtAutenticacaoServico() {
 	    //somente metodos estaticos
@@ -36,14 +44,18 @@ public class TokenJwtAutenticacaoServico {
 	 * 
 	 * @param {@link HttpServletResponse} objeto de resposta.
 	 * @param {@link String} username login do usuario.
+	 * @throws IOException 
 	 */
-	public static void addAuthentication(HttpServletResponse response, String username) {
+	public static void addAuthentication(HttpServletResponse response, DocenteDto docente) throws IOException {
 		
-		String JWT = Jwts.builder().setSubject(username)
+	    String jsonDocente = mapeadorJson.writeValueAsString(docente);
+		String JWT = Jwts.builder().setSubject(jsonDocente)
 				.setExpiration(getDataExpiracao())
 				.signWith(SignatureAlgorithm.HS512, TOKEN_JWT_SECRET).compact();
 
+		response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 		response.addHeader(TOKEN_JWT_CABECALHO, TOKEN_JWT_PREFIXO + " " + JWT);
+		response.getWriter().print(jsonDocente);
 	}
 
 	/**
@@ -51,23 +63,28 @@ public class TokenJwtAutenticacaoServico {
 	 * do usuario autenticado.
 	 * 
 	 * {@link HttpServletRequest} objeto de resposta.
+	 * @throws IOException 
+	 * @throws JsonMappingException 
+	 * @throws JsonParseException 
+	 * @throws Exception 
 	 */
-	public static Authentication getAuthentication(HttpServletRequest request) {
+	public static DocenteDto getAuthentication(HttpServletRequest request) throws IOException  {
 		
 		String token = request.getHeader(TOKEN_JWT_CABECALHO);
 
-		if (token != null) {
-			String user = Jwts.parser()
-					.setSigningKey(TOKEN_JWT_SECRET)
-					.parseClaimsJws(token.replace(TOKEN_JWT_PREFIXO, ""))
-					.getBody()
-					.getSubject();
-
-			if (user != null) {
-				return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
-			}
+		if (StringUtils.isEmpty(token)) {
+		    throw new IllegalAnnotationException("Token inválido");
 		}
-		return null;
+		
+		String jsonDocente = Jwts.parser()
+                .setSigningKey(TOKEN_JWT_SECRET)
+                .parseClaimsJws(token.replace(TOKEN_JWT_PREFIXO, ""))
+                .getBody()
+                .getSubject();
+		
+		mapeadorJson.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+       return mapeadorJson.readValue(jsonDocente, DocenteDto.class);
+        
 	}
 	
 	private static Date getDataExpiracao() {

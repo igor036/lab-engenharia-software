@@ -12,14 +12,27 @@ import java.util.Collection;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 public class DocenteDto implements Authentication {
 	
 	private static final long serialVersionUID = 1L;
 	
+	@JsonAlias("matricula")
 	private long matricula;
+	
+	@JsonAlias("nome")
 	private String nome;
+	
+	@JsonAlias("email")
 	private String email;
+	
+	@JsonAlias("perfil")
 	private String perfil;
+	
+	@JsonIgnore
 	private boolean autenticado;
 	
 	public DocenteDto(long matricula, String nome, String email, String perfil) {
@@ -28,6 +41,10 @@ public class DocenteDto implements Authentication {
 		this.email = email;
 		this.perfil = perfil;
 		this.autenticado = true;
+	}
+	
+	public DocenteDto() {
+	    
 	}
 	
 	public long getMatricula() {
@@ -52,22 +69,25 @@ public class DocenteDto implements Authentication {
 	}
 
 	@Override
+	@JsonIgnore
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return Arrays.asList(() -> perfil);
 	}
 
 	@Override
+	@JsonIgnore
 	public Object getCredentials() {
 		return null;
 	}
 
 	@Override
+	@JsonIgnore
 	public Object getDetails() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	@JsonIgnore
 	public Object getPrincipal() {
 		// TODO Auto-generated method stub
 		return null;
