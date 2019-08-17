@@ -2,17 +2,53 @@
 
 body {
     background-color: #E6E6E6;
-    padding: 5% 0% 5% 0%;
+	display: flex;
   }
 
+.navbar{
+  width: 15%;
+  background-color: #354052;
+  margin: 0%;
+  padding:0%;
+  box-shadow: 3px 3px 7px;
+}
+
+.navbar div{
+  display: flex;
+  padding:5%;
+}
+
+.navbar div i {
+  width: 25%;
+  font-size: 150%;
+  text-align: left;
+  color:white;
+}
+
+.navbar div a{
+	flex-grow: 1;
+	color:white;
+	font-size: 100%;
+	font-weight: 300;
+}
+
+.navbar div:hover{
+  background-color: #2d3646;
+}
+  
+  
+.external-log-deco{
+	flex-grow:1;
+}
+  
 .log {
     background-color:white;
     border-radius: 12px;
-    box-shadow: 5px 5px 5px rgba(49, 48, 48, 0.452);
+    box-shadow: 3px 3px 7px;
     padding-bottom: 2%;
     display: block;
     align-self: center;
-    margin: 0% 35%;
+	margin: 5% 35%;;
   }
   
   .log-deco{
