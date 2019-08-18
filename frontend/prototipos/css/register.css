@@ -1,3 +1,4 @@
+<<<<<<< HEAD:frontend/prototipos/css/register.css
 *{font-family: 'Roboto', sans-serif;}
 
 body {
@@ -111,4 +112,155 @@ body {
     font-size: 60%;
     color: #0844a4;
     font-weight: bold;
+=======
+*{font-family: 'Roboto', sans-serif;}
+
+body {
+    background-color: #E6E6E6;
+	display: flex;
+  }
+
+.navbar{
+  width: 15%;
+  background-color: #354052;
+  margin: 0%;
+  padding:0%;
+  box-shadow: 3px 3px 7px;
+}
+
+.navbar div{
+  display: flex;
+  padding:5%;
+}
+
+.navbar div i {
+  width: 25%;
+  font-size: 150%;
+  text-align: left;
+  color:white;
+}
+
+.navbar div a{
+	flex-grow: 1;
+	color:white;
+	font-size: 100%;
+	font-weight: 300;
+}
+
+.navbar div:hover{
+  background-color: #2d3646;
+}
+  
+  
+.external-log-deco{
+	flex-grow:1;
+}
+  
+.log {
+    background-color:white;
+    border-radius: 12px;
+    box-shadow: 3px 3px 7px;
+    padding-bottom: 2%;
+    display: block;
+    align-self: center;
+	margin: 5% 35%;;
+  }
+  
+  .log-deco{
+    background-color: #2D3646;
+    border-radius: 12px 12px 0px 0px;
+    padding: 1%;
+  }
+  
+  .log-header{
+    color: white;
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+    font-size: 100%;
+  }
+  
+  .form-deco{
+    padding: 5% 15% 5%15%;
+  }
+  
+  .input-deco {
+    display: flex;
+    margin-top: 3%;
+    padding: 0%;
+    border-radius: 0px;
+    background-color: #ebebeb;
+  }
+  
+  .input-deco:hover{
+    background-color: #949494;
+  }
+  
+  i {
+    background-color : transparent;
+    color: white;
+    font-size: 150%;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .icon-deco{
+    padding: 2% 0%;
+    width: 15%;
+    background-color: #5095F6;
+  }
+  
+  .text-deco{
+    flex-grow: 1;
+    background-color: transparent;
+    border: none;
+    color: #0844a4;
+    font-size: 100%;
+    font-weight: 100;
+    text-align: center;
+  }
+  
+  .check-deco{
+    margin-top: 10%;
+    font-size: 70%;
+    width: 100%;
+    text-align: center;
+  }
+
+  .check-deco p {
+    font-size: 100%;
+  }
+  
+  button {
+    margin-top: 10%;
+    padding: 3%;
+    border-radius: 20px;
+    width: 100%;
+    font-size: 80%;
+    background-color: #0844a4;
+    color: white;
+    border: none;
+    font-weight: bold;
+  }
+  
+  button:hover{
+    background-color: #6334e3;
+  }
+  
+  .request-deco{
+    margin-top: 0%;
+    padding: 0% 10%;
+  }
+  
+  p {
+    width: 100%;
+    text-align: center;
+    color: #7a7a7a;
+    font-size: 80%;
+  }
+  a {
+    font-size: 60%;
+    color: #0844a4;
+    font-weight: bold;
+>>>>>>> 995ef12a203201acd166262437dbe8d3aa05db01:frontend/css/register.css
   }  

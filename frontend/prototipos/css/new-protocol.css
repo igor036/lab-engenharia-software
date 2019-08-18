@@ -1,0 +1,112 @@
+*{
+  font-family: 'Roboto', sans-serif;
+}
+
+form{
+  flex-grow: 1;
+  display: flex;
+  padding: 1%;
+}
+
+.corpo{
+  display: flex;
+  background-color: #e6e6e6;
+}
+
+.navbar{
+  width: 15%;
+  background-color: #354052;
+  margin: 0%;
+  padding:0%;
+  box-shadow: 3px 3px 7px;
+}
+
+.navbar div{
+  display: flex;
+  padding:5%;
+}
+
+.navbar div i {
+  width: 25%;
+  font-size: 150%;
+  text-align: left;
+  color:white;
+}
+
+.navbar div a{
+	flex-grow: 1;
+	color:white;
+	font-size: 100%;
+	font-weight: 300;
+}
+
+.navbar div:hover{
+  background-color: #2d3646;
+}
+
+.external-deco{
+  width: 43%;
+  background-color: white;
+  padding: 3%;
+  border-radius: 6px;
+  box-shadow: 3px 3px 5px;
+  margin-right: 2%;
+}
+
+.external-deco textarea{
+  height: 200px;
+  width: 100%;
+}
+
+.external-deco-2{
+  width: 43%;
+  background-color: white;
+  padding: 3% 3% 0% 3%;
+  border-radius: 6px;
+  box-shadow: 3px 3px 5px;
+}
+
+.external-deco-2 textarea{
+  height: 100px;
+  width: 100%;
+}
+
+.button-send{
+  margin-top: 10%;
+  width: 30%;
+  margin-left: 77%;
+  border-radius: 0px;
+  border: none;
+  font-size: 120%;
+  padding: 3%;
+  background-color: #72bb53;
+  color: white;
+}
+
+.button-send:hover{
+  background-color: #8b51f5;
+}
+
+.input-deco{
+  display: flex;
+  margin: 2% 0%;
+}
+.input-deco input{
+  width: 80%;
+  font-size: 130%;
+  margin-right: 10%;
+  border-radius: 30px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.input-deco button{
+  flex-grow: 1;
+  background-color: #72bb53;
+  color: white;
+  border: none;
+}
+
+.input-deco button:hover{
+  background-color: #8b51f5;
+}
