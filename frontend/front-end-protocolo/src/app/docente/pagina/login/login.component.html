@@ -1,1 +1,14 @@
-<p>login works!</p>
+<div [formGroup]="form">
+    <input 
+        type="text" 
+        placeholder="E-mail" 
+        [formControl]="form.controls['email']"
+    />
+    <br/>
+    <input 
+        type="password" 
+        placeholder="Senha" 
+        [formControl]="form.controls['senha']"
+    />
+    <button (click)="logar()" [disabled]="!form.valid">Logar</button>
+</div>

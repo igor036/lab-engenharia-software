@@ -64,6 +64,7 @@ public class DocenteDto implements Authentication {
 	}
 
 	@Override
+	@JsonIgnore
 	public String getName() {
 		return email;
 	}
@@ -94,6 +95,7 @@ public class DocenteDto implements Authentication {
 	}
 
 	@Override
+	@JsonIgnore
 	public boolean isAuthenticated() {
 		return autenticado;
 	}

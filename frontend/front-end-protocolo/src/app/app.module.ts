@@ -1,3 +1,7 @@
+/**
+ * Author: Igor Joaquim dos Santos Lima
+ * Data: 18/08/2019
+ */
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';

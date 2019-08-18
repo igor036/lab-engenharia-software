@@ -54,9 +54,7 @@ public class SegurancaWebConfig extends WebSecurityConfigurerAdapter {
      **/
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
         auth.inMemoryAuthentication().withUser(env.getProperty("usuario.admin.email"))
                 .password(env.getProperty("usuario.admin.senha")).roles(env.getProperty("usuario.admin.perfil"));
     }
-
 }
