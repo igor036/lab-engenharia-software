@@ -25,9 +25,16 @@ export class HttpInterceptorCore implements HttpInterceptor {
     }
 
     private getRequisicaoAutorizacao(req: HttpRequest<any>): any {
+
+        if (req.url == "login") {
+            return req.clone({url: PROPRIEDADES.URL_BASE+req.url});
+        }
+
         return req.clone({
             url: PROPRIEDADES.URL_BASE+req.url,
-            setHeaders: { Authorization: this.docenteSerico.getTokenLogado() }
+            setHeaders: {
+                Authorization: this.docenteSerico.getTokenLogado()
+            },
         });
     }
 }

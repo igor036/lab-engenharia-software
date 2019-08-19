@@ -30,8 +30,11 @@ export class DocenteServico {
             .set("email", login.email)
             .set("senha", login.senha);
 
-        return this.httpClient.post<string>('login', body.toString(), {
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        return this.httpClient.post('login', body.toString(), {
+            headers: { 
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            responseType: 'text'
         });
     }
 

@@ -48,13 +48,13 @@ public class TokenJwtAutenticacaoServico {
 	public static void addAuthentication(HttpServletResponse response, DocenteDto docente) throws IOException {
 		
 	    String jsonDocente = mapeadorJson.writeValueAsString(docente);
-		String JWT = Jwts.builder().setSubject(jsonDocente)
+		String JWT = TOKEN_JWT_PREFIXO + " " + Jwts.builder().setSubject(jsonDocente)
 				.setExpiration(getDataExpiracao())
 				.signWith(SignatureAlgorithm.HS512, TOKEN_JWT_SECRET).compact();
 
 		response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-		response.addHeader(TOKEN_JWT_CABECALHO, TOKEN_JWT_PREFIXO + " " + JWT);
-		response.getWriter().print(jsonDocente);
+		response.addHeader(TOKEN_JWT_CABECALHO, JWT);
+		response.getWriter().print(JWT);
 	}
 
 	/**
