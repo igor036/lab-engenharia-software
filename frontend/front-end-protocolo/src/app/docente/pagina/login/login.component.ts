@@ -38,13 +38,12 @@ export class LoginComponent implements OnInit {
   }
 
   logar(): void {
-    let inscricao: Subscription = this.docenteServico.logar(this.form.value).subscribe((resposta) => {
-      const header = resposta.headers;
-      console.log(header);
-      /*
-      this.docenteServico.setDocenteLogado(resposta.body);
-      inscricao.unsubscribe();
-      this.router.navigate([URLS_NAMES.home]);*/
+    this.docenteServico.getTokenlogar(this.form.value).subscribe((token) => {
+      this.docenteServico.setTokenDocente(token);
+      this.docenteServico.getDadosDocenteLogado().subscribe(docente => {
+        this.docenteServico.setDocenteLogado(docente);
+        this.router.navigate([URLS_NAMES.home]);
+      });
     });
   }
 

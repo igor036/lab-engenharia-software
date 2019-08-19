@@ -5,7 +5,7 @@
 export const PROPRIEDADES = {
     TOKEN_DOCENTE: 'token-docente',
     DADOS_DOCENTE_LOGADO: 'dados-docente-logado',
-    URL_BASE: 'http://localhost:8080'
+    URL_BASE: 'http://localhost:8080/'
 };
 
 export const URLS_NAMES = {

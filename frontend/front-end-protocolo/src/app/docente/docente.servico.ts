@@ -24,19 +24,31 @@ export class DocenteServico {
         return false;
     }
 
-    logar(login: Login): Observable<HttpResponse<DocenteLogado>> {
+    getTokenlogar(login: Login): Observable<string> {
 
         const body = new HttpParams()
             .set("email", login.email)
             .set("senha", login.senha);
 
-        return this.httpClient.post<DocenteLogado>('http://localhost:8080/login', body.toString(), {
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            observe: 'response'
+        return this.httpClient.post<string>('login', body.toString(), {
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         });
+    }
+
+    getTokenLogado(): string {
+        let token = localStorage.getItem(PROPRIEDADES.TOKEN_DOCENTE);
+        return token ? token : '';
+    }
+
+    getDadosDocenteLogado(): Observable<DocenteLogado> {
+        return this.httpClient.get<DocenteLogado>('docente/dados-docente-logado');
     }
 
     setDocenteLogado(docente: DocenteLogado): void {
         localStorage.setItem(PROPRIEDADES.DADOS_DOCENTE_LOGADO, JSON.stringify(docente));
+    }
+
+    setTokenDocente(token: string): void {
+        localStorage.setItem(PROPRIEDADES.TOKEN_DOCENTE, token);
     }
 }

@@ -5,6 +5,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 //componentes
 import { AppComponent } from './componentes/app/app.component';
@@ -18,6 +19,7 @@ import { DocenteModule } from './docente/docente.module';
 
 //rotas
 import { ROTAS } from './app.router';
+import { HttpInterceptorCore } from './interceptor/http.interceptor';
 
 @NgModule({
   declarations: [
@@ -27,9 +29,13 @@ import { ROTAS } from './app.router';
   imports: [
     RouterModule.forRoot(ROTAS),
     BrowserModule,
-    DocenteModule
+    DocenteModule,
+    HttpClientModule
   ],
-  providers: [DocenteServico],
+  providers: [
+    DocenteServico,
+    { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorCore, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

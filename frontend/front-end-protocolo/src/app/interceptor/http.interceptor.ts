@@ -11,18 +11,23 @@ import {
 } from '@angular/common/http';
 
 import { PROPRIEDADES } from 'src/app/app.constante';
+import { DocenteServico } from '../docente/docente.servico';
 
 @Injectable()
 export class HttpInterceptorCore implements HttpInterceptor {
 
+    constructor(
+        private docenteSerico: DocenteServico
+    ){}
+
     intercept(req: HttpRequest<any>, next: HttpHandler): import("rxjs").Observable<HttpEvent<any>> {
-        console.log("interceptou")
         return next.handle(this.getRequisicaoAutorizacao(req));
     }
 
     private getRequisicaoAutorizacao(req: HttpRequest<any>): any {
         return req.clone({
-            setHeaders: { Authorization: localStorage.getItem(PROPRIEDADES.TOKEN_DOCENTE) }
+            url: PROPRIEDADES.URL_BASE+req.url,
+            setHeaders: { Authorization: this.docenteSerico.getTokenLogado() }
         });
     }
 }

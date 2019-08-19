@@ -38,15 +38,16 @@ public class SegurancaWebConfig extends WebSecurityConfigurerAdapter implements 
      */
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-
-        httpSecurity.csrf().disable().authorizeRequests().antMatchers(ApiPublicaEnumerador.CADASTRO.getUrlApi())
-                .permitAll().antMatchers(HttpMethod.POST, ApiPublicaEnumerador.LOGIN.getUrlApi()).permitAll()
-                .anyRequest().authenticated().and()
-
-                .addFilterBefore(new FiltroLoginJWT(ApiPublicaEnumerador.LOGIN.getUrlApi(), getApplicationContext()),
+    	
+    	httpSecurity.csrf().disable()
+    		.authorizeRequests()
+    		.antMatchers(ApiPublicaEnumerador.CADASTRO.getUrlApi())
+            .permitAll().antMatchers(HttpMethod.POST, ApiPublicaEnumerador.LOGIN.getUrlApi())
+            .permitAll()
+            .anyRequest().authenticated().and()
+            .addFilterBefore(new FiltroLoginJWT(ApiPublicaEnumerador.LOGIN.getUrlApi(), getApplicationContext()),
                         UsernamePasswordAuthenticationFilter.class)
-
-                .addFilterBefore(new FiltroAutenticacaoJWT(), UsernamePasswordAuthenticationFilter.class);
+            .addFilterBefore(new FiltroAutenticacaoJWT(), UsernamePasswordAuthenticationFilter.class);
     }
 
     /**
