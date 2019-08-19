@@ -5,14 +5,12 @@
 package com.linecode.configuracao.seguranca.servico;
 
 import java.io.IOException;
-import java.nio.file.AccessDeniedException;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.MediaType;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StringUtils;
 
 import com.fasterxml.jackson.core.JsonParseException;

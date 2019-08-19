@@ -24,9 +24,9 @@ import { DocenteServico } from 'src/app/docente/docente.servico';
 })
 export class LoginComponent implements OnInit {
 
-  public form:  FormGroup;
+  public form: FormGroup;
 
-  constructor (
+  constructor(
     private formBuilder: FormBuilder,
     private docenteServico: DocenteServico,
     private spinnerServico: Ng4LoadingSpinnerService,
@@ -43,10 +43,13 @@ export class LoginComponent implements OnInit {
       this.spinnerServico.hide();
       this.docenteServico.setDocenteLogado(docenteLogado);
       inscricao.unsubscribe();
-      this.router.navigate([URLS_NAMES.home]);
+      //this.router.navigate([URLS_NAMES.home]);
+      this.docenteServico.teste().subscribe(a => {
+        console.log(a);
+      })
     });
   }
-  
+
   private iniciarForm(): void {
     this.form = this.formBuilder.group({
       email: this.formBuilder.control('', [

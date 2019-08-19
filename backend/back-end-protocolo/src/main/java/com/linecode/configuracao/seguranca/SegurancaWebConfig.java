@@ -13,12 +13,16 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.linecode.configuracao.seguranca.enumerador.ApiPublicaEnumerador;
 
 @Configuration
 @EnableWebSecurity
-public class SegurancaWebConfig extends WebSecurityConfigurerAdapter {
+@EnableWebMvc
+public class SegurancaWebConfig extends WebSecurityConfigurerAdapter implements WebMvcConfigurer  {
 
     @Autowired
     private Environment env;
@@ -56,5 +60,13 @@ public class SegurancaWebConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication().withUser(env.getProperty("usuario.admin.email"))
                 .password(env.getProperty("usuario.admin.senha")).roles(env.getProperty("usuario.admin.perfil"));
+    }
+    
+    /**
+     * Configuração de politica cross
+     */
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**").allowedMethods("*").allowedOrigins("*").allowedHeaders("*");
     }
 }

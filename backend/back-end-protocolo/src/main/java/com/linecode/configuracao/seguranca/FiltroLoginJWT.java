@@ -21,8 +21,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.linecode.configuracao.seguranca.cmd.LoginCmd;
 import com.linecode.configuracao.seguranca.servico.TokenJwtAutenticacaoServico;
 import com.linecode.docente.dto.DocenteDto;
 import com.linecode.docente.servico.DocenteServico;
@@ -45,11 +43,14 @@ public class FiltroLoginJWT extends AbstractAuthenticationProcessingFilter  {
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		
+	    response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "GET,POST,DELETE,PUT,OPTIONS");
+        response.setHeader("Access-Control-Allow-Headers", "*");
+	    
 		// @formatter:off
-	    LoginCmd credentials = new ObjectMapper().readValue(request.getInputStream(), LoginCmd.class);
         UsernamePasswordAuthenticationToken tokenAutenticacao = new UsernamePasswordAuthenticationToken(
-                credentials.getEmail(), 
-                credentials.getSenha(), 
+                request.getParameter("email"),
+                request.getParameter("senha"),
                 Collections.emptyList()
          );
 		// @formatter:on

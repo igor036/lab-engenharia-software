@@ -21,9 +21,8 @@ export class HttpInterceptorCore implements HttpInterceptor {
     }
 
     private getRequisicaoAutorizacao(req: HttpRequest<any>): any {
-        return req.clone({ 
-            //url: `${PROPRIEDADES.URL_BASE}/${req.url}`,
-            setHeaders: { Authorization: localStorage.getItem(PROPRIEDADES.TOKEN_DOCENTE)}
+        return req.clone({
+            setHeaders: { Authorization: localStorage.getItem(PROPRIEDADES.TOKEN_DOCENTE) }
         });
     }
 }

@@ -26,14 +26,14 @@ public class FiltroAutenticacaoJWT extends GenericFilterBean {
 	 * as requisições.
 	 * */
 	@Override
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
+	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
 			throws IOException, ServletException {
-		
+	
 		Authentication authentication = TokenJwtAutenticacaoServico
-				.getAuthentication((HttpServletRequest) request);
+				.getAuthentication((HttpServletRequest) servletRequest);
 		
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-		filterChain.doFilter(request, response);
+        filterChain.doFilter(servletRequest, servletResponse);
 	}
 	
 }
