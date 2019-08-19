@@ -3,7 +3,7 @@
  * Data: 18/08/2019
  */
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 
 import { PROPRIEDADES } from 'src/app/app.constante';
 import { Observable } from 'rxjs';
@@ -24,19 +24,16 @@ export class DocenteServico {
         return false;
     }
 
-    logar(login: Login): Observable<DocenteLogado> {
+    logar(login: Login): Observable<HttpResponse<DocenteLogado>> {
 
         const body = new HttpParams()
             .set("email", login.email)
             .set("senha", login.senha);
 
         return this.httpClient.post<DocenteLogado>('http://localhost:8080/login', body.toString(), {
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            observe: 'response'
         });
-    }
-
-    teste(): Observable<string> {
-        return this.httpClient.get<string>("http://localhost:8080/teste/ola");
     }
 
     setDocenteLogado(docente: DocenteLogado): void {
