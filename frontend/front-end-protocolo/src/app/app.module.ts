@@ -16,6 +16,7 @@ import { DocenteServico } from './docente/docente.servico';
 
 //modulos
 import { DocenteModule } from './docente/docente.module';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 //rotas
 import { ROTAS } from './app.router';
@@ -27,6 +28,7 @@ import { HttpInterceptorCore } from './interceptor/http.interceptor';
     HomeComponent
   ],
   imports: [
+    Ng4LoadingSpinnerModule.forRoot(),
     RouterModule.forRoot(ROTAS),
     BrowserModule,
     DocenteModule,

@@ -38,10 +38,12 @@ export class LoginComponent implements OnInit {
   }
 
   logar(): void {
+    this.spinnerServico.show();
     this.docenteServico.getTokenlogar(this.form.value).subscribe((token) => {
       this.docenteServico.setTokenDocente(token);
       this.docenteServico.getDadosDocenteLogado().subscribe(docente => {
         this.docenteServico.setDocenteLogado(docente);
+        this.spinnerServico.hide();
         this.router.navigate([URLS_NAMES.home]);
       });
     });
