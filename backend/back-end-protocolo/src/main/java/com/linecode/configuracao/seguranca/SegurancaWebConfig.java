@@ -68,6 +68,10 @@ public class SegurancaWebConfig extends WebSecurityConfigurerAdapter implements 
      */
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**").allowedMethods("*").allowedOrigins("*").allowedHeaders("*");
+        registry
+            .addMapping("/**")
+            .allowedMethods("*")
+            .allowedOrigins(env.getProperty("cross.origem.permitida"))
+            .allowedHeaders("*");
     }
 }
