@@ -44,7 +44,7 @@ public class DocenteDto implements Authentication {
 	}
 	
 	public DocenteDto() {
-	    
+	    this.autenticado = true;
 	}
 	
 	public long getMatricula() {

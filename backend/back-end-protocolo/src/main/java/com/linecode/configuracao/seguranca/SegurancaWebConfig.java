@@ -39,7 +39,7 @@ public class SegurancaWebConfig extends WebSecurityConfigurerAdapter implements 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
     	
-    	httpSecurity.csrf().disable()
+    	httpSecurity.cors().and().csrf().disable()
     		.authorizeRequests()
     		.antMatchers(ApiPublicaEnumerador.CADASTRO.getUrlApi())
             .permitAll().antMatchers(HttpMethod.POST, ApiPublicaEnumerador.LOGIN.getUrlApi())
