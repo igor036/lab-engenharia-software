@@ -1,14 +1,38 @@
-<div [formGroup]="form">
-    <input 
-        type="text" 
-        placeholder="E-mail" 
-        [formControl]="form.controls['email']"
-    />
-    <br/>
-    <input 
-        type="password" 
-        placeholder="Senha" 
-        [formControl]="form.controls['senha']"
-    />
-    <button (click)="logar()" [disabled]="!form.valid">Logar</button>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+
+<div class="external-log-deco">
+    <div class='log'>
+        <div class="log-deco">
+            <h1 class="log-header">Log In</h1>
+        </div>
+        <div>
+            <form class='form-deco' [formGroup]="form">
+                <div class="input-deco">
+                    <div class='icon-deco'>
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                    </div>
+                    <input type="text" placeholder="Email" class="text-deco" [formControl]="form.controls['email']">
+                </div>
+                <div class="input-deco">
+                    <div class='icon-deco'>
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                    </div>
+                    <input type="password" placeholder="Codigo de Acesso" class="text-deco"
+                        [formControl]="form.controls['senha']">
+                </div>
+                <div class="check-deco">
+                    <input type="checkbox"> Remember me
+                </div>
+                <button (click)="logar()" [disabled]="!form.valid">Log In</button>
+            </form>
+            <div class="request-deco">
+                <p>Não tem Conta ?</p>
+                <p><a>Solicite Uma</a></p>
+            </div>
+        </div>
+    </div>
 </div>
