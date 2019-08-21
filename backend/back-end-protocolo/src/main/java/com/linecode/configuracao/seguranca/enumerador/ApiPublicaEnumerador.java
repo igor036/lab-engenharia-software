@@ -12,7 +12,6 @@ package com.linecode.configuracao.seguranca.enumerador;
 
 public enum ApiPublicaEnumerador {
 	
-	CADASTRO("/cadastrar"),
 	LOGIN("/login");
 	
 	private String urlApi;
