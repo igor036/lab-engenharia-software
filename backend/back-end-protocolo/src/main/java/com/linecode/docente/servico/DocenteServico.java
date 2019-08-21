@@ -62,6 +62,15 @@ public class DocenteServico {
         return (DocenteDto) SecurityContextHolder.getContext().getAuthentication();
     }
     
+    /**
+     * Efetua o cadastro de um docente, gerando sua senha com o padrão
+     * primeiro_nome.ultimo_nome+sistema.complemento.senha.padrao
+     * 
+     * O metodo retorna o token de autenticacao do docente.
+     * 
+     * @param dados do docente {@link CadastroDocenteCmd}
+     * @return token de autenticacao {@link String}
+     */
     @PreAuthorize("@autorizacaoServico.isAutorizacaoAdmin()")
     public String cadastrarDocente(CadastroDocenteCmd cmd) {
 
@@ -84,6 +93,15 @@ public class DocenteServico {
         throw new ExcecaoNegocio(violacoes.stream().findFirst().get().getMessage());
     }
 
+    /**
+     * Gera a senha padrão de um determinado docente
+     * apartir do nome no formato:
+     * primeiro_nome.ultimo_nome+sistema.complemento.senha.padrao
+     * 
+     * @param nome do docente {@link String}
+     * @return senha padrão {@link String}
+     * 
+     */
     private String gerarSenha(String nome) {
 
         String[] nomeSeparado = nome.split(" ");
