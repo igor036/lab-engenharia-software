@@ -15,7 +15,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.linecode.configuracao.seguranca.servico.TokenJwtAutenticacaoServico;
 import com.linecode.docente.cmd.CadastroDocenteCmd;
 import com.linecode.docente.dao.DocenteDao;
@@ -30,7 +29,7 @@ public class DocenteServico {
 
     @Autowired
     private DocenteDao docenteDao;
-
+    
     @Autowired
     private Validator validator;
 
