@@ -31,9 +31,6 @@ public class DocenteControlador {
 	
 	@PostMapping("cadastrar")
 	public ResponseEntity<String> cadastrar(@RequestBody CadastroDocenteCmd cmd) {
-	    
-	    docenteServico.cadastrarDocente(cmd);
-	    
-	    return ResponseEntity.ok("MEU OVO");
+	    return ResponseEntity.ok(docenteServico.cadastrarDocente(cmd));
 	}
 }
