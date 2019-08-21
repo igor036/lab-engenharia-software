@@ -4,6 +4,8 @@
  */
 package com.linecode.publico.enumerador;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 public enum PerfilEnumerador {
     
     ADMIN("ADMIN"),
@@ -22,6 +24,7 @@ public enum PerfilEnumerador {
         return perfil;
     }
     
+    @JsonCreator
     public static PerfilEnumerador getPerfil(String text) {
         for (PerfilEnumerador b : PerfilEnumerador.values()) {
             if (b.perfil.equalsIgnoreCase(text)) {

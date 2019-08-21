@@ -16,5 +16,14 @@
 			D.EMAIL = ? AND
 			D.SENHA = ?
 	</entry>
+	
+	<entry key="com.linecode.docente.dao.DocenteDao.cadastrarDocente">
+		INSERT INTO TAB_DOCENTE (
+			NOME,
+			EMAIL,
+			SENHA,
+			FK_ID_ROLE
+		) VALUES (?, ?, ?, ?)
+	</entry>
     	
 </properties>

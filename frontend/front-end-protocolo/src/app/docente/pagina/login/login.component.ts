@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit {
     this.docenteServico.getTokenlogar(this.form.value).subscribe((token) => {
       this.docenteServico.setTokenDocente(token);
       this.docenteServico.getDadosDocenteLogado().subscribe(docente => {
-        console.log(docente);
         this.docenteServico.setDocenteLogado(docente);
         this.spinnerServico.hide();
         this.router.navigate([URLS_NAMES.home]);

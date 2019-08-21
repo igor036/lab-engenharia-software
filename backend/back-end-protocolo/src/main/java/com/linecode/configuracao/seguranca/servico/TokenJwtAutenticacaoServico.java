@@ -14,10 +14,12 @@ import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
 
 import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.linecode.docente.dto.DocenteDto;
+import com.linecode.publico.excecao.ExcecaoAplicacao;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -34,7 +36,29 @@ public class TokenJwtAutenticacaoServico {
 	private TokenJwtAutenticacaoServico() {
 	    //somente metodos estaticos
 	}
-
+	
+	
+	/**
+	 *  Metodo responsável por retornar
+	 *  o token jwt do usuario
+	 *  
+	 *  @param docente {@link DocenteDto}
+	 *  @return tokenJWT {@link String}
+	 */
+	public static String gerarTokenDocente(DocenteDto docente) {
+	    
+	    try {
+	        
+	        String jsonDocente = mapeadorJson.writeValueAsString(docente);
+	        return TOKEN_JWT_PREFIXO + " " + Jwts.builder().setSubject(jsonDocente)
+	                .setExpiration(getDataExpiracao())
+	                .signWith(SignatureAlgorithm.HS512, TOKEN_JWT_SECRET).compact();
+	        
+	    }catch (JsonProcessingException e) {
+            throw new ExcecaoAplicacao("Erro ao gerar token do docente", e);
+        }
+	}
+	
 	/**
 	 * Metodo responsavel por adicionar o token JWT
 	 * no cabecalho 'Authorization' da resposta
@@ -47,14 +71,11 @@ public class TokenJwtAutenticacaoServico {
 	 */
 	public static void addAuthentication(HttpServletResponse response, DocenteDto docente) throws IOException {
 		
-	    String jsonDocente = mapeadorJson.writeValueAsString(docente);
-		String JWT = TOKEN_JWT_PREFIXO + " " + Jwts.builder().setSubject(jsonDocente)
-				.setExpiration(getDataExpiracao())
-				.signWith(SignatureAlgorithm.HS512, TOKEN_JWT_SECRET).compact();
-
+	    String token = gerarTokenDocente(docente);
 		response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-		response.addHeader(TOKEN_JWT_CABECALHO, JWT);
-		response.getWriter().print(JWT);
+		response.addHeader(TOKEN_JWT_CABECALHO, token);
+		response.getWriter().print(token);
+		
 	}
 
 	/**

@@ -10,20 +10,26 @@ import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.linecode.docente.cmd.CadastroDocenteCmd;
 import com.linecode.docente.dto.DocenteDto;
 
 @Repository
 @PropertySource("com/linecode/docente/dao/DocenteDao.xml")
 public class DocenteDao {
 
-	@Autowired
-	private Environment env;
+    @Autowired
+    private Environment env;
 
-	@Autowired
-	private JdbcTemplate jdbcTamplate;
+    @Autowired
+    private JdbcTemplate jdbcTamplate;
 
-	public DocenteDto getDocentePorEmailSenha(String email, String senha) {
-		return jdbcTamplate.query(env.getProperty("com.linecode.docente.dao.DocenteDao.getDocentePorEmailSenha"),
-				DocenteMapeadorLinha.getDocenteDtoMapeadorLinha(), email, senha);
-	}
+    public DocenteDto getDocentePorEmailSenha(String email, String senha) {
+        return jdbcTamplate.query(env.getProperty("com.linecode.docente.dao.DocenteDao.getDocentePorEmailSenha"),
+                DocenteMapeadorLinha.getDocenteDtoMapeadorLinha(), email, senha);
+    }
+
+    public boolean cadastrarDocente(CadastroDocenteCmd cmd) {
+        return jdbcTamplate.update(env.getProperty("com.linecode.docente.dao.DocenteDao.cadastrarDocente"),
+                cmd.getNome(), cmd.getEmail(), cmd.getSenha(), cmd.getIdPerfil()) == 1;
+    }
 }
