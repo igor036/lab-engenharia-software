@@ -19,7 +19,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.linecode.docente.dto.DocenteDto;
-import com.linecode.publico.excecao.ExcecaoAplicacao;
+import com.linecode.compartilhado.excecao.ExcecaoAplicacao;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

@@ -22,8 +22,8 @@ import com.linecode.configuracao.seguranca.servico.TokenJwtAutenticacaoServico;
 import com.linecode.docente.cmd.CadastroDocenteCmd;
 import com.linecode.docente.dao.DocenteDao;
 import com.linecode.docente.dto.DocenteDto;
-import com.linecode.publico.excecao.ExcecaoAplicacao;
-import com.linecode.publico.excecao.ExcecaoNegocio;
+import com.linecode.compartilhado.excecao.ExcecaoAplicacao;
+import com.linecode.compartilhado.excecao.ExcecaoNegocio;
 
 import io.jsonwebtoken.lang.Assert;
 

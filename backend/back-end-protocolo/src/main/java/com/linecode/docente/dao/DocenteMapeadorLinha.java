@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.ResultSetExtractor;
 
 import com.linecode.docente.dto.DocenteDto;
-import com.linecode.publico.enumerador.PerfilEnumerador;
+import com.linecode.compartilhado.enumerador.PerfilEnumerador;
 
 public class DocenteMapeadorLinha {
 

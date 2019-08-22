@@ -11,7 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.linecode.docente.dto.DocenteDto;
-import com.linecode.publico.enumerador.PerfilEnumerador;
+import com.linecode.compartilhado.enumerador.PerfilEnumerador;
 
 @Service
 public class AutorizacaoServico {

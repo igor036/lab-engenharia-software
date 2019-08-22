@@ -14,7 +14,7 @@ import org.springframework.security.core.GrantedAuthority;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.linecode.publico.enumerador.PerfilEnumerador;
+import com.linecode.compartilhado.enumerador.PerfilEnumerador;
 
 
 public class DocenteDto implements Authentication {

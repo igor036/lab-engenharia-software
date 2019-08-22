@@ -2,7 +2,7 @@
  * Author: Igor Joaquim dos Santos Lima
  * Data: 15/08/2019
  */
-package com.linecode.publico.excecao;
+package com.linecode.compartilhado.excecao;
 
 public class ExcecaoNegocio extends RuntimeException {
     

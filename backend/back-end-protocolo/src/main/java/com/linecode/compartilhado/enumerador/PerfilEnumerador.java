@@ -2,7 +2,7 @@
  * Author: Igor Joaquim dos Santos Lima
  * Data: 21/08/2019
  */
-package com.linecode.publico.enumerador;
+package com.linecode.compartilhado.enumerador;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
