@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>Querys relacionadas aos utilitarios</comment>
+	
+	<entry key="com.linecode.docente.dao.DocenteDao.cadastrarDocente">
+		INSERT INTO TAB_DOCENTE (
+			NOME,
+			EMAIL,
+			SENHA,
+			FK_ID_ROLE
+		) VALUES (?, ?, ?, ?)
+	</entry>
+    	
+</properties>
