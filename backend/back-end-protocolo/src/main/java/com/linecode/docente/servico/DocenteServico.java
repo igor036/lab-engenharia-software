@@ -11,9 +11,12 @@ import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.linecode.configuracao.seguranca.servico.TokenJwtAutenticacaoServico;
 import com.linecode.docente.cmd.CadastroDocenteCmd;
@@ -29,6 +32,9 @@ public class DocenteServico {
 
     @Autowired
     private DocenteDao docenteDao;
+    
+    @Autowired
+    private JavaMailSender javaMailSender;
     
     @Autowired
     private Validator validator;
@@ -64,13 +70,13 @@ public class DocenteServico {
     /**
      * Efetua o cadastro de um docente, gerando sua senha com o padrão
      * primeiro_nome.ultimo_nome+sistema.complemento.senha.padrao
-     * 
-     * O metodo retorna o token de autenticacao do docente.
+     * em seguida envia a senha para o e-mail do docente.
      * 
      * @param dados do docente {@link CadastroDocenteCmd}
      * @return token de autenticacao {@link String}
      */
     @PreAuthorize("@autorizacaoServico.isAutorizacaoAdmin()")
+    @Transactional
     public String cadastrarDocente(CadastroDocenteCmd cmd) {
 
         Assert.notNull(cmd, "Informe os dados do docente");
@@ -82,6 +88,12 @@ public class DocenteServico {
             cmd.setSenha(gerarSenha(cmd.getNome()));
 
             if (docenteDao.cadastrarDocente(cmd)) {
+                
+                String corpoEmail = gerarCorpoEmailSenha(cmd.getNome(), cmd.getSenha());
+                String tituloEmail = env.getProperty("sistema.titulo.email.senha");
+                
+                enviarEmail(cmd.getEmail(), tituloEmail, corpoEmail);
+                
                 return TokenJwtAutenticacaoServico
                         .gerarTokenDocente(getDocentePorEmailSenha(cmd.getEmail(), cmd.getSenha()));
             }
@@ -112,5 +124,47 @@ public class DocenteServico {
                 .append(env.getProperty("sistema.complemento.senha.padrao"));
 
         return senha.toString();
+    }
+    
+    /**
+     * Gera o corpo do email que informa
+     * a senha do docente.
+     * 
+     *  @param nomeDocente  {@link String}
+     *  @param senhaDocente {@link String}
+     *  
+     *  @return corpo do email {@link String}
+     */
+    private String gerarCorpoEmailSenha(String nomeDocente, String senhaDocente) {
+        
+        StringBuilder corpoEmail = new StringBuilder();
+        
+        corpoEmail
+            .append("Caro(a) ")
+            .append(nomeDocente)
+            .append(" Informamos que a sua senha para o portal de protocolo é: ")
+            .append(senhaDocente)
+            .append(" Por-favor, não compartilhe a senha com os demais docentes.")
+            .append(" Atenção: E-mail informativo, não responda este email.");
+        
+        return corpoEmail.toString();
+    }
+    
+    /**
+     * Envia um email para um determinado destino
+     * 
+     *  @param emailDestino - email de destino {@link String}
+     *  @param titulo - titulo do email {@link String}
+     *  @param corpo - conteudo do email {@link String}
+     */
+    private void enviarEmail(String emailDestino, String titulo, String corpo) {
+        
+        SimpleMailMessage email = new SimpleMailMessage();
+        email.setTo(emailDestino);
+        email.setSubject(titulo);
+        email.setText(corpo);
+        
+        javaMailSender.send(email);
+        
     }
 }
