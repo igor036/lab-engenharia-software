@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -38,10 +37,10 @@ public class FiltroLoginJWT extends AbstractAuthenticationProcessingFilter  {
 	/**
 	 * metodo responsavel por receber as requisições
 	 * e efetuar a autenticacao pelo token. 
+	 * @throws IOException 
 	 */
 	@Override
-	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
-			throws IOException, ServletException {
+	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 	    response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "GET,POST,DELETE,PUT,OPTIONS");
@@ -58,7 +57,9 @@ public class FiltroLoginJWT extends AbstractAuthenticationProcessingFilter  {
         Authentication autenticacao = getAuthenticationManager().authenticate(tokenAutenticacao);
         
         if (autenticacao == null) {
-        	throw new InternalAuthenticationServiceException("Usuario/senha inválido(a)", null);
+            response.setCharacterEncoding("UTF-8");
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.getWriter().write("Usuário/Senha inválido(a)");
         }
 		
 		return autenticacao;

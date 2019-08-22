@@ -8,7 +8,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 //terceiros
-import { Subscription } from 'rxjs';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 //constantes
