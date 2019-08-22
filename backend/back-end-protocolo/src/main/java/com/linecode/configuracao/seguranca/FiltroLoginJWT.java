@@ -42,9 +42,7 @@ public class FiltroLoginJWT extends AbstractAuthenticationProcessingFilter  {
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
-	    response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Methods", "GET,POST,DELETE,PUT,OPTIONS");
-        response.setHeader("Access-Control-Allow-Headers", "*");
+	    adicionarCrossNaResposta(response);
 	    
 		// @formatter:off
         UsernamePasswordAuthenticationToken tokenAutenticacao = new UsernamePasswordAuthenticationToken(
@@ -57,9 +55,7 @@ public class FiltroLoginJWT extends AbstractAuthenticationProcessingFilter  {
         Authentication autenticacao = getAuthenticationManager().authenticate(tokenAutenticacao);
         
         if (autenticacao == null) {
-            response.setCharacterEncoding("UTF-8");
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            response.getWriter().write("Usuário/Senha inválido(a)");
+            handlerErroLogin(response);
         }
 		
 		return autenticacao;
@@ -107,4 +103,28 @@ public class FiltroLoginJWT extends AbstractAuthenticationProcessingFilter  {
 
         };
     }
+	
+	/**
+	 * Adiciona permissão de cross
+	 * no cabeçalho de resposta.
+	 * 
+	 * @param resposta {@link HttpServletResponse}
+	 */
+	private void adicionarCrossNaResposta(HttpServletResponse response) {
+	    response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "GET,POST,DELETE,PUT,OPTIONS");
+        response.setHeader("Access-Control-Allow-Headers", "*");
+	}
+	
+	/**
+	 * Faz o tratamento de erro de login na resposta
+	 * 
+	 * @param response {@link HttpServletResponse}
+	 * @throws IOException 
+	 */
+	private void handlerErroLogin(HttpServletResponse response) throws IOException {
+	    response.setCharacterEncoding("UTF-8");
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        response.getWriter().write("Usuário/Senha inválido(a)");
+	}
 }
