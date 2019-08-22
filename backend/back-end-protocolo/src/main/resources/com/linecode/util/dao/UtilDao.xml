@@ -3,13 +3,11 @@
 <properties>
     <comment>Querys relacionadas aos utilitarios</comment>
 	
-	<entry key="com.linecode.docente.dao.DocenteDao.cadastrarDocente">
-		INSERT INTO TAB_DOCENTE (
-			NOME,
-			EMAIL,
-			SENHA,
-			FK_ID_ROLE
-		) VALUES (?, ?, ?, ?)
+	<entry key="com.linecode.util.dao.UtilDao.getListaPerfil">
+		SELECT 
+			ID_ROLE,
+			NOME
+		FROM TAB_ROLE
 	</entry>
     	
 </properties>
