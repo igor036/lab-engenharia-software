@@ -4,7 +4,7 @@
  */
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 //componentes
@@ -16,10 +16,14 @@ import { DocenteServico } from './docente/docente.servico';
 
 //modulos
 import { DocenteModule } from './docente/docente.module';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+
+//interceptadores
+import { HttpInterceptorCore } from './interceptor/http.interceptor';
+import { ErrorInterceptor } from './interceptor/error.interceptor';
 
 //rotas
 import { ROTAS } from './app.router';
-import { HttpInterceptorCore } from './interceptor/http.interceptor';
 
 @NgModule({
   declarations: [
@@ -27,6 +31,7 @@ import { HttpInterceptorCore } from './interceptor/http.interceptor';
     HomeComponent
   ],
   imports: [
+    Ng4LoadingSpinnerModule.forRoot(),
     RouterModule.forRoot(ROTAS),
     BrowserModule,
     DocenteModule,
@@ -34,7 +39,8 @@ import { HttpInterceptorCore } from './interceptor/http.interceptor';
   ],
   providers: [
     DocenteServico,
-    { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorCore, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorCore, multi: true },
+    { provide: ErrorHandler, useClass: ErrorInterceptor }
   ],
   bootstrap: [AppComponent]
 })

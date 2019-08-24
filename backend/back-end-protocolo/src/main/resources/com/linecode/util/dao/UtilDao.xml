@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>Querys relacionadas aos utilitarios</comment>
+	
+	<entry key="com.linecode.util.dao.UtilDao.getListaPerfil">
+		SELECT 
+			ID_ROLE,
+			NOME
+		FROM TAB_ROLE
+	</entry>
+    	
+</properties>

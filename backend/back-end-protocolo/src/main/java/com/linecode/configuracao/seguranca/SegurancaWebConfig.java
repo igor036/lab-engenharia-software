@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -22,6 +23,7 @@ import com.linecode.configuracao.seguranca.enumerador.ApiPublicaEnumerador;
 @Configuration
 @EnableWebSecurity
 @EnableWebMvc
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SegurancaWebConfig extends WebSecurityConfigurerAdapter implements WebMvcConfigurer  {
 
     @Autowired
@@ -41,8 +43,7 @@ public class SegurancaWebConfig extends WebSecurityConfigurerAdapter implements 
     	
     	httpSecurity.cors().and().csrf().disable()
     		.authorizeRequests()
-    		.antMatchers(ApiPublicaEnumerador.CADASTRO.getUrlApi())
-            .permitAll().antMatchers(HttpMethod.POST, ApiPublicaEnumerador.LOGIN.getUrlApi())
+    		.antMatchers(HttpMethod.POST, ApiPublicaEnumerador.LOGIN.getUrlApi())
             .permitAll()
             .anyRequest().authenticated().and()
             .addFilterBefore(new FiltroLoginJWT(ApiPublicaEnumerador.LOGIN.getUrlApi(), getApplicationContext()),
@@ -68,6 +69,10 @@ public class SegurancaWebConfig extends WebSecurityConfigurerAdapter implements 
      */
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**").allowedMethods("*").allowedOrigins("*").allowedHeaders("*");
+        registry
+            .addMapping("/**")
+            .allowedMethods("*")
+            .allowedOrigins(env.getProperty("cross.origem.permitida"))
+            .allowedHeaders("*");
     }
 }

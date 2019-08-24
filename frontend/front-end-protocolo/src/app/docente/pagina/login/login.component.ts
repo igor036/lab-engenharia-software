@@ -8,7 +8,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 //terceiros
-import { Subscription } from 'rxjs';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 //constantes
@@ -19,7 +18,8 @@ import { DocenteServico } from 'src/app/docente/docente.servico';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html'
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 
@@ -37,10 +37,12 @@ export class LoginComponent implements OnInit {
   }
 
   logar(): void {
+    this.spinnerServico.show();
     this.docenteServico.getTokenlogar(this.form.value).subscribe((token) => {
       this.docenteServico.setTokenDocente(token);
       this.docenteServico.getDadosDocenteLogado().subscribe(docente => {
         this.docenteServico.setDocenteLogado(docente);
+        this.spinnerServico.hide();
         this.router.navigate([URLS_NAMES.home]);
       });
     });

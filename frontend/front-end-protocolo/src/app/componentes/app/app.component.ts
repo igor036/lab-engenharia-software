@@ -1,3 +1,7 @@
+/**
+ * Author: Igor Joaquim dos Santos Lima
+ * Data: 18/08/2019
+ */
 //core
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -20,8 +24,13 @@ export class AppComponent implements OnInit {
     private router: Router
   ) {}
     
+  /**
+   * Caso o docente nao esteja logado
+   * ele sera redirecionado para a tela de login.
+   */
   ngOnInit(): void {
-    let rota = this.docenteServico.isLogado() ? URLS_NAMES.home : URLS_NAMES.login;
-    this.router.navigate([rota]);
+    if (!this.docenteServico.isLogado()) {
+      this.router.navigate([URLS_NAMES.login]);
+    }
   }
 }

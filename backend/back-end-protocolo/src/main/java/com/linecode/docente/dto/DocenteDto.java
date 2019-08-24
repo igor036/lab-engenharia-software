@@ -14,6 +14,7 @@ import org.springframework.security.core.GrantedAuthority;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.linecode.compartilhado.enumerador.PerfilEnumerador;
 
 
 public class DocenteDto implements Authentication {
@@ -30,12 +31,12 @@ public class DocenteDto implements Authentication {
 	private String email;
 	
 	@JsonAlias("perfil")
-	private String perfil;
+	private PerfilEnumerador perfil;
 	
 	@JsonIgnore
 	private boolean autenticado;
 	
-	public DocenteDto(long matricula, String nome, String email, String perfil) {
+	public DocenteDto(long matricula, String nome, String email, PerfilEnumerador perfil) {
 		this.matricula = matricula;
 		this.nome = nome;
 		this.email = email;
@@ -44,7 +45,7 @@ public class DocenteDto implements Authentication {
 	}
 	
 	public DocenteDto() {
-	    
+	    this.autenticado = true;
 	}
 	
 	public long getMatricula() {
@@ -59,7 +60,7 @@ public class DocenteDto implements Authentication {
 		return email;
 	}
 
-	public String getPerfil() {
+	public PerfilEnumerador getPerfil() {
 		return perfil;
 	}
 
@@ -72,7 +73,7 @@ public class DocenteDto implements Authentication {
 	@Override
 	@JsonIgnore
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return Arrays.asList(() -> perfil);
+		return Arrays.asList(() -> perfil.toString());
 	}
 
 	@Override

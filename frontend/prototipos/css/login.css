@@ -1,18 +1,25 @@
 *{font-family: 'Roboto', sans-serif;}
 
-body {
-    background-color: #E6E6E6;
-    padding: 5% 0% 5% 0%;
-  }
+body{
+  margin: 0;
+  display: flex;
+  background-color:#ebebeb;
+}
+
+.external-log-deco{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 5%;
+}
 
 .log {
     background-color:white;
     border-radius: 12px;
     box-shadow: 5px 5px 5px rgba(49, 48, 48, 0.452);
     padding-bottom: 2%;
-    display: block;
-    align-self: center;
-    margin: 0% 35%;
+    width: 33%;
+    max-height: 60%;
   }
   
   .log-deco{

@@ -5,8 +5,8 @@
 //core
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //terceiros
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
@@ -14,10 +14,12 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 //paginas
 import { LoginComponent } from './pagina/login/login.component';
 import { PerfilComponent } from './pagina/perfil/perfil.component';
+import { CadastroComponent } from './pagina/cadastro/cadastro.component';
 
 const COMPONENTES = [
   LoginComponent, 
-  PerfilComponent
+  PerfilComponent,
+  CadastroComponent
 ];
 
 @NgModule({

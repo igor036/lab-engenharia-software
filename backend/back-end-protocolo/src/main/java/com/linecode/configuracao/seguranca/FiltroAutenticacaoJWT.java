@@ -31,7 +31,7 @@ public class FiltroAutenticacaoJWT extends GenericFilterBean {
 	
 		Authentication authentication = TokenJwtAutenticacaoServico
 				.getAuthentication((HttpServletRequest) servletRequest);
-		
+
 		SecurityContextHolder.getContext().setAuthentication(authentication);
         filterChain.doFilter(servletRequest, servletResponse);
 	}

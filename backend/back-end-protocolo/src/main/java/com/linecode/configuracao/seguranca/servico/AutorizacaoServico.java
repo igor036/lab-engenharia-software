@@ -11,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.linecode.docente.dto.DocenteDto;
+import com.linecode.compartilhado.enumerador.PerfilEnumerador;
 
 @Service
 public class AutorizacaoServico {
@@ -19,8 +20,28 @@ public class AutorizacaoServico {
 	 * Metodo que efetua autorizacao para
 	 * apenas um perfil 
 	 */
-	public boolean isAutorizado(String perfil) {
-		return getDocenteLogado().getPerfil().equals(perfil);
+	public boolean isAutorizado(String ...autorizados) {
+	    
+	    DocenteDto docente = getDocenteLogado();
+	    
+	    for (String autorizado: autorizados) {
+	        if (docente.getPerfil().toString().equals(autorizado)) {
+	            return true;
+	        }
+	    }
+	    
+	    return false;
+	}
+	
+	/**
+	 * Retorna um valor booleando indicando
+	 * se o usuário tem perfil de administração. 
+	 * 
+	 */
+	public boolean isAutorizacaoAdmin() {
+	    PerfilEnumerador perfil = getDocenteLogado().getPerfil();
+	    return perfil.equals(PerfilEnumerador.ADMIN) || perfil.equals(PerfilEnumerador.COORDENADOR) || 
+	            perfil.equals(PerfilEnumerador.SECRETARIA);
 	}
 	
 	/**
