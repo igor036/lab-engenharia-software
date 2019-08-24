@@ -19,8 +19,7 @@ import { DocenteServico } from 'src/app/docente/docente.servico';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnInit {
 

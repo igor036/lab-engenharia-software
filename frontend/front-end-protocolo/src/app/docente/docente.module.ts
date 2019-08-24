@@ -1,3 +1,7 @@
+/**
+ * Author: Igor Joaquim dos Santos Lima
+ * Data: 18/08/2019
+ */
 //core
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';

@@ -11,7 +11,7 @@ import {
 } from '@angular/common/http';
 
 import { PROPRIEDADES } from 'src/app/app.constante';
-import { DocenteServico } from '../docente/docente.servico';
+import { DocenteServico } from 'src/app/docente/docente.servico';
 
 @Injectable()
 export class HttpInterceptorCore implements HttpInterceptor {
