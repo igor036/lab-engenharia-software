@@ -1,0 +1,10 @@
+
+<div class="input-deco">
+    <div class='icon-deco'>
+        <i class="fa {{classeIcone}}" aria-hidden="true"></i>
+    </div>    
+    <select id="select" class="select-deco" (change)="writeValue($event.target.value)">
+        <option disabled selected value="placeholder">{{placeholder}}</option>
+        <option *ngFor="let opcao of listaOpcao" value="{{opcao.valor}}">{{opcao.descricao}}</option>
+    </select>
+</div>

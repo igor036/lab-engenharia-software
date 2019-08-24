@@ -1,0 +1,23 @@
+.input-deco {
+    display: flex;
+    margin-top: 3%;
+    padding: 0%;
+    border-radius: 0px;
+    background-color: #ebebeb;
+}
+
+.icon-deco{
+    padding: 2% 0%;
+    width: 15%;
+    background-color: #5095F6;
+}
+
+.select-deco{
+    flex-grow: 1;
+    background-color: transparent;
+    border: none;
+    color: #0844a4;
+    font-size: 100%;
+    font-weight: 100;
+    text-align: center;
+}
