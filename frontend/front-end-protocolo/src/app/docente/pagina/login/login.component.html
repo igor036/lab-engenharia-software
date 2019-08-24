@@ -3,7 +3,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-
 <div class="external-log-deco">
     <div class='log'>
         <div class="log-deco">
@@ -11,24 +10,28 @@
         </div>
         <div>
             <form class='form-deco' [formGroup]="form">
-                <app-input 
+                <app-input-texto 
                     [formControl]="form.controls['email']"
                     msgErro="Informe um e-mail válido."
                     placeholder="Email"
                     classeIcone="fa-envelope"
                     (alterarValor)="teste($event)">
-                </app-input>
-                <app-input 
+                </app-input-texto>
+                <app-input-texto 
                     [isSenha]="true"
                     [formControl]="form.controls['senha']"
                     msgErro="Informe a senha."
                     placeholder="Senha"
                     classeIcone="fa-lock">
-                </app-input>
+                </app-input-texto>
                 <div class="check-deco">
                     <input type="checkbox"> Remember me
                 </div>
-                <button (click)="logar()" [disabled]="!form.valid">Log In</button>
+                <app-botao 
+                    texto="Log In"
+                    [liberado]="form.valid"
+                    (click)="logar()">
+                </app-botao>
             </form>
             <div class="request-deco">
                 <p>Não tem Conta ?</p>

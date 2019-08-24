@@ -1,0 +1,24 @@
+button {
+    padding: 3%;
+    margin-top: 6%;
+    border-radius: 20px;
+    width: 100%;
+    font-size: 80%;
+    background-color: #0844a4;
+    color: white;
+    border: none;
+    font-weight: bold;
+  }
+  
+  button:hover{
+    background-color: #6334e3;
+  }
+
+  .botao-bloqueado {
+    background-color: gray;
+    color: black;
+  }
+
+  .botao-bloqueado:hover {
+    background-color: #696969;
+  }

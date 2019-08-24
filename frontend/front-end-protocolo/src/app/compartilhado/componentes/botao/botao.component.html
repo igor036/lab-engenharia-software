@@ -1,1 +1,3 @@
-<p>botao works!</p>
+<button (click)="logar()" [disabled]="!liberado" [class.botao-bloqueado]="isBloqueado()">
+    {{ texto }}
+</button>

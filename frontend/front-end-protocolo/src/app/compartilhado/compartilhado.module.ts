@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //componentes
-import { InputComponent } from './componentes/input/input.component';
+import { InputTextoComponent } from './componentes/input-texto/input-texto.component';
+import { BotaoComponent } from './componentes/botao/botao.component';
 
 const COMPONENTES = [
-  InputComponent
+  InputTextoComponent,
+  BotaoComponent
 ];
 
 @NgModule({

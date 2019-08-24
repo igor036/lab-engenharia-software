@@ -18,12 +18,12 @@ import {
 } from '@angular/forms';
 
 @Component({
-  selector: 'app-input',
-  templateUrl: './input.component.html',
-  styleUrls: ['./input.component.scss'],
+  selector: 'app-input-texto',
+  templateUrl: './input-texto.component.html',
+  styleUrls: ['./input-texto.component.scss'],
   providers: [{
     provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => InputComponent),
+    useExisting: forwardRef(() => InputTextoComponent),
     multi: true
   }]
 })
@@ -47,7 +47,7 @@ import {
  * @Input isSenha informa se o campo é do tipo  senha.
  * @Output alterarValor evento que emit o valor do campo toda vez que o mesmo é alterado.
  */
-export class InputComponent implements OnInit, ControlValueAccessor {
+export class InputTextoComponent implements OnInit, ControlValueAccessor {
 
   @Input() public formControl: FormControl;
   @Input() public classeIcone: string;
