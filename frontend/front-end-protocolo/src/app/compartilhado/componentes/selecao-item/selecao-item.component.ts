@@ -56,7 +56,7 @@ export class SelecaoItemComponent implements OnInit, ControlValueAccessor {
   @Input() public classeIcone: string;
   @Input() public placeholder: string;
 
-  @Output() public alterarValor: EventEmitter<string> = new EventEmitter<string>();
+  @Output() public alterarValor: EventEmitter<any> = new EventEmitter<any>();
 
   private valor: any;
   private onChange: Function;
@@ -68,10 +68,8 @@ export class SelecaoItemComponent implements OnInit, ControlValueAccessor {
 
     if (!this.formControl) {
       throw Error("Informe o control do componente de selecão.");
-    } else if (!this.listaOpcao || this.listaOpcao.length == 0) {
-      throw Error("Informe a lista de opções para seleção.");
     }
-
+    
     this.iniciarValor();
   }
 
@@ -79,7 +77,7 @@ export class SelecaoItemComponent implements OnInit, ControlValueAccessor {
     return !this.formControl.valid && !this.formControl.pristine;
   }
 
-  writeValue(valor: string): void {
+  writeValue(valor: any): void {
     this.valor = valor;
     this.alterarValor.emit(this.valor);
   }
@@ -89,7 +87,7 @@ export class SelecaoItemComponent implements OnInit, ControlValueAccessor {
   registerOnTouched(funcao: Function): void {
     this.onTouched = funcao;
   }
-
+  
   private iniciarValor(): void {
     let selectedValue = this.formControl.value ? this.formControl.value : this.OPCAO_PLACEHOLDER;
     document.getElementById("select")['value'] = selectedValue;

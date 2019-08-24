@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.linecode.util.dto.PerfilDto;
+import com.linecode.util.dto.OpcaoDto;
 import com.linecode.util.servico.UtilServico;
 
 @RestController
@@ -23,7 +23,7 @@ public class UtilControlador {
     private UtilServico utilServico;
     
     @GetMapping("lista-perfil")
-    public ResponseEntity<List<PerfilDto>> getListaPerfil() {
+    public ResponseEntity<List<OpcaoDto<Long>>> getListaPerfil() {
         return ResponseEntity.ok(utilServico.getListaPerfil());
     }
 }   

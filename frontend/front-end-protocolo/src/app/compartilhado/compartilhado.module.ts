@@ -7,6 +7,9 @@ import { BotaoComponent } from './componentes/botao/botao.component';
 import { InputTextoComponent } from './componentes/input-texto/input-texto.component';
 import { SelecaoItemComponent } from './componentes/selecao-item/selecao-item.component';
 
+//servicos
+import { UtilServico } from './util.servico';
+
 const COMPONENTES = [
   BotaoComponent,
   InputTextoComponent,
@@ -20,6 +23,9 @@ const COMPONENTES = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+  ],
+  providers: [
+    UtilServico
   ]
 })
 export class CompartilhadoModule { }

@@ -1,1 +1,25 @@
-<p>cadastro works!</p>
+<form [formGroup]="form">
+    <app-input-texto 
+        [formControl]="form.controls['email']"
+        msgErro="Informe um e-mail válido."
+        placeholder="Email"
+        classeIcone="fa-envelope">
+    </app-input-texto>
+    <app-input-texto 
+        [formControl]="form.controls['nome']"
+        msgErro="Informe o nome do docente."
+        placeholder="Nome"
+        classeIcone="fa-user">
+    </app-input-texto>
+    <app-selecao-item
+        [formControl]="form.controls['idPerfil']"
+        [listaOpcao]="listaPerfil"
+        placeholder="Selecione o papel"
+        classeIcone="fa-user">
+   </app-selecao-item>
+   <app-botao 
+        texto="Cadastrar"
+        [liberado]="form.valid"
+        (click)="cadastrar()">
+    </app-botao>
+</form>

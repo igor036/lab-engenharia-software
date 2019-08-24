@@ -1,3 +1,3 @@
-<button (click)="logar()" [disabled]="!liberado" [class.botao-bloqueado]="isBloqueado()">
+<button (click)="bindClick()" [disabled]="!liberado" [class.botao-bloqueado]="isBloqueado()">
     {{ texto }}
 </button>

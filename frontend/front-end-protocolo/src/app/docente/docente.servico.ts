@@ -8,14 +8,30 @@ import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { PROPRIEDADES } from 'src/app/app.constante';
 import { Observable } from 'rxjs';
 
-import { DocenteLogado, Login } from './docente.modeo';
+import { 
+    DocenteLogado, 
+    Login, 
+    CadastroDocente 
+} from './docente.modelo';
 
 @Injectable()
 export class DocenteServico {
 
-    constructor(
-        private httpClient: HttpClient
-    ) { }
+    private readonly URL_CONTROLADOR: string = 'docente';
+
+    constructor(private httpClient: HttpClient) { }
+
+    getDadosDocenteLogado(): Observable<DocenteLogado> {
+        return this.httpClient.get<DocenteLogado>(
+            `${this.URL_CONTROLADOR}/dados-docente-logado`
+        );
+    }
+
+    cadastrarDocente(cadastroDocente:  CadastroDocente): Observable<string> {
+        return this.httpClient.post<string>(
+            `${this.URL_CONTROLADOR}/cadastrar`, cadastroDocente
+        );
+    }
 
     isLogado(): boolean {
         if (localStorage.getItem(PROPRIEDADES.TOKEN_DOCENTE)) {
@@ -41,10 +57,6 @@ export class DocenteServico {
     getTokenLogado(): string {
         let token = localStorage.getItem(PROPRIEDADES.TOKEN_DOCENTE);
         return token ? token : '';
-    }
-
-    getDadosDocenteLogado(): Observable<DocenteLogado> {
-        return this.httpClient.get<DocenteLogado>('docente/dados-docente-logado');
     }
 
     setDocenteLogado(docente: DocenteLogado): void {

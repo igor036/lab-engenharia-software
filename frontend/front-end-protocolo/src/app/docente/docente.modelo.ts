@@ -14,7 +14,14 @@ interface DocenteLogado {
     perfil: string,
 }
 
+interface CadastroDocente {
+    email: string;
+    nome: string;
+    idPerfil: number;
+}
+
 export {
     Login,
-    DocenteLogado
+    DocenteLogado,
+    CadastroDocente
 }

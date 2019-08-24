@@ -81,6 +81,7 @@ export class InputTextoComponent implements OnInit, ControlValueAccessor {
     this.valor = valor;
     this.alterarValor.emit(this.valor);
   }
+  
   registerOnChange(funcao: Function): void {
     this.onChange = funcao;
   }

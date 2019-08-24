@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.linecode.util.dto.PerfilDto;
+import com.linecode.util.dto.OpcaoDto;
 
 public class UtilMapeadorLinha {
 
@@ -17,16 +17,14 @@ public class UtilMapeadorLinha {
         //somente metodos estaticos
     }
     
-    public static PerfilDtoMapeadorLinha getPerfilDtoMapeadorLinha() {
-        return new PerfilDtoMapeadorLinha();
+    public static OpcaoDtoMapeadorLinha getOpcaoDtoMapeadorLinha() {
+        return new OpcaoDtoMapeadorLinha();
     }
     
-    private static class PerfilDtoMapeadorLinha implements RowMapper<PerfilDto> {
-
+    private static class OpcaoDtoMapeadorLinha implements RowMapper<OpcaoDto<Long>> {
         @Override
-        public PerfilDto mapRow(ResultSet rs, int rowNum) throws SQLException {
-            return new PerfilDto(rs.getLong("ID_ROLE"), rs.getString("NOME"));
+        public OpcaoDto<Long> mapRow(ResultSet rs, int rowNum) throws SQLException {
+            return new OpcaoDto<>(rs.getLong("ID_ROLE"), rs.getString("NOME"));
         }
-        
     }
 }

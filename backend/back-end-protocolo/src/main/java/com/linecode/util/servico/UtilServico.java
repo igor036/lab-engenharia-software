@@ -11,7 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import com.linecode.util.dao.UtilDao;
-import com.linecode.util.dto.PerfilDto;
+import com.linecode.util.dto.OpcaoDto;
 
 @Service
 public class UtilServico {
@@ -26,7 +26,7 @@ public class UtilServico {
      *  @param lista de perfis {@link List<PerfilDto>}
      */
     @PreAuthorize("@autorizacaoServico.isAutenticado()")
-    public List<PerfilDto> getListaPerfil() {
+    public List<OpcaoDto<Long>> getListaPerfil() {
         return utilDao.getListaPerfil();
     }
     

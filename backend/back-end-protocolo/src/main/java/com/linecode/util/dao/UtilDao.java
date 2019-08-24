@@ -12,7 +12,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.linecode.util.dto.PerfilDto;
+import com.linecode.util.dto.OpcaoDto;
 
 @Repository
 @PropertySource("com/linecode/util/dao/UtilDao.xml")
@@ -24,8 +24,8 @@ public class UtilDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public List<PerfilDto> getListaPerfil() {
+    public List<OpcaoDto<Long>> getListaPerfil() {
         return jdbcTemplate.query(env.getProperty("com.linecode.util.dao.UtilDao.getListaPerfil"),
-                UtilMapeadorLinha.getPerfilDtoMapeadorLinha());
+                UtilMapeadorLinha.getOpcaoDtoMapeadorLinha());
     }
 }

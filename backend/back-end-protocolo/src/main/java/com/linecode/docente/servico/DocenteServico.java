@@ -77,7 +77,7 @@ public class DocenteServico {
      */
     @PreAuthorize("@autorizacaoServico.isAutorizacaoAdmin()")
     @Transactional
-    public String cadastrarDocente(CadastroDocenteCmd cmd) {
+    public void cadastrarDocente(CadastroDocenteCmd cmd) {
 
         Assert.notNull(cmd, "Informe os dados do docente");
 
@@ -94,11 +94,9 @@ public class DocenteServico {
                 
                 enviarEmail(cmd.getEmail(), tituloEmail, corpoEmail);
                 
-                return TokenJwtAutenticacaoServico
-                        .gerarTokenDocente(getDocentePorEmailSenha(cmd.getEmail(), cmd.getSenha()));
+            } else {
+            	throw new ExcecaoAplicacao("Erro ao cadastrar docente", null);
             }
-
-            throw new ExcecaoAplicacao("Erro ao cadastrar docente", null);
         }
 
         throw new ExcecaoNegocio(violacoes.stream().findFirst().get().getMessage());
