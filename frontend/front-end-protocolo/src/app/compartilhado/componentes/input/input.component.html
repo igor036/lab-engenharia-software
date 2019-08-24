@@ -3,11 +3,12 @@
         <i class="fa {{classeIcone}}" aria-hidden="true"></i>
     </div>
     <input 
+        class="text-deco"
         [type]="getTipoInput()" 
         [placeholder]="placeholder" 
         [class.input-invalido]="isInvalido()" 
-        class="text-deco"
         [formControl]="formControl" 
+        (keyup)="writeValue($event.target.value)"
     />
 </div>
 <div class="div-msg-erro" *ngIf="isInvalido()">

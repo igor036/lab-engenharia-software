@@ -35,6 +35,10 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.iniciarForm()
   }
+  
+  teste(texto: string): void {
+    console.log(texto);
+  }
 
   logar(): void {
     this.spinnerServico.show();

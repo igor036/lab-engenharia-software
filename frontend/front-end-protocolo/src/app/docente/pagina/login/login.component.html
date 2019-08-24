@@ -15,7 +15,8 @@
                     [formControl]="form.controls['email']"
                     msgErro="Informe um e-mail válido."
                     placeholder="Email"
-                    classeIcone="fa-envelope">
+                    classeIcone="fa-envelope"
+                    (alterarValor)="teste($event)">
                 </app-input>
                 <app-input 
                     [isSenha]="true"
