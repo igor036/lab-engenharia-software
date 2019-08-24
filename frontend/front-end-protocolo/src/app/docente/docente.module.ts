@@ -11,6 +11,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //terceiros
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
+//modulo de componentes compartilhados
+import { CompartilhadoModule } from 'src/app/compartilhado/compartilhado.module';
+
 //paginas
 import { LoginComponent } from './pagina/login/login.component';
 import { PerfilComponent } from './pagina/perfil/perfil.component';
@@ -30,7 +33,8 @@ const COMPONENTES = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    Ng4LoadingSpinnerModule
+    Ng4LoadingSpinnerModule,
+    CompartilhadoModule
   ]
 })
 export class DocenteModule { }

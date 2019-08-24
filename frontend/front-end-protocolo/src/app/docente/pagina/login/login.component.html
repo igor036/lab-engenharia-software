@@ -11,6 +11,21 @@
         </div>
         <div>
             <form class='form-deco' [formGroup]="form">
+                <app-input 
+                    [formControl]="form.controls['email']"
+                    msgErro="Informe um e-mail válido."
+                    placeholder="Email"
+                    classeIcone="fa-envelope">
+                </app-input>
+                <app-input 
+                    [isSenha]="true"
+                    [formControl]="form.controls['senha']"
+                    msgErro="Informe a senha."
+                    placeholder="Senha"
+                    classeIcone="fa-lock">
+                </app-input>
+                
+                <!--
                 <div class="input-deco">
                     <div class='icon-deco'>
                         <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -24,6 +39,7 @@
                     <input type="password" placeholder="Codigo de Acesso" class="text-deco"
                         [formControl]="form.controls['senha']" required>
                 </div>
+                -->
                 <div class="check-deco">
                     <input type="checkbox"> Remember me
                 </div>

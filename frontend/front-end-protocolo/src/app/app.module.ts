@@ -34,8 +34,8 @@ import { ROTAS } from './app.router';
     Ng4LoadingSpinnerModule.forRoot(),
     RouterModule.forRoot(ROTAS),
     BrowserModule,
-    DocenteModule,
-    HttpClientModule
+    HttpClientModule,
+    DocenteModule
   ],
   providers: [
     DocenteServico,

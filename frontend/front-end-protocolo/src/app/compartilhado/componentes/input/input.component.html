@@ -1,0 +1,15 @@
+<div class="input-deco">
+    <div class='icon-deco'>
+        <i class="fa {{classeIcone}}" aria-hidden="true"></i>
+    </div>
+    <input 
+        [type]="getTipoInput()" 
+        [placeholder]="placeholder" 
+        [class.input-invalido]="isInvalido()" 
+        class="text-deco"
+        [formControl]="formControl" 
+    />
+</div>
+<div class="div-msg-erro" *ngIf="isInvalido()">
+    * {{ msgErro }}
+</div>

@@ -15,6 +15,7 @@ export class ErrorInterceptor implements ErrorHandler {
   ) { }
 
   handleError(error: any): void {
+    console.log(error)
     let msg = error.error;
     alert(msg ? msg : this.msgErroInesperado);
     this.spinnerServico.hide();
