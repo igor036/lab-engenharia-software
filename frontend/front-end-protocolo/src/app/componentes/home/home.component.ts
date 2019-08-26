@@ -1,3 +1,8 @@
+/**
+ * Author: Igor Joaquim dos Santos Lima
+ * Data: 24/08/2019
+ */
+
 import { Component, OnInit } from '@angular/core';
 
 @Component({
