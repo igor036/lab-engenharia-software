@@ -15,9 +15,10 @@ export class ErrorInterceptor implements ErrorHandler {
   ) { }
 
   handleError(error: any): void {
-    console.log(error)
+    //console.log(JSON.stringify(error))
     let msg = error.error;
     alert(msg ? msg : this.msgErroInesperado);
     this.spinnerServico.hide();
+    throw error;
   }
 }

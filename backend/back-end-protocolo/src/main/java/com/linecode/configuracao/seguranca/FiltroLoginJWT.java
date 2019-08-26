@@ -20,6 +20,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import com.linecode.compartilhado.excecao.ExcecaoNegocio;
 import com.linecode.configuracao.seguranca.servico.TokenJwtAutenticacaoServico;
 import com.linecode.docente.dto.DocenteDto;
 import com.linecode.docente.servico.DocenteServico;

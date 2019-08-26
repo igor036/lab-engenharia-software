@@ -3,15 +3,15 @@
  * Data: 18/08/2019
  */
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { PROPRIEDADES } from 'src/app/app.constante';
 import { Observable } from 'rxjs';
 
-import { 
-    DocenteLogado, 
-    Login, 
-    CadastroDocente 
+import {
+    DocenteLogado,
+    Login,
+    CadastroDocente
 } from './docente.modelo';
 
 @Injectable()
@@ -27,7 +27,7 @@ export class DocenteServico {
         );
     }
 
-    cadastrarDocente(cadastroDocente:  CadastroDocente): Observable<string> {
+    cadastrarDocente(cadastroDocente: CadastroDocente): Observable<string> {
         return this.httpClient.post<string>(
             `${this.URL_CONTROLADOR}/cadastrar`, cadastroDocente
         );
@@ -47,7 +47,7 @@ export class DocenteServico {
             .set("senha", login.senha);
 
         return this.httpClient.post('login', body.toString(), {
-            headers: { 
+            headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
             responseType: 'text'
