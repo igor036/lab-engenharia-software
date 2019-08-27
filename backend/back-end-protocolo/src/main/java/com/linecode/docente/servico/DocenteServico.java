@@ -72,7 +72,6 @@ public class DocenteServico {
      * em seguida envia a senha para o e-mail do docente.
      * 
      * @param dados do docente {@link CadastroDocenteCmd}
-     * @return token de autenticacao {@link String}
      */
     @PreAuthorize("@autorizacaoServico.isAutorizacaoAdmin()")
     @Transactional
