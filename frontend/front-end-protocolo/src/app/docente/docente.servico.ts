@@ -3,9 +3,10 @@
  * Data: 18/08/2019
  */
 import { Injectable } from "@angular/core";
+import { Router } from '@angular/router';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
-import { PROPRIEDADES } from 'src/app/app.constante';
+import { PROPRIEDADES, URLS_NAMES } from 'src/app/app.constante';
 import { Observable } from 'rxjs';
 
 import {
@@ -19,7 +20,10 @@ export class DocenteServico {
 
     private readonly URL_CONTROLADOR: string = 'docente';
 
-    constructor(private httpClient: HttpClient) { }
+    constructor(
+        private httpClient: HttpClient,
+        private router: Router
+    ) { }
 
     getDadosDocenteLogado(): Observable<DocenteLogado> {
         return this.httpClient.get<DocenteLogado>(
@@ -65,5 +69,10 @@ export class DocenteServico {
 
     setTokenDocente(token: string): void {
         localStorage.setItem(PROPRIEDADES.TOKEN_DOCENTE, token);
+    }
+
+    deslogar(): void {
+        localStorage.removeItem(PROPRIEDADES.TOKEN_DOCENTE);
+        this.router.navigate([URLS_NAMES.login]);
     }
 }
