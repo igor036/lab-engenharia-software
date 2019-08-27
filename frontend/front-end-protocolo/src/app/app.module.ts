@@ -40,7 +40,7 @@ import { ROTAS } from './app.router';
   providers: [
     DocenteServico,
     { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorCore, multi: true },
-    { provide: ErrorHandler, useClass: ErrorInterceptor }
+    { provide: ErrorHandler, useClass: ErrorInterceptor, multi: false }
   ],
   bootstrap: [AppComponent]
 })

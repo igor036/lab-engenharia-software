@@ -4,9 +4,6 @@
  */
 package com.linecode.docente.servico;
 
-import java.util.Set;
-
-import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +15,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.linecode.configuracao.seguranca.servico.TokenJwtAutenticacaoServico;
+import com.linecode.compartilhado.excecao.ExcecaoAplicacao;
 import com.linecode.docente.cmd.CadastroDocenteCmd;
 import com.linecode.docente.dao.DocenteDao;
 import com.linecode.docente.dto.DocenteDto;
-import com.linecode.compartilhado.excecao.ExcecaoAplicacao;
-import com.linecode.compartilhado.excecao.ExcecaoNegocio;
 
 import io.jsonwebtoken.lang.Assert;
 
@@ -79,7 +74,7 @@ public class DocenteServico {
     @Transactional
     public void cadastrarDocente(CadastroDocenteCmd cmd) {
 
-        Assert.notNull(cmd, "Informe os dados do docente");
+        /*Assert.notNull(cmd, "Informe os dados do docente");
 
         Set<ConstraintViolation<CadastroDocenteCmd>> violacoes = validator.validate(cmd);
 
@@ -97,9 +92,10 @@ public class DocenteServico {
             } else {
             	throw new ExcecaoAplicacao("Erro ao cadastrar docente", null);
             }
-        }
-
-        throw new ExcecaoNegocio(violacoes.stream().findFirst().get().getMessage());
+        }*/
+        
+        throw new ExcecaoAplicacao("Erro ao cadastrar docente", null);
+        //throw new ExcecaoNegocio(violacoes.stream().findFirst().get().getMessage());
     }
 
     /**

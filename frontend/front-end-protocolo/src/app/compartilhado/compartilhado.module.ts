@@ -1,3 +1,8 @@
+/**
+ * Author: Igor Joaquim dos Santos Lima
+ * Data: 24/08/2019
+ */
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
