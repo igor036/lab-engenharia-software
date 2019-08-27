@@ -20,6 +20,10 @@
         <i class="fa fa-id-card" aria-hidden="true"></i>
         <a href="add-reviewer.html">Atribuir Parecerista</a>
     </div>
+    <div>
+        <i class="fa fa-sign-out" aria-hidden="true"></i>
+        <a [routerLink]='' (click)="deslogar()">Logout</a>
+    </div>
 </div>
 <ng4-loading-spinner> </ng4-loading-spinner>
 <router-outlet></router-outlet>

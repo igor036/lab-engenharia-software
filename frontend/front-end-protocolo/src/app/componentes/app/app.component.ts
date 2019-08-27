@@ -37,4 +37,8 @@ export class AppComponent implements OnInit {
   mostrarMenu(): boolean {
     return this.docenteServico.isLogado();
   }
+
+  deslogar(): void {
+    this.docenteServico.deslogar();
+  }
 }
