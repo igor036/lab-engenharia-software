@@ -2,5 +2,24 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
+<div class="navbar" *ngIf="mostrarMenu()">
+    <div>
+        <i class="fa fa-plus-square" aria-hidden="true"></i>
+        <a [routerLink]='["cadastro"]'>Cadastrar Docente</a>
+    </div>
+    <div>
+        <i class="fa fa-clock-o" aria-hidden="true"></i>
+        <a>Protocolos Pendentes</a>
+    </div>
+    <div>
+        <i class="fa fa-check-square" aria-hidden="true"></i>
+        <a>Protocolos Concluidos</a>
+    </div>
+    <div>
+        <i class="fa fa-id-card" aria-hidden="true"></i>
+        <a href="add-reviewer.html">Atribuir Parecerista</a>
+    </div>
+</div>
 <ng4-loading-spinner> </ng4-loading-spinner>
 <router-outlet></router-outlet>

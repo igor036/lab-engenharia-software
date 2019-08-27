@@ -33,4 +33,8 @@ export class AppComponent implements OnInit {
       this.router.navigate([URLS_NAMES.login]);
     }
   }
+
+  mostrarMenu(): boolean {
+    return this.docenteServico.isLogado();
+  }
 }
