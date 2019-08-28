@@ -76,7 +76,7 @@ public class DocenteServico {
     @PreAuthorize("@autorizacaoServico.isAutorizacaoAdmin()")
     @Transactional
     public void cadastrarDocente(CadastroDocenteCmd cmd) {
-
+    	
         Assert.notNull(cmd, "Informe os dados do docente");
 
         Set<ConstraintViolation<CadastroDocenteCmd>> violacoes = validator.validate(cmd);
@@ -95,6 +95,7 @@ public class DocenteServico {
             } else {
             	throw new ExcecaoAplicacao("Erro ao cadastrar docente", null);
             }
+            
         } else {
         	throw new ExcecaoNegocio(violacoes.stream().findFirst().get().getMessage());
         }

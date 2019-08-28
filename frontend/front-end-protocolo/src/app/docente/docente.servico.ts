@@ -32,8 +32,9 @@ export class DocenteServico {
     }
 
     cadastrarDocente(cadastroDocente: CadastroDocente): Observable<string> {
-        return this.httpClient.post<string>(
-            `${this.URL_CONTROLADOR}/cadastrar`, cadastroDocente
+        return this.httpClient.post(
+            `${this.URL_CONTROLADOR}/cadastrar`, cadastroDocente,
+            { responseType: 'text' }
         );
     }
 

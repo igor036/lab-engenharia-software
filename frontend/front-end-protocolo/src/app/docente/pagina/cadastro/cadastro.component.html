@@ -14,7 +14,7 @@
                 <app-selecao-item [formControl]="form.controls['idPerfil']" [listaOpcao]="listaPerfil"
                     placeholder="Selecione o papel" classeIcone="fa fa-address-card">
                 </app-selecao-item>
-                <app-botao texto="Cadastrar" [liberado]="form.valid" (click)="cadastrar()">
+                <app-botao texto="Cadastrar" [liberado]="form.valid" (eventoclick)="cadastrar()">
                 </app-botao>
             </form>
             <div class="request-deco">

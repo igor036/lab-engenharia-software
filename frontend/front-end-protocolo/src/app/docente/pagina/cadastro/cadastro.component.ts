@@ -47,7 +47,7 @@ export class CadastroComponent implements OnInit {
     this.docenteServico.cadastrarDocente(this.form.value).subscribe((msg) => {
       this.spinnerServico.hide();
       alert(msg);
-    });    
+    });
   }
 
   private iniciarForm(): void {

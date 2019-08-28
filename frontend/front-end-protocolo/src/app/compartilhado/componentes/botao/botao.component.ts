@@ -18,12 +18,13 @@ export class BotaoComponent {
 
   @Input() public texto: string;
   @Input() public liberado: boolean = true;
-  @Output() public click: EventEmitter<any> = new EventEmitter<any>();
+  @Output() public eventoclick: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() { }
 
   bindClick(): void {
-    this.click.emit();
+    console.log("x")
+    this.eventoclick.emit();
   }
 
   isBloqueado(): boolean {
