@@ -95,9 +95,9 @@ public class DocenteServico {
             } else {
             	throw new ExcecaoAplicacao("Erro ao cadastrar docente", null);
             }
+        } else {
+        	throw new ExcecaoNegocio(violacoes.stream().findFirst().get().getMessage());
         }
-        
-        throw new ExcecaoNegocio(violacoes.stream().findFirst().get().getMessage());
     }
 
     /**
