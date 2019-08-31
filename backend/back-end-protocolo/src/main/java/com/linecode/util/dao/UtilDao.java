@@ -26,6 +26,8 @@ public class UtilDao {
 
     public List<OpcaoDto<Long>> getListaPerfil() {
         return jdbcTemplate.query(env.getProperty("com.linecode.util.dao.UtilDao.getListaPerfil"),
-                UtilMapeadorLinha.getOpcaoDtoMapeadorLinha());
+                UtilMapeadorLinha.getOpcaoPerfilDtoMapeadorLinha());
     }
+    
+    //com.linecode.util.dao.UtilDao.getListaStatus
 }

@@ -17,11 +17,11 @@ public class UtilMapeadorLinha {
         //somente metodos estaticos
     }
     
-    public static OpcaoDtoMapeadorLinha getOpcaoDtoMapeadorLinha() {
-        return new OpcaoDtoMapeadorLinha();
+    public static OpcaoPerfilDtoMapeadorLinha getOpcaoPerfilDtoMapeadorLinha() {
+        return new OpcaoPerfilDtoMapeadorLinha();
     }
     
-    private static class OpcaoDtoMapeadorLinha implements RowMapper<OpcaoDto<Long>> {
+    private static class OpcaoPerfilDtoMapeadorLinha implements RowMapper<OpcaoDto<Long>> {
         @Override
         public OpcaoDto<Long> mapRow(ResultSet rs, int rowNum) throws SQLException {
             return new OpcaoDto<>(rs.getLong("ID_ROLE"), rs.getString("NOME"));
