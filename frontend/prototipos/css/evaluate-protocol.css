@@ -128,35 +128,29 @@
   .button-div{
     width: 100%;
     margin-top: 3%;
-    
-  }
-  
-  .button-div2{
-    width: 100%;
-    margin-top: 3%;
-    
+    display: flex;
   }
 
 
-  .button-send{
-    margin-left: 80%;
+  .button-reject{
+    margin-left: 58%;
     width: 20%;
     border-radius: 0px;
     border: none;
     font-size: 100%;
-    padding: 3%;
-    background-color: #72bb53;
+    padding: 2%;
+    background-color: #bb5353;
     color: white;
     border-radius: 5px;
   }
 
-  .button-send2{
-    margin-left: 80%;
-    width: 20%;
+  .button-send{
+    flex-grow: 1;
+    margin-left: 2%;
     border-radius: 0px;
     border: none;
     font-size: 100%;
-    padding: 3%;
+    padding: 2%;
     background-color: #72bb53;
     color: white;
     border-radius: 5px;
@@ -165,8 +159,7 @@
   .button-send:hover{
     background-color: #8b51f5;
   }
-
-  .button-send2:hover{
+  .button-reject:hover{
     background-color: #8b51f5;
   }
 
