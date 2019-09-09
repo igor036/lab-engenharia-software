@@ -1,72 +1,77 @@
-*{font-family: 'Roboto', sans-serif;}
+*{font-family: 'Allerta', sans-serif;}
 
-body {
-    background-color: #E6E6E6;
-    margin: 0%;
-  }
-
-  .navbar{
-    position: fixed;
-    width: 15%;
-    height: 100%;
-    background-color: #414752;
-    margin: 0%;
-    padding:0%;
-    box-shadow: 3px 3px 7px;
-  }
-  
-  .navbar div{
-    display: flex;
-    padding:5%;
-    border: 0px ;
-    border-right: 5px;
-    border-style: solid;
-    border-color: #c0c0c0;
-    height: 40px;
-    align-items: center;
-    margin-bottom: 3px;
-    background-color: #354052;
-  }
-  
-  .navbar div i {
-    width: 25%;
-    font-size: 150%;
-    text-align: left;
-    color:#c0c0c0;
-  }
-  
-  .navbar div a{
-      flex-grow: 1;
-      color:white;
-      font-size: 100%;
-      font-weight: 300;
-      text-decoration: none;
-  }
-  
-  .navbar div:hover{
-    background-color: #2d3646;
-  }
-  
-  
-.external-log-deco{
-  width: 75%;
+body{
+  margin: 0;
   display: flex;
-  margin-left: 15%;
-  justify-content: center;
-  padding-top: 1%;
+  background-color:#444444;
 }
-  
+
+.navbar{
+  position: fixed;
+  width: 15%;
+  height: 100%;
+  background-color: #232323;
+  margin: 0%;
+  padding:0%;
+  box-shadow: 3px 3px 7px;
+}
+
+.navbar div{
+  display: flex;
+  padding:5%;
+  border: 0px ;
+  border-right: 5px;
+  border-style: solid;
+  border-color: #c0c0c0;
+  height: 40px;
+  align-items: center;
+  margin-bottom: 3px;
+  background-color: #232323;
+}
+
+.navbar div i {
+  width: 25%;
+  font-size: 150%;
+  text-align: left;
+  color:#c0c0c0;
+}
+
+.navbar div a{
+    flex-grow: 1;
+    color:white;
+    font-size: 100%;
+    font-weight: 300;
+    text-decoration: none;
+}
+
+.navbar div:hover{
+  background-color: #303030;
+}
+
+
+.external-log-deco{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 5%;
+}
+
 .log {
-    background-color:white;
-    border-radius: 12px;
-    box-shadow: 3px 3px 7px;
+    background-color:#232323;
+    border-radius: 4px;
+    box-shadow: 5px 5px 5px rgba(49, 48, 48, 0.452);
+    border-style: solid;
+    border-width: 2px;
+    border-color: #606060;
     padding-bottom: 2%;
+    width: 33%;
+    max-height: 60%;
   }
   
   .log-deco{
-    background-color: #2D3646;
-    border-radius: 12px 12px 0px 0px;
-    padding: 1%;
+    background-color: rgb(0, 0, 0);
+    border-radius: 4px 4px 0px 0px;
+    padding: 3%;
   }
   
   .log-header{
@@ -78,15 +83,22 @@ body {
   }
   
   .form-deco{
-    padding: 5% 15% 5% 15%;
+    padding: 2% 5% 0% 5% ;
   }
   
+  .form-deco label{
+    color: white;
+  }
+
   .input-deco {
     display: flex;
-    margin-top: 3%;
+    margin-top: 2%;
+    margin-bottom: 2%;
     padding: 0%;
-    border-radius: 0px;
-    background-color: #ebebeb;
+    border-style: solid;
+    border-color: #606060;
+    border-width: 2px;
+    background-color: #444444;
   }
   
   .input-deco:hover{
@@ -104,58 +116,56 @@ body {
   .icon-deco{
     padding: 2% 0%;
     width: 15%;
-    background-color: #5095F6;
+    background-color: #3d8af7;
   }
   
   .text-deco{
     flex-grow: 1;
     background-color: transparent;
     border: none;
-    color: #0844a4;
+    color: white;
     font-size: 100%;
     font-weight: 100;
     text-align: center;
-  }
-  
-  .check-deco{
-    margin-top: 10%;
-    font-size: 70%;
-    width: 100%;
-    text-align: center;
+    text-align-last:center;
   }
 
-  .check-deco p {
-    font-size: 100%;
+  .text-deco option{
+    background-color: #101010;
   }
   
   button {
-    margin-top: 10%;
     padding: 3%;
-    border-radius: 20px;
+    margin-top: 10%;
+    border-radius: 4px;
     width: 100%;
     font-size: 80%;
-    background-color: #0844a4;
+    background-color: #3d8af7;
     color: white;
     border: none;
     font-weight: bold;
   }
   
+  button a{
+    color: white;
+    text-decoration: none;
+  }
+
   button:hover{
     background-color: #6334e3;
   }
   
   .request-deco{
     margin-top: 0%;
-    padding: 0% 10%;
   }
   
-  p {
+  .request-deco p {
     width: 100%;
     text-align: center;
     color: #7a7a7a;
     font-size: 80%;
   }
-  a {
+  .request-deco a {
     font-size: 60%;
     color: #0844a4;
     font-weight: bold;

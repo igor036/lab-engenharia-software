@@ -1,6 +1,4 @@
-*{
-    font-family: 'Roboto', sans-serif;
-  }
+*{font-family: 'Allerta', sans-serif;}
   
   form{
     width: 80%;
@@ -10,14 +8,14 @@
   
   .corpo{
     margin:0px;
-    background-color: #e6e6e6;
+    background-color: #444444;
   }
   
   .navbar{
     position: fixed;
     width: 15%;
     height: 100%;
-    background-color: #414752;
+    background-color: #232323;
     margin: 0%;
     padding:0%;
     box-shadow: 3px 3px 7px;
@@ -33,7 +31,7 @@
     height: 40px;
     align-items: center;
     margin-bottom: 3px;
-    background-color: #354052;
+    background-color: #232323;
   }
   
   .navbar div i {
@@ -52,28 +50,32 @@
   }
   
   .navbar div:hover{
-    background-color: #2d3646;
+    background-color: #303030;
   }
   
   .search-deco{
     width: 50%;
-    background-color: #2d3646;
+    background-color: #232323;
+    border-style: solid;
+    border-width: 0px 2px 2px 2px;
+    border-color: #606060;
     margin-left: 30%;
     padding: 1%;
-    border-radius: 0px 0px 10px 10px;
+    border-radius: 0px 0px 4px 4px;
   }
 
   .input-deco {
     display: flex;
     margin-top: 10px;
     padding: 0%;
-    border-radius: 0px;
-    ;
+    border-style: solid;
+    border-color: #606060;
+    border-width: 2px;
   }
   
   .input-deco input{
     width: 100%;
-    background-color: #4b5a72;
+    background-color: #444444;
     border:none;
     font-size: 15px;
     color: white;
@@ -81,7 +83,7 @@
   }
 
   .input-deco input:hover{
-    background-color: #949494;
+    background-color: #606060;
   }
   
   .icon-deco i {
@@ -95,29 +97,35 @@
   .icon-deco{
     padding: 5px 0%;
     width: 10%;
-    background-color: #8da7be;
+    background-color: #3d8af7;
   }
 
   .external-deco{
     width: 100%;
-    background-color: white;
+    background-color: transparent;
     padding: 1%;
-    border-radius: 6px;
-    box-shadow: 3px 3px 5px ;
     margin-right: 0%;
   }
   
   .protocol-external{
-    display: flex;
-    background-color:#87919e;
-    padding: 1%;
+    background-color:#232323;
     border-radius: 0px;
-    box-shadow: 0x 0px 0px #87919e;
     border-style: solid;
-    border-width: 0px 0px 3px 0px;
-    border-color: #2d3646;
+    border-width: 2px;
+    border-color: #606060;
+    margin-bottom: 5px;
+  }
+
+  .protocol-external-header{
+    background-color: #000000;
+    width: 100%;
+    height: 10px;
+  }
+
+  .protocol-internal{
+    display: flex;
+    padding: 1%;
     align-items: center;
-    margin-bottom: 0px;
   }
 
   .protocol-info-deco{
@@ -127,9 +135,9 @@
   }
 
   .protocol-button{
-    background-color: #8da7be;
+    background-color: #3d8af7;
     border: none;
-    border-radius: 50px;
+    border-radius: 4px;
     color: white;
     font-weight: bold;
     padding: 1% 5%;
@@ -137,6 +145,6 @@
   }
 
   .protocol-button:hover{
-    background-color: #99b6cf;
+    background-color: #6334e3;
   }
   

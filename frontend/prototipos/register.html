@@ -1,6 +1,6 @@
 <head>
   <link rel="stylesheet" type="text/css" href="css/register.css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Allerta&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -10,52 +10,74 @@
     <a href="register.html">Cadastrar Docente</a>
   </div>
   <div>
+    <i class="fa fa-id-card" aria-hidden="true"></i>
+    <a href="new-protocol.html">Novo Protocolo</a>
+  </div>
+  <div>
+    <i class="fa fa-id-card" aria-hidden="true"></i>
+    <a href="evaluate-protocol.html">Avaliar Protocolo</a>
+  </div>
+  <div>
     <i class="fa fa-clock-o" aria-hidden="true"></i>
-    <a>Protocolos Pendentes</a>
+    <a href="protocols.html">Protocolos Pendentes</a>
   </div>
   <div>
     <i class="fa fa-check-square" aria-hidden="true"></i>
-    <a>Protocolos Concluidos</a>
+    <a href="protocols.html">Protocolos Concluidos</a>
   </div>
   <div>
     <i class="fa fa-id-card" aria-hidden="true"></i>
     <a href="add-reviewer.html">Atribuir Parecerista</a>
   </div>
+  <div>
+    <i class="fa fa-id-card" aria-hidden="true"></i>
+    <a href="login.html">Logout</a>
+  </div>
 </div>
 
 
 <body>
-  <div class='external-log-deco'>
+  <div class="external-log-deco">
     <div class='log'>
       <div class="log-deco">
         <h1 class="log-header">Cadastro</h1>
       </div>
       <div>
         <form class='form-deco'>
-          <div class="input-deco">
-            <div class='icon-deco'>
-              <i class="fa fa-user" aria-hidden="true"></i>
-            </div>
-            <input type="text" value="Nome" class="text-deco">
-          </div>
+          <label>Nome :</label>
           <div class="input-deco">
             <div class='icon-deco'>
               <i class="fa fa-envelope" aria-hidden="true"></i>
             </div>
-            <input type="text" value="Email" class="text-deco">
+            <input type="text" placeholder="Nome" class="text-deco">
           </div>
-          <div class="check-deco">
-            <p>Sexo :</p>
-            <input type="radio" name="gender">Masculino
-            <input type="radio" name="gender">Feminino
+
+          <label>Email :</label>
+          <div class="input-deco">
+            <div class='icon-deco'>
+              <i class="fa fa-lock" aria-hidden="true"></i>
+            </div>
+            <input placeholder="Email" class="text-deco">
           </div>
-          <button>Cadastrar</button>
+
+          <label>Função :</label>
+          <div class="input-deco">
+              <div class='icon-deco'>
+                <i class="fa fa-lock" aria-hidden="true"></i>
+              </div>
+              <select class="text-deco" >
+                <option>Admin</option>
+                <option>Docente</option>
+              </select>
+            </div>
+
+          <button><a href="register.html">Cadastrar</a></button>
         </form>
         <div class="request-deco">
-          <p>Um codigo de acesso será gerado e enviado para o email do usuário criado.</p>
+          <p>Não tem Conta ?</p>
+          <p><a>Solicite Uma</a></p>
         </div>
       </div>
-
     </div>
   </div>
 </body>
