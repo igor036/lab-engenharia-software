@@ -1,47 +1,50 @@
+*{font-family: 'Allerta', sans-serif;}
 
 .input-deco {
-    display: flex;
-    margin-top: 3%;
-    padding: 0%;
-    border-radius: 0px;
-    background-color: #ebebeb;
+  display: flex;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  padding: 0%;
+  border-style: solid;
+  border-color: #606060;
+  border-width: 2px;
 }
 
-.input-deco:hover{
-    background-color: #949494;
+.input-deco-input{
+    flex-grow: 1;
+    border:none;
+    background-color: #444444 !important;
+    text-align: center;
+}
+
+.input-deco-input:hover{
+    flex-grow: 1;
+    border:none;
+    background-color: #606060;
+    text-align: center;
 }
 
 i {
-    background-color : transparent;
-    color: white;
-    font-size: 150%;
-    width: 100%;
-    text-align: center;
+  background-color: transparent;
+  color: white;
+  font-size: 150%;
+  width: 100%;
+  text-align: center;
 }
 
-.icon-deco{
-    padding: 2% 0%;
-    width: 15%;
-    background-color: #5095F6;
-}
-
-.text-deco{
-    flex-grow: 1;
-    background-color: transparent;
-    border: none;
-    color: #0844a4;
-    font-size: 100%;
-    font-weight: 100;
-    text-align: center;
+.icon-deco {
+  padding: 2% 0%;
+  width: 15%;
+  background-color: #3d8af7;
 }
 
 .input-invalido {
-    border-style: solid;
-    border-width: 0.001cm;
-    border-color: red !important;
+  border-style: solid;
+  border-width: 0.001cm;
+  border-color: red !important;
 }
 
 .div-msg-erro {
-    color: red;
-    font-size: 0.3cm;
+  color: red;
+  font-size: 0.3cm;
 }

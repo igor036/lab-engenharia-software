@@ -5,16 +5,28 @@
         </div>
         <div>
             <form [formGroup]="form" class='form-deco'>
-                <app-input-texto [formControl]="form.controls['email']" msgErro="Informe um e-mail válido."
-                    placeholder="Email" classeIcone="fa-envelope">
+                <app-input-texto 
+                    [formControl]="form.controls['email']" 
+                    msgErro="Informe um e-mail válido."
+                    placeholder="Email" 
+                    classeIcone="fa-envelope">
                 </app-input-texto>
-                <app-input-texto [formControl]="form.controls['nome']" msgErro="Informe o nome do docente."
-                    placeholder="Nome" classeIcone="fa-user">
+                <app-input-texto 
+                    [formControl]="form.controls['nome']" 
+                    msgErro="Informe o nome do docente."
+                    placeholder="Nome" 
+                    classeIcone="fa-user">
                 </app-input-texto>
-                <app-selecao-item [formControl]="form.controls['idPerfil']" [listaOpcao]="listaPerfil"
-                    placeholder="Selecione o papel" classeIcone="fa fa-address-card">
+                <app-selecao-item 
+                    [formControl]="form.controls['idPerfil']" 
+                    [listaOpcao]="listaPerfil"
+                    placeholder="Selecione o papel" 
+                    classeIcone="fa fa-address-card">
                 </app-selecao-item>
-                <app-botao texto="Cadastrar" [liberado]="form.valid" (eventoclick)="cadastrar()">
+                <app-botao 
+                    texto="Cadastrar" 
+                    [liberado]="form.valid" 
+                    (eventoclick)="cadastrar()">
                 </app-botao>
             </form>
             <div class="request-deco">

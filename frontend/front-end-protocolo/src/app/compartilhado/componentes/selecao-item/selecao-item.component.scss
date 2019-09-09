@@ -3,6 +3,9 @@
     margin-top: 3%;
     padding: 0%;
     border-radius: 0px;
+    border-style: solid;
+    border-color: #606060;
+    border-width: 2px;
 }
 
 i {
@@ -22,9 +25,7 @@ i {
 .select-deco{
     flex-grow: 1;
     border: none;
-    background-color: #949494;
-    color: #0844a4;
-    font-size: 100%;
-    font-weight: 100;
+    background-color: #444444;
+    color: white;
     text-align-last:center;
 }

@@ -1,9 +1,9 @@
-*{font-family: 'Roboto', sans-serif;}
+*{font-family: 'Allerta', sans-serif;}
 
 body{
   margin: 0;
   display: flex;
-  background-color:#ebebeb;
+  background-color:#444444;
 }
 
 .external-log-deco{
@@ -14,18 +14,21 @@ body{
 }
 
 .log {
-    background-color:white;
-    border-radius: 12px;
+    background-color:#232323;
+    border-radius: 4px;
     box-shadow: 5px 5px 5px rgba(49, 48, 48, 0.452);
+    border-style: solid;
+    border-width: 2px;
+    border-color: #606060;
     padding-bottom: 2%;
     width: 33%;
     max-height: 60%;
   }
   
   .log-deco{
-    background-color: #2D3646;
-    border-radius: 12px 12px 0px 0px;
-    padding: 1%;
+    background-color: rgb(0, 0, 0);
+    border-radius: 4px 4px 0px 0px;
+    padding: 3%;
   }
   
   .log-header{
@@ -37,22 +40,29 @@ body{
   }
   
   .form-deco{
-    padding: 5% 15% 5%15%;
+    padding: 2% 5% 0% 5% ;
   }
   
+  .form-deco label{
+    color: white;
+  }
   
   .request-deco{
-    margin-top: 10%;
+    margin-top: 0%;
   }
   
-  p {
+  .request-deco p {
     width: 100%;
     text-align: center;
     color: #7a7a7a;
     font-size: 80%;
   }
-  a {
+  .request-deco a {
     font-size: 60%;
     color: #0844a4;
     font-weight: bold;
-  }  
+  } 
+
+  .over-deco{
+    background-color: #444444;
+  }

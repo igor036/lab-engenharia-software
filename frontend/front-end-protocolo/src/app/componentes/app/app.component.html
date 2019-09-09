@@ -9,6 +9,14 @@
         <a [routerLink]='["cadastro"]'>Cadastrar Docente</a>
     </div>
     <div>
+        <i class="fa fa-id-card" aria-hidden="true"></i>
+        <a>Novo Protocolo</a>
+    </div>
+    <div>
+        <i class="fa fa-id-card" aria-hidden="true"></i>
+        <a>Avaliar Protocolo</a>
+    </div>
+    <div>
         <i class="fa fa-clock-o" aria-hidden="true"></i>
         <a>Protocolos Pendentes</a>
     </div>
@@ -21,9 +29,10 @@
         <a>Atribuir Parecerista</a>
     </div>
     <div>
-        <i class="fa fa-sign-out" aria-hidden="true"></i>
+        <i class="fa fa-id-card" aria-hidden="true"></i>
         <a [routerLink]='' (click)="deslogar()">Logout</a>
     </div>
 </div>
+
 <ng4-loading-spinner> </ng4-loading-spinner>
 <router-outlet></router-outlet>
