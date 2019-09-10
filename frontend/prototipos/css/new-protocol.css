@@ -77,6 +77,12 @@
     padding: 3%;
   }
   
+  .internal-deco textarea{
+    width: 100%;
+    background-color: #444444;
+    color: white;
+  }
+
   .button-row{
     display: flex;
     margin-top: 3%;
