@@ -23,11 +23,34 @@ public class UtilServico {
      * Retorna a lista de perfis
      * cadastrados no sistema.
      * 
-     *  @param lista de perfis {@link List<PerfilDto>}
+     *  @return lista de perfis {@link List<Long>}
      */
-    @PreAuthorize("@autorizacaoServico.isAutenticado()")
+    @PreAuthorize("@autorizacaoServico.isAutorizado('ADMIN')")
     public List<OpcaoDto<Long>> getListaPerfil() {
         return utilDao.getListaPerfil();
     }
     
+    /**
+     *
+     * Retorna a lista de especies
+     * cadastradas no sistema.
+     * 
+     * @return lista de especies {@link List<Long>}
+     */
+    @PreAuthorize("@autorizacaoServico.isAutorizado('ADMIN')")
+    public List<OpcaoDto<Long>> getListaEspecie() {
+    	return utilDao.getListaEspecie();
+    }
+    
+    /**
+    *
+    * Retorna a lista de bioterio
+    * cadastradas no sistema.
+    * 
+    * @return lista de bioterio {@link List<Long>}
+    */
+    @PreAuthorize("@autorizacaoServico.isAutorizado('ADMIN')")
+    public List<OpcaoDto<Long>> getListaBioterio() {
+    	return utilDao.getListaBioterio();
+    }
 }

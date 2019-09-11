@@ -16,6 +16,7 @@ import { DocenteServico } from './docente/docente.servico';
 
 //modulos
 import { DocenteModule } from './docente/docente.module';
+import { ProtocoloModule } from './protocolo/protocolo.module';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 //interceptadores
@@ -35,7 +36,8 @@ import { ROTAS } from './app.router';
     RouterModule.forRoot(ROTAS),
     BrowserModule,
     HttpClientModule,
-    DocenteModule
+    DocenteModule,
+    ProtocoloModule
   ],
   providers: [
     DocenteServico,

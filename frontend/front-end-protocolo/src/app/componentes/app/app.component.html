@@ -6,11 +6,11 @@
 <div class="navbar" *ngIf="mostrarMenu()">
     <div>
         <i class="fa fa-plus-square" aria-hidden="true"></i>
-        <a [routerLink]='["cadastro"]'>Cadastrar Docente</a>
+        <a [routerLink]='["cadastro-docente"]'>Cadastrar Docente</a>
     </div>
     <div>
         <i class="fa fa-id-card" aria-hidden="true"></i>
-        <a>Novo Protocolo</a>
+        <a [routerLink]='["cadastro-protocolo"]'  >Novo Protocolo</a>
     </div>
     <div>
         <i class="fa fa-id-card" aria-hidden="true"></i>

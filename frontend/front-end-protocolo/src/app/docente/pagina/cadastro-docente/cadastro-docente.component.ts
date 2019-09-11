@@ -21,11 +21,11 @@ import { UtilServico } from 'src/app/compartilhado/util.servico';
 import { DocenteServico } from 'src/app/docente/docente.servico';
 
 @Component({
-  selector: 'app-cadastro',
-  templateUrl: './cadastro.component.html',
-  styleUrls: ['./cadastro.component.scss']
+  selector: 'app-cadastro-docente',
+  templateUrl: './cadastro-docente.component.html',
+  styleUrls: ['./cadastro-docente.component.scss']
 })
-export class CadastroComponent implements OnInit {
+export class CadastroDocenteComponent implements OnInit {
 
   public listaPerfil: Array<Opcao>;
   public form: FormGroup;

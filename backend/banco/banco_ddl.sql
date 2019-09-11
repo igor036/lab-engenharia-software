@@ -70,7 +70,6 @@ CREATE TABLE public.tab_status
 -- Table: public.tab_protocolo
 
 -- DROP TABLE public.tab_protocolo;
-
 CREATE TABLE public.tab_protocolo
 (
   id_protocolo serial,
@@ -92,6 +91,17 @@ CREATE TABLE public.tab_protocolo
       REFERENCES public.tab_docente (matricula) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
+
+
+CREATE TABLE tab_animal_requerido (
+	fk_protocolo integer NOT NULL,
+	fk_animal integer NOT NULL,
+	fk_bioterio integer NOT NULL,
+	quantidade integer NOT NULL,
+	CONSTRAINT pk_animal_requerido 
+		PRIMARY KEY (fk_protocolo, fk_animal, fk_bioterio)
+);
+
 
 -- Table: public.tab_pedido
 

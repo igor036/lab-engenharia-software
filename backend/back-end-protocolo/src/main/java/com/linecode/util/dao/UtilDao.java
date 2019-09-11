@@ -29,5 +29,13 @@ public class UtilDao {
                 UtilMapeadorLinha.getOpcaoPerfilDtoMapeadorLinha());
     }
     
-    //com.linecode.util.dao.UtilDao.getListaStatus
+    public List<OpcaoDto<Long>> getListaEspecie() {
+    	return jdbcTemplate.query(env.getProperty("com.linecode.util.dao.UtilDao.getListaEspecie"),
+                UtilMapeadorLinha.getOpcaoEspecieDtoMapeadorLinha());
+    }
+    
+    public List<OpcaoDto<Long>> getListaBioterio() {
+    	return jdbcTemplate.query(env.getProperty("com.linecode.util.dao.UtilDao.getListaBioterio"),
+                UtilMapeadorLinha.getOpcaoBioterioMapeadorLinha());
+    }
 }

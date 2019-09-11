@@ -26,4 +26,14 @@ public class UtilControlador {
     public ResponseEntity<List<OpcaoDto<Long>>> getListaPerfil() {
         return ResponseEntity.ok(utilServico.getListaPerfil());
     }
+    
+    @GetMapping("lista-especie")
+    public ResponseEntity<List<OpcaoDto<Long>>> getListaEspecie() {
+        return ResponseEntity.ok(utilServico.getListaEspecie());
+    }
+    
+    @GetMapping("lista-bioterio")
+    public ResponseEntity<List<OpcaoDto<Long>>> getListaBioterio() {
+        return ResponseEntity.ok(utilServico.getListaBioterio());
+    }
 }   

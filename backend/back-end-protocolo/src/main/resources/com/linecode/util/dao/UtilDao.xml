@@ -9,5 +9,19 @@
 			NOME
 		FROM TAB_ROLE
 	</entry>
+	
+	<entry key="com.linecode.util.dao.UtilDao.getListaEspecie">
+		SELECT 
+			ID_ESPECIE,
+			NOME
+		FROM TAB_ESPECIE
+	</entry>
+	
+	<entry key="com.linecode.util.dao.UtilDao.getListaBioterio">
+		SELECT 
+			ID_BIOTERIO,
+			NOME
+		FROM TAB_BIOTERIO
+	</entry>
     	
 </properties>

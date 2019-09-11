@@ -2,6 +2,7 @@ package com.linecode.protocolo.cmd;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -34,24 +35,12 @@ public class CadastroProtocoloCmd {
 		return resumoPt;
 	}
 
-	public void setResumoPt(String resumoPt) {
-		this.resumoPt = resumoPt;
-	}
-
 	public String getResumoEn() {
 		return resumoEn;
 	}
 
-	public void setResumoEn(String resumoEn) {
-		this.resumoEn = resumoEn;
-	}
-
 	public LocalDate getDataInicio() {
 		return dataInicio;
-	}
-
-	public void setDataInicio(LocalDate dataInicio) {
-		this.dataInicio = dataInicio;
 	}
 
 	public LocalDate getDataFim() {

@@ -13,6 +13,8 @@ import com.linecode.util.dto.OpcaoDto;
 
 public class UtilMapeadorLinha {
 
+	private static final String NM_PROPRIEDADE_NOME = "NOME";
+	
     private UtilMapeadorLinha () {
         //somente metodos estaticos
     }
@@ -21,10 +23,32 @@ public class UtilMapeadorLinha {
         return new OpcaoPerfilDtoMapeadorLinha();
     }
     
+    public static OpcaoEspecieDtoMapeadorLinha getOpcaoEspecieDtoMapeadorLinha() {
+    	return new OpcaoEspecieDtoMapeadorLinha();
+    }
+    
+    public static OpcaoBioterioMapeadorLinha getOpcaoBioterioMapeadorLinha() {
+    	return new OpcaoBioterioMapeadorLinha();
+    }
+    
     private static class OpcaoPerfilDtoMapeadorLinha implements RowMapper<OpcaoDto<Long>> {
         @Override
         public OpcaoDto<Long> mapRow(ResultSet rs, int rowNum) throws SQLException {
-            return new OpcaoDto<>(rs.getLong("ID_ROLE"), rs.getString("NOME"));
+            return new OpcaoDto<>(rs.getLong("ID_ROLE"), rs.getString(NM_PROPRIEDADE_NOME));
         }
+    }
+    
+    private static class OpcaoEspecieDtoMapeadorLinha implements RowMapper<OpcaoDto<Long>> {
+		@Override
+		public OpcaoDto<Long> mapRow(ResultSet rs, int rowNum) throws SQLException {
+			return new OpcaoDto<Long>(rs.getLong("ID_ESPECIE"), rs.getString(NM_PROPRIEDADE_NOME));
+		}	
+    }
+    
+    private static class OpcaoBioterioMapeadorLinha implements RowMapper<OpcaoDto<Long>> {
+		@Override
+		public OpcaoDto<Long> mapRow(ResultSet rs, int rowNum) throws SQLException {
+			return new OpcaoDto<Long>(rs.getLong("ID_BIOTERIO"), rs.getString(NM_PROPRIEDADE_NOME));
+		}	
     }
 }

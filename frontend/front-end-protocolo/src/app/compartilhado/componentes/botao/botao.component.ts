@@ -23,7 +23,6 @@ export class BotaoComponent {
   constructor() { }
 
   bindClick(): void {
-    console.log("x")
     this.eventoclick.emit();
   }
 

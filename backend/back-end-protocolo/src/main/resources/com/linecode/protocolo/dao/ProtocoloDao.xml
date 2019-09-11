@@ -14,7 +14,7 @@
 			FK_ID_STATUS
 		) VALUES ( 
 			?, 
-			?, 
+			?,
 			?, 
 			?, 
 			?, 

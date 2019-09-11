@@ -17,12 +17,12 @@ import { CompartilhadoModule } from 'src/app/compartilhado/compartilhado.module'
 //paginas
 import { LoginComponent } from './pagina/login/login.component';
 import { PerfilComponent } from './pagina/perfil/perfil.component';
-import { CadastroComponent } from './pagina/cadastro/cadastro.component';
+import { CadastroDocenteComponent } from './pagina/cadastro-docente/cadastro-docente.component';
 
 const COMPONENTES = [
   LoginComponent, 
   PerfilComponent,
-  CadastroComponent
+  CadastroDocenteComponent
 ];
 
 @NgModule({
