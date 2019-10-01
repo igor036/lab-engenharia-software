@@ -1,0 +1,16 @@
+<div class="input-deco">
+        <div class='icon-deco'>
+            <i class="fa {{classeIcone}}" aria-hidden="true"></i>
+        </div>
+        <textarea rows="20" cols="20"
+            class="input-deco-input form-control" 
+            [placeholder]="placeholder" 
+            [class.input-invalido]="isInvalido()" 
+            [formControl]="formControl" 
+            (keyup)="writeValue($event.target.value)"
+        >
+        </textarea>
+    </div>
+    <div class="div-msg-erro" *ngIf="isInvalido()">
+        * {{ msgErro }}
+    </div>

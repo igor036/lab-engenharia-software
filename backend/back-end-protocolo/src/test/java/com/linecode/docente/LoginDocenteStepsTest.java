@@ -13,7 +13,7 @@ import com.linecode.docente.servico.DocenteServico;
 import cucumber.api.java.pt.Então;
 import cucumber.api.java.pt.Quando;
 
-public class DocenteLoginStepsTest {
+public class LoginDocenteStepsTest {
 	
 	@InjectMocks
 	private DocenteServico docenteServico = new DocenteServico();

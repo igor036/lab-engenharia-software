@@ -1,1 +1,46 @@
-<p>cadastro-protocolo works!</p>
+<div class='external-log-deco'>
+    <div class='log'>
+        <div class="log-deco">
+            <h1 class="log-header">Cadastro</h1>
+        </div>
+        <div>
+            <form [formGroup]="form" class='form-deco'>
+                <app-input-area-texto
+                    [formControl]="form.controls['justificativa']"
+                    classeIcone="fa-user"
+                    placeholder="Justificativa"
+                    msgErro="Campo obrigatório">
+                </app-input-area-texto>
+                <app-input-area-texto
+                    [formControl]="form.controls['resumoPt']"
+                    classeIcone="fa-user"
+                    placeholder="Justificativa"
+                    msgErro="Campo obrigatório">
+                </app-input-area-texto>
+                <app-input-area-texto
+                    [formControl]="form.controls['resumoEn']"
+                    classeIcone="fa-user"
+                    placeholder="Justificativa"
+                    msgErro="Campo obrigatório">
+                </app-input-area-texto>
+                <app-input-data 
+                    [formControl]="form.controls['dataInicio']"
+                    classeIcone="fa-user"
+                    placeholder="Data Início"
+                    msgErro="Campo obrigatório">
+                </app-input-data>
+                <app-input-data 
+                    [formControl]="form.controls['dataFim']"
+                    classeIcone="fa-user"
+                    placeholder="Data Início"
+                    msgErro="Campo obrigatório">
+                </app-input-data>
+                <app-botao 
+                    texto="Cadastrar" 
+                    [liberado]="form.valid" 
+                    (eventoclick)="cadastrar()">
+                </app-botao>
+            </form>
+        </div>
+    </div>
+</div>

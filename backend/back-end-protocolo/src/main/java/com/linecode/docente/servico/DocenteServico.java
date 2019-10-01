@@ -7,6 +7,7 @@ package com.linecode.docente.servico;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
 import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,12 +35,11 @@ public class DocenteServico {
     
     @Autowired
     private JavaMailSender javaMailSender;
-    
-    @Autowired
-    private Validator validator;
 
     @Autowired
     private Environment env;
+    
+    private Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 
     /**
      * Recupera os dados do docente apartir do email e da senha

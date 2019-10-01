@@ -11,14 +11,22 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BotaoComponent } from './componentes/botao/botao.component';
 import { InputTextoComponent } from './componentes/input-texto/input-texto.component';
 import { SelecaoItemComponent } from './componentes/selecao-item/selecao-item.component';
+import { InputDataComponent } from './componentes/input-data/input-data.component';
+import { InputAreaTextoComponent } from './componentes/input-area-texto/input-area-texto.component';
 
 //servicos
 import { UtilServico } from './util.servico';
 
+//modulos
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
 const COMPONENTES = [
   BotaoComponent,
   InputTextoComponent,
-  SelecaoItemComponent
+  SelecaoItemComponent,
+  InputDataComponent,
+  InputAreaTextoComponent
 ];
 
 @NgModule({
@@ -28,6 +36,8 @@ const COMPONENTES = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    BsDatepickerModule.forRoot()
   ],
   providers: [
     UtilServico

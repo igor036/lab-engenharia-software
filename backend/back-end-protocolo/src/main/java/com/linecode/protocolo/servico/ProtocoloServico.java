@@ -7,6 +7,7 @@ package com.linecode.protocolo.servico;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
 import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +30,7 @@ public class ProtocoloServico {
 	@Autowired
 	private DocenteServico docenteServico;
 	
-	@Autowired
-    private Validator validator;
+	private Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 	
 	/**
 	 * Efetua o cadastro de um protocolo e o vincula

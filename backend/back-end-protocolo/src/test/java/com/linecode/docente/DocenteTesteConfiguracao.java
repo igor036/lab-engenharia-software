@@ -11,6 +11,6 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features = { "src/test/resources/features/docente" })
-public class TesteConfiguracao  {
+public class DocenteTesteConfiguracao  {
 
 }
