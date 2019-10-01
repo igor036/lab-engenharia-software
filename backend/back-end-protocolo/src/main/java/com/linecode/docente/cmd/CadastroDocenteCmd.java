@@ -24,8 +24,14 @@ public class CadastroDocenteCmd {
     public CadastroDocenteCmd() {
         //construtor padrão do jackson
     }
+    
+    public CadastroDocenteCmd(String email,String nome, long idPerfil) {
+		this.email = email;
+		this.nome = nome;
+		this.idPerfil = idPerfil;
+	}
 
-    public String getEmail() {
+	public String getEmail() {
         return email;
     }
 

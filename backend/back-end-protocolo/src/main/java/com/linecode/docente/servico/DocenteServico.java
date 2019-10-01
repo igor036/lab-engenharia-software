@@ -17,6 +17,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import com.linecode.compartilhado.excecao.ExcecaoAplicacao;
 import com.linecode.compartilhado.excecao.ExcecaoNegocio;
@@ -24,7 +25,6 @@ import com.linecode.docente.cmd.CadastroDocenteCmd;
 import com.linecode.docente.dao.DocenteDao;
 import com.linecode.docente.dto.DocenteDto;
 
-import io.jsonwebtoken.lang.Assert;
 
 @Service
 public class DocenteServico {
