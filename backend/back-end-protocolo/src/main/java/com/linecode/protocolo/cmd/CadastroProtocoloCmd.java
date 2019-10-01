@@ -22,6 +22,10 @@ public class CadastroProtocoloCmd {
 	@NotNull(message = "Informe a data fim.")
 	private LocalDate dataFim;
 	
+	public CadastroProtocoloCmd() {
+		
+	}
+	
 	public CadastroProtocoloCmd(String justificativa, String resumoPt, String resumoEn, 
 			LocalDate dataInicio, LocalDate dataFim) {
 		this.justificativa = justificativa;

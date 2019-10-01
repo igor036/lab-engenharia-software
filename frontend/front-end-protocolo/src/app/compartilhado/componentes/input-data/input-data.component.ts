@@ -13,6 +13,8 @@ import {
   ControlValueAccessor 
 } from '@angular/forms';
 
+import * as moment from 'moment';
+
 @Component({
   selector: 'app-input-data',
   templateUrl: './input-data.component.html',
@@ -68,7 +70,7 @@ export class InputDataComponent implements OnInit, ControlValueAccessor {
   }
 
   writeValue(valor: string): void {
-    this.valor = valor;
+    this.valor = moment(valor).format("DD/MM/YYYY");;
     this.alterarValor.emit(this.valor);
   }
   

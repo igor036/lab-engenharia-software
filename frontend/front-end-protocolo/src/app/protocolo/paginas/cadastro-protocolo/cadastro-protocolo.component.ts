@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { ProtocoloServico } from '../../protocolo.servico';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-cadastro-protocolo',
@@ -14,7 +15,8 @@ export class CadastroProtocoloComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private protocoloServico: ProtocoloServico
+    private protocoloServico: ProtocoloServico,
+    private spinnerServico: Ng4LoadingSpinnerService
   ) { }
 
   ngOnInit() {
@@ -22,7 +24,11 @@ export class CadastroProtocoloComponent implements OnInit {
   }
 
   cadastrar(): void  {
-
+    this.spinnerServico.show();
+    this.protocoloServico.cadastrarProtocolo(this.form.value).subscribe(resposta =>  {
+      this.spinnerServico.hide();
+      alert(resposta)
+    });
   }
 
   private iniciarForm(): void {
