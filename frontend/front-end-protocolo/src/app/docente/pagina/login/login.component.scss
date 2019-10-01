@@ -3,7 +3,7 @@
 body{
   margin: 0;
   display: flex;
-  background-color:#444444;
+  background-color:white;
 }
 
 .external-log-deco{
@@ -14,11 +14,10 @@ body{
 }
 
 .log {
-    background-color:#232323;
+    background-color:#d6d6d6;
     border-radius: 4px;
-    box-shadow: 5px 5px 5px rgba(49, 48, 48, 0.452);
     border-style: solid;
-    border-width: 2px;
+    border-width: 1px;
     border-color: #606060;
     padding-bottom: 2%;
     width: 33%;
@@ -26,7 +25,7 @@ body{
   }
   
   .log-deco{
-    background-color: rgb(0, 0, 0);
+    background-color: #361c68;
     border-radius: 4px 4px 0px 0px;
     padding: 3%;
   }
@@ -44,7 +43,7 @@ body{
   }
   
   .form-deco label{
-    color: white;
+    color: black;
   }
   
   .request-deco{
