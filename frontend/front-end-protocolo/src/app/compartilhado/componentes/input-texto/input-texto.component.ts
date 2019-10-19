@@ -53,7 +53,7 @@ export class InputTextoComponent implements OnInit, ControlValueAccessor {
   @Input() public classeIcone: string;
   @Input() public placeholder: string;
   @Input() public msgErro: string;
-  @Input() public isSenha: boolean = false;
+  @Input() public tipo: string = 'text';
   
   @Output() public alterarValor: EventEmitter<string> = new EventEmitter<string>();
 
@@ -71,10 +71,6 @@ export class InputTextoComponent implements OnInit, ControlValueAccessor {
 
   isInvalido(): boolean {
     return !this.formControl.valid && !this.formControl.pristine;
-  }
-
-  getTipoInput(): string {
-    return this.isSenha ? "password" : "text";
   }
 
   writeValue(valor: string): void {

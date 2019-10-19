@@ -62,7 +62,10 @@ public class ProtocoloServico {
 					docenteServico.getDadosDocenteLogado().getMatricula(), idStatusInicial);
 
 			if (idProtocolo > 0) {
-				protocoloDao.cadastrarPedidoProtocolo(cmd, idProtocolo);
+				cmd.getLitaPedidoProtocolo().forEach(pedido -> {
+					pedido.setIdProtocolo(idProtocolo);
+					protocoloDao.cadastrarPedidoProtocolo(pedido);
+				});
 			} else {
 				throw new ExcecaoAplicacao("Houve um erro ao cadastrar o protocolo.", null);
 			}

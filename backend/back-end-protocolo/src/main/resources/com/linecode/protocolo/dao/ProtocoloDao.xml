@@ -20,7 +20,7 @@
 			?, 
 			?, 
 			?
-		)
+		) RETURNING ID_PROTOCOLO
 	</entry>
 	
 	<entry key="com.linecode.protocolo.dao.ProtocoloDao.cadastrarPedidoProtocolo">
@@ -34,7 +34,7 @@
 			?, 
 			?, 
 			?
-		)
+		) RETURNING ID_PEDIDO
 	</entry>
     	
 </properties>

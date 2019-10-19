@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { ProtocoloServico } from 'src/app/protocolo/protocolo.servico';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { Opcao } from 'src/app/compartilhado/compartilhado.modelo';
 
 @Component({
   selector: 'app-cadastro-protocolo',
@@ -12,6 +13,8 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 export class CadastroProtocoloComponent implements OnInit {
 
   public form: FormGroup;
+  public listaEspecie: Array<Opcao> = [];
+  public listaBioterio: Array<Opcao> = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -20,6 +23,7 @@ export class CadastroProtocoloComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.carregarListas();
     this.iniciarForm();
   }
 
@@ -41,6 +45,27 @@ export class CadastroProtocoloComponent implements OnInit {
       especie: this.formBuilder.control('', Validators.required),
       quantidade: this.formBuilder.control('', Validators.required),
       bioterio: this.formBuilder.control('', Validators.required)
+    });
+  }
+
+  private carregarListas(): void {
+    
+    let qtdListasCarregadas: number = 0;
+    let funcaoEsconderSpinner: Function = () =>  {
+      if (++qtdListasCarregadas == 2) {
+        this.spinnerServico.hide();
+      }
+    };
+
+    this.spinnerServico.show();
+    this.protocoloServico.getListaEspecie().subscribe(listaEspecie => {
+      this.listaEspecie = listaEspecie;
+      funcaoEsconderSpinner();
+    });
+
+    this.protocoloServico.getListaBioterio().subscribe(listaBioterio => {
+      this.listaBioterio = listaBioterio;
+      funcaoEsconderSpinner();
     });
   }
 }

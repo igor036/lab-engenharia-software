@@ -48,7 +48,7 @@ public class UtilDao {
 
 	@Transactional(readOnly = true)
 	public long getIdStatusPorDescricao(String descricaoStatus) {
-		return jdbcTemplate.queryForObject(env.getProperty("com.linecode.util.dao.UtilDao.getIdStatusPorDescricaos"),
+		return jdbcTemplate.queryForObject(env.getProperty("com.linecode.util.dao.UtilDao.getIdStatusPorDescricao"),
 				Long.class, descricaoStatus);
 	}
 }

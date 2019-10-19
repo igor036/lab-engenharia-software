@@ -4,17 +4,26 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { CadastrarProtocolo } from './protocolo.modelo';
+import { Opcao } from 'src/app/compartilhado/compartilhado.modelo';
+
+const URL_CONTROLADOR: string = "protocolo"; 
 
 @Injectable()
 export class ProtocoloServico {
-    
-    private readonly URL_CONTROLADOR: string = "protocolo"; 
 
     constructor(private httpClient: HttpClient) {}
 
     cadastrarProtocolo(dados: CadastrarProtocolo): Observable<string> {
-        return this.httpClient.post(`${this.URL_CONTROLADOR}/cadastrar`, dados, {
+        return this.httpClient.post(`${URL_CONTROLADOR}/cadastrar`, dados, {
             responseType: 'text'
         });
+    }
+
+    getListaEspecie(): Observable<Array<Opcao>> {
+        return this.httpClient.get<Array<Opcao>>(`${URL_CONTROLADOR}/lista-especie`);
+    }
+
+    getListaBioterio(): Observable<Array<Opcao>> {
+        return this.httpClient.get<Array<Opcao>>(`${URL_CONTROLADOR}/lista-bioterio`);
     }
 }
