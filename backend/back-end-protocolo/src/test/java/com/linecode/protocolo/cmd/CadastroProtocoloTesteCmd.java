@@ -8,8 +8,9 @@ public class CadastroProtocoloTesteCmd extends CadastroProtocoloCmd {
 	private String msgEsperada;
 
 	public CadastroProtocoloTesteCmd(String justificativa, String resumoPt, String resumoEn, LocalDate dataInicio,
-			LocalDate dataFim, String msgEsperada, List<PedidoProtocoloCmd> litaPedidoProtocolo) {
+			LocalDate dataFim, List<PedidoProtocoloCmd> litaPedidoProtocolo, String msgEsperada) {
 		super(justificativa, resumoPt, resumoEn, dataInicio, dataFim, litaPedidoProtocolo);
+		this.msgEsperada = msgEsperada;
 	}
 
 	public String getMsgEsperada() {
