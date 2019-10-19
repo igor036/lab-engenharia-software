@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { ProtocoloServico } from '../../protocolo.servico';
+import { ProtocoloServico } from 'src/app/protocolo/protocolo.servico';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
@@ -38,6 +38,9 @@ export class CadastroProtocoloComponent implements OnInit {
       resumoEn: this.formBuilder.control('', Validators.required),
       dataInicio: this.formBuilder.control('', Validators.required),
       dataFim: this.formBuilder.control('', Validators.required),
+      especie: this.formBuilder.control('', Validators.required),
+      quantidade: this.formBuilder.control('', Validators.required),
+      bioterio: this.formBuilder.control('', Validators.required)
     });
   }
 }

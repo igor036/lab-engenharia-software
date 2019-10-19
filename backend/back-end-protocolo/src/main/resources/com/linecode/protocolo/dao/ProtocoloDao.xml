@@ -19,7 +19,21 @@
 			?, 
 			?, 
 			?, 
-			(SELECT ID_STATUS FROM TAB_STATUS WHERE DESCRICAO = 'ABERTO')	
+			?
+		)
+	</entry>
+	
+	<entry key="com.linecode.protocolo.dao.ProtocoloDao.cadastrarPedidoProtocolo">
+		INSERT INTO PUBLIC.TAB_PEDIDO(
+			QUANTIDADE, 
+			FK_ID_ESPECIE, 
+			FK_ID_BIOTERIO, 
+			FK_ID_PROTOCOLO)
+		VALUES ( 
+			?, 
+			?, 
+			?, 
+			?
 		)
 	</entry>
     	

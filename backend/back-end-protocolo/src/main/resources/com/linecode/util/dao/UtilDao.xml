@@ -5,23 +5,31 @@
 	
 	<entry key="com.linecode.util.dao.UtilDao.getListaPerfil">
 		SELECT 
-			ID_ROLE,
-			NOME
+			ID_ROLE AS COLUNA_ID,
+			NOME AS COLUNA_DESCRICAO
 		FROM TAB_ROLE
 	</entry>
 	
 	<entry key="com.linecode.util.dao.UtilDao.getListaEspecie">
 		SELECT 
-			ID_ESPECIE,
-			NOME
+			ID_ESPECIE AS COLUNA_ID,
+			NOME AS COLUNA_DESCRICAO
 		FROM TAB_ESPECIE
 	</entry>
 	
 	<entry key="com.linecode.util.dao.UtilDao.getListaBioterio">
 		SELECT 
-			ID_BIOTERIO,
-			NOME
+			ID_BIOTERIO AS COLUNA_ID,
+			NOME AS COLUNA_DESCRICAO
 		FROM TAB_BIOTERIO
+	</entry>
+	
+	<entry key="com.linecode.util.dao.UtilDao.getIdStatusPorDescricao">
+		SELECT ID_STATUS FROM TAB_STATUS WHERE DESCRICAO = ?
+	</entry>
+	
+	<entry key="com.linecode.util.dao.UtilDao.getIdStatusPorDescricao">
+		SELECT ID_STATUS FROM TAB_STATUS WHERE DESCRICAO = ?
 	</entry>
     	
 </properties>
