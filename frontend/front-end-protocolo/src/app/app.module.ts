@@ -18,6 +18,7 @@ import { DocenteServico } from './docente/docente.servico';
 import { DocenteModule } from './docente/docente.module';
 import { ProtocoloModule } from './protocolo/protocolo.module';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 //interceptadores
 import { HttpInterceptorCore } from './interceptor/http.interceptor';
@@ -37,7 +38,8 @@ import { ROTAS } from './app.router';
     BrowserModule,
     HttpClientModule,
     DocenteModule,
-    ProtocoloModule
+    ProtocoloModule,
+    BsDatepickerModule.forRoot()
   ],
   providers: [
     DocenteServico,
@@ -46,4 +48,5 @@ import { ROTAS } from './app.router';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+}

@@ -15,7 +15,6 @@ import { ProtocoloServico } from './protocolo.servico';
 //modulo compartilhado
 import { CompartilhadoModule } from '../compartilhado/compartilhado.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 const COMPONENTES = [
   CadastroProtocoloComponent
@@ -32,8 +31,7 @@ const COMPONENTES = [
     HttpClientModule,
     Ng4LoadingSpinnerModule,
     CompartilhadoModule,
-    BrowserAnimationsModule,
-    BsDatepickerModule,
+    BrowserAnimationsModule
   ]
 })
 export class ProtocoloModule { }

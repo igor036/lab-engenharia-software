@@ -44,7 +44,7 @@ import {
  * @Input classeIcone classe do icone do fontwasome que sera exibida.
  * @Input placeholder texto do placeholder.
  * @Input msgErro mensagem de erro para quando o campo  estiver inválido.
- * @Input isSenha informa se o campo é do tipo  senha.
+ * @Input tipo informa o tipo do campo.
  * @Output alterarValor evento que emit o valor do campo toda vez que o mesmo é alterado.
  */
 export class InputTextoComponent implements OnInit, ControlValueAccessor {

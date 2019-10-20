@@ -19,3 +19,5 @@ export const URLS_NAMES = {
 export const REGEXS = {
     email: "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
 };
+
+export const OPCAO_SELECIONAR_INPUT_SELECT = 'SELECIONAR';

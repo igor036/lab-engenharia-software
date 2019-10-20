@@ -1,61 +1,86 @@
 .external-prot-deco{
-    margin-left: 16%;
-    width: 84%;
-    padding-top:2%;
-    display: flex;
-  }
+  margin-left: 16%;
+  width: 84%;
+  padding-top:2%;
+  display: flex;
+}
 
 
 .external-deco{
-    width: 50%;
-    background-color: #d6d6d6;
-    border-style: solid;
-    border-color: #606060;
-    border-width: 1px;
-    border-radius: 4px;
-    margin-right: 2%;
-  }
+  width: 50%;
+  background-color: #d6d6d6;
+  border-style: solid;
+  border-color: #606060;
+  border-width: 1px;
+  border-radius: 4px;
+  margin-right: 2%;
+}
 
-  .external-deco-r{
-    width: 48%;
-    background-color: #d6d6d6;
-    border-style: solid;
-    border-color: #606060;
-    border-width: 1px;
-    border-radius: 4px;
-    margin-right: 2%;
-  }
+.external-deco-r{
+  width: 48%;
+  background-color: #d6d6d6;
+  border-style: solid;
+  border-color: #606060;
+  border-width: 1px;
+  border-radius: 4px;
+  margin-right: 2%;
+}
 
-  .external-deco-header{
-    background-color: #361c68;
-    padding: 0.5% 2%;
-    color: white;
-  }
-  
-  .internal-deco{
-    width: 94%;
-    color: black;
-    text-justify: distribute;
-    padding: 3%;
-  }
-  
-  .internal-deco textarea{
-    width: 100%;
-    background-color: #444444;
-    color: white;
-  }
-  
-  .docente-deco{
-    background-color:#3d8af7;
-    width: 100%;
-  }
+.external-deco-header{
+  background-color: #361c68;
+  padding: 0.5% 2%;
+  color: white;
+}
 
-  .docente-header{
-    background-color: #1b70e9;
-    padding: 0% 1%;
-    color: white;
-  }
+.internal-deco{
+  width: 94%;
+  color: black;
+  text-justify: distribute;
+  padding: 3%;
+}
 
-  .docente-internal{
-    padding: 0% 1% 1% 1%;
-  }
+.internal-deco textarea{
+  width: 100%;
+  background-color: #444444;
+  color: white;
+}
+
+.docente-deco{
+  background-color:#3d8af7;
+  width: 100%;
+}
+
+.docente-header{
+  background-color: #1b70e9;
+  padding: 0% 1%;
+  color: white;
+}
+
+.docente-internal{
+  padding: 0% 1% 1% 1%;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  border-color: black;
+}
+
+.btn {
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  padding: 5px 10px; 
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: RoyalBlue;
+}

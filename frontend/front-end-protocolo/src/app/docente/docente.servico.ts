@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { PROPRIEDADES, URLS_NAMES } from 'src/app/app.constante';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import {
     DocenteLogado,
@@ -26,6 +26,11 @@ export class DocenteServico {
     ) { }
 
     getDadosDocenteLogado(): Observable<DocenteLogado> {
+        
+        if (this.isLogado()) {
+            return of(JSON.parse(localStorage.getItem(PROPRIEDADES.DADOS_DOCENTE_LOGADO)));
+        }
+
         return this.httpClient.get<DocenteLogado>(
             `${this.URL_CONTROLADOR}/dados-docente-logado`
         );

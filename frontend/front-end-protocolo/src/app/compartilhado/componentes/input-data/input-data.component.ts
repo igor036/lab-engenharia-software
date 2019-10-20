@@ -47,7 +47,7 @@ import * as moment from 'moment';
 export class InputDataComponent implements OnInit, ControlValueAccessor {
 
   @Input() public formControl: FormControl;
-  @Input() public classeIcone: string;
+  @Input() public classeIcone: string = 'fa fa-calendar';
   @Input() public placeholder: string;
   @Input() public msgErro: string;
   

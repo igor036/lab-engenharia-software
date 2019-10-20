@@ -1,12 +1,14 @@
 <div>
     <textarea 
-    rows="20" 
-    cols="20"  
-    [placeholder]="placeholder" 
-    [class.input-invalido]="isInvalido()"
-    [formControl]="formControl" 
-    (keyup)="writeValue($event.target.value)">
+        rows="20" 
+        cols="20"  
+        [placeholder]="placeholder" 
+        [class.input-invalido]="isInvalido()"
+        [formControl]="formControl" 
+        (keyup)="writeValue($event.target.value)"
+        [maxlength]="tamanhoMaximo">
     </textarea>
+    <label>Restante: {{ getQuantidadeRestante() }}</label>
 </div>
 <div class="div-msg-erro" *ngIf="isInvalido()">
     * {{ msgErro }}

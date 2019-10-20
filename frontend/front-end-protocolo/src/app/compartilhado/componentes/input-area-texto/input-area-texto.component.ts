@@ -17,6 +17,7 @@ import {
 @Component({
   selector: 'app-input-area-texto',
   templateUrl: './input-area-texto.component.html',
+  styleUrls: ['./input-area-texto.component.scss'],
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => InputAreaTextoComponent),
@@ -40,6 +41,7 @@ import {
  * @Input classeIcone classe do icone do fontwasome que sera exibida.
  * @Input placeholder texto do placeholder.
  * @Input msgErro mensagem de erro para quando o campo  estiver inválido.
+ * @Input tamanhoMaximo tamanho máximo do valor.
  * @Output alterarValor evento que emit o valor do campo toda vez que o mesmo é alterado.
  */
 export class InputAreaTextoComponent implements OnInit, ControlValueAccessor {
@@ -48,7 +50,8 @@ export class InputAreaTextoComponent implements OnInit, ControlValueAccessor {
   @Input() public classeIcone: string;
   @Input() public placeholder: string;
   @Input() public msgErro: string;
-  
+  @Input() public tamanhoMaximo: number = 500;
+
   @Output() public alterarValor: EventEmitter<string> = new EventEmitter<string>();
 
   private valor: string;
@@ -77,5 +80,12 @@ export class InputAreaTextoComponent implements OnInit, ControlValueAccessor {
   }
   registerOnTouched(funcao: Function): void {
     this.onTouched = funcao;
+  }
+
+  getQuantidadeRestante(): number {
+    if (this.valor) {
+      return this.tamanhoMaximo - this.valor.length;
+    }
+    return this.tamanhoMaximo;
   }
 }

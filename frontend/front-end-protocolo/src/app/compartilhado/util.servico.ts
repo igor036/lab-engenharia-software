@@ -13,16 +13,22 @@ import { Observable } from 'rxjs';
 //modelos
 import { Opcao } from 'src/app/compartilhado/compartilhado.modelo';
 
+const URL_CONTROLADOR: string = 'util';
+
 @Injectable()
 export class UtilServico {
-
-    private readonly URL_CONTROLADOR: string = 'util';
 
     constructor(private httpClient: HttpClient) {}
 
     getListaPerfil(): Observable<Array<Opcao>> {
-        return this.httpClient.get<Array<Opcao>>(
-            `${this.URL_CONTROLADOR}/lista-perfil`
-        );
+        return this.httpClient.get<Array<Opcao>>(`${URL_CONTROLADOR}/lista-perfil`);
+    }
+    
+    getListaEspecie(): Observable<Array<Opcao>> {
+        return this.httpClient.get<Array<Opcao>>(`${URL_CONTROLADOR}/lista-especie`);
+    }
+
+    getListaBioterio(): Observable<Array<Opcao>> {
+        return this.httpClient.get<Array<Opcao>>(`${URL_CONTROLADOR}/lista-bioterio`);
     }
 }

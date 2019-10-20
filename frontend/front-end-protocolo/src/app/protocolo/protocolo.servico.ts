@@ -18,12 +18,4 @@ export class ProtocoloServico {
             responseType: 'text'
         });
     }
-
-    getListaEspecie(): Observable<Array<Opcao>> {
-        return this.httpClient.get<Array<Opcao>>(`${URL_CONTROLADOR}/lista-especie`);
-    }
-
-    getListaBioterio(): Observable<Array<Opcao>> {
-        return this.httpClient.get<Array<Opcao>>(`${URL_CONTROLADOR}/lista-bioterio`);
-    }
 }

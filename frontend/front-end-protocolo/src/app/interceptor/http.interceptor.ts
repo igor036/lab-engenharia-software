@@ -12,12 +12,14 @@ import {
 
 import { PROPRIEDADES } from 'src/app/app.constante';
 import { DocenteServico } from 'src/app/docente/docente.servico';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Injectable()
 export class HttpInterceptorCore implements HttpInterceptor {
 
     constructor(
-        private docenteSerico: DocenteServico
+        private docenteSerico: DocenteServico,
+        private spinnerServico:  Ng4LoadingSpinnerService
     ){}
 
     intercept(req: HttpRequest<any>, next: HttpHandler): import("rxjs").Observable<HttpEvent<any>> {
@@ -25,7 +27,7 @@ export class HttpInterceptorCore implements HttpInterceptor {
     }
 
     private getRequisicaoAutorizacao(req: HttpRequest<any>): any {
-
+        this.spinnerServico.hide();
         if (req.url == "login") {
             return req.clone({url: PROPRIEDADES.URL_BASE+req.url});
         }
