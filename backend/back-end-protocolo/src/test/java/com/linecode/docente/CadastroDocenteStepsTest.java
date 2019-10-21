@@ -2,12 +2,20 @@ package com.linecode.docente;
 
 import static org.assertj.core.api.Assertions.fail;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
 
 import java.util.List;
 
+import javax.validation.Validation;
+import javax.validation.Validator;
+
 import org.mockito.InjectMocks;
+import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
+import org.springframework.context.ApplicationContext;
 
 import com.linecode.compartilhado.excecao.ExcecaoNegocio;
+import com.linecode.configuracao.ContextoAplicacao;
 import com.linecode.docente.cmd.CadastroDocenteTestCmd;
 import com.linecode.docente.servico.DocenteServico;
 
@@ -16,10 +24,21 @@ import cucumber.api.java.pt.Quando;
 
 public class CadastroDocenteStepsTest {
 	
+    private ContextoAplicacao contextoAplicacao = new ContextoAplicacao();
+    
 	@InjectMocks
 	private DocenteServico docenteServico = new DocenteServico();
 	
+	@Spy
+    private Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+	
 	private List<CadastroDocenteTestCmd> dadosCadastro;
+	
+	public CadastroDocenteStepsTest() {
+        MockitoAnnotations.initMocks(this);
+        ApplicationContext applicationContextMock = mock(ApplicationContext.class);
+        contextoAplicacao.setApplicationContext(applicationContextMock);
+    }
 	
 	@Quando("^desejar efetuar um cadastro informado um cadastro invalido com os seguintes dados$")
 	public void desejar_efetuar_um_cadastro_informado_um_cadastro_invalido_com_os_seguintes_dados(
