@@ -54,6 +54,12 @@ public class UtilServico {
 	public List<OpcaoDto<Long>> getListaBioterio() {
 		return utilDao.getListaBioterio();
 	}
+	
+	
+	@PreAuthorize("@autorizacaoServico.isAutenticado()")
+	public List<OpcaoDto<Long>> getListaStatusProtocolo() {
+	    return utilDao.getListaStatusProtocolo();
+	}
 
 	/**
 	 * Retorna o id do staus <b>protocolo.status.inicial</b>

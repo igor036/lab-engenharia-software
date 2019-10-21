@@ -36,4 +36,9 @@ public class UtilControlador {
     public ResponseEntity<List<OpcaoDto<Long>>> getListaBioterio() {
         return ResponseEntity.ok(utilServico.getListaBioterio());
     }
+    
+    @GetMapping("lista-status")
+    public ResponseEntity<List<OpcaoDto<Long>>> getListaStatusProtocolo() {
+        return ResponseEntity.ok(utilServico.getListaStatusProtocolo());
+    }
 }   
