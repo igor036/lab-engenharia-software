@@ -70,6 +70,7 @@ export class ConsultaProtocoloComponent implements OnInit {
       { descricao: "Todos", valor: this.OPCAO_TODOS },
       { descricao: "Código", valor: this.OPCAO_CODIGO },
       { descricao: "Status", valor: this.OPCAO_STATUS }
+      //
     ];
   }
 
