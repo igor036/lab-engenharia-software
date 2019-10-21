@@ -10,6 +10,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +21,7 @@ import com.linecode.docente.servico.DocenteServico;
 import com.linecode.protocolo.cmd.CadastroProtocoloCmd;
 import com.linecode.protocolo.cmd.PedidoProtocoloCmd;
 import com.linecode.protocolo.dao.ProtocoloDao;
+import com.linecode.protocolo.dto.DetalheProtocoloDto;
 import com.linecode.protocolo.dto.ListagemProtocoloDto;
 import com.linecode.protocolo.filtro.ConsultaListaProtocoloFiltro;
 import com.linecode.util.servico.UtilServico;
@@ -49,6 +51,7 @@ public class ProtocoloServico {
 	 * @param cmd - dados do protocolo {@link CadastroProtocoloCmd}
 	 */
 	@Transactional
+	@PreAuthorize("@autorizacaoServico.isAutenticado()")
 	public void cadastrarProtocolo(CadastroProtocoloCmd cmd) {
 
 		Assert.notNull(cmd, "Informe os dados do protocolo");
@@ -84,6 +87,7 @@ public class ProtocoloServico {
 	 *  @param qtdRegistrosPagina - quantidade de registros por pagina {@link Integer}
 	 *  @return paginacao da consulta {@link PaginacaoDto<ListagemProtocoloDto>}
 	 */
+	@PreAuthorize("@autorizacaoServico.isAutenticado()")
 	public PaginacaoDto<ListagemProtocoloDto> getListaProtocoloDocenteLogado(ConsultaListaProtocoloFiltro filtro,
             int paginaAtual, int qtdRegistrosPagina) {
 	    
@@ -96,6 +100,15 @@ public class ProtocoloServico {
 	    filtro.setIdDocente(docenteServico.getDadosDocenteLogado().getMatricula());
 	    
 	    return protocoloDao.getListaProtocoloDocenteLogado(filtro, paginaAtual, qtdRegistrosPagina);
+	}
+	
+	/**
+	 * Consulta os dados detalhados de um determinado protocolo pelo ID.
+	 * @return dados {@link DetalheProtocoloDto} 
+	 */
+	@PreAuthorize("@autorizacaoServico.isAutenticado()")
+	public DetalheProtocoloDto getDetalheProtocolo(long idProtocolo) {
+	    return protocoloDao.getDetalheProtocolo(idProtocolo);
 	}
 	
 	/**

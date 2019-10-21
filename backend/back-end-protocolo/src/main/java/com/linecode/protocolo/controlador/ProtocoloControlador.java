@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.linecode.compartilhado.dto.PaginacaoDto;
 import com.linecode.protocolo.cmd.CadastroProtocoloCmd;
+import com.linecode.protocolo.dto.DetalheProtocoloDto;
 import com.linecode.protocolo.dto.ListagemProtocoloDto;
 import com.linecode.protocolo.filtro.ConsultaListaProtocoloFiltro;
 import com.linecode.protocolo.servico.ProtocoloServico;
@@ -36,5 +37,10 @@ public class ProtocoloControlador {
 	public ResponseEntity<PaginacaoDto<ListagemProtocoloDto>> getListaProtocoloDocenteLogado(ConsultaListaProtocoloFiltro filtro,
             @PathVariable int paginaAtual, @PathVariable int qtdRegistrosPagina) {
 	    return ResponseEntity.ok(protocoloServico.getListaProtocoloDocenteLogado(filtro, paginaAtual, qtdRegistrosPagina));
+	}
+	
+	@GetMapping("detalhe/{idProtocolo}")
+	public ResponseEntity<DetalheProtocoloDto> getDetalheProtocolo(@PathVariable long idProtocolo) {
+	    return ResponseEntity.ok(protocoloServico.getDetalheProtocolo(idProtocolo));
 	}
 }

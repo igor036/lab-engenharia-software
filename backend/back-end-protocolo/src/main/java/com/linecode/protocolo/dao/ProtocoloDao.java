@@ -15,6 +15,8 @@ import com.linecode.compartilhado.dto.PaginacaoDto;
 import com.linecode.protocolo.cmd.CadastroProtocoloCmd;
 import com.linecode.protocolo.cmd.PedidoProtocoloCmd;
 import com.linecode.protocolo.dao.consultapaginada.ListaProtocoloConsultaPaginada;
+import com.linecode.protocolo.dao.mapeadorlinha.ProtocoloMapeadorLinha;
+import com.linecode.protocolo.dto.DetalheProtocoloDto;
 import com.linecode.protocolo.dto.ListagemProtocoloDto;
 import com.linecode.protocolo.filtro.ConsultaListaProtocoloFiltro;
 
@@ -52,5 +54,11 @@ public class ProtocoloDao {
                 filtro, paginaAtual, qtdRegistrosPagina);
 
         return consultaPaginada.getPaginacao();
+    }
+    
+    @Transactional(readOnly = true)
+    public DetalheProtocoloDto getDetalheProtocolo(long idProtocolo) {
+        return jdbcTemplate.query(env.getProperty("com.linecode.protocolo.dao.ProtocoloDao.getDetalheProtocolo"),
+                ProtocoloMapeadorLinha.getDetalheProtocoloDtoMapeadorLinha(), idProtocolo);
     }
 }
