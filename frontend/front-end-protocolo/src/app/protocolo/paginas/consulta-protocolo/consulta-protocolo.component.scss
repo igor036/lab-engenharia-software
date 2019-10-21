@@ -1,105 +1,22 @@
 *{font-family: 'Allerta', sans-serif;}
   
-   .corpo{
-    margin:0px;
-    background-color: white;
-  }
-  
-  .navbar{
-    position: fixed;
-    width: 15%;
-    height: 100%;
-    background-color: #361c68;
-    margin: 0%;
-    padding:0%;
-    box-shadow: 3px 3px 7px;
-  }
-  
-  .navbar div{
-    display: flex;
-    padding:5%;
-    border: 0px ;
-    border-right: 5px;
-    border-style: solid;
-    border-color: #c0c0c0;
-    height: 40px;
-    align-items: center;
-    margin-bottom: 3px;
-    background-color: #442380;
-  }
-  
-  .navbar div i {
-    width: 25%;
-    font-size: 150%;
-    text-align: left;
-    color:#c0c0c0;
-  }
-  
-  .navbar div a{
-      flex-grow: 1;
-      color:white;
-      font-size: 100%;
-      font-weight: 300;
-      text-decoration: none;
-  }
-  
-  .navbar div:hover{
-    background-color: #303030;
-  }
-  
   .search-deco{
     width: 30%;
     background-color: #d6d6d6;
     border-style: solid;
     border-width: 0px 1px 1px 1px;
     border-color: #606060;
-    margin-left: 30%;
+    margin-left: 40%;
     padding: 1%;
     border-radius: 0px 0px 4px 4px;
   }
 
-  .input-deco {
-    display: flex;
-    margin-top: 10px;
-    padding: 0%;
-    border-style: solid;
-    border-color: #606060;
-    border-width: 2px;
-  }
-  
-  .input-deco input{
-    width: 100%;
-    background-color: white;
-    border:none;
-    font-size: 15px;
-    color: black;
-    text-align: center;
-  }
-
-  .input-deco input:hover{
-    background-color: #606060;
-  }
-  
-  .icon-deco i {
-    background-color : transparent;
-    color: white;
-    font-size: 150%;
-    width: 100%;
-    text-align: center;
-  }
-  
-   .icon-deco{
-    padding: 5px 0%;
-    width: 10%;
-    background-color: #3d8af7;
-    cursor: pointer;
-  }
-
   .external-deco{
-    width: 100%;
+    width: 79%;
     background-color: transparent;
     padding: 1%;
-    margin-right: 0%;
+    margin-right: 5%;
+    margin-left: 15%;
   }
   
   .protocol-external{

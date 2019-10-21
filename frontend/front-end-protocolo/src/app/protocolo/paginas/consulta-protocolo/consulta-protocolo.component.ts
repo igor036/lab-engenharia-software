@@ -23,6 +23,8 @@ export class ConsultaProtocoloComponent implements OnInit {
   private readonly STATUS_DEFERIDO: string = 'Deferido';
   private readonly STATUS_INDEFERIDO: string = 'Indeferido';
 
+  protocols = [{id:1,docente:'docente'},{id:2,docente:'docente2'},{id:3,docente:'docente3'}];
+
   formPesquisaProtocolo: FormGroup;
   listaPesquisaProtocolo: Array<Opcao> = [];
   listaSelecaoDeStatusPesquisa: Array<Opcao> = [];

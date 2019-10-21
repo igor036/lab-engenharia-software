@@ -1,25 +1,46 @@
 <div class="search-deco" [formGroup]="formPesquisaProtocolo">
   <div class="input-deco">
     <app-selecao-item [formControl]="formPesquisaProtocolo.controls['campo']" [listaOpcao]="listaPesquisaProtocolo"
-      (alterarValor)="selecionarTipo($event)" placeholder="Selecione a busca">
+      (alterarValor)="selecionarTipo($event)" placeholder="Selecione a busca" classeIcone="fa fa-search">
     </app-selecao-item>
 
     <div class="row">
       <ng-container *ngIf="exibirInputDePesquisa()">
         <app-input-texto [formControl]="formPesquisaProtocolo.controls['valor']" msgErro="Informe um valor válido."
-          placeholder="">
+          placeholder="Digite o Codigo Aqui ..." classeIcone="fa-sort-numeric-desc">
         </app-input-texto>
       </ng-container>
 
       <ng-container *ngIf="exibirSelecaoDeStatus()">
         <app-selecao-item [formControl]="formPesquisaProtocolo.controls['valor']"
-          [listaOpcao]="listaSelecaoDeStatusPesquisa"></app-selecao-item>
+          [listaOpcao]="listaSelecaoDeStatusPesquisa" classeIcone="fa-check-square-o" placeholder="Selecione o Tipo"></app-selecao-item>
       </ng-container>
     </div>
 
     <div class="icon-deco ">
-      <app-botao iconeFa="fa-search" liberado="true" (click)="pesquisarProtocolo($event)">
+      <app-botao iconeFa="fa-search" liberado="true" (click)="pesquisarProtocolo($event)" texto="Pesquisar">
       </app-botao>
     </div>
   </div>
+</div>
+
+<div class="external-deco">
+
+  <ng-container *ngFor="let protocol of protocols">
+    <div class='protocol-external'>
+        <div class="protocol-external-header"></div>
+        <div class="protocol-internal">
+            <div class="protocol-info-deco">
+                <label>ID Protocolo : </label>
+                <label>{{protocol.id}}</label>
+                <label>Docente : </label>
+                <label>{{protocol.docente}}</label>
+                <label>Data : </label>
+                <label>01/01/2019</label>
+            </div>
+            <button class="protocol-button"><a>Detalhes</a></button>
+        </div>
+    </div>
+  </ng-container>
+
 </div>
