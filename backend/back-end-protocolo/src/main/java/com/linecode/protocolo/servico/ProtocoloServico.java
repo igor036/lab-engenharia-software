@@ -77,14 +77,14 @@ public class ProtocoloServico {
 	}
 	
 	/**
-	 * Retorna uma consulta de protocolo de forma paginada.
+	 * Retorna uma consulta de protocolo do docente <b>LOGADO</b> de forma paginada.
 	 * 
 	 *  @param filtro - dados do filtro da consulta {@link ConsultaListaProtocoloFiltro}
 	 *  @param paginaAtual - pagina da consulta atual {@link Integer} 
 	 *  @param qtdRegistrosPagina - quantidade de registros por pagina {@link Integer}
 	 *  @return paginacao da consulta {@link PaginacaoDto<ListagemProtocoloDto>}
 	 */
-	public PaginacaoDto<ListagemProtocoloDto> getListaProtocoloDocente(ConsultaListaProtocoloFiltro filtro,
+	public PaginacaoDto<ListagemProtocoloDto> getListaProtocoloDocenteLogado(ConsultaListaProtocoloFiltro filtro,
             int paginaAtual, int qtdRegistrosPagina) {
 	    
 	    Assert.notNull(filtro, "Informe os dados da consulta!");
@@ -95,7 +95,7 @@ public class ProtocoloServico {
 	    
 	    filtro.setIdDocente(docenteServico.getDadosDocenteLogado().getMatricula());
 	    
-	    return protocoloDao.getListaProtocoloDocente(filtro, paginaAtual, qtdRegistrosPagina);
+	    return protocoloDao.getListaProtocoloDocenteLogado(filtro, paginaAtual, qtdRegistrosPagina);
 	}
 	
 	/**
