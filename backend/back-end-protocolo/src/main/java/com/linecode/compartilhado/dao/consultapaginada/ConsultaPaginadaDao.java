@@ -19,6 +19,7 @@ public abstract class ConsultaPaginadaDao<F, V> {
     private static final String STR_QUEBRA_LINHA = "\n";
 
     private String sqlBase;
+    private String sqlFiltroAdicional;
     private JdbcTemplate jdbcTemplate;
     private int paginaAtual;
     private int qtdRegistrosPagina;
@@ -34,7 +35,8 @@ public abstract class ConsultaPaginadaDao<F, V> {
         this.listaValorParametros = new ArrayList<>();
         this.paginaAtual = paginaAtual;
         this.qtdRegistrosPagina = qtdRegistrosPagina;
-        this.listaTipoParameteros = new ArrayList<Integer>();
+        this.listaTipoParameteros = new ArrayList<>();
+        this.sqlFiltroAdicional = getSqlFiltroAdicional();
     }
 
     /**
@@ -62,14 +64,14 @@ public abstract class ConsultaPaginadaDao<F, V> {
     }
 
     /**
-     * Retorna o sql final da consulta apartir do <b>sqlBase</b> o <b>getSqlFiltroAdicional</b>
+     * Retorna o sql final da consulta apartir do <b>sqlBase</b> o <b>sqlFiltroAdicional</b>
      */
     private String gerarSqlFinal() {
-        return sqlBase.replaceFirst(STR_REPLACE_FILTRO_ADICIONAL, getSqlFiltroAdicional());
+        return sqlBase.replaceFirst(STR_REPLACE_FILTRO_ADICIONAL, sqlFiltroAdicional);
     }
 
     /**
-     * Gera o sql final com paginacao apartir do <b>sqlBase</b> o <b>getSqlFiltroAdicional</b> sendo adicionado os
+     * Gera o sql final com paginacao apartir do <b>sqlBase</b> o <b>sqlFiltroAdicional</b> sendo adicionado os
      * parametros: <b>LIMIT</b> = <b>qtdRegistrosPagina</b>. <b>OFFSET</b> = <b>paginaAtual-1</b> (O POSTGRESQL COMECA A
      * CONTAGEM POR 0).
      * 
@@ -84,8 +86,8 @@ public abstract class ConsultaPaginadaDao<F, V> {
         sqlFinalComPaginacao.append(String.valueOf(qtdRegistrosPagina));
         sqlFinalComPaginacao.append(STR_QUEBRA_LINHA);
         sqlFinalComPaginacao.append("OFFSET ");
-        sqlFinalComPaginacao.append(String.valueOf(paginaAtual - 1));
-
+        sqlFinalComPaginacao.append(String.valueOf(paginaAtual));
+        
         return sqlFinalComPaginacao.toString();
     }
 

@@ -34,7 +34,7 @@
 			?, 
 			?, 
 			?
-		) RETURNING ID_PEDIDO
+		) RETURNING ID_PEDIDO	
 	</entry>
 	
 	<entry key="com.linecode.protocolo.dao.ProtocoloDao.getListaProtocoloDocente">
