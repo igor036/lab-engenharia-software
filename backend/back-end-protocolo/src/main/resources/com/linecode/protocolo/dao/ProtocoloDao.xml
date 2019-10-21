@@ -36,5 +36,18 @@
 			?
 		) RETURNING ID_PEDIDO
 	</entry>
+	
+	<entry key="com.linecode.protocolo.dao.ProtocoloDao.getListaProtocoloDocente">
+		SELECT 
+			P.ID_PROTOCOLO AS ID,
+			D.NOME AS NOME_DOCENTE,
+			TO_CHAR(P.DATA_INICIO, 'DD/MM/YYYY') AS DATA_INICIO,
+			TO_CHAR(P.DATA_FIM, 'DD/MM/YYYY') AS DATA_FIM
+		FROM TAB_PROTOCOLO P
+			JOIN TAB_DOCENTE D ON
+				D.MATRICULA = P.FK_MATRICULA
+		WHERE 
+			{filtroAdicional}
+	</entry>
     	
 </properties>

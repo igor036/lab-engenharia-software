@@ -13,12 +13,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.linecode.compartilhado.dto.PaginacaoDto;
 import com.linecode.compartilhado.excecao.ExcecaoAplicacao;
 import com.linecode.compartilhado.excecao.ExcecaoNegocio;
 import com.linecode.docente.servico.DocenteServico;
 import com.linecode.protocolo.cmd.CadastroProtocoloCmd;
 import com.linecode.protocolo.cmd.PedidoProtocoloCmd;
 import com.linecode.protocolo.dao.ProtocoloDao;
+import com.linecode.protocolo.dto.ListagemProtocoloDto;
+import com.linecode.protocolo.filtro.ConsultaListaProtocoloFiltro;
 import com.linecode.util.servico.UtilServico;
 
 import io.jsonwebtoken.lang.Assert;
@@ -71,6 +74,28 @@ public class ProtocoloServico {
 		} else {
 			throw new ExcecaoNegocio(violacoes.stream().findFirst().get().getMessage());
 		}
+	}
+	
+	/**
+	 * Retorna uma consulta de protocolo de forma paginada.
+	 * 
+	 *  @param filtro - dados do filtro da consulta {@link ConsultaListaProtocoloFiltro}
+	 *  @param paginaAtual - pagina da consulta atual {@link Integer} 
+	 *  @param qtdRegistrosPagina - quantidade de registros por pagina {@link Integer}
+	 *  @return paginacao da consulta {@link PaginacaoDto<ListagemProtocoloDto>}
+	 */
+	public PaginacaoDto<ListagemProtocoloDto> getListaProtocoloDocente(ConsultaListaProtocoloFiltro filtro,
+            int paginaAtual, int qtdRegistrosPagina) {
+	    
+	    Assert.notNull(filtro, "Informe os dados da consulta!");
+	    
+	    if (!filtro.getTipo().isConsultaTodos() && filtro.getIdProtocolo() <= 0) {
+	        throw new ExcecaoNegocio("Código do protocolo inválido.");
+	    }
+	    
+	    filtro.setIdDocente(docenteServico.getDadosDocenteLogado().getMatricula());
+	    
+	    return protocoloDao.getListaProtocoloDocente(filtro, paginaAtual, qtdRegistrosPagina);
 	}
 	
 	/**
