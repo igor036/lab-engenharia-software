@@ -89,7 +89,7 @@ public class ProtocoloServico {
 	    
 	    Assert.notNull(filtro, "Informe os dados da consulta!");
 	    
-	    if (!filtro.getTipo().isConsultaTodos() && filtro.getIdProtocolo() <= 0) {
+	    if (filtro.getTipo().isConsultaCodigo() && filtro.getIdProtocolo() <= 0) {
 	        throw new ExcecaoNegocio("Código do protocolo inválido.");
 	    }
 	    

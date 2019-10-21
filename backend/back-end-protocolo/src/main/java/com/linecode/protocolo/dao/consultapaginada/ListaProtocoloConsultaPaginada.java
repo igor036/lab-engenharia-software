@@ -30,7 +30,7 @@ public class ListaProtocoloConsultaPaginada
             sqlFiltro.append(" AND P.ID_PROTOCOLO = ? ");
         } else if (filtro.getTipo().isConsultaStatus()) {
             adicionarParametro(filtro.getStatus().getValorTexto(), Types.VARCHAR);
-            sqlFiltro.append(" S.DESCRICAO = ? ");
+            sqlFiltro.append(" AND S.DESCRICAO = ? ");
         }
         
         return sqlFiltro.toString();
@@ -41,5 +41,4 @@ public class ListaProtocoloConsultaPaginada
         return new ListagemProtocoloDto(rs.getLong("ID"), rs.getString("NOME_DOCENTE"), rs.getString("DATA_INICIO"),
                 rs.getString("DATA_FIM"));
     }
-
 }

@@ -86,7 +86,7 @@ public abstract class ConsultaPaginadaDao<F, V> {
         sqlFinalComPaginacao.append(String.valueOf(qtdRegistrosPagina));
         sqlFinalComPaginacao.append(STR_QUEBRA_LINHA);
         sqlFinalComPaginacao.append("OFFSET ");
-        sqlFinalComPaginacao.append(String.valueOf(paginaAtual));
+        sqlFinalComPaginacao.append(String.valueOf(paginaAtual-1));
         
         return sqlFinalComPaginacao.toString();
     }
