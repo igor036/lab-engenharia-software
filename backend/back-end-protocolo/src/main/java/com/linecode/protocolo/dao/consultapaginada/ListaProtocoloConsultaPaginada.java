@@ -2,6 +2,7 @@ package com.linecode.protocolo.dao.consultapaginada;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -20,14 +21,19 @@ public class ListaProtocoloConsultaPaginada
     @Override
     protected String getSqlFiltroAdicional() {
 
-        if (filtro.getTipo().isConsultaTodos()) {
-            return "";
+        adicionarParametro(filtro.getIdDocente(), Types.INTEGER);
+        StringBuilder sqlFiltro = new StringBuilder();
+        sqlFiltro.append(" AND P.FK_MATRICULA = ? ");
+        
+        if (filtro.getTipo().isConsultaCodigo()) {
+            adicionarParametro(filtro.getIdProtocolo(), Types.INTEGER);
+            sqlFiltro.append(" AND P.ID_PROTOCOLO = ? ");
+        } else if (filtro.getTipo().isConsultaStatus()) {
+            adicionarParametro(filtro.getStatus().getValorTexto(), Types.VARCHAR);
+            sqlFiltro.append(" S.DESCRICAO = ? ");
         }
-
-        adicionarParametro(filtro.getIdProtocolo());
-        adicionarParametro(filtro.getIdDocente());
-
-        return " AND P.ID_PROTOCOLO = ? AND P.FK_MATRICULA = ?";
+        
+        return sqlFiltro.toString();
     }
 
     @Override

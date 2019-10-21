@@ -15,7 +15,7 @@ import com.linecode.compartilhado.dto.PaginacaoDto;
 
 public abstract class ConsultaPaginadaDao<F, V> {
 
-    private static final String STR_REPLACE_FILTRO_ADICIONAL = "{filtroAdicional}";
+    private static final String STR_REPLACE_FILTRO_ADICIONAL = "\\{filtroAdicional\\}";
     private static final String STR_QUEBRA_LINHA = "\n";
 
     private String sqlBase;
@@ -23,29 +23,41 @@ public abstract class ConsultaPaginadaDao<F, V> {
     private int paginaAtual;
     private int qtdRegistrosPagina;
     protected F filtro;
-    private List<Object> listaParametros;
+    private List<Object> listaValorParametros;
+    private List<Integer> listaTipoParameteros;
 
     public ConsultaPaginadaDao(String sqlBase, JdbcTemplate jdbcTemplate, F filtro, int paginaAtual,
             int qtdRegistrosPagina) {
         this.sqlBase = sqlBase;
         this.jdbcTemplate = jdbcTemplate;
         this.filtro = filtro;
-        this.listaParametros = new ArrayList<>();
+        this.listaValorParametros = new ArrayList<>();
         this.paginaAtual = paginaAtual;
         this.qtdRegistrosPagina = qtdRegistrosPagina;
+        this.listaTipoParameteros = new ArrayList<Integer>();
     }
 
-    protected void adicionarParametro(Object parametro) {
-        listaParametros.add(parametro);
+    /**
+     * Adiciona um determinado parametro para a execucao da query
+     * 
+     * @param parametro - o valor do parametro {@link Object}
+     * @param nome      - nome do parametro {@link String}
+     * @param tipo      - tipo do parametro {@link Int} em {@link sql.Types}
+     */
+    protected void adicionarParametro(Object parametro, int tipo) {
+        listaValorParametros.add(parametro);
+        listaTipoParameteros.add(tipo);
     }
-    
+
     /**
      * Executa a consulta e retorna a paginacao da consulta corrente.
-     * @return paginacao {@link PaginacaoDto<V>} 
+     * 
+     * @return paginacao {@link PaginacaoDto<V>}
      */
     public PaginacaoDto<V> getPaginacao() {
         int qtdTotalRegistros = getQtdTotalRegistros();
-        List<V> listaRetorno = jdbcTemplate.query(gerarSqlFinalComPaginacao(), this::mapRow, listaParametros);
+        List<V> listaRetorno = jdbcTemplate.query(gerarSqlFinalComPaginacao(), listaValorParametros.toArray(),
+                getVetorListaTipoParametro(), this::mapRow);
         return new PaginacaoDto<>(paginaAtual, qtdTotalRegistros, qtdTotalRegistros, listaRetorno);
     }
 
@@ -58,9 +70,8 @@ public abstract class ConsultaPaginadaDao<F, V> {
 
     /**
      * Gera o sql final com paginacao apartir do <b>sqlBase</b> o <b>getSqlFiltroAdicional</b> sendo adicionado os
-     * parametros: 
-     *  <b>LIMIT</b> = <b>qtdRegistrosPagina</b>.
-     *  <b>OFFSET</b> = <b>paginaAtual-1</b> (O POSTGRESQL COMECA A CONTAGEM POR 0).
+     * parametros: <b>LIMIT</b> = <b>qtdRegistrosPagina</b>. <b>OFFSET</b> = <b>paginaAtual-1</b> (O POSTGRESQL COMECA A
+     * CONTAGEM POR 0).
      * 
      * @return sql final com paginacao {@link String}
      */
@@ -69,10 +80,10 @@ public abstract class ConsultaPaginadaDao<F, V> {
         StringBuilder sqlFinalComPaginacao = new StringBuilder();
         sqlFinalComPaginacao.append(gerarSqlFinal());
         sqlFinalComPaginacao.append(STR_QUEBRA_LINHA);
-        sqlFinalComPaginacao.append("LIMIT");
+        sqlFinalComPaginacao.append("LIMIT ");
         sqlFinalComPaginacao.append(String.valueOf(qtdRegistrosPagina));
         sqlFinalComPaginacao.append(STR_QUEBRA_LINHA);
-        sqlFinalComPaginacao.append("OFFSET");
+        sqlFinalComPaginacao.append("OFFSET ");
         sqlFinalComPaginacao.append(String.valueOf(paginaAtual - 1));
 
         return sqlFinalComPaginacao.toString();
@@ -93,7 +104,22 @@ public abstract class ConsultaPaginadaDao<F, V> {
         sqlCount.append(STR_QUEBRA_LINHA);
         sqlCount.append(") AS CONSULTA");
 
-        return jdbcTemplate.queryForObject(sqlCount.toString(), Integer.class, listaParametros);
+        return jdbcTemplate.queryForObject(sqlCount.toString(), listaValorParametros.toArray(),
+                getVetorListaTipoParametro(), Integer.class);
+    }
+
+    /**
+     * Retorna a lista de tipo de parametro em forma de {@link int[]}
+     */
+    private int[] getVetorListaTipoParametro() {
+
+        int[] vetorTipo = new int[listaTipoParameteros.size()];
+
+        for (int i = 0; i < listaTipoParameteros.size(); i++) {
+            vetorTipo[i] = listaTipoParameteros.get(i);
+        }
+
+        return vetorTipo;
     }
 
     /**
@@ -105,7 +131,8 @@ public abstract class ConsultaPaginadaDao<F, V> {
 
     /**
      * Metodo utilizado para mapear as linas da lista de retorno.
-     * @throws SQLException 
+     * 
+     * @throws SQLException
      * 
      */
     protected abstract V mapRow(ResultSet rs, int rowNum) throws SQLException;

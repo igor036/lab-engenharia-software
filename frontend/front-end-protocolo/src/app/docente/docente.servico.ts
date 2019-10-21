@@ -26,7 +26,7 @@ export class DocenteServico {
     ) { }
 
     getDadosDocenteLogado(): Observable<DocenteLogado> {
-        
+
         if (this.isLogado()) {
             return of(JSON.parse(localStorage.getItem(PROPRIEDADES.DADOS_DOCENTE_LOGADO)));
         }

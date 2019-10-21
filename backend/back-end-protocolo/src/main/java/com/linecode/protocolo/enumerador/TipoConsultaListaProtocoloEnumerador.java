@@ -3,7 +3,8 @@ package com.linecode.protocolo.enumerador;
 public enum TipoConsultaListaProtocoloEnumerador {
     
     TODOS("T"),
-    CODIGO("C");
+    CODIGO("C"),
+    STATUS("S");
     
     private String flag;
     
@@ -15,7 +16,23 @@ public enum TipoConsultaListaProtocoloEnumerador {
         return this == TODOS;
     }
     
+    public boolean isConsultaCodigo() {
+        return this == CODIGO;
+    }
+    public boolean isConsultaStatus() {
+        return this == STATUS;
+    }
+    
     public String getFlag() {
         return flag;
+    }
+
+    public static TipoConsultaListaProtocoloEnumerador forValue(String flag) {
+        for (TipoConsultaListaProtocoloEnumerador enumValue : TipoConsultaListaProtocoloEnumerador.values()) {
+            if (enumValue.getFlag().equals(flag)) {
+                return enumValue;
+            }
+        }
+        return null;
     }
 }

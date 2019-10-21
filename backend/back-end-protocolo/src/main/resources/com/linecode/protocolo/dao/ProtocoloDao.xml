@@ -46,7 +46,10 @@
 		FROM TAB_PROTOCOLO P
 			JOIN TAB_DOCENTE D ON
 				D.MATRICULA = P.FK_MATRICULA
+			JOIN TAB_STATUS S ON
+				S.ID_STATUS = P.FK_ID_STATUS
 		WHERE 
+			1 = 1
 			{filtroAdicional}
 	</entry>
     	
