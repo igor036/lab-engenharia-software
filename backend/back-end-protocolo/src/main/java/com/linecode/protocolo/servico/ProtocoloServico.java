@@ -18,6 +18,7 @@ import com.linecode.compartilhado.excecao.ExcecaoAplicacao;
 import com.linecode.compartilhado.excecao.ExcecaoNegocio;
 import com.linecode.docente.servico.DocenteServico;
 import com.linecode.protocolo.cmd.CadastroProtocoloCmd;
+import com.linecode.protocolo.cmd.PedidoProtocoloCmd;
 import com.linecode.protocolo.dao.ProtocoloDao;
 import com.linecode.util.servico.UtilServico;
 
@@ -62,10 +63,7 @@ public class ProtocoloServico {
 					docenteServico.getDadosDocenteLogado().getMatricula(), idStatusInicial);
 
 			if (idProtocolo > 0) {
-				cmd.getLitaPedidoProtocolo().forEach(pedido -> {
-					pedido.setIdProtocolo(idProtocolo);
-					protocoloDao.cadastrarPedidoProtocolo(pedido);
-				});
+				cmd.getLitaPedidoProtocolo().forEach(pedido -> cadastrarPedidoProtocolo(pedido, idProtocolo));
 			} else {
 				throw new ExcecaoAplicacao("Houve um erro ao cadastrar o protocolo.", null);
 			}
@@ -73,5 +71,24 @@ public class ProtocoloServico {
 		} else {
 			throw new ExcecaoNegocio(violacoes.stream().findFirst().get().getMessage());
 		}
+	}
+	
+	/**
+	 * Efetua o cadastro de um determinado pedido para um protocolo
+	 * 
+	 *  @param pedido {@link PedidoProtocoloCmd} dados do pedido.
+	 *  @param idProtocolo {@link Long} id do protocolo.
+	 */
+	@Transactional
+	private void cadastrarPedidoProtocolo(PedidoProtocoloCmd pedido, long idProtocolo) {
+	    
+	    Set<ConstraintViolation<PedidoProtocoloCmd>> violacoes = validator.validate(pedido);
+	    
+        if (violacoes.isEmpty()) {
+            pedido.setIdProtocolo(idProtocolo);
+            protocoloDao.cadastrarPedidoProtocolo(pedido);
+        } else {
+            throw new ExcecaoNegocio(violacoes.stream().findFirst().get().getMessage());
+        }
 	}
 }

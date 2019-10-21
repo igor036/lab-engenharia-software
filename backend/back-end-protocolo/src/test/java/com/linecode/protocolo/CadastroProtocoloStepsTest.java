@@ -21,7 +21,7 @@ public class CadastroProtocoloStepsTest {
 	private ProtocoloServico protocoloServico = new ProtocoloServico();
 
 	private List<CadastroProtocoloTesteCmd> dadosCadastro;
-
+	
 	@Quando("^desejar efetuar um cadastro de um determinado protocolo informando um cadastro invalido com os seguintes dados$")
 	public void desejar_efetuar_um_cadastro_de_um_determinado_protocolo_informando_um_cadastro_invalido_com_os_seguintes_dados(
 			List<CadastroProtocoloTesteCmd> dadosCadastro) throws Exception {

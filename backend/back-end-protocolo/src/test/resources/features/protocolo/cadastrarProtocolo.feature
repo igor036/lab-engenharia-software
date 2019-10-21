@@ -4,6 +4,12 @@
 Funcionalidade: Efetuar o cadastro de um determinado protocolo no sistema
 	
 	Cenário: Dados Invalidos
+	Quando desejar efetuar um cadastro comm pedidos invalidos, informando os seguintes dados
+	| justificativa 			| resumoPt   | resumoEn | dataInicio | dataFim    | msgEsperada 			       |
+	| abc						|  abc		 | abc 		| 22/01/2019 | 25/01/2019 | Informe ao menos um pedido 	   |
+	
+	Então devo receber uma Excecao Negocio exception$.
+	
 	Quando desejar efetuar um cadastro de um determinado protocolo informando um cadastro invalido com os seguintes dados
 	| justificativa 			| resumoPt   | resumoEn | dataInicio | dataFim    | msgEsperada 			       |
 	|  							|  abc		 | abc 		| 22/01/2019 | 25/01/2019 | Informe a justificativa. 	   |

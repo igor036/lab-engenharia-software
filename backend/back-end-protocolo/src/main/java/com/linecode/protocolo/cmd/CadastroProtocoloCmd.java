@@ -24,8 +24,8 @@ public class CadastroProtocoloCmd {
 	@NotNull(message = "Informe a data fim.")
 	private LocalDate dataFim;
 	
-	@Size(min = 1, message = "Informe ao menos uma espécie.")
-	@NotNull(message = "Informe ao menos uma espécie.")
+	@Size(min = 1, message = "Informe ao menos um pedido")
+	@NotNull(message = "Informe ao menos um pedido")
 	private List<PedidoProtocoloCmd> litaPedidoProtocolo;
 
 	public CadastroProtocoloCmd() {
