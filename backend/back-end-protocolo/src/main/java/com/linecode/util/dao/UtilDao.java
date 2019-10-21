@@ -20,35 +20,41 @@ import com.linecode.util.dto.OpcaoDto;
 @PropertySource("com/linecode/util/dao/UtilDao.xml")
 public class UtilDao {
 
-	private static final OpcaoDtoMapeadorLinha OPCAO_DTO_MAPEADOR_LINHA = new OpcaoDtoMapeadorLinha();
+    private static final OpcaoDtoMapeadorLinha OPCAO_DTO_MAPEADOR_LINHA = new OpcaoDtoMapeadorLinha();
 
-	@Autowired
-	private Environment env;
+    @Autowired
+    private Environment env;
 
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
-	@Transactional(readOnly = true)
-	public List<OpcaoDto<Long>> getListaPerfil() {
-		return jdbcTemplate.query(env.getProperty("com.linecode.util.dao.UtilDao.getListaPerfil"),
-				OPCAO_DTO_MAPEADOR_LINHA);
-	}
+    @Transactional(readOnly = true)
+    public List<OpcaoDto<Long>> getListaPerfil() {
+        return jdbcTemplate.query(env.getProperty("com.linecode.util.dao.UtilDao.getListaPerfil"),
+                OPCAO_DTO_MAPEADOR_LINHA);
+    }
 
-	@Transactional(readOnly = true)
-	public List<OpcaoDto<Long>> getListaEspecie() {
-		return jdbcTemplate.query(env.getProperty("com.linecode.util.dao.UtilDao.getListaEspecie"),
-				OPCAO_DTO_MAPEADOR_LINHA);
-	}
+    @Transactional(readOnly = true)
+    public List<OpcaoDto<Long>> getListaEspecie() {
+        return jdbcTemplate.query(env.getProperty("com.linecode.util.dao.UtilDao.getListaEspecie"),
+                OPCAO_DTO_MAPEADOR_LINHA);
+    }
 
-	@Transactional(readOnly = true)
-	public List<OpcaoDto<Long>> getListaBioterio() {
-		return jdbcTemplate.query(env.getProperty("com.linecode.util.dao.UtilDao.getListaBioterio"),
-				OPCAO_DTO_MAPEADOR_LINHA);
-	}
+    @Transactional(readOnly = true)
+    public List<OpcaoDto<Long>> getListaBioterio() {
+        return jdbcTemplate.query(env.getProperty("com.linecode.util.dao.UtilDao.getListaBioterio"),
+                OPCAO_DTO_MAPEADOR_LINHA);
+    }
 
-	@Transactional(readOnly = true)
-	public long getIdStatusPorDescricao(String descricaoStatus) {
-		return jdbcTemplate.queryForObject(env.getProperty("com.linecode.util.dao.UtilDao.getIdStatusPorDescricao"),
-				Long.class, descricaoStatus);
-	}
+    @Transactional(readOnly = true)
+    public long getIdStatusPorDescricao(String descricaoStatus) {
+        return jdbcTemplate.queryForObject(env.getProperty("com.linecode.util.dao.UtilDao.getIdStatusPorDescricao"),
+                Long.class, descricaoStatus);
+    }
+
+    @Transactional(readOnly = true)
+    public List<OpcaoDto<Long>> getListaStatusProtocolo() {
+        return jdbcTemplate.query(env.getProperty("com.linecode.util.dao.UtilDao.getListaStatusProtocolo"),
+                OPCAO_DTO_MAPEADOR_LINHA);
+    }
 }

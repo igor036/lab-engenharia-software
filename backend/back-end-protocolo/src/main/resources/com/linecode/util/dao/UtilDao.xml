@@ -31,5 +31,12 @@
 	<entry key="com.linecode.util.dao.UtilDao.getIdStatusPorDescricao">
 		SELECT ID_STATUS FROM TAB_STATUS WHERE DESCRICAO = ?
 	</entry>
+	
+	<entry key="com.linecode.util.dao.UtilDao.getListaStatusProtocolo">
+		SELECT
+			ID_STATUS AS COLUNA_ID,
+			DESCRICAO AS COLUNA_DESCRICAO
+		FROM TAB_STATUS
+	</entry>
     	
 </properties>

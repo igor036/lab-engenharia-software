@@ -10,15 +10,20 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.linecode.compartilhado.dto.PaginacaoDto;
 import com.linecode.compartilhado.excecao.ExcecaoAplicacao;
 import com.linecode.compartilhado.excecao.ExcecaoNegocio;
 import com.linecode.docente.servico.DocenteServico;
 import com.linecode.protocolo.cmd.CadastroProtocoloCmd;
 import com.linecode.protocolo.cmd.PedidoProtocoloCmd;
 import com.linecode.protocolo.dao.ProtocoloDao;
+import com.linecode.protocolo.dto.DetalheProtocoloDto;
+import com.linecode.protocolo.dto.ListagemProtocoloDto;
+import com.linecode.protocolo.filtro.ConsultaListaProtocoloFiltro;
 import com.linecode.util.servico.UtilServico;
 
 import io.jsonwebtoken.lang.Assert;
@@ -46,6 +51,7 @@ public class ProtocoloServico {
 	 * @param cmd - dados do protocolo {@link CadastroProtocoloCmd}
 	 */
 	@Transactional
+	@PreAuthorize("@autorizacaoServico.isAutenticado()")
 	public void cadastrarProtocolo(CadastroProtocoloCmd cmd) {
 
 		Assert.notNull(cmd, "Informe os dados do protocolo");
@@ -71,6 +77,38 @@ public class ProtocoloServico {
 		} else {
 			throw new ExcecaoNegocio(violacoes.stream().findFirst().get().getMessage());
 		}
+	}
+	
+	/**
+	 * Retorna uma consulta de protocolo do docente <b>LOGADO</b> de forma paginada.
+	 * 
+	 *  @param filtro - dados do filtro da consulta {@link ConsultaListaProtocoloFiltro}
+	 *  @param paginaAtual - pagina da consulta atual {@link Integer} 
+	 *  @param qtdRegistrosPagina - quantidade de registros por pagina {@link Integer}
+	 *  @return paginacao da consulta {@link PaginacaoDto<ListagemProtocoloDto>}
+	 */
+	@PreAuthorize("@autorizacaoServico.isAutenticado()")
+	public PaginacaoDto<ListagemProtocoloDto> getListaProtocoloDocenteLogado(ConsultaListaProtocoloFiltro filtro,
+            int paginaAtual, int qtdRegistrosPagina) {
+	    
+	    Assert.notNull(filtro, "Informe os dados da consulta!");
+	    
+	    if (filtro.getTipo().isConsultaCodigo() && filtro.getIdProtocolo() <= 0) {
+	        throw new ExcecaoNegocio("Código do protocolo inválido.");
+	    }
+	    
+	    filtro.setIdDocente(docenteServico.getDadosDocenteLogado().getMatricula());
+	    
+	    return protocoloDao.getListaProtocoloDocenteLogado(filtro, paginaAtual, qtdRegistrosPagina);
+	}
+	
+	/**
+	 * Consulta os dados detalhados de um determinado protocolo pelo ID.
+	 * @return dados {@link DetalheProtocoloDto} 
+	 */
+	@PreAuthorize("@autorizacaoServico.isAutenticado()")
+	public DetalheProtocoloDto getDetalheProtocolo(long idProtocolo) {
+	    return protocoloDao.getDetalheProtocolo(idProtocolo);
 	}
 	
 	/**
