@@ -6,7 +6,14 @@ interface CadastrarProtocolo {
     resumoEn: string;
     dataInicio: Date;
     dataFim: Date;
-    litaPedidoProtocolo:  Array<PedidoProtocolo>;
+    litaPedidoProtocolo: Array<PedidoProtocolo>;
+}
+
+interface ConsultarProtocolo {
+    idProtocolo: number;
+    docente: string;
+    data: string;
+    status: string;
 }
 
 interface PedidoProtocolo {
@@ -24,5 +31,6 @@ interface PedidoProtocoloVisualizar {
 export {
     CadastrarProtocolo,
     PedidoProtocolo,
-    PedidoProtocoloVisualizar
+    PedidoProtocoloVisualizar,
+    ConsultarProtocolo
 }

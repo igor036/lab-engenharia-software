@@ -1,3 +1,9 @@
 <button (click)="bindClick()" [disabled]="!liberado" [class.botao-bloqueado]="isBloqueado()">
-    {{ texto }}
+    <ng-container *ngIf="exibirIcone()">
+        <i class="fa {{iconeFa}}"></i>
+    </ng-container>
+
+    <ng-container *ngIf="exibirTexto()">
+        {{ texto }}
+    </ng-container>
 </button>

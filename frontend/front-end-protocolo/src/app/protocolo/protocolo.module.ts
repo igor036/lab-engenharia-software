@@ -8,6 +8,7 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 //componentes
 import { CadastroProtocoloComponent } from './paginas/cadastro-protocolo/cadastro-protocolo.component';
+import { ConsultaProtocoloComponent } from './paginas/consulta-protocolo/consulta-protocolo.component';
 
 //servico
 import { ProtocoloServico } from './protocolo.servico';
@@ -17,7 +18,8 @@ import { CompartilhadoModule } from '../compartilhado/compartilhado.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const COMPONENTES = [
-  CadastroProtocoloComponent
+  CadastroProtocoloComponent,
+  ConsultaProtocoloComponent
 ];
 
 @NgModule({

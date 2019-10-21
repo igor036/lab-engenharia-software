@@ -1,0 +1,25 @@
+<div class="search-deco" [formGroup]="formPesquisaProtocolo">
+  <div class="input-deco">
+    <app-selecao-item [formControl]="formPesquisaProtocolo.controls['campo']" [listaOpcao]="listaPesquisaProtocolo"
+      (alterarValor)="selecionarTipo($event)" placeholder="Selecione a busca">
+    </app-selecao-item>
+
+    <div class="row">
+      <ng-container *ngIf="exibirInputDePesquisa()">
+        <app-input-texto [formControl]="formPesquisaProtocolo.controls['valor']" msgErro="Informe um valor válido."
+          placeholder="">
+        </app-input-texto>
+      </ng-container>
+
+      <ng-container *ngIf="exibirSelecaoDeStatus()">
+        <app-selecao-item [formControl]="formPesquisaProtocolo.controls['valor']"
+          [listaOpcao]="listaSelecaoDeStatusPesquisa"></app-selecao-item>
+      </ng-container>
+    </div>
+
+    <div class="icon-deco ">
+      <app-botao iconeFa="fa-search" liberado="true" (click)="pesquisarProtocolo($event)">
+      </app-botao>
+    </div>
+  </div>
+</div>
