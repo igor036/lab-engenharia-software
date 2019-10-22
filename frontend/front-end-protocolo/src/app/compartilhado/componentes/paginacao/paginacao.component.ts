@@ -15,11 +15,16 @@ export class PaginacaoComponent implements OnInit {
   ngOnInit() {
   }
 
-  public exibirPaginacao(): boolean {
-    return this.paginacao.qtdTotalRegistros / this.paginacao.qtdRegistrosPagina > 1;
+  public pageChanged(event: any): void {
+    let emitirEventoAlteracaoPagina = this.paginacao.paginaAtual !== event.page
+    this.paginacao.paginaAtual = event.page
+    this.paginacao.qtdRegistrosPagina = event.itemsPerPage
+    if (emitirEventoAlteracaoPagina) {
+      this.selecionarPagina.emit(event.page)
+    }
   }
 
-  public pageChanged(pagina: number): void {
-    this.selecionarPagina.emit(pagina);
+  public mostrarPaginacao(): boolean {
+    return this.paginacao.qtdTotalRegistros > this.paginacao.qtdRegistrosPagina;
   }
 }

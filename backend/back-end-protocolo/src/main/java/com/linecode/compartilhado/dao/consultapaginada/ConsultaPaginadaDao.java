@@ -60,7 +60,7 @@ public abstract class ConsultaPaginadaDao<F, V> {
         int qtdTotalRegistros = getQtdTotalRegistros();
         List<V> listaRetorno = jdbcTemplate.query(gerarSqlFinalComPaginacao(), listaValorParametros.toArray(),
                 getVetorListaTipoParametro(), this::mapRow);
-        return new PaginacaoDto<>(paginaAtual, qtdTotalRegistros, qtdTotalRegistros, listaRetorno);
+        return new PaginacaoDto<>(paginaAtual, qtdRegistrosPagina, qtdTotalRegistros, listaRetorno);
     }
 
     /**
