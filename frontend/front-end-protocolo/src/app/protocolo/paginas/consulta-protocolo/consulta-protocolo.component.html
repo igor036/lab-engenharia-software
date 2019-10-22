@@ -1,18 +1,18 @@
 <div class="search-deco" [formGroup]="formPesquisaProtocolo">
   <div class="input-deco">
-    <app-selecao-item [formControl]="formPesquisaProtocolo.controls['campo']" [listaOpcao]="listaPesquisaProtocolo"
+    <app-selecao-item [formControl]="formPesquisaProtocolo.controls['tipo']" [listaOpcao]="listaPesquisaProtocolo"
       (alterarValor)="selecionarTipo($event)" placeholder="Selecione a busca" classeIcone="fa fa-search">
     </app-selecao-item>
 
     <div class="row">
       <ng-container *ngIf="exibirInputDePesquisa()">
-        <app-input-texto [formControl]="formPesquisaProtocolo.controls['valor']" msgErro="Informe um valor válido."
+        <app-input-texto [formControl]="formPesquisaProtocolo.controls['idProtocolo']" msgErro="Informe um valor válido."
           placeholder="Digite o Codigo Aqui ..." classeIcone="fa-sort-numeric-desc">
         </app-input-texto>
       </ng-container>
 
       <ng-container *ngIf="exibirSelecaoDeStatus()">
-        <app-selecao-item [formControl]="formPesquisaProtocolo.controls['valor']"
+        <app-selecao-item [formControl]="formPesquisaProtocolo.controls['status']"
           [listaOpcao]="listaSelecaoDeStatusPesquisa" classeIcone="fa-check-square-o" placeholder="Selecione o Tipo"></app-selecao-item>
       </ng-container>
     </div>
@@ -25,6 +25,7 @@
 </div>
 
 <div class="external-deco">
+
 
   <ng-container *ngFor="let protocol of protocols">
     <div class='protocol-external'>

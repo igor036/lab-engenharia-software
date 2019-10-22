@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
 
 import { CadastrarProtocolo, ConsultarProtocolo } from './protocolo.modelo';
-import { Opcao } from 'src/app/compartilhado/compartilhado.modelo';
+import { Opcao, Filtro, Paginacao } from 'src/app/compartilhado/compartilhado.modelo';
 
 const URL_CONTROLADOR: string = "protocolo";
 
@@ -19,38 +19,11 @@ export class ProtocoloServico {
         });
     }
 
-    consultarProtocolo(dados: ConsultarProtocolo): Observable<Array<ConsultarProtocolo>> {
-        return of([
-            {
-                idProtocolo: 12345,
-                docente: 'Teste',
-                data: '15/01/2019',
-                status: 'Aberto'
-            },
-            {
-                idProtocolo: 22345,
-                docente: 'Teste',
-                data: '16/01/2019',
-                status: 'Deferido'
-            },
-            {
-                idProtocolo: 32345,
-                docente: 'Teste',
-                data: '20/01/2019',
-                status: 'Aberto'
-            },
-            {
-                idProtocolo: 42345,
-                docente: 'Teste',
-                data: '25/01/2019',
-                status: 'Deferido'
-            },
-            {
-                idProtocolo: 52345,
-                docente: 'Teste',
-                data: '30/01/2019',
-                status: 'Indeferido'
-            }
-        ]);
+    consultarProtocolo(pagina: number, filtro: Filtro<ConsultarProtocolo>): Observable<Array<Paginacao>> {
+        let param: any = filtro;
+        return this.httpClient.get<Array<Paginacao>>(`${URL_CONTROLADOR}/lista-protocolo-docente-logado/pagina-atual/${pagina}/quantidade-registros-pagina/${10}`, 
+        {
+            params: param
+        })
     }
 }

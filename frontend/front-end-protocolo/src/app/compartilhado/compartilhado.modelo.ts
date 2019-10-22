@@ -16,6 +16,21 @@ interface Opcao {
     valor: any;
 }
 
+interface Paginacao {
+    paginaAtual: number;
+    qtdRegistrosPagina: number;
+    qtdTotalRegistros: number;
+    lista?: Array<any>;
+}
+
+interface Filtro<T> {
+    status: string;
+    tipo: string;
+    idProtocolo: number;
+}
+
 export {
-    Opcao
+    Opcao,
+    Paginacao,
+    Filtro
 }

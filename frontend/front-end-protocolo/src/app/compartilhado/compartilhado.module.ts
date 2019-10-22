@@ -20,6 +20,7 @@ import { UtilServico } from './util.servico';
 //modulos
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { from } from 'rxjs';
 
 const COMPONENTES = [
   BotaoComponent,
@@ -27,6 +28,7 @@ const COMPONENTES = [
   SelecaoItemComponent,
   InputDataComponent,
   InputAreaTextoComponent
+  
 ];
 
 @NgModule({
