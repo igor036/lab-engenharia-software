@@ -41,6 +41,7 @@ export class CadastroProtocoloComponent implements OnInit {
     this.spinnerServico.show();
     this.protocoloServico.cadastrarProtocolo(this.getCadastrarProtocolo()).subscribe(resposta => {
       this.spinnerServico.hide();
+      this.formProtocolo.reset();
       alert(resposta)
     });
   }
