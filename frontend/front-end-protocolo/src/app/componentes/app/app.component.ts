@@ -37,7 +37,10 @@ export class AppComponent implements OnInit {
     if (!this.docenteServico.isLogado()) {
       this.router.navigate([URLS_NAMES.login]);
     }
-    this.carregarDocenteLogado();
+
+    this.docenteServico.docenteLogadoEvento.subscribe(docenteLogado => {
+      this.docenteLogado = docenteLogado;
+    });
   }
 
   mostrarMenu(): boolean {
