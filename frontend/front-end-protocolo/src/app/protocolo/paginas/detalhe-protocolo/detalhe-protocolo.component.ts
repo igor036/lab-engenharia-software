@@ -52,6 +52,27 @@ export class DetalheProtocoloComponent implements OnInit {
     return this.opcaoResumo == OPCAO_RESUMO_EN;
   }
 
+  exibirAvaliador(): boolean {
+    if (this.detalheProtocolo && this.detalheProtocolo.nomeAvaliador) {
+      return true;
+    }
+    return false;
+  }
+
+  exibirParecer(): boolean {
+    if (this.detalheProtocolo && this.detalheProtocolo.permitido != undefined) {
+      return true;
+    }
+    return false;
+  }
+
+  getTextoPermitidoParecer(): string {
+    if (this.exibirParecer()) {
+      return this.detalheProtocolo.permitido ? 'Sim' : 'Não';
+    }
+    return '';
+  }
+
   private carregarDetalhesProtocolo(): void {
     this.spinnerServico.show();
     this.protocoloServico.getDetalheProtocolo(this.ID_PROTOCOLO).subscribe(detalheProtocolo => {

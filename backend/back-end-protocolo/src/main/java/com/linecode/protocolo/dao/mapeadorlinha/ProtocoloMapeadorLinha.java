@@ -26,7 +26,8 @@ public class ProtocoloMapeadorLinha {
                 DetalheProtocoloDto detalheProtocolo = new DetalheProtocoloDto(rs.getLong("ID_PROTOCOLO"),
                         rs.getLong("MATRICULA_DOCENTE"), rs.getString("NOME_DOCENTE"),
                         ((Long) rs.getObject("MATRICULA_AVALIADOR")), rs.getString("NOME_AVALIADOR"),
-                        rs.getString("RESUMO_PT"), rs.getString("RESUMO_EN"), rs.getString("JUSTIFICATIVA"));
+                        rs.getString("RESUMO_PT"), rs.getString("RESUMO_EN"), rs.getString("JUSTIFICATIVA"),
+                        ((Boolean) rs.getObject("PERMITIDO")), rs.getString("OBS_PARECER"));
 
                 do {
                     detalheProtocolo.getPedidos().add(new DetalhePedidoProtocoloDto(rs.getString("ESPECIE"),

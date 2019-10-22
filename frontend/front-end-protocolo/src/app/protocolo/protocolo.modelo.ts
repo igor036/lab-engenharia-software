@@ -42,6 +42,8 @@ interface DetalheProtocolo {
     resumoPt: string;
     resumoEn: string;
     justificativa: string;
+    permitido: Boolean;
+    observacaoParecer: String;
     pedidos: Array<DetalhePedidoProtocolo>;
 }
 
