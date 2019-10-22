@@ -2,7 +2,7 @@
  * Author: Igor Joaquim dos Santos Lima
  * Data: 18/08/2019
  */
-import { Injectable, EventEmitter } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { Router } from '@angular/router';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
@@ -18,7 +18,6 @@ import {
 @Injectable()
 export class DocenteServico {
 
-    public docenteLogadoEvento: EventEmitter<DocenteLogado> = new EventEmitter<DocenteLogado>();
     private readonly URL_CONTROLADOR: string = 'docente';
 
     constructor(
@@ -68,11 +67,6 @@ export class DocenteServico {
     getTokenLogado(): string {
         let token = localStorage.getItem(PROPRIEDADES.TOKEN_DOCENTE);
         return token ? token : '';
-    }
-
-    setDocenteLogado(docente: DocenteLogado): void {
-        localStorage.setItem(PROPRIEDADES.DADOS_DOCENTE_LOGADO, JSON.stringify(docente));
-        this.docenteLogadoEvento.emit(docente);
     }
 
     setTokenDocente(token: string): void {

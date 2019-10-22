@@ -11,8 +11,7 @@ import { DocenteServico } from 'src/app/docente/docente.servico';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 //constantes
-import { URLS_NAMES, Perfil } from 'src/app/app.constante';
-import { DocenteLogado } from 'src/app/docente/docente.modelo';
+import { URLS_NAMES } from 'src/app/app.constante';
 
 @Component({
   selector: 'app-root',
@@ -20,8 +19,6 @@ import { DocenteLogado } from 'src/app/docente/docente.modelo';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-
-  private docenteLogado: DocenteLogado;
 
   constructor(
     private router: Router,
@@ -37,10 +34,6 @@ export class AppComponent implements OnInit {
     if (!this.docenteServico.isLogado()) {
       this.router.navigate([URLS_NAMES.login]);
     }
-
-    this.docenteServico.docenteLogadoEvento.subscribe(docenteLogado => {
-      this.docenteLogado = docenteLogado;
-    });
   }
 
   mostrarMenu(): boolean {
@@ -49,19 +42,5 @@ export class AppComponent implements OnInit {
 
   deslogar(): void {
     this.docenteServico.deslogar();
-  }
-
-  exibirMenuCadastroDocente(): boolean {
-    return this.docenteLogado.perfil == Perfil.COORDENADOR ||
-      this.docenteLogado.perfil == Perfil.SECRETARIA ||
-      this.docenteLogado.perfil == Perfil.ADMIN;
-  }
-
-  carregarDocenteLogado(): void {
-    this.spinnerServico.show();
-    this.docenteServico.getDadosDocenteLogado().subscribe(docenteLogado => {
-      this.docenteLogado = docenteLogado;
-      this.spinnerServico.hide();
-    });
   }
 }
