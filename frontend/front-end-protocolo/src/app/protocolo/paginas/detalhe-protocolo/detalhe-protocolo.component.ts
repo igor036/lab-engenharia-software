@@ -7,6 +7,8 @@ import { DetalheProtocolo } from 'src/app/protocolo/protocolo.modelo';
 //servico
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ProtocoloServico } from 'src/app/protocolo/protocolo.servico';
+import { DocenteServico } from 'src/app/docente/docente.servico';
+import { DocenteLogado } from 'src/app/docente/docente.modelo';
 
 const OPCAO_RESUMO_PT: string = 'PT';
 const OPCAO_RESUMO_EN: string = 'EN';
@@ -20,11 +22,13 @@ export class DetalheProtocoloComponent implements OnInit {
 
   private readonly ID_PROTOCOLO: number;
   private opcaoResumo: string = OPCAO_RESUMO_PT;
-
+  private docenteLogado: DocenteLogado;
   public detalheProtocolo: DetalheProtocolo;
+
 
   constructor(
     private rota: ActivatedRoute,
+    private docenteServico: DocenteServico,
     private protocoloServico: ProtocoloServico,
     private spinnerServico: Ng4LoadingSpinnerService
   ) {
@@ -32,7 +36,7 @@ export class DetalheProtocoloComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.carregarDetalhesProtocolo();
+    this.carregarDetalhesProtocoloEDocenteLogado();
   }
 
   getTextoBotaoResumo(): string {
@@ -73,11 +77,31 @@ export class DetalheProtocoloComponent implements OnInit {
     return '';
   }
 
-  private carregarDetalhesProtocolo(): void {
+  exibirBotoesAvaliar(): boolean {
+    if (this.detalheProtocolo && this.docenteLogado) {
+      return this.detalheProtocolo.matriculaDocente != this.docenteLogado.matricula;
+    }
+    return false;
+  }
+
+  private carregarDetalhesProtocoloEDocenteLogado(): void {
+
+    let respostas = 0;
+    let esconderSpinner: Function = () => {
+      if (++respostas == 2) {
+        this.spinnerServico.hide();
+      }
+    };
+
     this.spinnerServico.show();
     this.protocoloServico.getDetalheProtocolo(this.ID_PROTOCOLO).subscribe(detalheProtocolo => {
       this.detalheProtocolo = detalheProtocolo;
-      this.spinnerServico.hide();
+      esconderSpinner();
+    });
+
+    this.docenteServico.getDadosDocenteLogado().subscribe(docenteLogado => {
+      this.docenteLogado = docenteLogado;
+      esconderSpinner();
     });
   }
 }

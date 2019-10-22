@@ -79,10 +79,12 @@
           <p>{{ getTextoPermitidoParecer() }}</p>
         </ng-container>
 
-        <div class="button-row">
-          <button class="button-reject">Rejeitar</button>
-          <button class="button">Aceitar</button>
-        </div>
+        <ng-container *ngIf="exibirBotoesAvaliar()">
+          <div class="button-row">
+            <button class="button-reject">Rejeitar</button>
+            <button class="button">Aceitar</button>
+          </div>
+        </ng-container>
 
       </div>
     </div>
