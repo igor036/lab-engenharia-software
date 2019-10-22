@@ -11,7 +11,7 @@ public class ConsultaListaProtocoloFiltro {
 	@NotNull(message = "Informe o tipo de consulta.")
     private TipoConsultaListaProtocoloEnumerador tipo;
     private StatusProtocoloEnumerador status;
-    private long idProtocolo;
+    private Long idProtocolo;
     
     @JsonIgnore
     private long idDocente;
@@ -44,11 +44,11 @@ public class ConsultaListaProtocoloFiltro {
         this.tipo = TipoConsultaListaProtocoloEnumerador.forValue(tipo);
     }
 
-    public long getIdProtocolo() {
+    public Long getIdProtocolo() {
         return idProtocolo;
     }
 
-    public void setIdProtocolo(long codigoProtocolo) {
+    public void setIdProtocolo(Long codigoProtocolo) {
         this.idProtocolo = codigoProtocolo;
     }
 
