@@ -3,20 +3,12 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 //Modelos
 import { Opcao, Filtro, Paginacao } from 'src/app/compartilhado/compartilhado.modelo';
+import { StatusProtocolo, TipoConsultaListaProtocolo } from 'src/app/protocolo/protocolo.modelo';
 
 //Servico
 import { ProtocoloServico } from 'src/app/protocolo/protocolo.servico';
 import { ConsultarProtocolo } from 'src/app/protocolo/protocolo.modelo';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
-
-
-const OPCAO_TODOS: string = 'T';
-const OPCAO_CODIGO: string = 'C';
-const OPCAO_STATUS: string = 'S';
-
-const STATUS_ABERTO: string = 'ABERTO';
-const STATUS_DEFERIDO: string = 'DEFERIDO';
-const STATUS_INDEFERIDO: string = 'INDEFERIDO';
 
 @Component({
   selector: 'app-consulta-protocolo',
@@ -27,11 +19,11 @@ export class ConsultaProtocoloComponent implements OnInit {
 
   protocols = [{ id: 1, docente: 'docente' }, { id: 2, docente: 'docente2' }, { id: 3, docente: 'docente3' }];
 
-  formPesquisaProtocolo: FormGroup;
-  listaPesquisaProtocolo: Array<Opcao> = [];
-  listaSelecaoDeStatusPesquisa: Array<Opcao> = [];
-  filtro: Filtro<ConsultarProtocolo>;
-  paginacao: Paginacao;
+  public formPesquisaProtocolo: FormGroup;
+  public listaPesquisaProtocolo: Array<Opcao> = [];
+  public listaSelecaoDeStatusPesquisa: Array<Opcao> = [];
+  public filtro: Filtro<ConsultarProtocolo>;
+  public paginacao: Paginacao;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -47,19 +39,19 @@ export class ConsultaProtocoloComponent implements OnInit {
 
   selecionarTipoConsulta(tipo: string) {
     this.limparValidacoesCampos();
-    if (tipo === OPCAO_CODIGO) {
+    if (tipo === TipoConsultaListaProtocolo.OPCAO_CODIGO) {
       this.adicionarValidacaoConsultaCodigo();
-    } else if (tipo === OPCAO_STATUS) {
+    } else if (tipo === TipoConsultaListaProtocolo.OPCAO_STATUS) {
       this.adicionarValidacaoConsultaStatus();
     }
   }
 
   exibirInputDePesquisa(): boolean {
-    return this.formPesquisaProtocolo.controls.tipo.value === OPCAO_CODIGO;
+    return this.formPesquisaProtocolo.controls.tipo.value === TipoConsultaListaProtocolo.OPCAO_CODIGO;
   }
 
   exibirSelecaoDeStatus(): boolean {
-    return this.formPesquisaProtocolo.controls.tipo.value === OPCAO_STATUS;
+    return this.formPesquisaProtocolo.controls.tipo.value === TipoConsultaListaProtocolo.OPCAO_STATUS;
   }
 
   pesquisarProtocolo(): void {
@@ -67,14 +59,12 @@ export class ConsultaProtocoloComponent implements OnInit {
   }
 
   selecionarPagina(pagina: number): void {
-    //this.spinnerServico.show();
-    //this.protocoloServico.consultarProtocolo(pagina, this.filtro).subscribe(protocolos => { this.paginacao = protocolos});
 
   }
 
   private iniciarFormPesquisaProtocolo(): void {
     this.formPesquisaProtocolo = this.formBuilder.group({
-      tipo: this.formBuilder.control(OPCAO_TODOS),
+      tipo: this.formBuilder.control(TipoConsultaListaProtocolo.OPCAO_TODOS),
       idProtocolo: this.formBuilder.control(''),
       status: this.formBuilder.control('')
     });
@@ -82,18 +72,17 @@ export class ConsultaProtocoloComponent implements OnInit {
 
   private iniciarListaPesquisaProtocolo(): void {
     this.listaPesquisaProtocolo = [
-      { descricao: "Todos", valor: OPCAO_TODOS },
-      { descricao: "Código", valor: OPCAO_CODIGO },
-      { descricao: "Status", valor: OPCAO_STATUS }
-      //
+      { descricao: "Todos", valor: TipoConsultaListaProtocolo.OPCAO_TODOS },
+      { descricao: "Código", valor: TipoConsultaListaProtocolo.OPCAO_CODIGO },
+      { descricao: "Status", valor: TipoConsultaListaProtocolo.OPCAO_STATUS }
     ];
   }
 
   private iniciarListaSelecaoStatusPesquisa(): void {
     this.listaSelecaoDeStatusPesquisa = [
-      { descricao: "ABERTO", valor: STATUS_ABERTO },
-      { descricao: "DEFERIDO", valor: STATUS_DEFERIDO },
-      { descricao: "INDEFERIDO", valor: STATUS_INDEFERIDO }
+      { descricao: "Aberto", valor: StatusProtocolo.STATUS_ABERTO },
+      { descricao: "Deferido", valor: StatusProtocolo.STATUS_DEFERIDO },
+      { descricao: "Indeferido", valor: StatusProtocolo.STATUS_INDEFERIDO }
     ]
   }
 

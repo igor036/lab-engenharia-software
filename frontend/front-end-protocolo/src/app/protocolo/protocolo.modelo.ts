@@ -28,9 +28,23 @@ interface PedidoProtocoloVisualizar {
     bioterio: Opcao;
 }
 
+enum StatusProtocolo {
+    STATUS_ABERTO = 'ABERTO',
+    STATUS_DEFERIDO = 'DEFERIDO',
+    STATUS_INDEFERIDO = 'INDEFERIDO'
+}
+
+enum TipoConsultaListaProtocolo {
+    OPCAO_TODOS = 'T',
+    OPCAO_CODIGO = 'C',
+    OPCAO_STATUS = 'S'
+}
+
 export {
     CadastrarProtocolo,
     PedidoProtocolo,
     PedidoProtocoloVisualizar,
-    ConsultarProtocolo
+    ConsultarProtocolo,
+    StatusProtocolo,
+    TipoConsultaListaProtocolo
 }
