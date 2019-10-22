@@ -47,11 +47,11 @@ export class ConsultaProtocoloComponent implements OnInit {
   }
 
   exibirInputDePesquisa(): boolean {
-    return this.formPesquisaProtocolo.controls.tipo.value === TipoConsultaListaProtocolo.OPCAO_CODIGO;
+    return this.formPesquisaProtocolo.controls.tipo.value == TipoConsultaListaProtocolo.OPCAO_CODIGO;
   }
 
   exibirSelecaoDeStatus(): boolean {
-    return this.formPesquisaProtocolo.controls.tipo.value === TipoConsultaListaProtocolo.OPCAO_STATUS;
+    return this.formPesquisaProtocolo.controls.tipo.value == TipoConsultaListaProtocolo.OPCAO_STATUS;
   }
 
   pesquisarProtocolo(): void {
@@ -87,7 +87,7 @@ export class ConsultaProtocoloComponent implements OnInit {
   }
 
   private adicionarValidacaoConsultaCodigo(): void {
-    let campoIdProtocolo = this.formPesquisaProtocolo.controls.tipo;
+    let campoIdProtocolo = this.formPesquisaProtocolo.controls.idProtocolo;
     campoIdProtocolo.reset();
     campoIdProtocolo.setValidators([
       Validators.required,
@@ -98,11 +98,8 @@ export class ConsultaProtocoloComponent implements OnInit {
 
   private adicionarValidacaoConsultaStatus(): void {
     let campoStatus = this.formPesquisaProtocolo.controls.status;
-    campoStatus.reset();
-    campoStatus.setValidators([
-      Validators.required,
-      Validators.pattern('^[1-9]+$')
-    ]);
+    campoStatus.setValue('');
+    campoStatus.setValidators(Validators.required);
     campoStatus.updateValueAndValidity();
   }
 

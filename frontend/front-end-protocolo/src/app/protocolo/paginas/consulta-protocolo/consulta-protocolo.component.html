@@ -1,7 +1,7 @@
 <div class="search-deco" [formGroup]="formPesquisaProtocolo">
   <div class="input-deco">
     <app-selecao-item [formControl]="formPesquisaProtocolo.controls['tipo']" [listaOpcao]="listaPesquisaProtocolo"
-      (alterarValor)="selecionarTipo($event)" placeholder="Selecione a busca" classeIcone="fa fa-search">
+      (alterarValor)="selecionarTipoConsulta($event)" placeholder="Selecione a busca" classeIcone="fa fa-search">
     </app-selecao-item>
 
     <div class="row">
@@ -14,13 +14,14 @@
 
       <ng-container *ngIf="exibirSelecaoDeStatus()">
         <app-selecao-item [formControl]="formPesquisaProtocolo.controls['status']"
-          [listaOpcao]="listaSelecaoDeStatusPesquisa" classeIcone="fa-check-square-o" placeholder="Selecione o Tipo">
+          [listaOpcao]="listaSelecaoDeStatusPesquisa" classeIcone="fa-check-square-o" placeholder="Selecione Status">
         </app-selecao-item>
       </ng-container>
     </div>
 
     <div class="icon-deco ">
-      <app-botao iconeFa="fa-search" liberado="true" (click)="pesquisarProtocolo($event)" texto="Pesquisar">
+      <app-botao iconeFa="fa-search" liberado="formPesquisaProtocolo.valid" (click)="pesquisarProtocolo($event)"
+        texto="Pesquisar">
       </app-botao>
     </div>
   </div>
