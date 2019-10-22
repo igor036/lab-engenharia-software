@@ -1,0 +1,10 @@
+<ng-content></ng-content>
+<ng-container *ngIf="exibirPaginacao()">
+  <div class="row justify-content-center mt-3">
+    <div class="col-auto">
+      <pagination [totalItems]="paginacao.qtdTotalRegistros" [(ngModel)]="paginacao.paginaAtual"
+        (numPages)="paginacao.qtdRegistrosPagina = $event" (pageChanged)="pageChanged($event)">
+      </pagination>
+    </div>
+  </div>
+</ng-container>

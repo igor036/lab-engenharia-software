@@ -108,7 +108,7 @@ export class ConsultaProtocoloComponent implements OnInit {
   }
 
   private adicionarValidacaoConsultaStatus(): void {
-    let campoStatus = this.formPesquisaProtocolo.controls.status;
+    let campoStatus = this.formPesquisaProtocolo.controls.idStatus;
     campoStatus.setValue('');
     campoStatus.setValidators(Validators.required);
     campoStatus.updateValueAndValidity();
@@ -116,6 +116,6 @@ export class ConsultaProtocoloComponent implements OnInit {
 
   private limparValidacoesCampos(): void {
     this.formPesquisaProtocolo.controls.idProtocolo.clearValidators();
-    this.formPesquisaProtocolo.controls.status.clearValidators();
+    this.formPesquisaProtocolo.controls.idStatus.clearValidators();
   }
 }

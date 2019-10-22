@@ -28,33 +28,35 @@
 </div>
 
 <div class="external-deco">
-  <table>
-    <thead>
-      <tr>
-        <th>Código</th>
-        <th>Nome Docente</th>
-        <th>Data Início</th>
-        <th>Data Fim</th>
-        <th>Detalhes</th>
-      </tr>
-    </thead>
-    <tbody *ngIf="exibirListaProtocolo()">
-      <tr *ngFor="let protocolo of paginacao.lista">
-        <td style="width: 5%; text-align: center;"> {{ protocolo.id }} </td>
-        <td> {{ protocolo.nomeDocente }} </td>
-        <td style="width: 10%; text-align: center;"> {{ protocolo.dataInicio }} </td>
-        <td style="width: 10%; text-align: center;"> {{ protocolo.dataFim }} </td>
-        <td style="width: 5%;">
-          <button class="btn">
-            <i class="fa fa-eye"></i>
-          </button>
-        </td>
-      </tr>
-    </tbody>
-    <tbody *ngIf="!exibirListaProtocolo()">
-      <tr>
-        <td style="text-align: center;" colspan="10">Nenhum Protocolo encontrado!</td>
-      </tr>
-    </tbody>
-  </table>
+  <app-paginacao [paginacao]="paginacao" (selecionarPagina)="selecionarPagina($event)">
+    <table>
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Nome Docente</th>
+          <th>Data Início</th>
+          <th>Data Fim</th>
+          <th>Detalhes</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="exibirListaProtocolo()">
+        <tr *ngFor="let protocolo of paginacao.lista">
+          <td style="width: 5%; text-align: center;"> {{ protocolo.id }} </td>
+          <td> {{ protocolo.nomeDocente }} </td>
+          <td style="width: 10%; text-align: center;"> {{ protocolo.dataInicio }} </td>
+          <td style="width: 10%; text-align: center;"> {{ protocolo.dataFim }} </td>
+          <td style="width: 5%;">
+            <button class="btn">
+              <i class="fa fa-eye"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="!exibirListaProtocolo()">
+        <tr>
+          <td style="text-align: center;" colspan="10">Nenhum Protocolo encontrado!</td>
+        </tr>
+      </tbody>
+    </table>
+  </app-paginacao>
 </div>

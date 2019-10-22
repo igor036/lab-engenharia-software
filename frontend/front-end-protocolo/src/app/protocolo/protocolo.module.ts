@@ -33,7 +33,7 @@ const COMPONENTES = [
     HttpClientModule,
     Ng4LoadingSpinnerModule,
     CompartilhadoModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ]
 })
 export class ProtocoloModule { }
