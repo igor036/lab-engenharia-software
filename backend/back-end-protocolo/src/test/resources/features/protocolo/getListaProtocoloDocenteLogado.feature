@@ -5,9 +5,9 @@ Funcionalidade: Efetuar uma consulta dos cadastros do docente logado com algumas
 
 	Cenário: Dados Invalidos
 	Quando desejar efetuar uma consultla dos meus protocolos informando um filtro invalido com os seguintes dados
-	| tipo 			| status   | idProtocolo | msgEsperada 					  |
-	| C				| ABERTO   | 0 			 | Código do protocolo inválido.  |
-	| S				|		   | 1 			 | Informe o status.    		  |
-	|    			| ABERTO   | 1			 | Informe o tipo de consulta.    |
+	| tipo 			| idStatus | idProtocolo | msgEsperada 					  |
+	| C				| 1		   | 0 			 | Código do protocolo inválido.  |
+	| S				| 0		   | 1 			 | Código do status inválido.	  |
+	|    			| 1		   | 1			 | Informe o tipo de consulta.    |
 	
 	Então devo receber uma Excecao Negocio.

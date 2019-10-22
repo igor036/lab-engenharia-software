@@ -18,17 +18,21 @@ const URL_CONTROLADOR: string = 'util';
 @Injectable()
 export class UtilServico {
 
-    constructor(private httpClient: HttpClient) {}
+    constructor(private httpClient: HttpClient) { }
 
     getListaPerfil(): Observable<Array<Opcao>> {
         return this.httpClient.get<Array<Opcao>>(`${URL_CONTROLADOR}/lista-perfil`);
     }
-    
+
     getListaEspecie(): Observable<Array<Opcao>> {
         return this.httpClient.get<Array<Opcao>>(`${URL_CONTROLADOR}/lista-especie`);
     }
 
     getListaBioterio(): Observable<Array<Opcao>> {
         return this.httpClient.get<Array<Opcao>>(`${URL_CONTROLADOR}/lista-bioterio`);
+    }
+
+    getListaStatusProtocolo(): Observable<Array<Opcao>> {
+        return this.httpClient.get<Array<Opcao>>(`${URL_CONTROLADOR}/lista-status`);
     }
 }

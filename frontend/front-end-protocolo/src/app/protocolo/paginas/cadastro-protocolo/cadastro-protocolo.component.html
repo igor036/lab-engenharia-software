@@ -13,8 +13,8 @@
             <h3> Resumo - Inglês </h3>
             <app-input-area-texto [formControl]="formProtocolo.controls['resumoEn']" placeholder="Digite aqui ..."
                 msgErro="Campo obrigatório">
-            </app-input-area-texto>      
-    
+            </app-input-area-texto>
+
         </div>
     </div>
 
@@ -36,27 +36,25 @@
                     <label>E-mail:</label>
                     <label style="padding-left: 2%;">{{ docenteLogado.email }}</label><br>
                 </div>
-            </div>  
+            </div>
 
             <div>
                 <h3>Justificativa do projeto :</h3>
-                <app-input-area-texto 
-                    [formControl]="formProtocolo.controls['justificativa']" 
-                    placeholder="Digite aqui ..."
-                    msgErro="Campo obrigatório">
+                <app-input-area-texto [formControl]="formProtocolo.controls['justificativa']"
+                    placeholder="Digite aqui ..." msgErro="Campo obrigatório">
                 </app-input-area-texto>
             </div>
 
             <div>
                 <h3>Data Inicio :</h3>
-                <app-input-data [formControl]="formProtocolo.controls['dataInicio']"
-                    placeholder="Data Início" msgErro="Campo obrigatório">
+                <app-input-data [formControl]="formProtocolo.controls['dataInicio']" placeholder="Data Início"
+                    msgErro="Campo obrigatório">
                 </app-input-data>
                 <h3>Data Fim :</h3>
                 <app-input-data [formControl]="formProtocolo.controls['dataFim']" placeholder="Data Fim"
                     msgErro="Campo obrigatório">
                 </app-input-data>
-                <ng-container *ngIf="exibirMensagemPeriodoInvalido()" >
+                <ng-container *ngIf="exibirMensagemPeriodoInvalido()">
                     <label style="color: red;">
                         * A data início não pode ser maior que a data fim!
                     </label>
@@ -66,39 +64,27 @@
             <form [formGroup]="formPedido">
                 <h3>Adicionar Animais :</h3>
                 <label>Espécie :</label>
-                <app-selecao-item
-                    [formControl]="formPedido.controls['especie']"
-                    [listaOpcao]="listaEspecie"
-                    placeholder="Selecione a Espécie"
-                    classeIcone="fa fa-arrow-right">
+                <app-selecao-item [formControl]="formPedido.controls['especie']" [listaOpcao]="listaEspecie"
+                    placeholder="Selecione a Espécie" classeIcone="fa fa-arrow-right">
                 </app-selecao-item>
                 <label>Quantidade :</label>
-                <app-input-texto 
-                    [formControl]="formPedido.controls['quantidade']"
-                    msgErro="Informe um número maiaor que 0."
-                    placeholder="Quantidade"
-                    classeIcone="fas fa-list-ol"
+                <app-input-texto [formControl]="formPedido.controls['quantidade']"
+                    msgErro="Informe um número maiaor que 0." placeholder="Quantidade" classeIcone="fas fa-list-ol"
                     tipo="number">
                 </app-input-texto>
                 <label>Biotério :</label>
-                <app-selecao-item
-                    [formControl]="formPedido.controls['bioterio']"
-                    [listaOpcao]="listaBioterio"
-                    placeholder="Selecione o Biotério"
-                    classeIcone="fa fa-arrow-right">
+                <app-selecao-item [formControl]="formPedido.controls['bioterio']" [listaOpcao]="listaBioterio"
+                    placeholder="Selecione o Biotério" classeIcone="fa fa-arrow-right">
                 </app-selecao-item>
-                <app-botao 
-                    texto="Adicionar Pedido" 
-                    [liberado]="formPedido.valid" 
-                    (eventoclick)="adicionarPedido()">
+                <app-botao texto="Adicionar Pedido" [liberado]="formPedido.valid" (eventoclick)="adicionarPedido()">
                 </app-botao>
                 <table style="margin-top: 10px;">
                     <thead>
                         <tr>
-                        <th>Espécie</th>
-                        <th>Quantidade</th>
-                        <th>Biotério</th>
-                        <th>Remover</th>
+                            <th>Espécie</th>
+                            <th>Quantidade</th>
+                            <th>Biotério</th>
+                            <th>Remover</th>
                         </tr>
                     </thead>
                     <tbody *ngIf="exibirListaPedido()">
@@ -121,9 +107,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <app-botao 
-                    texto="Criar Novo Protocolo" 
-                    [liberado]="liberarBotaoCriarNovoProtocolo()" 
+                <app-botao texto="Criar Novo Protocolo" [liberado]="liberarBotaoCriarNovoProtocolo()"
                     (eventoclick)="cadastrar()">
                 </app-botao>
             </form>

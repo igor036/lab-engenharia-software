@@ -1,62 +1,65 @@
 *{font-family: 'Allerta', sans-serif;}
-  
-  .search-deco{
-    width: 30%;
-    background-color: #d6d6d6;
-    border-style: solid;
-    border-width: 0px 1px 1px 1px;
-    border-color: #606060;
-    margin-left: 40%;
-    padding: 1%;
-    border-radius: 0px 0px 4px 4px;
-  }
 
-  .external-deco{
-    width: 79%;
-    background-color: transparent;
-    padding: 1%;
-    margin-right: 5%;
-    margin-left: 15%;
-  }
-  
-  .protocol-external{
-    background-color:#d6d6d6;
-    border-radius: 0px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #606060;
-    margin-bottom: 5px;
-  }
+.search-deco{
+  width: 30%;
+  background-color: #d6d6d6;
+  border-style: solid;
+  border-width: 0px 1px 1px 1px;
+  border-color: #606060;
+  margin-left: 40%;
+  padding: 1%;
+  border-radius: 0px 0px 4px 4px;
+}
 
-  .protocol-external-header{
-    background-color: #361c68;
-    width: 100%;
-    height: 10px;
-  }
+.external-deco{
+  width: 79%;
+  background-color: transparent;
+  padding: 1%;
+  margin-right: 5%;
+  margin-left: 15%;
+}
 
-  .protocol-internal{
-    display: flex;
-    padding: 1%;
-    align-items: center;
-  }
+.protocol-external{
+  background-color:#d6d6d6;
+  border-radius: 0px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #606060;
+  margin-bottom: 5px;
+}
 
-  .protocol-info-deco{
-    width: 80%;
-    color: black;
-    display: flex;
-  }
+.protocol-external-header{
+  background-color: #361c68;
+  width: 100%;
+  height: 10px;
+}
 
-  .protocol-button{
-    background-color: #3d8af7;
-    border: none;
-    border-radius: 4px;
-    color: white;
-    font-weight: bold;
-    padding: 1% 5%;
-    flex-grow: 1;
-  }
+.protocol-internal{
+  display: flex;
+  padding: 1%;
+  align-items: center;
+}
 
-  .protocol-button:hover{
-    background-color: #6334e3;
-  }
-  
+.protocol-info-deco{
+  width: 80%;
+  color: black;
+  display: flex;
+}
+
+.protocol-button{
+  background-color: #3d8af7;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  padding: 1% 5%;
+  flex-grow: 1;
+}
+
+.protocol-button:hover{
+  background-color: #6334e3;
+}
+
+label {
+  padding-left: 0.5px;
+}

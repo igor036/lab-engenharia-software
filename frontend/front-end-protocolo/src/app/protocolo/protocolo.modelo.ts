@@ -9,13 +9,6 @@ interface CadastrarProtocolo {
     litaPedidoProtocolo: Array<PedidoProtocolo>;
 }
 
-interface ConsultarProtocolo {
-    idProtocolo: number;
-    docente: string;
-    data: string;
-    status: string;
-}
-
 interface PedidoProtocolo {
     idEspecie: number;
     quantidade: number;
@@ -28,10 +21,10 @@ interface PedidoProtocoloVisualizar {
     bioterio: Opcao;
 }
 
-enum StatusProtocolo {
-    STATUS_ABERTO = 'ABERTO',
-    STATUS_DEFERIDO = 'DEFERIDO',
-    STATUS_INDEFERIDO = 'INDEFERIDO'
+interface ConsultaListaProtocolo {
+    tipo: string;
+    status: string;
+    idProtocolo: number;
 }
 
 enum TipoConsultaListaProtocolo {
@@ -44,7 +37,6 @@ export {
     CadastrarProtocolo,
     PedidoProtocolo,
     PedidoProtocoloVisualizar,
-    ConsultarProtocolo,
-    StatusProtocolo,
-    TipoConsultaListaProtocolo
+    TipoConsultaListaProtocolo,
+    ConsultaListaProtocolo
 }

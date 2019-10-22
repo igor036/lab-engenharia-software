@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 //Modelos
-import { Opcao, Filtro, Paginacao } from 'src/app/compartilhado/compartilhado.modelo';
-import { StatusProtocolo, TipoConsultaListaProtocolo } from 'src/app/protocolo/protocolo.modelo';
+import { Opcao, Paginacao } from 'src/app/compartilhado/compartilhado.modelo';
+import { TipoConsultaListaProtocolo, ConsultaListaProtocolo } from 'src/app/protocolo/protocolo.modelo';
+import { PAGINACAO_PADRAO } from 'src/app/app.constante';
 
 //Servico
 import { ProtocoloServico } from 'src/app/protocolo/protocolo.servico';
-import { ConsultarProtocolo } from 'src/app/protocolo/protocolo.modelo';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { UtilServico } from 'src/app/compartilhado/util.servico';
 
 @Component({
   selector: 'app-consulta-protocolo',
@@ -17,24 +18,25 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 })
 export class ConsultaProtocoloComponent implements OnInit {
 
-  protocols = [{ id: 1, docente: 'docente' }, { id: 2, docente: 'docente2' }, { id: 3, docente: 'docente3' }];
-
+  public paginacao: Paginacao = PAGINACAO_PADRAO;
+  public listaOpcaoTipoConsulta: Array<Opcao> = [];
+  public listaOpcaoStatus: Array<Opcao> = [];
   public formPesquisaProtocolo: FormGroup;
-  public listaPesquisaProtocolo: Array<Opcao> = [];
-  public listaSelecaoDeStatusPesquisa: Array<Opcao> = [];
-  public filtro: Filtro<ConsultarProtocolo>;
-  public paginacao: Paginacao;
+  public filtro: ConsultaListaProtocolo;
+
 
   constructor(
     private formBuilder: FormBuilder,
+    private utilServico: UtilServico,
     private protocoloServico: ProtocoloServico,
     private spinnerServico: Ng4LoadingSpinnerService
   ) { }
 
   ngOnInit() {
-    this.iniciarListaPesquisaProtocolo();
+    this.iniciarListaOpcaoTipoConsulta();
     this.iniciarFormPesquisaProtocolo();
-    this.iniciarListaSelecaoStatusPesquisa();
+    this.iniciarListaOpcaoStatus();
+    this.pesquisarProtocolo();
   }
 
   selecionarTipoConsulta(tipo: string) {
@@ -55,35 +57,44 @@ export class ConsultaProtocoloComponent implements OnInit {
   }
 
   pesquisarProtocolo(): void {
+    this.filtro = this.formPesquisaProtocolo.value;
     this.selecionarPagina(1);
   }
 
   selecionarPagina(pagina: number): void {
+    this.spinnerServico.show();
+    this.protocoloServico.getListaProtocoloDocenteLogado(this.filtro, pagina).subscribe(paginacao => {
+      this.paginacao = paginacao;
+      this.spinnerServico.hide();
+    });
+  }
 
+  exibirListaProtocolo(): boolean {
+    return this.paginacao.lista.length > 0;
   }
 
   private iniciarFormPesquisaProtocolo(): void {
     this.formPesquisaProtocolo = this.formBuilder.group({
       tipo: this.formBuilder.control(TipoConsultaListaProtocolo.OPCAO_TODOS),
       idProtocolo: this.formBuilder.control(''),
-      status: this.formBuilder.control('')
+      idStatus: this.formBuilder.control('')
     });
   }
 
-  private iniciarListaPesquisaProtocolo(): void {
-    this.listaPesquisaProtocolo = [
+  private iniciarListaOpcaoTipoConsulta(): void {
+    this.listaOpcaoTipoConsulta = [
       { descricao: "Todos", valor: TipoConsultaListaProtocolo.OPCAO_TODOS },
       { descricao: "Código", valor: TipoConsultaListaProtocolo.OPCAO_CODIGO },
       { descricao: "Status", valor: TipoConsultaListaProtocolo.OPCAO_STATUS }
     ];
   }
 
-  private iniciarListaSelecaoStatusPesquisa(): void {
-    this.listaSelecaoDeStatusPesquisa = [
-      { descricao: "Aberto", valor: StatusProtocolo.STATUS_ABERTO },
-      { descricao: "Deferido", valor: StatusProtocolo.STATUS_DEFERIDO },
-      { descricao: "Indeferido", valor: StatusProtocolo.STATUS_INDEFERIDO }
-    ]
+  private iniciarListaOpcaoStatus(): void {
+    this.spinnerServico.show();
+    this.utilServico.getListaStatusProtocolo().subscribe(listaOpcaoStatus => {
+      this.listaOpcaoStatus = listaOpcaoStatus;
+      this.spinnerServico.hide();
+    });
   }
 
   private adicionarValidacaoConsultaCodigo(): void {

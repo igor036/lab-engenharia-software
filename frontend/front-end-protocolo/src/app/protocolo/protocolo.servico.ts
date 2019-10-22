@@ -1,10 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
-import { Observable, of } from 'rxjs';
+//terceiros
+import { Observable } from 'rxjs';
 
-import { CadastrarProtocolo, ConsultarProtocolo } from './protocolo.modelo';
-import { Opcao, Filtro, Paginacao } from 'src/app/compartilhado/compartilhado.modelo';
+//modelos
+import { QUANTIDADE_REGISTROS_PAGINA_PADRAO } from 'src/app/app.constante';
+import { Paginacao } from 'src/app/compartilhado/compartilhado.modelo';
+import { CadastrarProtocolo, ConsultaListaProtocolo } from './protocolo.modelo';
+
+//utilitarios
+import { HttpUtil } from 'src/app/compartilhado/httpUtil';
 
 const URL_CONTROLADOR: string = "protocolo";
 
@@ -19,11 +25,10 @@ export class ProtocoloServico {
         });
     }
 
-    consultarProtocolo(pagina: number, filtro: Filtro<ConsultarProtocolo>): Observable<Array<Paginacao>> {
-        let param: any = filtro;
-        return this.httpClient.get<Array<Paginacao>>(`${URL_CONTROLADOR}/lista-protocolo-docente-logado/pagina-atual/${pagina}/quantidade-registros-pagina/${10}`, 
-        {
-            params: param
-        })
+    getListaProtocoloDocenteLogado(filtro: ConsultaListaProtocolo, paginaAtual: number): Observable<Paginacao> {
+        return this.httpClient.get<Paginacao>(
+            `${URL_CONTROLADOR}/lista-protocolo-docente-logado/pagina-atual/${paginaAtual}/quantidade-registros-pagina/${QUANTIDADE_REGISTROS_PAGINA_PADRAO}`,
+            { params: HttpUtil.converterObjetoParaHttpParametros(filtro) }
+        );
     }
 }

@@ -17,7 +17,6 @@ import org.springframework.context.ApplicationContext;
 
 import com.linecode.compartilhado.excecao.ExcecaoNegocio;
 import com.linecode.configuracao.ContextoAplicacao;
-import com.linecode.protocolo.enumerador.StatusProtocoloEnumerador;
 import com.linecode.protocolo.enumerador.TipoConsultaListaProtocoloEnumerador;
 import com.linecode.protocolo.filtro.ConsultaListaProtocoloTestFiltro;
 import com.linecode.protocolo.servico.ProtocoloServico;
@@ -65,10 +64,10 @@ public class GetListaProtocoloDocenteLogado {
 	private ConsultaListaProtocoloTestFiltro mapaParaConsultaListaProtocoloTestFiltro(Map<String, String> mapa) {
 		
 		TipoConsultaListaProtocoloEnumerador tipo = TipoConsultaListaProtocoloEnumerador.forValue(mapa.get("tipo"));
-		StatusProtocoloEnumerador status = StatusProtocoloEnumerador.forValue(mapa.get("status"));
-		long idProtocolo = Long.valueOf(mapa.get("idProtocolo"));
+		Long idStatus = Long.valueOf(mapa.get("idStatus"));
+		Long idProtocolo = Long.valueOf(mapa.get("idProtocolo"));
 		String msgEsperada = mapa.get("msgEsperada");
 		
-		return new ConsultaListaProtocoloTestFiltro(tipo, status, idProtocolo, msgEsperada);
+		return new ConsultaListaProtocoloTestFiltro(tipo, idStatus, idProtocolo, msgEsperada);
 	}
 }

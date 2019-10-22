@@ -3,7 +3,7 @@
  * Data: 24/08/2019
  */
 
- 
+
 /**
  * Interface utilizada em conjunto com {@link SelecaoItemComponent}
  * que representa as opcoes do componente.
@@ -23,14 +23,7 @@ interface Paginacao {
     lista?: Array<any>;
 }
 
-interface Filtro<T> {
-    status: string;
-    tipo: string;
-    idProtocolo: number;
-}
-
 export {
     Opcao,
-    Paginacao,
-    Filtro
+    Paginacao
 }

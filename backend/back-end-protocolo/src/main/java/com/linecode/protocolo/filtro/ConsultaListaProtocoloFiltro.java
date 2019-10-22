@@ -3,14 +3,13 @@ package com.linecode.protocolo.filtro;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.linecode.protocolo.enumerador.StatusProtocoloEnumerador;
 import com.linecode.protocolo.enumerador.TipoConsultaListaProtocoloEnumerador;
 
 public class ConsultaListaProtocoloFiltro {
     
 	@NotNull(message = "Informe o tipo de consulta.")
     private TipoConsultaListaProtocoloEnumerador tipo;
-    private StatusProtocoloEnumerador status;
+    private Long idStatus;
     private Long idProtocolo;
     
     @JsonIgnore
@@ -22,18 +21,18 @@ public class ConsultaListaProtocoloFiltro {
     }
 
 	public ConsultaListaProtocoloFiltro(TipoConsultaListaProtocoloEnumerador tipo,
-			StatusProtocoloEnumerador status, long idProtocolo) {
+	        Long idStatus, long idProtocolo) {
 		this.tipo = tipo;
-		this.status = status;
+		this.idStatus = idStatus;
 		this.idProtocolo = idProtocolo;
 	}
 
-	public StatusProtocoloEnumerador getStatus() {
-        return status;
+	public Long getIdStatus() {
+        return idStatus;
     }
 
-    public void setStatus(String status) {
-        this.status = StatusProtocoloEnumerador.forValue(status);
+    public void setIdStatus(Long status) {
+        this.idStatus = status;
     }
 
     public TipoConsultaListaProtocoloEnumerador getTipo() {

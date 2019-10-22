@@ -1,15 +1,14 @@
 package com.linecode.protocolo.filtro;
 
-import com.linecode.protocolo.enumerador.StatusProtocoloEnumerador;
 import com.linecode.protocolo.enumerador.TipoConsultaListaProtocoloEnumerador;
 
 public class ConsultaListaProtocoloTestFiltro extends ConsultaListaProtocoloFiltro {
 
 	private String msgEsperada;
 	
-	public ConsultaListaProtocoloTestFiltro(TipoConsultaListaProtocoloEnumerador tipo, StatusProtocoloEnumerador status,
+	public ConsultaListaProtocoloTestFiltro(TipoConsultaListaProtocoloEnumerador tipo, long idStatus,
 			long idProtocolo, String msgEsperada) {
-		super(tipo, status, idProtocolo);
+		super(tipo, idStatus, idProtocolo);
 		this.msgEsperada = msgEsperada;
 	}
 	
