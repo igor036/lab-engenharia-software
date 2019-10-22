@@ -4,7 +4,7 @@
       (alterarValor)="selecionarTipoConsulta($event)" placeholder="Selecione a busca" classeIcone="fa fa-search">
     </app-selecao-item>
 
-    <div class="row">
+    <div>
       <ng-container *ngIf="exibirInputDePesquisa()">
         <app-input-texto [formControl]="formPesquisaProtocolo.controls['idProtocolo']"
           msgErro="Informe um número maior que 0." tipo="number" placeholder="Código do protocolo."
@@ -29,23 +29,23 @@
 
 <div class="external-deco">
   <app-paginacao [paginacao]="paginacao" (selecionarPagina)="selecionarPagina($event)">
-    <table>
+    <table class="table table-striped">
       <thead>
         <tr>
-          <th>Código</th>
+          <th style="text-align: center;">Código</th>
           <th>Nome Docente</th>
-          <th>Data Início</th>
-          <th>Data Fim</th>
-          <th>Detalhes</th>
+          <th style="text-align: center;">Data Início</th>
+          <th style="text-align: center;">Data Fim</th>
+          <th style="text-align: center;">Detalhes</th>
         </tr>
       </thead>
       <tbody *ngIf="exibirListaProtocolo()">
         <tr *ngFor="let protocolo of paginacao.lista">
-          <td style="width: 5%; text-align: center;"> {{ protocolo.id }} </td>
+          <td style="width: 20%; text-align: center;"> {{ protocolo.id }} </td>
           <td> {{ protocolo.nomeDocente }} </td>
-          <td style="width: 10%; text-align: center;"> {{ protocolo.dataInicio }} </td>
-          <td style="width: 10%; text-align: center;"> {{ protocolo.dataFim }} </td>
-          <td style="width: 5%;">
+          <td style="width: 20%; text-align: center;"> {{ protocolo.dataInicio }} </td>
+          <td style="width: 20%; text-align: center;"> {{ protocolo.dataFim }} </td>
+          <td style="width: 20%; text-align: center;">
             <button class="btn" (click)="verDetalheProtocolo(protocolo.id)">
               <i class="fa fa-eye"></i>
             </button>
