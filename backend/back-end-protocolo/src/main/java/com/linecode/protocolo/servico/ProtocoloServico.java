@@ -93,13 +93,25 @@ public class ProtocoloServico {
 	    
 	    Assert.notNull(filtro, "Informe os dados da consulta!");
 	    
-	    if (filtro.getTipo().isConsultaCodigo() && filtro.getIdProtocolo() <= 0) {
-	        throw new ExcecaoNegocio("Código do protocolo inválido.");
+	    Set<ConstraintViolation<ConsultaListaProtocoloFiltro>> violacoes = validator.validate(filtro);
+	    
+	    if (violacoes.isEmpty()) {
+	    	
+	    	if (filtro.getTipo().isConsultaCodigo() && filtro.getIdProtocolo() <= 0) {
+		        throw new ExcecaoNegocio("Código do protocolo inválido.");
+		    }
+		    
+		    if (filtro.getTipo().isConsultaStatus() && filtro.getStatus() == null) {
+		    	throw new ExcecaoNegocio("Informe o status.");
+		    }
+		    
+		    filtro.setIdDocente(docenteServico.getDadosDocenteLogado().getMatricula());
+		    
+		    return protocoloDao.getListaProtocoloDocenteLogado(filtro, paginaAtual, qtdRegistrosPagina);
+		    
+	    } else {
+	    	throw new ExcecaoNegocio(violacoes.stream().findFirst().get().getMessage());
 	    }
-	    
-	    filtro.setIdDocente(docenteServico.getDadosDocenteLogado().getMatricula());
-	    
-	    return protocoloDao.getListaProtocoloDocenteLogado(filtro, paginaAtual, qtdRegistrosPagina);
 	}
 	
 	/**
