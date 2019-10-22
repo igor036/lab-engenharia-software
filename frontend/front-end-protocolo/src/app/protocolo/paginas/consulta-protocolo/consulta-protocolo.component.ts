@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 //Modelos
 import { Opcao, Paginacao } from 'src/app/compartilhado/compartilhado.modelo';
 import { TipoConsultaListaProtocolo, ConsultaListaProtocolo } from 'src/app/protocolo/protocolo.modelo';
-import { PAGINACAO_PADRAO } from 'src/app/app.constante';
+import { PAGINACAO_PADRAO, URLS_NAMES } from 'src/app/app.constante';
 
 //Servico
 import { ProtocoloServico } from 'src/app/protocolo/protocolo.servico';
@@ -26,6 +27,7 @@ export class ConsultaProtocoloComponent implements OnInit {
 
 
   constructor(
+    private router: Router,
     private formBuilder: FormBuilder,
     private utilServico: UtilServico,
     private protocoloServico: ProtocoloServico,
@@ -71,6 +73,10 @@ export class ConsultaProtocoloComponent implements OnInit {
 
   exibirListaProtocolo(): boolean {
     return this.paginacao.lista.length > 0;
+  }
+
+  verDetalheProtocolo(idProtocolo: number): void {
+    this.router.navigate([URLS_NAMES.detalheProtocolo, idProtocolo]);
   }
 
   private iniciarFormPesquisaProtocolo(): void {

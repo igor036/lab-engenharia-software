@@ -46,7 +46,7 @@
           <td style="width: 10%; text-align: center;"> {{ protocolo.dataInicio }} </td>
           <td style="width: 10%; text-align: center;"> {{ protocolo.dataFim }} </td>
           <td style="width: 5%;">
-            <button class="btn">
+            <button class="btn" (click)="verDetalheProtocolo(protocolo.id)">
               <i class="fa fa-eye"></i>
             </button>
           </td>

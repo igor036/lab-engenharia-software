@@ -10,18 +10,20 @@ public class DetalheProtocoloDto {
     private String nomeDoscente;
     private Long matriculaAvaliador;
     private String nomeAvaliador;
-    private String resumo;
+    private String resumoPt;
+    private String resumoEn;
     private String justificativa;
     private List<DetalhePedidoProtocoloDto> pedidos;
     
     public DetalheProtocoloDto(long id, long matriculaDocente, String nomeDoscente, Long matriculaAvaliador,
-            String nomeAvaliador, String resumo, String justificativa) {
+            String nomeAvaliador, String resumoPt, String resumoEn, String justificativa) {
         this.id = id;
         this.matriculaDocente = matriculaDocente;
         this.nomeDoscente = nomeDoscente;
         this.matriculaAvaliador = matriculaAvaliador;
         this.nomeAvaliador = nomeAvaliador;
-        this.resumo = resumo;
+        this.resumoPt = resumoPt;
+        this.resumoEn = resumoEn;
         this.justificativa = justificativa;
         this.pedidos = new ArrayList<>();
     }
@@ -46,14 +48,18 @@ public class DetalheProtocoloDto {
         return nomeAvaliador;
     }
 
-    public String getResumo() {
-        return resumo;
+    public String getResumoPt() {
+        return resumoPt;
     }
 
     public String getJustificativa() {
         return justificativa;
     }
-
+    
+    public String getResumoEn() {
+        return resumoEn;
+    }
+    
     public List<DetalhePedidoProtocoloDto> getPedidos() {
         return pedidos;
     }

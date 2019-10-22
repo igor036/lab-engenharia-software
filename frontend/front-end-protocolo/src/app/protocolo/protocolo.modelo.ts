@@ -27,6 +27,24 @@ interface ConsultaListaProtocolo {
     idProtocolo: number;
 }
 
+interface DetalhePedidoProtocolo {
+    especie: string;
+    quantidade: number;
+    bioterio: string;
+}
+
+interface DetalheProtocolo {
+    id: number;
+    matriculaDocente: number;
+    nomeDoscente: string;
+    matriculaAvaliador: number;
+    nomeAvaliador: string;
+    resumoPt: string;
+    resumoEn: string;
+    justificativa: string;
+    pedidos: Array<DetalhePedidoProtocolo>;
+}
+
 enum TipoConsultaListaProtocolo {
     OPCAO_TODOS = 'T',
     OPCAO_CODIGO = 'C',
@@ -38,5 +56,7 @@ export {
     PedidoProtocolo,
     PedidoProtocoloVisualizar,
     TipoConsultaListaProtocolo,
-    ConsultaListaProtocolo
+    ConsultaListaProtocolo,
+    DetalhePedidoProtocolo,
+    DetalheProtocolo
 }
