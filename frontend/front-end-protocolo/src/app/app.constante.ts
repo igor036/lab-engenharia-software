@@ -33,3 +33,10 @@ export const PAGINACAO_PADRAO: Paginacao = {
     qtdTotalRegistros: 0,
     lista: []
 };
+
+export enum Perfil {
+    ADMIN = 'ADMIN',
+    PROFESSOR = 'PROFESSOR',
+    SECRETARIA = 'SECRETARIA',
+    COORDENADOR = 'COORDENADOR'
+}
