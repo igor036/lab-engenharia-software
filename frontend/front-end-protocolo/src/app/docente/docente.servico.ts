@@ -44,7 +44,7 @@ export class DocenteServico {
     }
 
     isLogado(): boolean {
-        if (localStorage.getItem(PROPRIEDADES.TOKEN_DOCENTE)) {
+        if (localStorage.getItem(PROPRIEDADES.DADOS_DOCENTE_LOGADO)) {
             return true;
         }
         return false;
@@ -79,6 +79,7 @@ export class DocenteServico {
 
     deslogar(): void {
         localStorage.removeItem(PROPRIEDADES.TOKEN_DOCENTE);
+        localStorage.removeItem(PROPRIEDADES.DADOS_DOCENTE_LOGADO);
         this.router.navigate([URLS_NAMES.login]);
     }
 }
