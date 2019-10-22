@@ -14,8 +14,7 @@ export const URLS_NAMES = {
     perfil: 'perfil',
     cadastroDocente: 'cadastro-docente',
     cadastroProtocolo: 'cadastro-protocolo',
-    consultaProtocolo: 'consulta-protocolo',
-    detalheProtocolo: 'detalhe-protocolo'
+    consultaProtocolo: 'consulta-protocolo'
 };
 
 export const REGEXS = {
