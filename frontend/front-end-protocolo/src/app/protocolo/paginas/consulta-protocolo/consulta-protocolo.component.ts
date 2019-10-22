@@ -5,10 +5,18 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Opcao, Filtro, Paginacao } from 'src/app/compartilhado/compartilhado.modelo';
 
 //Servico
-import { ProtocoloServico } from '../../protocolo.servico';
-import { ConsultarProtocolo } from '../../protocolo.modelo';
+import { ProtocoloServico } from 'src/app/protocolo/protocolo.servico';
+import { ConsultarProtocolo } from 'src/app/protocolo/protocolo.modelo';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
+
+const OPCAO_TODOS: string = 'T';
+const OPCAO_CODIGO: string = 'C';
+const OPCAO_STATUS: string = 'S';
+
+const STATUS_ABERTO: string = 'ABERTO';
+const STATUS_DEFERIDO: string = 'DEFERIDO';
+const STATUS_INDEFERIDO: string = 'INDEFERIDO';
 
 @Component({
   selector: 'app-consulta-protocolo',
@@ -16,14 +24,6 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
   styleUrls: ['./consulta-protocolo.component.scss']
 })
 export class ConsultaProtocoloComponent implements OnInit {
-
-  private readonly OPCAO_TODOS: string = 'T';
-  private readonly OPCAO_CODIGO: string = 'C';
-  private readonly OPCAO_STATUS: string = 'S';
-
-  private readonly STATUS_ABERTO: string = 'ABERTO';
-  private readonly STATUS_DEFERIDO: string = 'DEFERIDO';
-  private readonly STATUS_INDEFERIDO: string = 'INDEFERIDO';
 
   protocols = [{ id: 1, docente: 'docente' }, { id: 2, docente: 'docente2' }, { id: 3, docente: 'docente3' }];
 
@@ -45,44 +45,36 @@ export class ConsultaProtocoloComponent implements OnInit {
     this.iniciarListaSelecaoStatusPesquisa();
   }
 
-
-  selecionarTipo(tipo: string) {
-    let validacoes;
-    let campoValidator = this.formPesquisaProtocolo.controls.tipo;
-
-    if (tipo === this.OPCAO_TODOS || tipo === this.OPCAO_STATUS) {
-      validacoes = [];
-    } else {
-      validacoes = this.getValidacaoCodigo();
+  selecionarTipoConsulta(tipo: string) {
+    this.limparValidacoesCampos();
+    if (tipo === OPCAO_CODIGO) {
+      this.adicionarValidacaoConsultaCodigo();
+    } else if (tipo === OPCAO_STATUS) {
+      this.adicionarValidacaoConsultaStatus();
     }
-
-    campoValidator.setValue('');
-    campoValidator.setValidators(validacoes);
-    campoValidator.updateValueAndValidity();
   }
 
   exibirInputDePesquisa(): boolean {
-    return this.formPesquisaProtocolo.controls.tipo.value === this.OPCAO_CODIGO;
+    return this.formPesquisaProtocolo.controls.tipo.value === OPCAO_CODIGO;
   }
 
   exibirSelecaoDeStatus(): boolean {
-    return this.formPesquisaProtocolo.controls.tipo.value === this.OPCAO_STATUS;
+    return this.formPesquisaProtocolo.controls.tipo.value === OPCAO_STATUS;
   }
 
   pesquisarProtocolo(): void {
     this.selecionarPagina(1);
-    console.log("Pesquisar")
   }
-  
+
   selecionarPagina(pagina: number): void {
     //this.spinnerServico.show();
     //this.protocoloServico.consultarProtocolo(pagina, this.filtro).subscribe(protocolos => { this.paginacao = protocolos});
-    
+
   }
 
   private iniciarFormPesquisaProtocolo(): void {
     this.formPesquisaProtocolo = this.formBuilder.group({
-      tipo: this.formBuilder.control(this.OPCAO_TODOS),
+      tipo: this.formBuilder.control(OPCAO_TODOS),
       idProtocolo: this.formBuilder.control(''),
       status: this.formBuilder.control('')
     });
@@ -90,27 +82,43 @@ export class ConsultaProtocoloComponent implements OnInit {
 
   private iniciarListaPesquisaProtocolo(): void {
     this.listaPesquisaProtocolo = [
-      { descricao: "Todos", valor: this.OPCAO_TODOS },
-      { descricao: "Código", valor: this.OPCAO_CODIGO },
-      { descricao: "Status", valor: this.OPCAO_STATUS }
+      { descricao: "Todos", valor: OPCAO_TODOS },
+      { descricao: "Código", valor: OPCAO_CODIGO },
+      { descricao: "Status", valor: OPCAO_STATUS }
       //
     ];
   }
 
   private iniciarListaSelecaoStatusPesquisa(): void {
     this.listaSelecaoDeStatusPesquisa = [
-      { descricao: "ABERTO", valor: this.STATUS_ABERTO },
-      { descricao: "DEFERIDO", valor: this.STATUS_DEFERIDO },
-      { descricao: "INDEFERIDO", valor: this.STATUS_INDEFERIDO }
+      { descricao: "ABERTO", valor: STATUS_ABERTO },
+      { descricao: "DEFERIDO", valor: STATUS_DEFERIDO },
+      { descricao: "INDEFERIDO", valor: STATUS_INDEFERIDO }
     ]
   }
 
-  private getValidacaoCodigo(): Array<any> {
-    return [
+  private adicionarValidacaoConsultaCodigo(): void {
+    let campoIdProtocolo = this.formPesquisaProtocolo.controls.tipo;
+    campoIdProtocolo.reset();
+    campoIdProtocolo.setValidators([
       Validators.required,
-      Validators.minLength(1)
-    ];
+      Validators.pattern('^[1-9]+$')
+    ]);
+    campoIdProtocolo.updateValueAndValidity();
   }
 
+  private adicionarValidacaoConsultaStatus(): void {
+    let campoStatus = this.formPesquisaProtocolo.controls.status;
+    campoStatus.reset();
+    campoStatus.setValidators([
+      Validators.required,
+      Validators.pattern('^[1-9]+$')
+    ]);
+    campoStatus.updateValueAndValidity();
+  }
 
+  private limparValidacoesCampos(): void {
+    this.formPesquisaProtocolo.controls.idProtocolo.clearValidators();
+    this.formPesquisaProtocolo.controls.status.clearValidators();
+  }
 }

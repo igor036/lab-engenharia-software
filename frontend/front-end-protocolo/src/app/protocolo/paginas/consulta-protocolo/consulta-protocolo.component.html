@@ -6,14 +6,16 @@
 
     <div class="row">
       <ng-container *ngIf="exibirInputDePesquisa()">
-        <app-input-texto [formControl]="formPesquisaProtocolo.controls['idProtocolo']" msgErro="Informe um valor válido."
-          placeholder="Digite o Codigo Aqui ..." classeIcone="fa-sort-numeric-desc">
+        <app-input-texto [formControl]="formPesquisaProtocolo.controls['idProtocolo']"
+          msgErro="Informe um valor válido." placeholder="Informe um número maior que 0"
+          classeIcone="fa-sort-numeric-desc">
         </app-input-texto>
       </ng-container>
 
       <ng-container *ngIf="exibirSelecaoDeStatus()">
         <app-selecao-item [formControl]="formPesquisaProtocolo.controls['status']"
-          [listaOpcao]="listaSelecaoDeStatusPesquisa" classeIcone="fa-check-square-o" placeholder="Selecione o Tipo"></app-selecao-item>
+          [listaOpcao]="listaSelecaoDeStatusPesquisa" classeIcone="fa-check-square-o" placeholder="Selecione o Tipo">
+        </app-selecao-item>
       </ng-container>
     </div>
 
@@ -26,22 +28,21 @@
 
 <div class="external-deco">
 
-
-  <ng-container *ngFor="let protocol of protocols">
+  <div *ngFor="let protocol of protocols">
     <div class='protocol-external'>
-        <div class="protocol-external-header"></div>
-        <div class="protocol-internal">
-            <div class="protocol-info-deco">
-                <label>ID Protocolo : </label>
-                <label>{{protocol.id}}</label>
-                <label>Docente : </label>
-                <label>{{protocol.docente}}</label>
-                <label>Data : </label>
-                <label>01/01/2019</label>
-            </div>
-            <button class="protocol-button"><a>Detalhes</a></button>
+      <div class="protocol-external-header"></div>
+      <div class="protocol-internal">
+        <div class="protocol-info-deco">
+          <label>ID Protocolo : </label>
+          <label>{{protocol.id}}</label>
+          <label>Docente : </label>
+          <label>{{protocol.docente}}</label>
+          <label>Data : </label>
+          <label>01/01/2019</label>
         </div>
+        <button class="protocol-button"><a>Detalhes</a></button>
+      </div>
     </div>
-  </ng-container>
+  </div>
 
 </div>
