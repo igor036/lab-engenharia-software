@@ -3,7 +3,7 @@
  * Data: 24/08/2019
  */
 
- 
+
 /**
  * Interface utilizada em conjunto com {@link SelecaoItemComponent}
  * que representa as opcoes do componente.
@@ -16,6 +16,14 @@ interface Opcao {
     valor: any;
 }
 
+interface Paginacao {
+    paginaAtual: number;
+    qtdRegistrosPagina: number;
+    qtdTotalRegistros: number;
+    lista?: Array<any>;
+}
+
 export {
-    Opcao
+    Opcao,
+    Paginacao
 }

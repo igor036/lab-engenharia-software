@@ -44,7 +44,7 @@ export class DocenteServico {
     }
 
     isLogado(): boolean {
-        if (localStorage.getItem(PROPRIEDADES.TOKEN_DOCENTE)) {
+        if (localStorage.getItem(PROPRIEDADES.DADOS_DOCENTE_LOGADO)) {
             return true;
         }
         return false;
@@ -69,16 +69,13 @@ export class DocenteServico {
         return token ? token : '';
     }
 
-    setDocenteLogado(docente: DocenteLogado): void {
-        localStorage.setItem(PROPRIEDADES.DADOS_DOCENTE_LOGADO, JSON.stringify(docente));
-    }
-
     setTokenDocente(token: string): void {
         localStorage.setItem(PROPRIEDADES.TOKEN_DOCENTE, token);
     }
 
     deslogar(): void {
         localStorage.removeItem(PROPRIEDADES.TOKEN_DOCENTE);
+        localStorage.removeItem(PROPRIEDADES.DADOS_DOCENTE_LOGADO);
         this.router.navigate([URLS_NAMES.login]);
     }
 }

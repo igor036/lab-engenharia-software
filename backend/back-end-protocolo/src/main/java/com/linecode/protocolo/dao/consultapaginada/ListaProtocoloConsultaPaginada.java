@@ -29,8 +29,8 @@ public class ListaProtocoloConsultaPaginada
             adicionarParametro(filtro.getIdProtocolo(), Types.INTEGER);
             sqlFiltro.append(" AND P.ID_PROTOCOLO = ? ");
         } else if (filtro.getTipo().isConsultaStatus()) {
-            adicionarParametro(filtro.getStatus().getValorTexto(), Types.VARCHAR);
-            sqlFiltro.append(" AND S.DESCRICAO = ? ");
+            adicionarParametro(filtro.getIdStatus(), Types.BIGINT);
+            sqlFiltro.append(" AND S.ID_STATUS = ? ");
         }
         
         return sqlFiltro.toString();

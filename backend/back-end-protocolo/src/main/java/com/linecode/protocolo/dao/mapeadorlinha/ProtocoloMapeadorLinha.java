@@ -11,11 +11,11 @@ import com.linecode.protocolo.dto.DetalheProtocoloDto;
 public class ProtocoloMapeadorLinha {
 
     private static final DetalheProtocoloDtoMapeadorLinha DETALHE_PROTOCOLO_DTO_MAPEADOR_LINHA = new DetalheProtocoloDtoMapeadorLinha();
-    
+
     public static DetalheProtocoloDtoMapeadorLinha getDetalheProtocoloDtoMapeadorLinha() {
         return DETALHE_PROTOCOLO_DTO_MAPEADOR_LINHA;
     }
-    
+
     private static class DetalheProtocoloDtoMapeadorLinha implements ResultSetExtractor<DetalheProtocoloDto> {
 
         @Override
@@ -26,7 +26,8 @@ public class ProtocoloMapeadorLinha {
                 DetalheProtocoloDto detalheProtocolo = new DetalheProtocoloDto(rs.getLong("ID_PROTOCOLO"),
                         rs.getLong("MATRICULA_DOCENTE"), rs.getString("NOME_DOCENTE"),
                         ((Long) rs.getObject("MATRICULA_AVALIADOR")), rs.getString("NOME_AVALIADOR"),
-                        rs.getString("RESUMO"), rs.getString("JUSTIFICATIVA"));
+                        rs.getString("RESUMO_PT"), rs.getString("RESUMO_EN"), rs.getString("JUSTIFICATIVA"),
+                        ((Boolean) rs.getObject("PERMITIDO")), rs.getString("OBS_PARECER"));
 
                 do {
                     detalheProtocolo.getPedidos().add(new DetalhePedidoProtocoloDto(rs.getString("ESPECIE"),

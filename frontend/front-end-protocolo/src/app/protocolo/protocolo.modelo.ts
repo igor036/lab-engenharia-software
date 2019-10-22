@@ -9,13 +9,6 @@ interface CadastrarProtocolo {
     litaPedidoProtocolo: Array<PedidoProtocolo>;
 }
 
-interface ConsultarProtocolo {
-    idProtocolo: number;
-    docente: string;
-    data: string;
-    status: string;
-}
-
 interface PedidoProtocolo {
     idEspecie: number;
     quantidade: number;
@@ -28,9 +21,44 @@ interface PedidoProtocoloVisualizar {
     bioterio: Opcao;
 }
 
+interface ConsultaListaProtocolo {
+    tipo: string;
+    status: string;
+    idProtocolo: number;
+}
+
+interface DetalhePedidoProtocolo {
+    especie: string;
+    quantidade: number;
+    bioterio: string;
+}
+
+interface DetalheProtocolo {
+    id: number;
+    matriculaDocente: number;
+    nomeDoscente: string;
+    matriculaAvaliador: number;
+    nomeAvaliador: string;
+    resumoPt: string;
+    resumoEn: string;
+    justificativa: string;
+    permitido: Boolean;
+    observacaoParecer: String;
+    pedidos: Array<DetalhePedidoProtocolo>;
+}
+
+enum TipoConsultaListaProtocolo {
+    OPCAO_TODOS = 'T',
+    OPCAO_CODIGO = 'C',
+    OPCAO_STATUS = 'S'
+}
+
 export {
     CadastrarProtocolo,
     PedidoProtocolo,
     PedidoProtocoloVisualizar,
-    ConsultarProtocolo
+    TipoConsultaListaProtocolo,
+    ConsultaListaProtocolo,
+    DetalhePedidoProtocolo,
+    DetalheProtocolo
 }

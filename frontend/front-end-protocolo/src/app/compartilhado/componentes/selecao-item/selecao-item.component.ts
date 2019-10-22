@@ -2,18 +2,18 @@
  * Author: Igor Joaquim dos Santos Lima
  * Data: 24/08/2019
  */
-import { 
-  Component, 
-  OnInit, 
-  Input, 
-  Output, 
-  EventEmitter, 
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
   forwardRef
 } from '@angular/core';
 
-import { 
-  FormControl, 
-  NG_VALUE_ACCESSOR, 
+import {
+  FormControl,
+  NG_VALUE_ACCESSOR,
   ControlValueAccessor
 } from '@angular/forms';
 
@@ -69,8 +69,6 @@ export class SelecaoItemComponent implements OnInit, ControlValueAccessor {
     if (!this.formControl) {
       throw Error("Informe o control do componente de selecão.");
     }
-    
-    this.iniciarValor();
   }
 
   isInvalido(): boolean {
@@ -86,10 +84,5 @@ export class SelecaoItemComponent implements OnInit, ControlValueAccessor {
   }
   registerOnTouched(funcao: Function): void {
     this.onTouched = funcao;
-  }
-  
-  private iniciarValor(): void {
-    let selectedValue = this.formControl.value ? this.formControl.value : this.OPCAO_PLACEHOLDER;
-    document.getElementById("select")['value'] = selectedValue;
   }
 }

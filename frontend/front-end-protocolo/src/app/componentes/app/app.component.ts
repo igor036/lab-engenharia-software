@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 
 //servicos
 import { DocenteServico } from 'src/app/docente/docente.servico';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 //constantes
 import { URLS_NAMES } from 'src/app/app.constante';
@@ -20,10 +21,11 @@ import { URLS_NAMES } from 'src/app/app.constante';
 export class AppComponent implements OnInit {
 
   constructor(
+    private router: Router,
     private docenteServico: DocenteServico,
-    private router: Router
-  ) {}
-    
+    private spinnerServico: Ng4LoadingSpinnerService
+  ) { }
+
   /**
    * Caso o docente nao esteja logado
    * ele sera redirecionado para a tela de login.

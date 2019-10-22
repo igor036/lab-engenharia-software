@@ -16,6 +16,7 @@ import { CadastroDocenteComponent } from './docente/pagina/cadastro-docente/cada
 //componentes protocolo
 import { CadastroProtocoloComponent } from './protocolo/paginas/cadastro-protocolo/cadastro-protocolo.component';
 import { ConsultaProtocoloComponent } from './protocolo/paginas/consulta-protocolo/consulta-protocolo.component';
+import { DetalheProtocoloComponent } from './protocolo/paginas/detalhe-protocolo/detalhe-protocolo.component';
 
 export const ROTAS = [
     { path: '', component: AppComponent },
@@ -24,5 +25,6 @@ export const ROTAS = [
     { path: URLS_NAMES.perfil, component: PerfilComponent },
     { path: URLS_NAMES.cadastroDocente, component: CadastroDocenteComponent },
     { path: URLS_NAMES.cadastroProtocolo, component: CadastroProtocoloComponent },
-    { path: URLS_NAMES.consultaProtocolo, component: ConsultaProtocoloComponent }
+    { path: URLS_NAMES.consultaProtocolo, component: ConsultaProtocoloComponent },
+    { path: `${URLS_NAMES.detalheProtocolo}/:idProtocolo`, component: DetalheProtocoloComponent }
 ];

@@ -1,0 +1,93 @@
+<body class="corpo">
+
+  <form>
+
+    <div class="external-deco" style="height: auto;">
+      <div class="external-deco-header">
+        <h2>Resumo do Projeto :</h2>
+      </div>
+      <div class="internal-deco">
+        <ng-container *ngIf="exibirResumoPortugues()">
+          <p>{{ detalheProtocolo?.resumoPt }}</p>
+        </ng-container>
+        <ng-container *ngIf="exibirResumoIngles()">
+          <p>{{ detalheProtocolo?.resumoEn }}</p>
+        </ng-container>
+        <button class="button" (click)="alterarOpcaoResumo()">{{ getTextoBotaoResumo() }}</button>
+      </div>
+    </div>
+
+    <div class="external-deco">
+      <div class="external-deco-header">
+        <h2>Informações do Projeto :</h2>
+      </div>
+      <div class="internal-deco">
+        <div class="docente-row">
+          <div class="docente-deco">
+            <div class="docente-header">
+              <h3>Docente :</h3>
+            </div>
+            <div class="docente-internal">
+              <label>Codigo: </label>
+              <label>{{ detalheProtocolo?.matriculaDocente }}</label><br>
+              <label>Nome: </label>
+              <label>{{ detalheProtocolo?.nomeDoscente }}</label><br>
+            </div>
+          </div>
+        </div>
+
+        <ng-container *ngIf="exibirAvaliador()">
+          <div class="docente-row mt-3 mb-3">
+            <div class="docente-deco">
+              <div class="docente-header">
+                <h3>Avaliador :</h3>
+              </div>
+              <div class="docente-internal">
+                <label>Codigo:</label>
+                <label>Codigo do Docente</label><br>
+                <label>Nome:</label>
+                <label>Nome do Docente</label><br>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+
+        <div>
+          <h3>Justificativa do projeto :</h3>
+          <p>{{ detalheProtocolo?.justificativa }}</p>
+        </div>
+
+        <div class="docente-deco">
+          <div class="docente-header">
+            <h3>Animais :</h3>
+          </div>
+          <div *ngFor="let pedido of detalheProtocolo?.pedidos" class="docente-internal">
+            <label>Especie:</label>
+            <label>{{ pedido.especie }}</label><br>
+            <label>Quantidade:</label>
+            <label>{{ pedido.quantidade }}</label><br>
+            <label>Biotério:</label>
+            <label>{{ pedido.bioterio }}</label><br>
+          </div>
+        </div>
+
+        <ng-container *ngIf="exibirParecer()">
+          <h3>Parecer : </h3>
+          <p>{{ detalheProtocolo?.observacaoParecer}}</p>
+          <h3>Permitido : </h3>
+          <p>{{ getTextoPermitidoParecer() }}</p>
+        </ng-container>
+
+        <ng-container *ngIf="exibirBotoesAvaliar()">
+          <div class="button-row">
+            <button class="button-reject">Rejeitar</button>
+            <button class="button">Aceitar</button>
+          </div>
+        </ng-container>
+
+      </div>
+    </div>
+
+  </form>
+</body>

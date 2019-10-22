@@ -22,7 +22,7 @@ export class CadastroProtocoloComponent implements OnInit {
   public listaEspecie: Array<Opcao> = [];
   public listaBioterio: Array<Opcao> = [];
   public listaPedido: Array<PedidoProtocoloVisualizar> = [];
-  
+
   constructor(
     private formBuilder: FormBuilder,
     private utilServico: UtilServico,
@@ -37,31 +37,31 @@ export class CadastroProtocoloComponent implements OnInit {
     this.iniciarForms();
   }
 
-  cadastrar(): void  {
+  cadastrar(): void {
     this.spinnerServico.show();
-    this.protocoloServico.cadastrarProtocolo(this.getCadastrarProtocolo()).subscribe(resposta =>  {
+    this.protocoloServico.cadastrarProtocolo(this.getCadastrarProtocolo()).subscribe(resposta => {
       this.spinnerServico.hide();
       alert(resposta)
     });
   }
 
   adicionarPedido(): void {
-    
+
     let idEspecie: number = this.formPedido.controls['especie'].value;
     let quantidade: number = this.formPedido.controls['quantidade'].value;
     let idBioterio: number = this.formPedido.controls['bioterio'].value;
 
-    let opcaoEspecie:  Opcao = this.listaEspecie.find(especie => especie.valor == idEspecie); 
-    let opcaoBioterio:  Opcao = this.listaBioterio.find(bioterio => bioterio.valor == idBioterio); 
+    let opcaoEspecie: Opcao = this.listaEspecie.find(especie => especie.valor == idEspecie);
+    let opcaoBioterio: Opcao = this.listaBioterio.find(bioterio => bioterio.valor == idBioterio);
 
     let pedido: PedidoProtocoloVisualizar = {
       especie: opcaoEspecie,
       bioterio: opcaoBioterio,
       quantidade: quantidade
     };
-    
+
     this.listaPedido.push(pedido);
-    
+
     this.formPedido.controls['especie'].setValue('');
     this.formPedido.controls['quantidade'].reset();
     this.formPedido.controls['bioterio'].setValue('');
@@ -81,13 +81,13 @@ export class CadastroProtocoloComponent implements OnInit {
     let dataFimValida: boolean = this.formProtocolo.controls['dataFim'].valid;
     let dataInicio: Date = this.formProtocolo.controls['dataInicio'].value as Date;
     let dataFim: Date = this.formProtocolo.controls['dataFim'].value as Date;
-    
-    return datInicioValida && dataFimValida && dataInicio  > dataFim;
+
+    return datInicioValida && dataFimValida && dataInicio > dataFim;
   }
 
   liberarBotaoCriarNovoProtocolo(): boolean {
-    return this.formProtocolo.valid && 
-      this.listaPedido.length > 0 && 
+    return this.formProtocolo.valid &&
+      this.listaPedido.length > 0 &&
       !this.exibirMensagemPeriodoInvalido();
   }
 
@@ -104,16 +104,16 @@ export class CadastroProtocoloComponent implements OnInit {
       especie: this.formBuilder.control('', Validators.required),
       quantidade: this.formBuilder.control('', [
         Validators.required,
-        Validators.pattern('^[1-9]+$')
+        Validators.pattern('^[0-9]+$')
       ]),
       bioterio: this.formBuilder.control('', Validators.required)
     });
   }
 
   private carregarListas(): void {
-    
+
     let qtdListasCarregadas: number = 0;
-    let funcaoEsconderSpinner: Function = () =>  {
+    let funcaoEsconderSpinner: Function = () => {
       if (++qtdListasCarregadas == 2) {
         this.spinnerServico.hide();
       }

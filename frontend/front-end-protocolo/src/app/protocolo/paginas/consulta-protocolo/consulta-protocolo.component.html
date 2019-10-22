@@ -1,46 +1,62 @@
 <div class="search-deco" [formGroup]="formPesquisaProtocolo">
   <div class="input-deco">
-    <app-selecao-item [formControl]="formPesquisaProtocolo.controls['campo']" [listaOpcao]="listaPesquisaProtocolo"
-      (alterarValor)="selecionarTipo($event)" placeholder="Selecione a busca" classeIcone="fa fa-search">
+    <app-selecao-item [formControl]="formPesquisaProtocolo.controls['tipo']" [listaOpcao]="listaOpcaoTipoConsulta"
+      (alterarValor)="selecionarTipoConsulta($event)" placeholder="Selecione a busca" classeIcone="fa fa-search">
     </app-selecao-item>
 
     <div class="row">
       <ng-container *ngIf="exibirInputDePesquisa()">
-        <app-input-texto [formControl]="formPesquisaProtocolo.controls['valor']" msgErro="Informe um valor válido."
-          placeholder="Digite o Codigo Aqui ..." classeIcone="fa-sort-numeric-desc">
+        <app-input-texto [formControl]="formPesquisaProtocolo.controls['idProtocolo']"
+          msgErro="Informe um número maior que 0." tipo="number" placeholder="Código do protocolo."
+          classeIcone="fa-sort-numeric-desc">
         </app-input-texto>
       </ng-container>
 
       <ng-container *ngIf="exibirSelecaoDeStatus()">
-        <app-selecao-item [formControl]="formPesquisaProtocolo.controls['valor']"
-          [listaOpcao]="listaSelecaoDeStatusPesquisa" classeIcone="fa-check-square-o" placeholder="Selecione o Tipo"></app-selecao-item>
+        <app-selecao-item [formControl]="formPesquisaProtocolo.controls['idStatus']" [listaOpcao]="listaOpcaoStatus"
+          classeIcone="fa-check-square-o" placeholder="Selecione Status">
+        </app-selecao-item>
       </ng-container>
     </div>
 
     <div class="icon-deco ">
-      <app-botao iconeFa="fa-search" liberado="true" (click)="pesquisarProtocolo($event)" texto="Pesquisar">
+      <app-botao iconeFa="fa-search" [liberado]="formPesquisaProtocolo.valid" (click)="pesquisarProtocolo($event)"
+        texto="Pesquisar">
       </app-botao>
     </div>
   </div>
 </div>
 
 <div class="external-deco">
-
-  <ng-container *ngFor="let protocol of protocols">
-    <div class='protocol-external'>
-        <div class="protocol-external-header"></div>
-        <div class="protocol-internal">
-            <div class="protocol-info-deco">
-                <label>ID Protocolo : </label>
-                <label>{{protocol.id}}</label>
-                <label>Docente : </label>
-                <label>{{protocol.docente}}</label>
-                <label>Data : </label>
-                <label>01/01/2019</label>
-            </div>
-            <button class="protocol-button"><a>Detalhes</a></button>
-        </div>
-    </div>
-  </ng-container>
-
+  <app-paginacao [paginacao]="paginacao" (selecionarPagina)="selecionarPagina($event)">
+    <table>
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Nome Docente</th>
+          <th>Data Início</th>
+          <th>Data Fim</th>
+          <th>Detalhes</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="exibirListaProtocolo()">
+        <tr *ngFor="let protocolo of paginacao.lista">
+          <td style="width: 5%; text-align: center;"> {{ protocolo.id }} </td>
+          <td> {{ protocolo.nomeDocente }} </td>
+          <td style="width: 10%; text-align: center;"> {{ protocolo.dataInicio }} </td>
+          <td style="width: 10%; text-align: center;"> {{ protocolo.dataFim }} </td>
+          <td style="width: 5%;">
+            <button class="btn" (click)="verDetalheProtocolo(protocolo.id)">
+              <i class="fa fa-eye"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="!exibirListaProtocolo()">
+        <tr>
+          <td style="text-align: center;" colspan="10">Nenhum Protocolo encontrado!</td>
+        </tr>
+      </tbody>
+    </table>
+  </app-paginacao>
 </div>

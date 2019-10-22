@@ -1,10 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Observable, of } from 'rxjs';
+//terceiros
+import { Observable } from 'rxjs';
 
-import { CadastrarProtocolo, ConsultarProtocolo } from './protocolo.modelo';
-import { Opcao } from 'src/app/compartilhado/compartilhado.modelo';
+//modelos
+import { QUANTIDADE_REGISTROS_PAGINA_PADRAO } from 'src/app/app.constante';
+import { Paginacao } from 'src/app/compartilhado/compartilhado.modelo';
+import { CadastrarProtocolo, ConsultaListaProtocolo, DetalheProtocolo } from './protocolo.modelo';
+
+//utilitarios
+import { HttpUtil } from 'src/app/compartilhado/httpUtil';
 
 const URL_CONTROLADOR: string = "protocolo";
 
@@ -19,38 +25,14 @@ export class ProtocoloServico {
         });
     }
 
-    consultarProtocolo(dados: ConsultarProtocolo): Observable<Array<ConsultarProtocolo>> {
-        return of([
-            {
-                idProtocolo: 12345,
-                docente: 'Teste',
-                data: '15/01/2019',
-                status: 'Aberto'
-            },
-            {
-                idProtocolo: 22345,
-                docente: 'Teste',
-                data: '16/01/2019',
-                status: 'Deferido'
-            },
-            {
-                idProtocolo: 32345,
-                docente: 'Teste',
-                data: '20/01/2019',
-                status: 'Aberto'
-            },
-            {
-                idProtocolo: 42345,
-                docente: 'Teste',
-                data: '25/01/2019',
-                status: 'Deferido'
-            },
-            {
-                idProtocolo: 52345,
-                docente: 'Teste',
-                data: '30/01/2019',
-                status: 'Indeferido'
-            }
-        ]);
+    getListaProtocoloDocenteLogado(filtro: ConsultaListaProtocolo, paginaAtual: number): Observable<Paginacao> {
+        return this.httpClient.get<Paginacao>(
+            `${URL_CONTROLADOR}/lista-protocolo-docente-logado/pagina-atual/${paginaAtual}/quantidade-registros-pagina/${QUANTIDADE_REGISTROS_PAGINA_PADRAO}`,
+            { params: HttpUtil.converterObjetoParaHttpParametros(filtro) }
+        );
+    }
+
+    getDetalheProtocolo(idProtocolo: number): Observable<DetalheProtocolo> {
+        return this.httpClient.get<DetalheProtocolo>(`${URL_CONTROLADOR}/detalhe/${idProtocolo}`);
     }
 }

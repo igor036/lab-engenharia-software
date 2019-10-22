@@ -13,20 +13,23 @@ import { InputTextoComponent } from './componentes/input-texto/input-texto.compo
 import { SelecaoItemComponent } from './componentes/selecao-item/selecao-item.component';
 import { InputDataComponent } from './componentes/input-data/input-data.component';
 import { InputAreaTextoComponent } from './componentes/input-area-texto/input-area-texto.component';
+import { PaginacaoComponent } from './componentes/paginacao/paginacao.component';
 
 //servicos
 import { UtilServico } from './util.servico';
 
 //modulos
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker'
+import { PaginationModule } from 'ngx-bootstrap';
 
 const COMPONENTES = [
   BotaoComponent,
   InputTextoComponent,
   SelecaoItemComponent,
   InputDataComponent,
-  InputAreaTextoComponent
+  InputAreaTextoComponent,
+  PaginacaoComponent
 ];
 
 @NgModule({
@@ -37,7 +40,8 @@ const COMPONENTES = [
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule,
+    PaginationModule
   ],
   providers: [
     UtilServico
