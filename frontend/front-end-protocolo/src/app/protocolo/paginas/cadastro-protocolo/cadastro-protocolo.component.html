@@ -13,7 +13,8 @@
             <h3> Resumo - Inglês </h3>
             <app-input-area-texto [formControl]="formProtocolo.controls['resumoEn']" placeholder="Digite aqui ..."
                 msgErro="Campo obrigatório">
-            </app-input-area-texto>
+            </app-input-area-texto>      
+    
         </div>
     </div>
 
@@ -22,6 +23,7 @@
             <h2>Informações do Projeto :</h2>
         </div>
         <div class="internal-deco">
+
             <div class="docente-deco">
                 <div class="docente-header">
                     <h3>Docente :</h3>
@@ -34,7 +36,7 @@
                     <label>E-mail:</label>
                     <label style="padding-left: 2%;">{{ docenteLogado.email }}</label><br>
                 </div>
-            </div>
+            </div>  
 
             <div>
                 <h3>Justificativa do projeto :</h3>
@@ -60,13 +62,14 @@
                     </label>
                 </ng-container>
             </div>
+
             <form [formGroup]="formPedido">
                 <h3>Adicionar Animais :</h3>
                 <label>Espécie :</label>
                 <app-selecao-item
                     [formControl]="formPedido.controls['especie']"
                     [listaOpcao]="listaEspecie"
-                    placeholder="Selecione a Espécoe"
+                    placeholder="Selecione a Espécie"
                     classeIcone="fa fa-arrow-right">
                 </app-selecao-item>
                 <label>Quantidade :</label>

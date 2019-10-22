@@ -1,19 +1,34 @@
 package com.linecode.protocolo.filtro;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.linecode.protocolo.enumerador.StatusProtocoloEnumerador;
 import com.linecode.protocolo.enumerador.TipoConsultaListaProtocoloEnumerador;
 
 public class ConsultaListaProtocoloFiltro {
     
-    private StatusProtocoloEnumerador status;
+	@NotNull(message = "Informe o tipo de consulta.")
     private TipoConsultaListaProtocoloEnumerador tipo;
+    private StatusProtocoloEnumerador status;
     private long idProtocolo;
     
     @JsonIgnore
     private long idDocente;
     
-    public StatusProtocoloEnumerador getStatus() {
+    
+    public ConsultaListaProtocoloFiltro() {
+    	//construtor utilizado pelo jackson
+    }
+
+	public ConsultaListaProtocoloFiltro(TipoConsultaListaProtocoloEnumerador tipo,
+			StatusProtocoloEnumerador status, long idProtocolo) {
+		this.tipo = tipo;
+		this.status = status;
+		this.idProtocolo = idProtocolo;
+	}
+
+	public StatusProtocoloEnumerador getStatus() {
         return status;
     }
 
