@@ -121,7 +121,14 @@ export class ConsultaProtocoloComponent implements OnInit {
   }
 
   private limparValidacoesCampos(): void {
-    this.formPesquisaProtocolo.controls.idProtocolo.clearValidators();
-    this.formPesquisaProtocolo.controls.idStatus.clearValidators();
+    
+    let idProtocolo = this.formPesquisaProtocolo.controls.idProtocolo;
+    let idStatus = this.formPesquisaProtocolo.controls.idStatus;
+
+    idProtocolo.clearValidators();
+    idStatus.clearValidators();
+    
+    idProtocolo.updateValueAndValidity();
+    idStatus.updateValueAndValidity();
   }
 }
