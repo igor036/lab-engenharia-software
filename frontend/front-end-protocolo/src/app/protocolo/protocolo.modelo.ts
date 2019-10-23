@@ -47,6 +47,11 @@ interface DetalheProtocolo {
     pedidos: Array<DetalhePedidoProtocolo>;
 }
 
+interface AtribuirParecerista{
+    idParecerista: number;
+    idProtocolo: number;
+}
+
 enum TipoConsultaListaProtocolo {
     OPCAO_TODOS = 'T',
     OPCAO_CODIGO = 'C',
@@ -67,5 +72,6 @@ export {
     ConsultaListaProtocolo,
     DetalhePedidoProtocolo,
     DetalheProtocolo,
-    CategoriaProtocoloConsultado
+    CategoriaProtocoloConsultado,
+    AtribuirParecerista
 }

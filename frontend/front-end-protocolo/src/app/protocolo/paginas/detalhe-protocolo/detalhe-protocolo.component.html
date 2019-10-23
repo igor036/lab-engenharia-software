@@ -87,25 +87,27 @@
         </ng-container>
 
         <ng-container *ngIf="exibirAdicionarParecerista()">
-          <div [formGroup]="formAtribuirParecerista">
+          <div [formGroup]="formAtribuirParecerista" style="margin-top: 10%;">
             <h3>Atribuir Parecerista:</h3>
+            <div><!--Implementar auto-complete--></div>
             <app-input-texto [formControl]="formAtribuirParecerista.controls['nome']" msgErro="Informe um nome válido."
               placeholder="Digite o nome do parecerista" classeIcone="fa fa-search">
             </app-input-texto>
           </div>
 
-          <ng-container>
-            <div>
+          <ng-container *ngIf="exibirDadosParecerista()">
+            <div class="docente-deco">
               <div>
-                <h3>Docente:</h3>
+                <h3 class="docente-header">Docente:</h3>
               </div>
-              <div>
-                <p>Nome:</p>
-                <p>Código:</p>
+              <div class="docente-internal">
+                <label>Nome:</label><br>
+                <label>Código:</label>
               </div>
             </div>
-          </ng-container>
-
+          </ng-container>  
+            <app-botao iconeFa="" [liberado]="liberarBotaoAtribuirParecerista()" (click)="atribuirParecerista()"
+            texto="Atribuir Parecerista" id="btn">Confirmar</app-botao>
         </ng-container>
 
       </div>

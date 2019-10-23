@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 //modelos
 import { QUANTIDADE_REGISTROS_PAGINA_PADRAO } from 'src/app/app.constante';
 import { Paginacao } from 'src/app/compartilhado/compartilhado.modelo';
-import { CadastrarProtocolo, ConsultaListaProtocolo, DetalheProtocolo } from './protocolo.modelo';
+import { CadastrarProtocolo, ConsultaListaProtocolo, DetalheProtocolo, AtribuirParecerista } from './protocolo.modelo';
 
 //utilitarios
 import { HttpUtil } from 'src/app/compartilhado/httpUtil';
@@ -34,5 +34,11 @@ export class ProtocoloServico {
 
     getDetalheProtocolo(idProtocolo: number): Observable<DetalheProtocolo> {
         return this.httpClient.get<DetalheProtocolo>(`${URL_CONTROLADOR}/detalhe/${idProtocolo}`);
+    }
+
+    atribuirParecerista(parecerista: AtribuirParecerista): Observable<string>{
+        return this.httpClient.post(`${URL_CONTROLADOR}/atribuir-parecerista`, parecerista,{
+            responseType: 'text'
+        });
     }
 }
