@@ -41,6 +41,7 @@ export class CadastroProtocoloComponent implements OnInit {
     this.spinnerServico.show();
     this.protocoloServico.cadastrarProtocolo(this.getCadastrarProtocolo()).subscribe(resposta => {
       this.spinnerServico.hide();
+      this.formProtocolo.reset();
       alert(resposta)
     });
   }
@@ -104,7 +105,7 @@ export class CadastroProtocoloComponent implements OnInit {
       especie: this.formBuilder.control('', Validators.required),
       quantidade: this.formBuilder.control('', [
         Validators.required,
-        Validators.pattern('^[0-9]+$')
+        Validators.pattern('^[1-9][0-9]*$')
       ]),
       bioterio: this.formBuilder.control('', Validators.required)
     });

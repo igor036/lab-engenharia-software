@@ -4,6 +4,7 @@
  */
 package com.linecode.protocolo.servico;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -59,8 +60,12 @@ public class ProtocoloServico {
         Set<ConstraintViolation<CadastroProtocoloCmd>> violacoes = validator.validate(cmd);
 
         if (violacoes.isEmpty()) {
-
-            if (cmd.getDataFim() != null && cmd.getDataInicio().compareTo(cmd.getDataFim()) >= 0) {
+            
+            if (LocalDate.now().compareTo(cmd.getDataInicio()) >= 0) {
+                throw new ExcecaoNegocio("A data de início deve ser maior que a data atual.");
+            }
+            
+            if (cmd.getDataInicio().compareTo(cmd.getDataFim()) >= 0) {
                 throw new ExcecaoNegocio("Período de tempo inválido. A data fim deve ser maior que a data início.");
             }
 

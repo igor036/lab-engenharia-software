@@ -108,7 +108,7 @@ export class ConsultaProtocoloComponent implements OnInit {
     campoIdProtocolo.reset();
     campoIdProtocolo.setValidators([
       Validators.required,
-      Validators.pattern('^[1-9]+$')
+      Validators.pattern('^[1-9][0-9]*$')
     ]);
     campoIdProtocolo.updateValueAndValidity();
   }

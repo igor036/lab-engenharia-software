@@ -73,6 +73,10 @@ export class DocenteServico {
         localStorage.setItem(PROPRIEDADES.TOKEN_DOCENTE, token);
     }
 
+    setDocenteLogado(docenteLogado: DocenteLogado): void {
+        localStorage.setItem(PROPRIEDADES.DADOS_DOCENTE_LOGADO, JSON.stringify(docenteLogado));
+    }
+
     deslogar(): void {
         localStorage.removeItem(PROPRIEDADES.TOKEN_DOCENTE);
         localStorage.removeItem(PROPRIEDADES.DADOS_DOCENTE_LOGADO);

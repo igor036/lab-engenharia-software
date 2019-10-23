@@ -94,9 +94,13 @@ public class CadastroProtocoloStepsTest {
 
         dadosCadastro.forEach(cmd -> {
             try {
-                cmd = new CadastroProtocoloTesteCmd(cmd.getJustificativa(), cmd.getResumoPt(), cmd.getResumoEn(),
-                        cmd.getDataInicio(), cmd.getDataFim(), getListaPedidoProtocoloCmdValida(),
-                        cmd.getMsgEsperada());
+                
+                if (cmd.getLitaPedidoProtocolo() == null) {
+                    cmd = new CadastroProtocoloTesteCmd(cmd.getJustificativa(), cmd.getResumoPt(), cmd.getResumoEn(),
+                            cmd.getDataInicio(), cmd.getDataFim(), getListaPedidoProtocoloCmdValida(),
+                            cmd.getMsgEsperada());
+                }
+                
                 protocoloServico.cadastrarProtocolo(cmd);
             } catch (ExcecaoNegocio e) {
                 assertEquals(e.getMessage(), cmd.getMsgEsperada());
