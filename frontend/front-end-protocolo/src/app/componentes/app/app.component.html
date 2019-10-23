@@ -5,25 +5,21 @@
 </head>
 
 <div class="navbar-menu" *ngIf="mostrarMenu()">
-    <div>
-        <i class="fa fa-plus-square" aria-hidden="true"></i>
-        <a [routerLink]='["cadastro-docente"]'>Cadastrar Docente</a>
-    </div>
-    <div>
-        <i class="fa fa-id-card" aria-hidden="true"></i>
-        <a [routerLink]='["cadastro-protocolo"]'>Novo Protocolo</a>
-    </div>
+    <ng-container *ngIf="mostrarMenuCoordenadorSecretaria()">
+        <div>
+            <i class="fa fa-plus-square" aria-hidden="true"></i>
+            <a [routerLink]='["cadastro-docente"]'>Cadastrar Docente</a>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="mostrarMenuProfessor()">
+        <div>
+            <i class="fa fa-id-card" aria-hidden="true"></i>
+            <a [routerLink]='["cadastro-protocolo"]'>Novo Protocolo</a>
+        </div>
+    </ng-container>
     <div>
         <i class="fa fa-clock-o" aria-hidden="true"></i>
         <a [routerLink]='["consulta-protocolo"]'>Consultar Protocolos</a>
-    </div>
-    <div>
-        <i class="fa fa-id-card" aria-hidden="true"></i>
-        <a>Avaliar Protocolo</a>
-    </div>
-    <div>
-        <i class="fa fa-id-card" aria-hidden="true"></i>
-        <a>Atribuir Parecerista</a>
     </div>
     <div>
         <i class="fa fa-id-card" aria-hidden="true"></i>
