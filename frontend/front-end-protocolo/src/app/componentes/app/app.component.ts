@@ -44,11 +44,13 @@ export class AppComponent implements OnInit {
     }
 
     this.inscricaoEventoRota = this.router.events.subscribe(event => {
-      this.spinnerServico.show();
-      this.docenteServico.getDadosDocenteLogado().subscribe(docenteLogado => {
-        this.docenteLogado = docenteLogado;
-        this.spinnerServico.hide();
-      });
+      if (this.docenteServico.isLogado()) {
+        this.spinnerServico.show();
+        this.docenteServico.getDadosDocenteLogado().subscribe(docenteLogado => {
+          this.docenteLogado = docenteLogado;
+          this.spinnerServico.hide();
+        });
+      }
     });
   }
 

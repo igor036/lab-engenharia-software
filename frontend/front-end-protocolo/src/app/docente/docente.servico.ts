@@ -31,13 +31,9 @@ export class DocenteServico {
             return of(JSON.parse(localStorage.getItem(PROPRIEDADES.DADOS_DOCENTE_LOGADO)));
         }
 
-        if (this.getTokenLogado()) {
-            return this.httpClient.get<DocenteLogado>(
-                `${this.URL_CONTROLADOR}/dados-docente-logado`
-            );
-        }
-
-        return of(null);
+        return this.httpClient.get<DocenteLogado>(
+            `${this.URL_CONTROLADOR}/dados-docente-logado`
+        );
     }
 
     cadastrarDocente(cadastroDocente: CadastroDocente): Observable<string> {
