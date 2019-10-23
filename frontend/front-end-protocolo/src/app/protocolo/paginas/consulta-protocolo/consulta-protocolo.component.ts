@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 //Modelos
 import { Opcao, Paginacao } from 'src/app/compartilhado/compartilhado.modelo';
-import { PAGINACAO_PADRAO, URLS_NAMES } from 'src/app/app.constante';
+import { PAGINACAO_PADRAO, URLS_NAMES, Perfil } from 'src/app/app.constante';
 import {
   TipoConsultaListaProtocolo,
   ConsultaListaProtocolo,
@@ -15,6 +15,7 @@ import {
 import { ProtocoloServico } from 'src/app/protocolo/protocolo.servico';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { UtilServico } from 'src/app/compartilhado/servico/util.servico';
+import { DocenteServico } from 'src/app/docente/docente.servico';
 
 @Component({
   selector: 'app-consulta-protocolo',
@@ -29,12 +30,13 @@ export class ConsultaProtocoloComponent implements OnInit {
   public listaOpcaoCategoria: Array<Opcao> = [];
   public formPesquisaProtocolo: FormGroup;
   public filtro: ConsultaListaProtocolo;
-
+  public mostrarComboCategoria: boolean = false;
 
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
     private utilServico: UtilServico,
+    private docenteServico: DocenteServico,
     private protocoloServico: ProtocoloServico,
     private spinnerServico: Ng4LoadingSpinnerService
   ) { }
@@ -44,7 +46,7 @@ export class ConsultaProtocoloComponent implements OnInit {
     this.iniciarFormPesquisaProtocolo();
     this.iniciarListaOpcaoStatus();
     this.iniciarListaOpcaoCategoria();
-    this.pesquisarProtocolo();
+    this.setMostrarComboCategoria();
   }
 
   selecionarTipoConsulta(tipo: string) {
@@ -94,6 +96,18 @@ export class ConsultaProtocoloComponent implements OnInit {
     });
   }
 
+  private setMostrarComboCategoria(): void {
+    this.spinnerServico.show();
+    this.docenteServico.getDadosDocenteLogado().subscribe(docenteLogado => {
+      this.mostrarComboCategoria = docenteLogado.perfil == Perfil.PROFESSOR;
+      if (!this.mostrarComboCategoria) {
+        this.formPesquisaProtocolo.controls['categoria'].setValue(CategoriaProtocoloConsultado.OUTROS_DOCENTES);
+      }
+      this.spinnerServico.hide();
+      this.pesquisarProtocolo();
+    });
+  }
+
   private iniciarListaOpcaoTipoConsulta(): void {
     this.listaOpcaoTipoConsulta = [
       { descricao: "Todos", valor: TipoConsultaListaProtocolo.OPCAO_TODOS },
@@ -105,8 +119,7 @@ export class ConsultaProtocoloComponent implements OnInit {
   private iniciarListaOpcaoCategoria(): void {
     this.listaOpcaoCategoria = [
       { descricao: 'Meus protocolos', valor: CategoriaProtocoloConsultado.DOCENTE_LOGADO },
-      { descricao: 'Avaliar', valor: CategoriaProtocoloConsultado.AVALIAR },
-      { descricao: 'Outros Docentes', valor: CategoriaProtocoloConsultado.OUTROS_DOCENTES }
+      { descricao: 'Avaliar', valor: CategoriaProtocoloConsultado.AVALIAR }
     ];
   }
 

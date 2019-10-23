@@ -19,9 +19,11 @@
       </ng-container>
     </div>
 
-    <app-selecao-item [formControl]="formPesquisaProtocolo.controls['categoria']" [listaOpcao]="listaOpcaoCategoria"
-      placeholder="Selecione a catégoria." classeIcone="fa fa-search">
-    </app-selecao-item>
+    <ng-container *ngIf="mostrarComboCategoria">
+      <app-selecao-item [formControl]="formPesquisaProtocolo.controls['categoria']" [listaOpcao]="listaOpcaoCategoria"
+        placeholder="Selecione a catégoria." classeIcone="fa fa-search">
+      </app-selecao-item>
+    </ng-container>
 
     <div class="icon-deco ">
       <app-botao iconeFa="fa-search" [liberado]="formPesquisaProtocolo.valid" (click)="pesquisarProtocolo($event)"
