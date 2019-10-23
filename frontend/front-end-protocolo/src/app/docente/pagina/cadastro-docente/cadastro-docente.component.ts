@@ -3,7 +3,7 @@
  * Data: 24/08/2019
  */
 
- //core
+//core
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -17,7 +17,7 @@ import { Opcao } from 'src/app/compartilhado/compartilhado.modelo';
 import { REGEXS } from 'src/app/app.constante';
 
 //servico
-import { UtilServico } from 'src/app/compartilhado/util.servico';
+import { UtilServico } from 'src/app/compartilhado/servico/util.servico';
 import { DocenteServico } from 'src/app/docente/docente.servico';
 
 @Component({
@@ -52,7 +52,7 @@ export class CadastroDocenteComponent implements OnInit {
 
   private iniciarForm(): void {
     this.form = this.formBuilder.group({
-      email: this.formBuilder.control('',[
+      email: this.formBuilder.control('', [
         Validators.required,
         Validators.pattern(REGEXS.email)
       ]),
@@ -63,9 +63,9 @@ export class CadastroDocenteComponent implements OnInit {
 
   private carregarListaPerfil(): void {
     this.spinnerServico.show();
-    this.utilServico.getListaPerfil().subscribe((listaPerfil: Array<Opcao>) =>  {
+    this.utilServico.getListaPerfil().subscribe((listaPerfil: Array<Opcao>) => {
       this.listaPerfil = listaPerfil;
       this.spinnerServico.hide();
     });
-  } 
+  }
 }

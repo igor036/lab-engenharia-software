@@ -19,8 +19,8 @@ export class HttpInterceptorCore implements HttpInterceptor {
 
     constructor(
         private docenteSerico: DocenteServico,
-        private spinnerServico:  Ng4LoadingSpinnerService
-    ){}
+        private spinnerServico: Ng4LoadingSpinnerService
+    ) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): import("rxjs").Observable<HttpEvent<any>> {
         return next.handle(this.getRequisicaoAutorizacao(req));
@@ -29,11 +29,11 @@ export class HttpInterceptorCore implements HttpInterceptor {
     private getRequisicaoAutorizacao(req: HttpRequest<any>): any {
         this.spinnerServico.hide();
         if (req.url == "login") {
-            return req.clone({url: PROPRIEDADES.URL_BASE+req.url});
+            return req.clone({ url: PROPRIEDADES.URL_BASE + req.url });
         }
 
         return req.clone({
-            url: PROPRIEDADES.URL_BASE+req.url,
+            url: PROPRIEDADES.URL_BASE + req.url,
             setHeaders: {
                 Authorization: this.docenteSerico.getTokenLogado()
             },

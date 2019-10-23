@@ -20,6 +20,7 @@ import { ProtocoloModule } from './protocolo/protocolo.module';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { PaginationModule } from 'ngx-bootstrap';
+import { ModalModule } from 'ngx-bootstrap';
 
 //interceptadores
 import { HttpInterceptorCore } from './interceptor/http.interceptor';
@@ -41,7 +42,8 @@ import { ROTAS } from './app.router';
     DocenteModule,
     ProtocoloModule,
     BsDatepickerModule.forRoot(),
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    ModalModule.forRoot()
   ],
   providers: [
     DocenteServico,

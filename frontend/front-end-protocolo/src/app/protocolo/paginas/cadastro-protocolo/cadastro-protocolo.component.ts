@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProtocoloServico } from 'src/app/protocolo/protocolo.servico';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { Opcao } from 'src/app/compartilhado/compartilhado.modelo';
-import { UtilServico } from 'src/app/compartilhado/util.servico';
+import { UtilServico } from 'src/app/compartilhado/servico/util.servico';
 import { PedidoProtocoloVisualizar, CadastrarProtocolo } from 'src/app/protocolo/protocolo.modelo';
 import { DocenteServico } from 'src/app/docente/docente.servico';
 import { DocenteLogado } from 'src/app/docente/docente.modelo';

@@ -14,7 +14,7 @@ import {
 //Servico
 import { ProtocoloServico } from 'src/app/protocolo/protocolo.servico';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
-import { UtilServico } from 'src/app/compartilhado/util.servico';
+import { UtilServico } from 'src/app/compartilhado/servico/util.servico';
 
 @Component({
   selector: 'app-consulta-protocolo',
@@ -26,6 +26,7 @@ export class ConsultaProtocoloComponent implements OnInit {
   public paginacao: Paginacao = PAGINACAO_PADRAO;
   public listaOpcaoTipoConsulta: Array<Opcao> = [];
   public listaOpcaoStatus: Array<Opcao> = [];
+  public listaOpcaoCategoria: Array<Opcao> = [];
   public formPesquisaProtocolo: FormGroup;
   public filtro: ConsultaListaProtocolo;
 
@@ -42,6 +43,7 @@ export class ConsultaProtocoloComponent implements OnInit {
     this.iniciarListaOpcaoTipoConsulta();
     this.iniciarFormPesquisaProtocolo();
     this.iniciarListaOpcaoStatus();
+    this.iniciarListaOpcaoCategoria();
     this.pesquisarProtocolo();
   }
 
@@ -97,6 +99,14 @@ export class ConsultaProtocoloComponent implements OnInit {
       { descricao: "Todos", valor: TipoConsultaListaProtocolo.OPCAO_TODOS },
       { descricao: "Código", valor: TipoConsultaListaProtocolo.OPCAO_CODIGO },
       { descricao: "Status", valor: TipoConsultaListaProtocolo.OPCAO_STATUS }
+    ];
+  }
+
+  private iniciarListaOpcaoCategoria(): void {
+    this.listaOpcaoCategoria = [
+      { descricao: 'Meus protocolos', valor: CategoriaProtocoloConsultado.DOCENTE_LOGADO },
+      { descricao: 'Avaliar', valor: CategoriaProtocoloConsultado.AVALIAR },
+      { descricao: 'Outros Docentes', valor: CategoriaProtocoloConsultado.OUTROS_DOCENTES }
     ];
   }
 

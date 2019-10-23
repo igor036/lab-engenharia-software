@@ -14,9 +14,11 @@ import { SelecaoItemComponent } from './componentes/selecao-item/selecao-item.co
 import { InputDataComponent } from './componentes/input-data/input-data.component';
 import { InputAreaTextoComponent } from './componentes/input-area-texto/input-area-texto.component';
 import { PaginacaoComponent } from './componentes/paginacao/paginacao.component';
+import { ModalMensagemComponent } from './componentes/modal/modal-mensagem/modal-mensagem.component';
 
 //servicos
-import { UtilServico } from './util.servico';
+import { UtilServico } from './servico/util.servico';
+import { ModalServico } from './componentes/modal/modal.servico';
 
 //modulos
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -29,12 +31,16 @@ const COMPONENTES = [
   SelecaoItemComponent,
   InputDataComponent,
   InputAreaTextoComponent,
-  PaginacaoComponent
+  PaginacaoComponent,
+  ModalMensagemComponent
 ];
 
 @NgModule({
   declarations: COMPONENTES,
   exports: COMPONENTES,
+  entryComponents: [
+    ModalMensagemComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -44,7 +50,8 @@ const COMPONENTES = [
     PaginationModule
   ],
   providers: [
-    UtilServico
+    UtilServico,
+    ModalServico
   ]
 })
 export class CompartilhadoModule { }

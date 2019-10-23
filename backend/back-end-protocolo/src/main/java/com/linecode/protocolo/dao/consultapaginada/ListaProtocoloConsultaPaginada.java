@@ -46,7 +46,7 @@ public class ListaProtocoloConsultaPaginada
     private String adicionarParametroConsultaAvaliar() {
         if (filtro.getCategoria().isAvaliar()) {
             adicionarParametro(filtro.getIdDocente(), Types.INTEGER);
-            return "EXISTS (SELECT 1 FROM TAB_PARECER PR WHERE  PR.FK_ID_PROTOCOLO = P.ID_PROTOCOLO AND PR.FK_MATRICULA = 1)";
+            return "EXISTS (SELECT 1 FROM TAB_PARECER PR WHERE  PR.FK_ID_PROTOCOLO = P.ID_PROTOCOLO AND PR.FK_MATRICULA = ?) ";
         }
         return "";
     }
@@ -54,7 +54,7 @@ public class ListaProtocoloConsultaPaginada
     private String adicionarParametroConsultaOutrosDocentes() {
         if (filtro.getCategoria().isOutrosDocentes()) {
             adicionarParametro(filtro.getIdDocente(), Types.INTEGER);
-            return "P.FK_MATRICULA <> 1";
+            return " AND P.FK_MATRICULA <> ? ";
         }
         return "";
     }
