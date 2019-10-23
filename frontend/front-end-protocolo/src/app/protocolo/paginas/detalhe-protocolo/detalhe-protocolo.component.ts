@@ -91,14 +91,14 @@ export class DetalheProtocoloComponent implements OnInit {
 
   exibirBotoesAvaliar(): boolean {
     if (this.detalheProtocolo && this.docenteLogado) {
-      return this.detalheProtocolo.matriculaDocente != this.docenteLogado.matricula;
+      return this.detalheProtocolo.matriculaDocente != this.docenteLogado.matricula && this.docenteLogado.perfil === Perfil.PROFESSOR;
     }
     return false;
   }
 
   exibirAdicionarParecerista(): boolean {
-    //return true;
-    return this.docenteLogado.perfil === Perfil.ADMIN;
+    let perfilDocente = this.docenteLogado.perfil
+    return perfilDocente === Perfil.COORDENADOR || perfilDocente === Perfil.SECRETARIA;
   }
 
   exibirDadosParecerista(): boolean {
