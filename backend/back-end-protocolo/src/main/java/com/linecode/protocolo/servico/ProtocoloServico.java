@@ -49,10 +49,12 @@ public class ProtocoloServico {
      * 
      * A data fim deve ser obrigatóriamente maior que a data de início.
      * 
+     * Metodo permitido somente para <b>PerfilEnumerador.PROFESSOR</b>
+     * 
      * @param cmd - dados do protocolo {@link CadastroProtocoloCmd}
      */
     @Transactional
-    @PreAuthorize("@autorizacaoServico.isAutenticado()")
+    @PreAuthorize("@autorizacaoServico.isAutorizado('PROFESSOR')")
     public void cadastrarProtocolo(CadastroProtocoloCmd cmd) {
 
         Assert.notNull(cmd, "Informe os dados do protocolo");
