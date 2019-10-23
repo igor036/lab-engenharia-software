@@ -18,9 +18,8 @@ export class ErrorInterceptor implements ErrorHandler {
 
   handleError(error: any): void {
     console.log(error);
-    let msg = typeof error.error == 'string' ? error.error : error.error.message;
+    let msg = error.error;
     this.injector.get(ModalServico).exibirErro(msg);
     this.spinnerServico.hide();
-    throw error;
   }
 }
