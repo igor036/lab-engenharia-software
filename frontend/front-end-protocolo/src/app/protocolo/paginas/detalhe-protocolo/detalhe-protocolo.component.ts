@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 //modelo
 import { DetalheProtocolo } from 'src/app/protocolo/protocolo.modelo';
@@ -9,6 +10,11 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ProtocoloServico } from 'src/app/protocolo/protocolo.servico';
 import { DocenteServico } from 'src/app/docente/docente.servico';
 import { DocenteLogado } from 'src/app/docente/docente.modelo';
+
+//Constante
+import { Perfil } from 'src/app/app.constante';
+import { REGEXS } from 'src/app/app.constante';
+
 
 const OPCAO_RESUMO_PT: string = 'PT';
 const OPCAO_RESUMO_EN: string = 'EN';
@@ -24,19 +30,22 @@ export class DetalheProtocoloComponent implements OnInit {
   private opcaoResumo: string = OPCAO_RESUMO_PT;
   private docenteLogado: DocenteLogado;
   public detalheProtocolo: DetalheProtocolo;
+  public formAtribuirParecerista: FormGroup;
 
 
   constructor(
     private rota: ActivatedRoute,
     private docenteServico: DocenteServico,
     private protocoloServico: ProtocoloServico,
-    private spinnerServico: Ng4LoadingSpinnerService
+    private spinnerServico: Ng4LoadingSpinnerService,
+    private formBuilder: FormBuilder
   ) {
     this.ID_PROTOCOLO = this.rota.snapshot.params['idProtocolo'];
   }
 
   ngOnInit() {
     this.carregarDetalhesProtocoloEDocenteLogado();
+    this.iniciarFormAtribuirParecerista();
   }
 
   getTextoBotaoResumo(): string {
@@ -82,6 +91,22 @@ export class DetalheProtocoloComponent implements OnInit {
       return this.detalheProtocolo.matriculaDocente != this.docenteLogado.matricula;
     }
     return false;
+  }
+
+  exibirAdicionarParecerista(): boolean {
+    //return true;
+    return this.docenteLogado.perfil === Perfil.ADMIN;
+  }
+
+  exibirDadosParecerista(): boolean {
+    return true;
+  }
+
+  iniciarFormAtribuirParecerista(): void {
+    this.formAtribuirParecerista = this.formBuilder.group({
+      nome: this.formBuilder.control('',
+        [Validators.required, Validators.pattern(REGEXS.nome)])
+    });
   }
 
   private carregarDetalhesProtocoloEDocenteLogado(): void {

@@ -8,6 +8,7 @@ import { UtilServico } from 'src/app/compartilhado/servico/util.servico';
 import { PedidoProtocoloVisualizar, CadastrarProtocolo } from 'src/app/protocolo/protocolo.modelo';
 import { DocenteServico } from 'src/app/docente/docente.servico';
 import { DocenteLogado } from 'src/app/docente/docente.modelo';
+import { ModalServico } from 'src/app/compartilhado/componentes/modal/modal.servico';
 
 @Component({
   selector: 'app-cadastro-protocolo',
@@ -28,7 +29,8 @@ export class CadastroProtocoloComponent implements OnInit {
     private utilServico: UtilServico,
     private docenteServico: DocenteServico,
     private protocoloServico: ProtocoloServico,
-    private spinnerServico: Ng4LoadingSpinnerService
+    private spinnerServico: Ng4LoadingSpinnerService,
+    private modalServico: ModalServico
   ) { }
 
   ngOnInit() {
@@ -42,7 +44,7 @@ export class CadastroProtocoloComponent implements OnInit {
     this.protocoloServico.cadastrarProtocolo(this.getCadastrarProtocolo()).subscribe(resposta => {
       this.spinnerServico.hide();
       this.formProtocolo.reset();
-      alert(resposta)
+      this.modalServico.exibirSucesso(resposta);
     });
   }
 

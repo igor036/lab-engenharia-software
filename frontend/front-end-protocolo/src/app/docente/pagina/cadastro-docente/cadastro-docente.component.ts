@@ -19,6 +19,7 @@ import { REGEXS } from 'src/app/app.constante';
 //servico
 import { UtilServico } from 'src/app/compartilhado/servico/util.servico';
 import { DocenteServico } from 'src/app/docente/docente.servico';
+import { ModalServico } from 'src/app/compartilhado/componentes/modal/modal.servico';
 
 @Component({
   selector: 'app-cadastro-docente',
@@ -34,7 +35,8 @@ export class CadastroDocenteComponent implements OnInit {
     private spinnerServico: Ng4LoadingSpinnerService,
     private docenteServico: DocenteServico,
     private utilServico: UtilServico,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private modalServico: ModalServico
   ) { }
 
   ngOnInit() {
@@ -46,7 +48,7 @@ export class CadastroDocenteComponent implements OnInit {
     this.spinnerServico.show();
     this.docenteServico.cadastrarDocente(this.form.value).subscribe((msg) => {
       this.spinnerServico.hide();
-      alert(msg);
+      this.modalServico.exibirSucesso(msg);
     });
   }
 

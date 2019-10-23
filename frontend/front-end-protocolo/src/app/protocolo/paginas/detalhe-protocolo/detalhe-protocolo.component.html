@@ -86,6 +86,28 @@
           </div>
         </ng-container>
 
+        <ng-container *ngIf="exibirAdicionarParecerista()">
+          <div [formGroup]="formAtribuirParecerista">
+            <h3>Atribuir Parecerista:</h3>
+            <app-input-texto [formControl]="formAtribuirParecerista.controls['nome']" msgErro="Informe um nome válido."
+              placeholder="Digite o nome do parecerista" classeIcone="fa fa-search">
+            </app-input-texto>
+          </div>
+
+          <ng-container>
+            <div>
+              <div>
+                <h3>Docente:</h3>
+              </div>
+              <div>
+                <p>Nome:</p>
+                <p>Código:</p>
+              </div>
+            </div>
+          </ng-container>
+
+        </ng-container>
+
       </div>
     </div>
 
