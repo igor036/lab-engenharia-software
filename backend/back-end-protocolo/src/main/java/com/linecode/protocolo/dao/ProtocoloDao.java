@@ -46,11 +46,11 @@ public class ProtocoloDao {
     }
 
     @Transactional(readOnly = true)
-    public PaginacaoDto<ListagemProtocoloDto> getListaProtocoloDocenteLogado(ConsultaListaProtocoloFiltro filtro,
+    public PaginacaoDto<ListagemProtocoloDto> getListaProtocolo(ConsultaListaProtocoloFiltro filtro,
             int paginaAtual, int qtdRegistrosPagina) {
 
         ListaProtocoloConsultaPaginada consultaPaginada = new ListaProtocoloConsultaPaginada(
-                env.getProperty("com.linecode.protocolo.dao.ProtocoloDao.getListaProtocoloDocenteLogado"), jdbcTemplate,
+                env.getProperty("com.linecode.protocolo.dao.ProtocoloDao.getListaProtocolo"), jdbcTemplate,
                 filtro, paginaAtual, qtdRegistrosPagina);
 
         return consultaPaginada.getPaginacao();

@@ -85,7 +85,7 @@ public class ProtocoloServico {
     }
 
     /**
-     * Retorna uma consulta de protocolo do docente <b>LOGADO</b> de forma paginada.
+     * Retorna uma consulta de protocolo.
      * 
      * @param filtro             - dados do filtro da consulta {@link ConsultaListaProtocoloFiltro}
      * @param paginaAtual        - pagina da consulta atual {@link Integer}
@@ -93,7 +93,7 @@ public class ProtocoloServico {
      * @return paginacao da consulta {@link PaginacaoDto<ListagemProtocoloDto>}
      */
     @PreAuthorize("@autorizacaoServico.isAutenticado()")
-    public PaginacaoDto<ListagemProtocoloDto> getListaProtocoloDocenteLogado(ConsultaListaProtocoloFiltro filtro,
+    public PaginacaoDto<ListagemProtocoloDto> getListaProtocolo(ConsultaListaProtocoloFiltro filtro,
             int paginaAtual, int qtdRegistrosPagina) {
 
         Assert.notNull(filtro, "Informe os dados da consulta!");
@@ -113,7 +113,7 @@ public class ProtocoloServico {
 
             filtro.setIdDocente(docenteServico.getDadosDocenteLogado().getMatricula());
 
-            return protocoloDao.getListaProtocoloDocenteLogado(filtro, paginaAtual, qtdRegistrosPagina);
+            return protocoloDao.getListaProtocolo(filtro, paginaAtual, qtdRegistrosPagina);
 
         } else {
             throw new ExcecaoNegocio(violacoes.stream().findFirst().get().getMessage());

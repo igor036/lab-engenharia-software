@@ -33,10 +33,10 @@ public class ProtocoloControlador {
 		return ResponseEntity.ok("Protocolo cadastrado com sucesso!");
 	}
 	
-	@GetMapping("lista-protocolo-docente-logado/pagina-atual/{paginaAtual}/quantidade-registros-pagina/{qtdRegistrosPagina}")
-	public ResponseEntity<PaginacaoDto<ListagemProtocoloDto>> getListaProtocoloDocenteLogado(ConsultaListaProtocoloFiltro filtro,
+	@GetMapping("lista-protocolo/pagina-atual/{paginaAtual}/quantidade-registros-pagina/{qtdRegistrosPagina}")
+	public ResponseEntity<PaginacaoDto<ListagemProtocoloDto>> getListaProtocolo(ConsultaListaProtocoloFiltro filtro,
             @PathVariable int paginaAtual, @PathVariable int qtdRegistrosPagina) {
-	    return ResponseEntity.ok(protocoloServico.getListaProtocoloDocenteLogado(filtro, paginaAtual, qtdRegistrosPagina));
+	    return ResponseEntity.ok(protocoloServico.getListaProtocolo(filtro, paginaAtual, qtdRegistrosPagina));
 	}
 	
 	@GetMapping("detalhe/{idProtocolo}")

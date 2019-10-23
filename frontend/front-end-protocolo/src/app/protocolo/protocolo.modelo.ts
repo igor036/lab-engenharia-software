@@ -53,6 +53,12 @@ enum TipoConsultaListaProtocolo {
     OPCAO_STATUS = 'S'
 }
 
+enum CategoriaProtocoloConsultado {
+    DOCENTE_LOGADO = 'DL',
+    AVALIAR = 'A',
+    OUTROS_DOCENTES = 'OD'
+}
+
 export {
     CadastrarProtocolo,
     PedidoProtocolo,
@@ -60,5 +66,6 @@ export {
     TipoConsultaListaProtocolo,
     ConsultaListaProtocolo,
     DetalhePedidoProtocolo,
-    DetalheProtocolo
+    DetalheProtocolo,
+    CategoriaProtocoloConsultado
 }

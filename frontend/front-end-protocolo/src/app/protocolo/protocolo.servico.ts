@@ -25,9 +25,9 @@ export class ProtocoloServico {
         });
     }
 
-    getListaProtocoloDocenteLogado(filtro: ConsultaListaProtocolo, paginaAtual: number): Observable<Paginacao> {
+    getListaProtocolo(filtro: ConsultaListaProtocolo, paginaAtual: number): Observable<Paginacao> {
         return this.httpClient.get<Paginacao>(
-            `${URL_CONTROLADOR}/lista-protocolo-docente-logado/pagina-atual/${paginaAtual}/quantidade-registros-pagina/${QUANTIDADE_REGISTROS_PAGINA_PADRAO}`,
+            `${URL_CONTROLADOR}/lista-protocolo/pagina-atual/${paginaAtual}/quantidade-registros-pagina/${QUANTIDADE_REGISTROS_PAGINA_PADRAO}`,
             { params: HttpUtil.converterObjetoParaHttpParametros(filtro) }
         );
     }

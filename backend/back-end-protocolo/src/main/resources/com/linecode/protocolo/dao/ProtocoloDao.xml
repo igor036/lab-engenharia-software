@@ -37,7 +37,7 @@
 		) RETURNING ID_PEDIDO	
 	</entry>
 	
-	<entry key="com.linecode.protocolo.dao.ProtocoloDao.getListaProtocoloDocenteLogado">
+	<entry key="com.linecode.protocolo.dao.ProtocoloDao.getListaProtocolo">
 		SELECT 
 			P.ID_PROTOCOLO AS ID,
 			D.NOME AS NOME_DOCENTE,
