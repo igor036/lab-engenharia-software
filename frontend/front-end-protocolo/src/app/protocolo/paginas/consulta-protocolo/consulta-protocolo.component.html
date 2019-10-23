@@ -4,7 +4,7 @@
       (alterarValor)="selecionarTipoConsulta($event)" placeholder="Selecione a busca" classeIcone="fa fa-search">
     </app-selecao-item>
 
-    <div class="row">
+    <div>
       <ng-container *ngIf="exibirInputDePesquisa()">
         <app-input-texto [formControl]="formPesquisaProtocolo.controls['idProtocolo']"
           msgErro="Informe um número maior que 0." tipo="number" placeholder="Código do protocolo."
