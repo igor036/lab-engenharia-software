@@ -32,7 +32,7 @@ public class ListaProtocoloConsultaPaginada
     @Override
     protected ListagemProtocoloDto mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new ListagemProtocoloDto(rs.getLong("ID"), rs.getString("NOME_DOCENTE"), rs.getString("DATA_INICIO"),
-                rs.getString("DATA_FIM"));
+                rs.getString("DATA_FIM"), rs.getString("STATUS"));
     }
 
     private String adicionarParametroConsultaDocenteLogado() {
