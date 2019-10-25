@@ -1,0 +1,18 @@
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Allerta&display=swap" rel="stylesheet">
+</head>
+
+<div class="input-deco">
+  <div class='icon-deco'>
+    <i class="fa {{ iconeFa }}" aria-hidden="true"></i>
+  </div>
+
+  <input class="input-deco-input" iconeFa="fa-search" [formControl]="formControl" [placeholder]="placeholder"
+    [class.input-invalido]="isInvalido()" [type]="type" (keyup)="enviarDados($event)" />
+
+</div>
+<ng-container *ngIf="true">
+  <div class="input-sugestao" *ngFor="let sugestao of listaSugestoes">
+    {{ sugestao }}
+  </div>
+</ng-container>

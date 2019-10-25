@@ -15,6 +15,7 @@ import { InputDataComponent } from './componentes/input-data/input-data.componen
 import { InputAreaTextoComponent } from './componentes/input-area-texto/input-area-texto.component';
 import { PaginacaoComponent } from './componentes/paginacao/paginacao.component';
 import { ModalMensagemComponent } from './componentes/modal/modal-mensagem/modal-mensagem.component';
+import { InputAutoCompleteComponent } from './componentes/input-auto-complete/input-auto-complete.component';
 
 //servicos
 import { UtilServico } from './servico/util.servico';
@@ -32,7 +33,8 @@ const COMPONENTES = [
   InputDataComponent,
   InputAreaTextoComponent,
   PaginacaoComponent,
-  ModalMensagemComponent
+  ModalMensagemComponent,
+  InputAutoCompleteComponent
 ];
 
 @NgModule({
