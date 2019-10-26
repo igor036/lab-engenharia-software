@@ -2,7 +2,7 @@
  * Author: Igor Joaquim dos Santos Lima
  * Data: 22/08/2019
  */
-package com.linecode.util.dto;
+package com.linecode.compartilhado.dto;
 
 public class OpcaoDto <T> {
 

@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.linecode.util.dto.OpcaoDto;
+import com.linecode.compartilhado.dto.OpcaoDto;
 
 public class OpcaoDtoMapeadorLinha implements RowMapper<OpcaoDto<Long>>  {
 

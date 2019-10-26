@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.linecode.util.dto.OpcaoDto;
+import com.linecode.compartilhado.dto.OpcaoDto;
 import com.linecode.util.servico.UtilServico;
 
 @RestController

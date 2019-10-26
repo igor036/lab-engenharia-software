@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.linecode.compartilhado.dao.mapeadorlinha.OpcaoDtoMapeadorLinha;
-import com.linecode.util.dto.OpcaoDto;
+import com.linecode.compartilhado.dto.OpcaoDto;
 
 @Repository
 @PropertySource("com/linecode/util/dao/UtilDao.xml")

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-    <comment>Querys relacionadas aos docentes</comment>
+	<comment>Querys relacionadas aos docentes</comment>
 	
 	<entry key="com.linecode.docente.dao.DocenteDao.getDocentePorEmailSenha">
 		SELECT
@@ -25,5 +25,11 @@
 			FK_ID_ROLE
 		) VALUES (?, ?, ?, ?)
 	</entry>
-    	
+	<entry key="com.linecode.docente.dao.DocenteDao.getListaSugestaoDocente">
+		SELECT
+			MATRICULA,
+			NOME
+		FROM TAB_DOCENTE
+		WHERE UPPER(NOME) LIKE UPPER(?) 
+	</entry>
 </properties>

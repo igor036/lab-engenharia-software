@@ -11,8 +11,8 @@ import org.springframework.core.env.Environment;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
+import com.linecode.compartilhado.dto.OpcaoDto;
 import com.linecode.util.dao.UtilDao;
-import com.linecode.util.dto.OpcaoDto;
 
 @Service
 public class UtilServico {
