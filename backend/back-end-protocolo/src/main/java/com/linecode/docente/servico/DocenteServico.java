@@ -4,6 +4,7 @@
  */
 package com.linecode.docente.servico;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -18,7 +19,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import org.springframework.util.StringUtils;
 
+import com.linecode.compartilhado.dto.OpcaoDto;
 import com.linecode.compartilhado.excecao.ExcecaoAplicacao;
 import com.linecode.compartilhado.excecao.ExcecaoNegocio;
 import com.linecode.docente.cmd.CadastroDocenteCmd;
@@ -99,6 +102,21 @@ public class DocenteServico {
         } else {
         	throw new ExcecaoNegocio(violacoes.stream().findFirst().get().getMessage());
         }
+    }
+    
+    /**
+     * Retorna uma lista de sugestão de docentes por nome de consulta
+     * 
+     * @param nome - o nome do docente.
+     * @return lista de opção {@link List<OpcaoDto<Long>>}
+     */
+    public List<OpcaoDto<Long>> getListaSugestaoDocente(String nome) {
+    	
+    	if (StringUtils.isEmpty(nome)) {
+    		throw new ExcecaoNegocio("Informe o nome da consulta");
+    	}
+    	
+    	return docenteDao.getListaSugestaoDocente(nome);
     }
 
     /**

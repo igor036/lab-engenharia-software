@@ -25,11 +25,14 @@
 			FK_ID_ROLE
 		) VALUES (?, ?, ?, ?)
 	</entry>
+	
 	<entry key="com.linecode.docente.dao.DocenteDao.getListaSugestaoDocente">
 		SELECT
-			MATRICULA,
-			NOME
+			MATRICULA AS COLUNA_ID,
+			NOME AS COLUNA_DESCRICAO
 		FROM TAB_DOCENTE
-		WHERE UPPER(NOME) LIKE UPPER(?) 
+		WHERE UPPER(NOME) LIKE UPPER(?)
+		LIMIT 5
 	</entry>
+	
 </properties>
