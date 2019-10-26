@@ -86,4 +86,13 @@
 		WHERE P.ID_PROTOCOLO = ?
     </entry>	
     	
+    <entry key="com.linecode.protocolo.dao.ProtocoloDao.cadastrarAvaliadorProtocolo">
+    	INSERT INTO TAB_PARECER (
+    		FK_MATRICULA, 
+    		FK_ID_PROTOCOLO
+    	) VALUES (
+    		?, 
+    		?
+    	) RETURNING ID_PARECER
+    </entry>
 </properties>

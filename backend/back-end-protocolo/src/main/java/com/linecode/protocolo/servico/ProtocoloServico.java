@@ -18,6 +18,7 @@ import com.linecode.compartilhado.dto.PaginacaoDto;
 import com.linecode.compartilhado.excecao.ExcecaoAplicacao;
 import com.linecode.compartilhado.excecao.ExcecaoNegocio;
 import com.linecode.docente.servico.DocenteServico;
+import com.linecode.protocolo.cmd.CadastrarAvaliadorProtocoloCmd;
 import com.linecode.protocolo.cmd.CadastroProtocoloCmd;
 import com.linecode.protocolo.cmd.PedidoProtocoloCmd;
 import com.linecode.protocolo.dao.ProtocoloDao;
@@ -141,6 +142,23 @@ public class ProtocoloServico {
             protocoloDao.cadastrarPedidoProtocolo(pedido);
         } else {
             throw new ExcecaoNegocio(violacoes.stream().findFirst().get().getMessage());
+        }
+    }
+    
+    /**
+     * Efetua o cadastro de um determinado avaliador para um determinado protocolo.
+     * 
+     *  @param cadastro - contem o id do avaliador e o id do protocolo {@link CadastrarAvaliadorProtocoloCmd}
+     */
+    @PreAuthorize("@autorizacaoServico.isAutorizacaoAdmin()")
+    public void cadastrarAvaliadorProtocolo(CadastrarAvaliadorProtocoloCmd cmd)  {
+    	
+    	Set<ConstraintViolation<CadastrarAvaliadorProtocoloCmd>> violacoes = validator.validate(cmd);
+
+        if (violacoes.isEmpty()) { 
+        	protocoloDao.cadastrarAvaliadorProtocolo(cmd);
+        } else {
+        	throw new ExcecaoNegocio(violacoes.stream().findFirst().get().getMessage());
         }
     }
 }
