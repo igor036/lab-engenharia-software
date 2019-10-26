@@ -51,4 +51,17 @@ i {
 
 .input-sugestao{
   background-color: #fff;
+  width: 82%;
+  margin-top:-2%;
+  margin-left: 16%;
+  z-index: 2;
+  margin-bottom: 2%;
+}
+
+li{
+  height: 5%;
+}
+
+li:hover{
+  background-color: #3d8af7;
 }

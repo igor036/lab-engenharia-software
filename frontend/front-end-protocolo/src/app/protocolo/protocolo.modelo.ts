@@ -48,8 +48,13 @@ interface DetalheProtocolo {
 }
 
 interface AtribuirParecerista{
-    idParecerista: number;
+    matriculaParecerista: number;
     idProtocolo: number;
+}
+
+interface ListarSugestoesDePareceristas {
+    matriculaParecerista: number;
+    nome: string;
 }
 
 enum TipoConsultaListaProtocolo {
@@ -73,5 +78,6 @@ export {
     DetalhePedidoProtocolo,
     DetalheProtocolo,
     CategoriaProtocoloConsultado,
-    AtribuirParecerista
+    AtribuirParecerista,
+    ListarSugestoesDePareceristas
 }

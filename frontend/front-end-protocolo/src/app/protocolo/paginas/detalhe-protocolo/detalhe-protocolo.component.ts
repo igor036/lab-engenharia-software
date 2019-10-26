@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 //modelo
-import { DetalheProtocolo, AtribuirParecerista } from 'src/app/protocolo/protocolo.modelo';
+import { DetalheProtocolo, AtribuirParecerista, ListarSugestoesDePareceristas } from 'src/app/protocolo/protocolo.modelo';
 import { DocenteLogado } from 'src/app/docente/docente.modelo';
 
 //servico
@@ -33,6 +33,7 @@ export class DetalheProtocoloComponent implements OnInit {
   private docenteLogado: DocenteLogado;
   public detalheProtocolo: DetalheProtocolo;
   public formAtribuirParecerista: FormGroup;
+  public listaSugestoesPareceristas: Array<ListarSugestoesDePareceristas>;
 
 
   constructor(
@@ -47,6 +48,7 @@ export class DetalheProtocoloComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.listaSugestoesPareceristas = [];
     this.carregarDetalhesProtocoloEDocenteLogado();
     this.iniciarFormAtribuirParecerista();
   }
@@ -143,5 +145,11 @@ export class DetalheProtocoloComponent implements OnInit {
       this.docenteLogado = docenteLogado;
       esconderSpinner();
     });
+  }
+
+  atualizarListaDeSugestaoPareceristas(valor: string): void {
+    this.protocoloServico.listarSugestoesDePareceristas(valor).subscribe(lista => {
+      this.listaSugestoesPareceristas = lista;
+    });    
   }
 }

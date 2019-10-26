@@ -92,8 +92,12 @@
             <div>
               <!--Implementar auto-complete-->
             </div>
-            <app-input-auto-complete [formControl]="formAtribuirParecerista.controls['nome']"
-              placeholder="Digite o nome do parecerista" iconeFa="fa fa-search">
+            <app-input-auto-complete 
+              [formControl]="formAtribuirParecerista.controls['nome']"
+              placeholder="Digite o nome do parecerista" 
+              iconeFa="fa fa-search" 
+              [listaSugestoes]="listaSugestoesPareceristas"
+              (mudarValor)="atualizarListaDeSugestaoPareceristas($event)">
             </app-input-auto-complete>
           </div>
 

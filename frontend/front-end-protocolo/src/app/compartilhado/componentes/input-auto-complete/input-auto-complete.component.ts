@@ -31,13 +31,13 @@ import { } from 'events';
 })
 export class InputAutoCompleteComponent implements OnInit, ControlValueAccessor {
 
-  listaSugestoes: Array<any> = ['Teste1', 'Teste2', 'Teste3'];
   @Input() formControl: FormControl;
   @Input() iconeFa?: string;
   @Input() placeholder: string;
   @Input() type: string = 'text';
+  @Input() listaSugestoes: Array<any> = [];  
 
-  @Output() buscarValor: EventEmitter<string> = new EventEmitter<string>();
+  @Output() mudarValor: EventEmitter<string> = new EventEmitter<string>();
 
   private valor: string;
   private onChange: Function;
@@ -57,7 +57,7 @@ export class InputAutoCompleteComponent implements OnInit, ControlValueAccessor 
 
   writeValue(valor: string): void {
     this.valor = valor;
-    this.buscarValor.emit(this.valor);
+    this.mudarValor.emit(this.valor);
   }
 
   registerOnChange(funcao: Function): void {
@@ -67,9 +67,8 @@ export class InputAutoCompleteComponent implements OnInit, ControlValueAccessor 
     this.onTouched = funcao;
   }
 
-
   enviarDados(value: string) {
-    this.buscarValor.emit(value);
+    this.mudarValor.emit(value);
   }
 
   liberarCampoSugestao(): boolean {

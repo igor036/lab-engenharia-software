@@ -7,12 +7,23 @@
     <i class="fa {{ iconeFa }}" aria-hidden="true"></i>
   </div>
 
-  <input class="input-deco-input" iconeFa="fa-search" [formControl]="formControl" [placeholder]="placeholder"
-    [class.input-invalido]="isInvalido()" [type]="type" (keyup)="enviarDados($event)" />
+  <input
+    class="input-deco-input" 
+    iconeFa="fa-search" 
+    [formControl]="formControl" 
+    [placeholder]="placeholder"
+    [class.input-invalido]="isInvalido()" 
+    [type]="type" 
+    (keyup)="writeValue($event.target.value)" 
+  />
 
 </div>
-<ng-container *ngIf="true">
-  <div class="input-sugestao" *ngFor="let sugestao of listaSugestoes">
-    {{ sugestao }}
+<ng-container *ngIf="liberarCampoSugestao()">
+  <div class="input-sugestao">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item" *ngFor="let sugestao of listaSugestoes">
+          {{ sugestao.nome }}
+      </li>
+    </ul>
   </div>
 </ng-container>
