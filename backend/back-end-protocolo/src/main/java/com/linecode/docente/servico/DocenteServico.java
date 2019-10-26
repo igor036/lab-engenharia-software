@@ -105,7 +105,9 @@ public class DocenteServico {
     }
     
     /**
-     * Retorna uma lista de sugestão de docentes por nome de consulta
+     * Retorna uma lista de sugestão de docentes por nome de consulta.
+     * O metodo ira retornar uma lista com cinco docentes que contenham
+     * o <b>nome</b> informado.
      * 
      * @param nome - o nome do docente.
      * @return lista de opção {@link List<OpcaoDto<Long>>}
