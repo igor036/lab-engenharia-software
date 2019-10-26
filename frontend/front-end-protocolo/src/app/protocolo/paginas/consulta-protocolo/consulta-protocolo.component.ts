@@ -4,13 +4,18 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 //Modelos
 import { Opcao, Paginacao } from 'src/app/compartilhado/compartilhado.modelo';
-import { TipoConsultaListaProtocolo, ConsultaListaProtocolo } from 'src/app/protocolo/protocolo.modelo';
-import { PAGINACAO_PADRAO, URLS_NAMES } from 'src/app/app.constante';
+import { PAGINACAO_PADRAO, URLS_NAMES, Perfil } from 'src/app/app.constante';
+import {
+  TipoConsultaListaProtocolo,
+  ConsultaListaProtocolo,
+  CategoriaProtocoloConsultado
+} from 'src/app/protocolo/protocolo.modelo';
 
 //Servico
 import { ProtocoloServico } from 'src/app/protocolo/protocolo.servico';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
-import { UtilServico } from 'src/app/compartilhado/util.servico';
+import { UtilServico } from 'src/app/compartilhado/servico/util.servico';
+import { DocenteServico } from 'src/app/docente/docente.servico';
 
 @Component({
   selector: 'app-consulta-protocolo',
@@ -22,14 +27,16 @@ export class ConsultaProtocoloComponent implements OnInit {
   public paginacao: Paginacao = PAGINACAO_PADRAO;
   public listaOpcaoTipoConsulta: Array<Opcao> = [];
   public listaOpcaoStatus: Array<Opcao> = [];
+  public listaOpcaoCategoria: Array<Opcao> = [];
   public formPesquisaProtocolo: FormGroup;
   public filtro: ConsultaListaProtocolo;
-
+  public mostrarComboCategoria: boolean = false;
 
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
     private utilServico: UtilServico,
+    private docenteServico: DocenteServico,
     private protocoloServico: ProtocoloServico,
     private spinnerServico: Ng4LoadingSpinnerService
   ) { }
@@ -38,7 +45,8 @@ export class ConsultaProtocoloComponent implements OnInit {
     this.iniciarListaOpcaoTipoConsulta();
     this.iniciarFormPesquisaProtocolo();
     this.iniciarListaOpcaoStatus();
-    this.pesquisarProtocolo();
+    this.iniciarListaOpcaoCategoria();
+    this.setMostrarComboCategoria();
   }
 
   selecionarTipoConsulta(tipo: string) {
@@ -65,7 +73,7 @@ export class ConsultaProtocoloComponent implements OnInit {
 
   selecionarPagina(pagina: number): void {
     this.spinnerServico.show();
-    this.protocoloServico.getListaProtocoloDocenteLogado(this.filtro, pagina).subscribe(paginacao => {
+    this.protocoloServico.getListaProtocolo(this.filtro, pagina).subscribe(paginacao => {
       this.paginacao = paginacao;
       this.spinnerServico.hide();
     });
@@ -82,8 +90,21 @@ export class ConsultaProtocoloComponent implements OnInit {
   private iniciarFormPesquisaProtocolo(): void {
     this.formPesquisaProtocolo = this.formBuilder.group({
       tipo: this.formBuilder.control(TipoConsultaListaProtocolo.OPCAO_TODOS),
+      categoria: this.formBuilder.control(CategoriaProtocoloConsultado.DOCENTE_LOGADO, Validators.required),
       idProtocolo: this.formBuilder.control(''),
       idStatus: this.formBuilder.control('')
+    });
+  }
+
+  private setMostrarComboCategoria(): void {
+    this.spinnerServico.show();
+    this.docenteServico.getDadosDocenteLogado().subscribe(docenteLogado => {
+      this.mostrarComboCategoria = docenteLogado.perfil == Perfil.PROFESSOR;
+      if (!this.mostrarComboCategoria) {
+        this.formPesquisaProtocolo.controls['categoria'].setValue(CategoriaProtocoloConsultado.OUTROS_DOCENTES);
+      }
+      this.spinnerServico.hide();
+      this.pesquisarProtocolo();
     });
   }
 
@@ -92,6 +113,13 @@ export class ConsultaProtocoloComponent implements OnInit {
       { descricao: "Todos", valor: TipoConsultaListaProtocolo.OPCAO_TODOS },
       { descricao: "Código", valor: TipoConsultaListaProtocolo.OPCAO_CODIGO },
       { descricao: "Status", valor: TipoConsultaListaProtocolo.OPCAO_STATUS }
+    ];
+  }
+
+  private iniciarListaOpcaoCategoria(): void {
+    this.listaOpcaoCategoria = [
+      { descricao: 'Meus protocolos', valor: CategoriaProtocoloConsultado.DOCENTE_LOGADO },
+      { descricao: 'Avaliar', valor: CategoriaProtocoloConsultado.AVALIAR }
     ];
   }
 
@@ -108,7 +136,7 @@ export class ConsultaProtocoloComponent implements OnInit {
     campoIdProtocolo.reset();
     campoIdProtocolo.setValidators([
       Validators.required,
-      Validators.pattern('^[1-9]+$')
+      Validators.pattern('^[1-9][0-9]*$')
     ]);
     campoIdProtocolo.updateValueAndValidity();
   }
@@ -121,13 +149,13 @@ export class ConsultaProtocoloComponent implements OnInit {
   }
 
   private limparValidacoesCampos(): void {
-    
+
     let idProtocolo = this.formPesquisaProtocolo.controls.idProtocolo;
     let idStatus = this.formPesquisaProtocolo.controls.idStatus;
 
     idProtocolo.clearValidators();
     idStatus.clearValidators();
-    
+
     idProtocolo.updateValueAndValidity();
     idStatus.updateValueAndValidity();
   }

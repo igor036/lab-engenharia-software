@@ -1,7 +1,7 @@
 <div class="search-deco" [formGroup]="formPesquisaProtocolo">
   <div class="input-deco">
     <app-selecao-item [formControl]="formPesquisaProtocolo.controls['tipo']" [listaOpcao]="listaOpcaoTipoConsulta"
-      (alterarValor)="selecionarTipoConsulta($event)" placeholder="Selecione a busca" classeIcone="fa fa-search">
+      (alterarValor)="selecionarTipoConsulta($event)" placeholder="Selecione o tipo busca" classeIcone="fa fa-search">
     </app-selecao-item>
 
     <div>
@@ -19,6 +19,12 @@
       </ng-container>
     </div>
 
+    <ng-container *ngIf="mostrarComboCategoria">
+      <app-selecao-item [formControl]="formPesquisaProtocolo.controls['categoria']" [listaOpcao]="listaOpcaoCategoria"
+        placeholder="Selecione a catégoria." classeIcone="fa fa-search">
+      </app-selecao-item>
+    </ng-container>
+
     <div class="icon-deco ">
       <app-botao iconeFa="fa-search" [liberado]="formPesquisaProtocolo.valid" (click)="pesquisarProtocolo($event)"
         texto="Pesquisar">
@@ -32,20 +38,22 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th style="text-align: center;">Código</th>
+          <th>Código</th>
           <th>Nome Docente</th>
-          <th style="text-align: center;">Data Início</th>
-          <th style="text-align: center;">Data Fim</th>
-          <th style="text-align: center;">Detalhes</th>
+          <th>Data Início</th>
+          <th>Data Fim</th>
+          <th>Status</th>
+          <th>Detalhes</th>
         </tr>
       </thead>
       <tbody *ngIf="exibirListaProtocolo()">
         <tr *ngFor="let protocolo of paginacao.lista">
-          <td style="width: 20%; text-align: center;"> {{ protocolo.id }} </td>
+          <td style="width: 5%; text-align: center;"> {{ protocolo.id }} </td>
           <td> {{ protocolo.nomeDocente }} </td>
-          <td style="width: 20%; text-align: center;"> {{ protocolo.dataInicio }} </td>
-          <td style="width: 20%; text-align: center;"> {{ protocolo.dataFim }} </td>
-          <td style="width: 20%; text-align: center;">
+          <td style="width: 10%; text-align: center;"> {{ protocolo.dataInicio }} </td>
+          <td style="width: 10%; text-align: center;"> {{ protocolo.dataFim }} </td>
+          <td style="width: 5%; text-align: center;"> {{ protocolo.status }} </td>
+          <td style="width: 5%; text-align: center;">
             <button class="btn" (click)="verDetalheProtocolo(protocolo.id)">
               <i class="fa fa-eye"></i>
             </button>

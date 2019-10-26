@@ -4,6 +4,7 @@
  */
 package com.linecode.protocolo.servico;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -49,10 +50,12 @@ public class ProtocoloServico {
      * 
      * A data fim deve ser obrigatóriamente maior que a data de início.
      * 
+     * Metodo permitido somente para <b>PerfilEnumerador.PROFESSOR</b>
+     * 
      * @param cmd - dados do protocolo {@link CadastroProtocoloCmd}
      */
     @Transactional
-    @PreAuthorize("@autorizacaoServico.isAutenticado()")
+    @PreAuthorize("@autorizacaoServico.isAutorizado('PROFESSOR')")
     public void cadastrarProtocolo(CadastroProtocoloCmd cmd) {
 
         Assert.notNull(cmd, "Informe os dados do protocolo");
@@ -60,8 +63,12 @@ public class ProtocoloServico {
         Set<ConstraintViolation<CadastroProtocoloCmd>> violacoes = validator.validate(cmd);
 
         if (violacoes.isEmpty()) {
-
-            if (cmd.getDataFim() != null && cmd.getDataInicio().compareTo(cmd.getDataFim()) >= 0) {
+            
+            if (LocalDate.now().compareTo(cmd.getDataInicio()) >= 0) {
+                throw new ExcecaoNegocio("A data de início deve ser maior que a data atual.");
+            }
+            
+            if (cmd.getDataInicio().compareTo(cmd.getDataFim()) >= 0) {
                 throw new ExcecaoNegocio("Período de tempo inválido. A data fim deve ser maior que a data início.");
             }
 
@@ -81,7 +88,7 @@ public class ProtocoloServico {
     }
 
     /**
-     * Retorna uma consulta de protocolo do docente <b>LOGADO</b> de forma paginada.
+     * Retorna uma consulta de protocolo.
      * 
      * @param filtro             - dados do filtro da consulta {@link ConsultaListaProtocoloFiltro}
      * @param paginaAtual        - pagina da consulta atual {@link Integer}
@@ -89,7 +96,7 @@ public class ProtocoloServico {
      * @return paginacao da consulta {@link PaginacaoDto<ListagemProtocoloDto>}
      */
     @PreAuthorize("@autorizacaoServico.isAutenticado()")
-    public PaginacaoDto<ListagemProtocoloDto> getListaProtocoloDocenteLogado(ConsultaListaProtocoloFiltro filtro,
+    public PaginacaoDto<ListagemProtocoloDto> getListaProtocolo(ConsultaListaProtocoloFiltro filtro,
             int paginaAtual, int qtdRegistrosPagina) {
 
         Assert.notNull(filtro, "Informe os dados da consulta!");
@@ -109,7 +116,7 @@ public class ProtocoloServico {
 
             filtro.setIdDocente(docenteServico.getDadosDocenteLogado().getMatricula());
 
-            return protocoloDao.getListaProtocoloDocenteLogado(filtro, paginaAtual, qtdRegistrosPagina);
+            return protocoloDao.getListaProtocolo(filtro, paginaAtual, qtdRegistrosPagina);
 
         } else {
             throw new ExcecaoNegocio(violacoes.stream().findFirst().get().getMessage());

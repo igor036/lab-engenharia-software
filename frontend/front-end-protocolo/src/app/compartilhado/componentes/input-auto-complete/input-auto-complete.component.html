@@ -1,0 +1,33 @@
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Allerta&display=swap" rel="stylesheet">
+</head>
+
+<div class="corpo-input">
+  <div class="input-deco">
+  <div class='icon-deco'>
+    <i class="fa {{ iconeFa }}" aria-hidden="true"></i>
+  </div>
+
+  <input
+    class="input-deco-input" 
+    iconeFa="fa-search" 
+    [formControl]="formControl" 
+    [placeholder]="placeholder"
+    [class.input-invalido]="isInvalido()" 
+    [type]="type" 
+    (keyup)="writeValue($event.target.value)" 
+  />
+
+</div>
+<ng-container *ngIf="exibirCampoSugestao()">
+  <div class="input-sugestao">
+    <ul class="list-group list-group-flush">
+      <li  class="list-group-item list-group-item-action" 
+      *ngFor="let sugestao of listaSugestoes"
+      (click)="selecionarValorSugestao(sugestao)">
+          {{ sugestao.descricao }}
+      </li>
+    </ul>
+  </div>
+</ng-container>
+

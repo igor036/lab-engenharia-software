@@ -1,0 +1,12 @@
+<div class="modal-header text-white {{ classeComplementar }}">
+  <h4 class="modal-title pull-left">{{titulo}}</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  {{ mensagem }}
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Fechar</button>
+</div>

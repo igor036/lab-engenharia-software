@@ -54,7 +54,7 @@ public class GetListaProtocoloDocenteLogado {
 	public void devo_receber_uma_Excecao_Negocio() throws Exception {
 		this.filtros.forEach(filtro -> {
 			try {
-				protocoloServico.getListaProtocoloDocenteLogado(filtro, 1, 5);
+				protocoloServico.getListaProtocolo(filtro, 1, 5);
 			} catch (ExcecaoNegocio e) {
 				assertEquals(e.getMessage(), filtro.getMsgEsperada());
 			}

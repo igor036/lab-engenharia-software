@@ -1,14 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 //modelo
-import { DetalheProtocolo } from 'src/app/protocolo/protocolo.modelo';
+import { DetalheProtocolo, AtribuirParecerista, ListarSugestoesDePareceristas } from 'src/app/protocolo/protocolo.modelo';
+import { DocenteLogado } from 'src/app/docente/docente.modelo';
 
 //servico
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ProtocoloServico } from 'src/app/protocolo/protocolo.servico';
 import { DocenteServico } from 'src/app/docente/docente.servico';
-import { DocenteLogado } from 'src/app/docente/docente.modelo';
+
+
+//Constante
+import { Perfil } from 'src/app/app.constante';
+import { REGEXS } from 'src/app/app.constante';
+import { ModalServico } from 'src/app/compartilhado/componentes/modal/modal.servico';
+
 
 const OPCAO_RESUMO_PT: string = 'PT';
 const OPCAO_RESUMO_EN: string = 'EN';
@@ -24,19 +32,25 @@ export class DetalheProtocoloComponent implements OnInit {
   private opcaoResumo: string = OPCAO_RESUMO_PT;
   private docenteLogado: DocenteLogado;
   public detalheProtocolo: DetalheProtocolo;
+  public formAtribuirParecerista: FormGroup;
+  public listaSugestoesPareceristas: Array<ListarSugestoesDePareceristas>;
 
 
   constructor(
     private rota: ActivatedRoute,
     private docenteServico: DocenteServico,
     private protocoloServico: ProtocoloServico,
-    private spinnerServico: Ng4LoadingSpinnerService
+    private spinnerServico: Ng4LoadingSpinnerService,
+    private formBuilder: FormBuilder,
+    private modalServico: ModalServico
   ) {
     this.ID_PROTOCOLO = this.rota.snapshot.params['idProtocolo'];
   }
 
   ngOnInit() {
+    this.listaSugestoesPareceristas = [];
     this.carregarDetalhesProtocoloEDocenteLogado();
+    this.iniciarFormAtribuirParecerista();
   }
 
   getTextoBotaoResumo(): string {
@@ -79,9 +93,37 @@ export class DetalheProtocoloComponent implements OnInit {
 
   exibirBotoesAvaliar(): boolean {
     if (this.detalheProtocolo && this.docenteLogado) {
-      return this.detalheProtocolo.matriculaDocente != this.docenteLogado.matricula;
+      return this.detalheProtocolo.matriculaDocente != this.docenteLogado.matricula && this.docenteLogado.perfil === Perfil.PROFESSOR;
     }
     return false;
+  }
+
+  exibirAdicionarParecerista(): boolean {
+    let perfilDocente = this.docenteLogado.perfil
+    return perfilDocente === Perfil.COORDENADOR || perfilDocente === Perfil.SECRETARIA;
+  }
+
+  exibirDadosParecerista(): boolean {
+    return this.formAtribuirParecerista.valid;
+  }
+
+  iniciarFormAtribuirParecerista(): void {
+    this.formAtribuirParecerista = this.formBuilder.group({
+      nome: this.formBuilder.control('',
+        [Validators.required])
+    });
+  }
+
+  atribuirParecerista(parecerista: AtribuirParecerista): void {
+    this.spinnerServico.show();
+    this.protocoloServico.atribuirParecerista(parecerista).subscribe(msg => {
+      this.modalServico.exibirSucesso(msg);
+      this.spinnerServico.hide();
+    })
+  }
+
+  liberarBotaoAtribuirParecerista(): boolean{
+    return this.formAtribuirParecerista.valid;
   }
 
   private carregarDetalhesProtocoloEDocenteLogado(): void {
@@ -103,5 +145,11 @@ export class DetalheProtocoloComponent implements OnInit {
       this.docenteLogado = docenteLogado;
       esconderSpinner();
     });
+  }
+
+  atualizarListaDeSugestaoPareceristas(valor: string): void {
+    this.protocoloServico.listarSugestoesDePareceristas(valor).subscribe(lista => {
+      this.listaSugestoesPareceristas = lista;
+    });    
   }
 }

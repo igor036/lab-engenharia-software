@@ -28,7 +28,7 @@ public class UtilServico {
 	 * 
 	 * @return lista de perfis {@link List<Long>}
 	 */
-	@PreAuthorize("@autorizacaoServico.isAutorizado('ADMIN')")
+	@PreAuthorize("@autorizacaoServico.isAutenticado()")
 	public List<OpcaoDto<Long>> getListaPerfil() {
 		return utilDao.getListaPerfil();
 	}
@@ -39,7 +39,7 @@ public class UtilServico {
 	 * 
 	 * @return lista de especies {@link List<Long>}
 	 */
-	@PreAuthorize("@autorizacaoServico.isAutorizado('ADMIN')")
+	@PreAuthorize("@autorizacaoServico.isAutenticado()")
 	public List<OpcaoDto<Long>> getListaEspecie() {
 		return utilDao.getListaEspecie();
 	}
@@ -50,7 +50,7 @@ public class UtilServico {
 	 * 
 	 * @return lista de bioterio {@link List<Long>}
 	 */
-	@PreAuthorize("@autorizacaoServico.isAutorizado('ADMIN')")
+	@PreAuthorize("@autorizacaoServico.isAutenticado()")
 	public List<OpcaoDto<Long>> getListaBioterio() {
 		return utilDao.getListaBioterio();
 	}

@@ -17,6 +17,7 @@ button {
   .botao-bloqueado {
     background-color: gray;
     color: black;
+    cursor: not-allowed;
   }
 
   .botao-bloqueado:hover {

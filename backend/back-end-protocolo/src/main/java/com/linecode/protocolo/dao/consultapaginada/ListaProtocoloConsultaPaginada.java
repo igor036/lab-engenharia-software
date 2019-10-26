@@ -20,25 +20,58 @@ public class ListaProtocoloConsultaPaginada
 
     @Override
     protected String getSqlFiltroAdicional() {
-
-        adicionarParametro(filtro.getIdDocente(), Types.INTEGER);
-        StringBuilder sqlFiltro = new StringBuilder();
-        sqlFiltro.append(" AND P.FK_MATRICULA = ? ");
-        
-        if (filtro.getTipo().isConsultaCodigo()) {
-            adicionarParametro(filtro.getIdProtocolo(), Types.INTEGER);
-            sqlFiltro.append(" AND P.ID_PROTOCOLO = ? ");
-        } else if (filtro.getTipo().isConsultaStatus()) {
-            adicionarParametro(filtro.getIdStatus(), Types.BIGINT);
-            sqlFiltro.append(" AND S.ID_STATUS = ? ");
-        }
-        
-        return sqlFiltro.toString();
+        return new StringBuilder()
+                .append(adicionarParametroConsultaDocenteLogado())
+                .append(adicionarParametroConsultaAvaliar())
+                .append(adicionarParametroConsultaOutrosDocentes())
+                .append(adicionarParametroConsultaCodigo())
+                .append(adicionarParametroConsultaStatus())
+                .toString();
     }
 
     @Override
     protected ListagemProtocoloDto mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new ListagemProtocoloDto(rs.getLong("ID"), rs.getString("NOME_DOCENTE"), rs.getString("DATA_INICIO"),
-                rs.getString("DATA_FIM"));
+                rs.getString("DATA_FIM"), rs.getString("STATUS"));
+    }
+
+    private String adicionarParametroConsultaDocenteLogado() {
+        if (filtro.getCategoria().isDocenteLogado()) {
+            adicionarParametro(filtro.getIdDocente(), Types.INTEGER);
+            return " AND P.FK_MATRICULA = ? ";
+        }
+        return "";
+    }
+
+    private String adicionarParametroConsultaAvaliar() {
+        if (filtro.getCategoria().isAvaliar()) {
+            adicionarParametro(filtro.getIdDocente(), Types.INTEGER);
+            return " AND EXISTS (SELECT 1 FROM TAB_PARECER PR WHERE  PR.FK_ID_PROTOCOLO = P.ID_PROTOCOLO AND PR.FK_MATRICULA = ?) ";
+        }
+        return "";
+    }
+
+    private String adicionarParametroConsultaOutrosDocentes() {
+        if (filtro.getCategoria().isOutrosDocentes()) {
+            adicionarParametro(filtro.getIdDocente(), Types.INTEGER);
+            return " AND P.FK_MATRICULA <> ? ";
+        }
+        return "";
+    }
+
+    private String adicionarParametroConsultaCodigo() {
+        if (filtro.getTipo().isConsultaCodigo()) {
+            adicionarParametro(filtro.getIdProtocolo(), Types.INTEGER);
+            return " AND P.ID_PROTOCOLO = ? ";
+        }
+        return "";
+    }
+
+    private String adicionarParametroConsultaStatus() {
+        if (filtro.getTipo().isConsultaStatus()) {
+            adicionarParametro(filtro.getIdStatus(), Types.BIGINT);
+            return " AND S.ID_STATUS = ? ";
+        }
+        return "";
     }
 }

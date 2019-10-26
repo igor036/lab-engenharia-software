@@ -47,10 +47,26 @@ interface DetalheProtocolo {
     pedidos: Array<DetalhePedidoProtocolo>;
 }
 
+interface AtribuirParecerista{
+    matriculaParecerista: number;
+    idProtocolo: number;
+}
+
+interface ListarSugestoesDePareceristas {
+    matriculaParecerista: number;
+    descricao: string;
+}
+
 enum TipoConsultaListaProtocolo {
     OPCAO_TODOS = 'T',
     OPCAO_CODIGO = 'C',
     OPCAO_STATUS = 'S'
+}
+
+enum CategoriaProtocoloConsultado {
+    DOCENTE_LOGADO = 'DL',
+    AVALIAR = 'A',
+    OUTROS_DOCENTES = 'OD'
 }
 
 export {
@@ -60,5 +76,8 @@ export {
     TipoConsultaListaProtocolo,
     ConsultaListaProtocolo,
     DetalhePedidoProtocolo,
-    DetalheProtocolo
+    DetalheProtocolo,
+    CategoriaProtocoloConsultado,
+    AtribuirParecerista,
+    ListarSugestoesDePareceristas
 }

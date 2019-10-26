@@ -1,7 +1,7 @@
 *{font-family: 'Allerta', sans-serif;}
 
 form{
-  width: 80%;
+  width: 100%;
   display: flex;
   padding: 1% 1% 0% 16%;
 }
@@ -72,6 +72,11 @@ form{
   background-color: #6334e3;
 }
 
+#btn-atribuir{
+  margin-top: 3%;
+  margin-left: 73%;
+}
+
 .docente-row{
   display:flex;
 }
@@ -79,7 +84,7 @@ form{
 .docente-deco{
   margin-left: 1%;
   background-color:#3d8af7;
-  width: 80%;
+  width: 100%;
 }
 
 .docente-header{
