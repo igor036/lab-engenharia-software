@@ -49,7 +49,7 @@ public class CadastrarAvaliadorProtocolo {
 		dadosCadastro.forEach(cadastro -> {
 			try {
 				protocoloServico.cadastrarAvaliadorProtocolo(cadastro);
-			} catch (ExcecaoNegocio  | IllegalArgumentException e) {
+			} catch (ExcecaoNegocio e) {
 				assertEquals(e.getMessage(), cadastro.getMsgEsperada());
 			}
 		});
