@@ -44,6 +44,7 @@ public class DocenteDao {
     
     @Transactional(readOnly = true)
     public List<OpcaoDto<Long>> getListaSugestaoDocente(String nome) {
-    	return jdbcTamplate.query(env.getProperty("getListaSugestaoDocente"), OPCAO_DTO_MAPEADOR_LINHA, nome);
+    	nome = "%".concat(nome).concat("%");
+    	return jdbcTamplate.query(env.getProperty("com.linecode.docente.dao.DocenteDao.getListaSugestaoDocente"), OPCAO_DTO_MAPEADOR_LINHA, nome);
     }
 }

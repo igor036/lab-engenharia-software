@@ -24,8 +24,9 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     
     @ExceptionHandler(value = Exception.class)
     protected ResponseEntity<Object> handleConflict(RuntimeException ex, WebRequest request) {
-        String bodyOfResponse = ex instanceof ExcecaoNegocio || ex instanceof AccessDeniedException ? ex.getMessage()
-                : env.getProperty("sistema.msg.erro.inesperado");
+        /*String bodyOfResponse = ex instanceof ExcecaoNegocio || ex instanceof AccessDeniedException ? ex.getMessage()
+                : env.getProperty("sistema.msg.erro.inesperado");*/
+    	String bodyOfResponse = ex.getMessage();
         logger.log(Level.WARNING, ex.getMessage());
         return handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.CONFLICT, request);
     }
