@@ -23,7 +23,13 @@ interface Paginacao {
     lista?: Array<any>;
 }
 
+interface ListarSugestoesInput{
+    id: number;
+    descricao: string;
+}
+
 export {
     Opcao,
-    Paginacao
+    Paginacao,
+    ListarSugestoesInput
 }

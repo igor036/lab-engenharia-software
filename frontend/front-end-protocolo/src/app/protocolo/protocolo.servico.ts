@@ -47,33 +47,33 @@ export class ProtocoloServico {
         let listaSugestoes: Array<ListarSugestoesDePareceristas> = [
             {
                 matriculaParecerista: 1,
-                nome:'Ubuntu'
+                descricao:'Ubuntu'
             },
             {
                 matriculaParecerista: 2,
-                nome:'Fedora'
+                descricao:'Fedora'
             },
             {
                 matriculaParecerista: 3,
-                nome:'Manjaro'
+                descricao:'Manjaro'
             },
             {
                 matriculaParecerista: 4,
-                nome:'Mangaba'
+                descricao:'Mangaba'
             },
             {
                 matriculaParecerista: 5,
-                nome:'Manjericão Palmito'
+                descricao:'Manjericão Palmito'
             },
             {
                 matriculaParecerista: 3,
-                nome:'Feijão'
+                descricao:'Feijão'
             }
         ];
 
         if (valor !== '') {
             listaSugestoes.filter(item => {
-                if (item.nome.toLocaleLowerCase().includes(valor.toLocaleLowerCase())) {
+                if (item.descricao.toLocaleLowerCase().includes(valor.toLocaleLowerCase())) {
                     listaSugestoesFiltradas.push(item);
                 }
             });

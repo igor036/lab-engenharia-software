@@ -19,6 +19,9 @@ import {
 } from '@angular/forms';
 import { } from 'events';
 
+import { ListarSugestoesDePareceristas } from 'src/app/protocolo/protocolo.modelo';
+import { ListarSugestoesInput } from '../../compartilhado.modelo';
+
 @Component({
   selector: 'app-input-auto-complete',
   templateUrl: './input-auto-complete.component.html',
@@ -35,9 +38,11 @@ export class InputAutoCompleteComponent implements OnInit, ControlValueAccessor 
   @Input() iconeFa?: string;
   @Input() placeholder: string;
   @Input() type: string = 'text';
-  @Input() listaSugestoes: Array<any> = [];  
+  @Input() listaSugestoes: Array<ListarSugestoesInput> = [];  
 
   @Output() mudarValor: EventEmitter<string> = new EventEmitter<string>();
+
+  public 
 
   private valor: string;
   private onChange: Function;
@@ -71,9 +76,12 @@ export class InputAutoCompleteComponent implements OnInit, ControlValueAccessor 
     this.mudarValor.emit(value);
   }
 
-  liberarCampoSugestao(): boolean {
+  exibirCampoSugestao(): boolean {
     return this.listaSugestoes.length > 0;
   }
 
+  selecionarValorSugestao(sugestao: ListarSugestoesInput): void{
+    this.formControl.setValue(sugestao.descricao);
+  }
 
 }

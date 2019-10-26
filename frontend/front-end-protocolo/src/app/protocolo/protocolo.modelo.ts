@@ -54,7 +54,7 @@ interface AtribuirParecerista{
 
 interface ListarSugestoesDePareceristas {
     matriculaParecerista: number;
-    nome: string;
+    descricao: string;
 }
 
 enum TipoConsultaListaProtocolo {
