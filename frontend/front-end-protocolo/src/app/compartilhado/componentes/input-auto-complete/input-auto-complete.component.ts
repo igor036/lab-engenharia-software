@@ -19,7 +19,6 @@ import {
 } from '@angular/forms';
 import { } from 'events';
 
-import { ListarSugestoesDePareceristas } from 'src/app/protocolo/protocolo.modelo';
 import { ListarSugestoesInput } from '../../compartilhado.modelo';
 
 @Component({
@@ -41,8 +40,7 @@ export class InputAutoCompleteComponent implements OnInit, ControlValueAccessor 
   @Input() listaSugestoes: Array<ListarSugestoesInput> = [];  
 
   @Output() mudarValor: EventEmitter<string> = new EventEmitter<string>();
-
-  public 
+  @Output() valorSelecionado: EventEmitter<any> = new EventEmitter<any>();
 
   private valor: string;
   private onChange: Function;
@@ -68,6 +66,7 @@ export class InputAutoCompleteComponent implements OnInit, ControlValueAccessor 
   registerOnChange(funcao: Function): void {
     this.onChange = funcao;
   }
+
   registerOnTouched(funcao: Function): void {
     this.onTouched = funcao;
   }
@@ -80,8 +79,10 @@ export class InputAutoCompleteComponent implements OnInit, ControlValueAccessor 
     return this.listaSugestoes.length > 0;
   }
 
-  selecionarValorSugestao(sugestao: ListarSugestoesInput): void{
+  selecionarValorSugestao(sugestao: ListarSugestoesInput): boolean{
     this.formControl.setValue(sugestao.descricao);
+    this.valorSelecionado.emit(sugestao);
+    return true;
   }
 
 }
