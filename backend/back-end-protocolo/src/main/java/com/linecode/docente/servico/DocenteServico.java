@@ -112,10 +112,11 @@ public class DocenteServico {
      * @param nome - o nome do docente.
      * @return lista de opção {@link List<OpcaoDto<Long>>}
      */
+    @PreAuthorize("@autorizacaoServico.isAutenticado()")
     public List<OpcaoDto<Long>> getListaSugestaoDocente(String nome) {
     	
     	if (StringUtils.isEmpty(nome)) {
-    		throw new ExcecaoNegocio("Informe o nome da consulta");
+    		throw new ExcecaoNegocio("Informe o nome da consulta.");
     	}
     	
     	return docenteDao.getListaSugestaoDocente(nome);
