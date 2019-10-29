@@ -24,7 +24,7 @@ import com.linecode.protocolo.filtro.ConsultaListaProtocoloFiltro;
 @Repository
 @PropertySource("com/linecode/protocolo/dao/ProtocoloDao.xml")
 public class ProtocoloDao {
-	
+
 	@Autowired
 	private Environment env;
 
@@ -46,13 +46,13 @@ public class ProtocoloDao {
 				cmd.getQuantidade(), cmd.getIdBioterio(), cmd.getIdBioterio(), cmd.getIdProtocolo());
 	}
 
-    @Transactional(readOnly = true)
-    public PaginacaoDto<ListagemProtocoloDto> getListaProtocolo(ConsultaListaProtocoloFiltro filtro,
-            int paginaAtual, int qtdRegistrosPagina) {
+	@Transactional(readOnly = true)
+	public PaginacaoDto<ListagemProtocoloDto> getListaProtocolo(ConsultaListaProtocoloFiltro filtro, int paginaAtual,
+			int qtdRegistrosPagina) {
 
-        ListaProtocoloConsultaPaginada consultaPaginada = new ListaProtocoloConsultaPaginada(
-                env.getProperty("com.linecode.protocolo.dao.ProtocoloDao.getListaProtocolo"), jdbcTemplate,
-                filtro, paginaAtual, qtdRegistrosPagina);
+		ListaProtocoloConsultaPaginada consultaPaginada = new ListaProtocoloConsultaPaginada(
+				env.getProperty("com.linecode.protocolo.dao.ProtocoloDao.getListaProtocolo"), jdbcTemplate, filtro,
+				paginaAtual, qtdRegistrosPagina);
 
 		return consultaPaginada.getPaginacao();
 	}
@@ -68,5 +68,11 @@ public class ProtocoloDao {
 		return jdbcTemplate.queryForObject(
 				env.getProperty("com.linecode.protocolo.dao.ProtocoloDao.cadastrarAvaliadorProtocolo"), Long.class,
 				cmd.getIdAvaliador(), cmd.getIdProtocolo());
+	}
+
+	@Transactional
+	public boolean atualizarStatusProtocolo(long idProtocolo, long idStatus) {
+		return jdbcTemplate.update(env.getProperty("com.linecode.protocolo.dao.ProtocoloDao.atualizarStatusProtocolo"),
+				idStatus, idProtocolo) > 0;
 	}
 }

@@ -96,4 +96,11 @@
     		?
     	) RETURNING ID_PARECER
     </entry>
+    
+    <entry key="com.linecode.protocolo.dao.ProtocoloDao.atualizarStatusProtocolo">
+    	UPDATE TAB_PROTOCOLO SET
+    		FK_ID_STATUS = ?
+    	WHERE ID_PROTOCOLO = ?
+    </entry>
+    
 </properties>

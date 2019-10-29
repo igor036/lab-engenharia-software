@@ -11,6 +11,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,139 +34,148 @@ import io.jsonwebtoken.lang.Assert;
 @Service
 public class ProtocoloServico {
 
-    @Autowired
-    private ProtocoloDao protocoloDao;
+	@Autowired
+	private ProtocoloDao protocoloDao;
 
-    @Autowired
-    private DocenteServico docenteServico;
+	@Autowired
+	private DocenteServico docenteServico;
 
-    @Autowired
-    private UtilServico utilServico;
+	@Autowired
+	private UtilServico utilServico;
 
-    @Autowired
-    private Validator validator;
+	@Autowired
+	private Validator validator;
 
-    /**
-     * Efetua o cadastro de um protocolo e o vincula ao docente logado
-     * 
-     * A data fim deve ser obrigatóriamente maior que a data de início.
-     * 
-     * Metodo permitido somente para <b>PerfilEnumerador.PROFESSOR</b>
-     * 
-     * @param cmd - dados do protocolo {@link CadastroProtocoloCmd}
-     */
-    @Transactional
-    @PreAuthorize("@autorizacaoServico.isAutorizado('PROFESSOR')")
-    public void cadastrarProtocolo(CadastroProtocoloCmd cmd) {
+	@Autowired
+	private Environment env;
 
-        Assert.notNull(cmd, "Informe os dados do protocolo");
+	/**
+	 * Efetua o cadastro de um protocolo e o vincula ao docente logado
+	 * 
+	 * A data fim deve ser obrigatóriamente maior que a data de início.
+	 * 
+	 * Metodo permitido somente para <b>PerfilEnumerador.PROFESSOR</b>
+	 * 
+	 * @param cmd - dados do protocolo {@link CadastroProtocoloCmd}
+	 */
+	@Transactional
+	@PreAuthorize("@autorizacaoServico.isAutorizado('PROFESSOR')")
+	public void cadastrarProtocolo(CadastroProtocoloCmd cmd) {
 
-        Set<ConstraintViolation<CadastroProtocoloCmd>> violacoes = validator.validate(cmd);
+		Assert.notNull(cmd, "Informe os dados do protocolo");
 
-        if (violacoes.isEmpty()) {
-            
-            if (LocalDate.now().compareTo(cmd.getDataInicio()) >= 0) {
-                throw new ExcecaoNegocio("A data de início deve ser maior que a data atual.");
-            }
-            
-            if (cmd.getDataInicio().compareTo(cmd.getDataFim()) >= 0) {
-                throw new ExcecaoNegocio("Período de tempo inválido. A data fim deve ser maior que a data início.");
-            }
+		Set<ConstraintViolation<CadastroProtocoloCmd>> violacoes = validator.validate(cmd);
 
-            long idStatusInicial = utilServico.getIdStatusInicialProtocolo();
-            long idProtocolo = protocoloDao.cadastrarProtocolo(cmd,
-                    docenteServico.getDadosDocenteLogado().getMatricula(), idStatusInicial);
+		if (violacoes.isEmpty()) {
 
-            if (idProtocolo > 0) {
-                cmd.getLitaPedidoProtocolo().forEach(pedido -> cadastrarPedidoProtocolo(pedido, idProtocolo));
-            } else {
-                throw new ExcecaoAplicacao("Houve um erro ao cadastrar o protocolo.", null);
-            }
+			if (LocalDate.now().compareTo(cmd.getDataInicio()) >= 0) {
+				throw new ExcecaoNegocio("A data de início deve ser maior que a data atual.");
+			}
 
-        } else {
-            throw new ExcecaoNegocio(violacoes.stream().findFirst().get().getMessage());
-        }
-    }
+			if (cmd.getDataInicio().compareTo(cmd.getDataFim()) >= 0) {
+				throw new ExcecaoNegocio("Período de tempo inválido. A data fim deve ser maior que a data início.");
+			}
 
-    /**
-     * Retorna uma consulta de protocolo.
-     * 
-     * @param filtro             - dados do filtro da consulta {@link ConsultaListaProtocoloFiltro}
-     * @param paginaAtual        - pagina da consulta atual {@link Integer}
-     * @param qtdRegistrosPagina - quantidade de registros por pagina {@link Integer}
-     * @return paginacao da consulta {@link PaginacaoDto<ListagemProtocoloDto>}
-     */
-    @PreAuthorize("@autorizacaoServico.isAutenticado()")
-    public PaginacaoDto<ListagemProtocoloDto> getListaProtocolo(ConsultaListaProtocoloFiltro filtro,
-            int paginaAtual, int qtdRegistrosPagina) {
+			long idStatusInicial = utilServico.getIdStatusInicialProtocolo();
+			long idProtocolo = protocoloDao.cadastrarProtocolo(cmd,
+					docenteServico.getDadosDocenteLogado().getMatricula(), idStatusInicial);
 
-        Assert.notNull(filtro, "Informe os dados da consulta!");
+			if (idProtocolo > 0) {
+				cmd.getLitaPedidoProtocolo().forEach(pedido -> cadastrarPedidoProtocolo(pedido, idProtocolo));
+			} else {
+				throw new ExcecaoAplicacao("Houve um erro ao cadastrar o protocolo.", null);
+			}
 
-        Set<ConstraintViolation<ConsultaListaProtocoloFiltro>> violacoes = validator.validate(filtro);
+		} else {
+			throw new ExcecaoNegocio(violacoes.stream().findFirst().get().getMessage());
+		}
+	}
 
-        if (violacoes.isEmpty()) {
+	/**
+	 * Retorna uma consulta de protocolo.
+	 * 
+	 * @param filtro             - dados do filtro da consulta
+	 *                           {@link ConsultaListaProtocoloFiltro}
+	 * @param paginaAtual        - pagina da consulta atual {@link Integer}
+	 * @param qtdRegistrosPagina - quantidade de registros por pagina
+	 *                           {@link Integer}
+	 * @return paginacao da consulta {@link PaginacaoDto<ListagemProtocoloDto>}
+	 */
+	@PreAuthorize("@autorizacaoServico.isAutenticado()")
+	public PaginacaoDto<ListagemProtocoloDto> getListaProtocolo(ConsultaListaProtocoloFiltro filtro, int paginaAtual,
+			int qtdRegistrosPagina) {
 
-            if (filtro.getTipo().isConsultaCodigo()
-                    && (filtro.getIdProtocolo() == null || filtro.getIdProtocolo() <= 0)) {
-                throw new ExcecaoNegocio("Código do protocolo inválido.");
-            }
+		Assert.notNull(filtro, "Informe os dados da consulta!");
 
-            if (filtro.getTipo().isConsultaStatus() && (filtro.getIdStatus() == null || filtro.getIdStatus() <= 0)) {
-                throw new ExcecaoNegocio("Código do status inválido.");
-            }
+		Set<ConstraintViolation<ConsultaListaProtocoloFiltro>> violacoes = validator.validate(filtro);
 
-            filtro.setIdDocente(docenteServico.getDadosDocenteLogado().getMatricula());
+		if (violacoes.isEmpty()) {
 
-            return protocoloDao.getListaProtocolo(filtro, paginaAtual, qtdRegistrosPagina);
+			if (filtro.getTipo().isConsultaCodigo()
+					&& (filtro.getIdProtocolo() == null || filtro.getIdProtocolo() <= 0)) {
+				throw new ExcecaoNegocio("Código do protocolo inválido.");
+			}
 
-        } else {
-            throw new ExcecaoNegocio(violacoes.stream().findFirst().get().getMessage());
-        }
-    }
+			if (filtro.getTipo().isConsultaStatus() && (filtro.getIdStatus() == null || filtro.getIdStatus() <= 0)) {
+				throw new ExcecaoNegocio("Código do status inválido.");
+			}
 
-    /**
-     * Consulta os dados detalhados de um determinado protocolo pelo ID.
-     * 
-     * @return dados {@link DetalheProtocoloDto}
-     */
-    @PreAuthorize("@autorizacaoServico.isAutenticado()")
-    public DetalheProtocoloDto getDetalheProtocolo(long idProtocolo) {
-        return protocoloDao.getDetalheProtocolo(idProtocolo);
-    }
+			filtro.setIdDocente(docenteServico.getDadosDocenteLogado().getMatricula());
 
-    /**
-     * Efetua o cadastro de um determinado pedido para um protocolo
-     * 
-     * @param pedido      {@link PedidoProtocoloCmd} dados do pedido.
-     * @param idProtocolo {@link Long} id do protocolo.
-     */
-    @Transactional
-    private void cadastrarPedidoProtocolo(PedidoProtocoloCmd pedido, long idProtocolo) {
+			return protocoloDao.getListaProtocolo(filtro, paginaAtual, qtdRegistrosPagina);
 
-        Set<ConstraintViolation<PedidoProtocoloCmd>> violacoes = validator.validate(pedido);
+		} else {
+			throw new ExcecaoNegocio(violacoes.stream().findFirst().get().getMessage());
+		}
+	}
 
-        if (violacoes.isEmpty()) {
-            pedido.setIdProtocolo(idProtocolo);
-            protocoloDao.cadastrarPedidoProtocolo(pedido);
-        } else {
-            throw new ExcecaoNegocio(violacoes.stream().findFirst().get().getMessage());
-        }
-    }
-    
-    /**
-     * Efetua o cadastro de um determinado avaliador para um determinado protocolo.
-     * 
-     *  @param cadastro - contem o id do avaliador e o id do protocolo {@link CadastrarAvaliadorProtocoloCmd}
-     */
-    @PreAuthorize("@autorizacaoServico.isAutorizacaoAdmin()")
-    public void cadastrarAvaliadorProtocolo(CadastrarAvaliadorProtocoloCmd cmd)  {
-    	
-    	Set<ConstraintViolation<CadastrarAvaliadorProtocoloCmd>> violacoes = validator.validate(cmd);
+	/**
+	 * Consulta os dados detalhados de um determinado protocolo pelo ID.
+	 * 
+	 * @return dados {@link DetalheProtocoloDto}
+	 */
+	@PreAuthorize("@autorizacaoServico.isAutenticado()")
+	public DetalheProtocoloDto getDetalheProtocolo(long idProtocolo) {
+		return protocoloDao.getDetalheProtocolo(idProtocolo);
+	}
 
-        if (violacoes.isEmpty()) { 
-        	protocoloDao.cadastrarAvaliadorProtocolo(cmd);
-        } else {
-        	throw new ExcecaoNegocio(violacoes.stream().findFirst().get().getMessage());
-        }
-    }
+	/**
+	 * Efetua o cadastro de um determinado avaliador para um determinado protocolo.
+	 * 
+	 * @param cadastro - contem o id do avaliador e o id do protocolo
+	 *                 {@link CadastrarAvaliadorProtocoloCmd}
+	 */
+	@PreAuthorize("@autorizacaoServico.isAutorizacaoAdmin()")
+	@Transactional
+	public void cadastrarAvaliadorProtocolo(CadastrarAvaliadorProtocoloCmd cmd) {
+
+		Set<ConstraintViolation<CadastrarAvaliadorProtocoloCmd>> violacoes = validator.validate(cmd);
+
+		if (violacoes.isEmpty()) {
+			protocoloDao.cadastrarAvaliadorProtocolo(cmd);
+			protocoloDao.atualizarStatusProtocolo(cmd.getIdProtocolo(),
+					utilServico.getIdStatusPorDescricao(env.getProperty("protocolo.status.encaminhado")));
+		} else {
+			throw new ExcecaoNegocio(violacoes.stream().findFirst().get().getMessage());
+		}
+	}
+	
+	/**
+	 * Efetua o cadastro de um determinado pedido para um protocolo
+	 * 
+	 * @param pedido      {@link PedidoProtocoloCmd} dados do pedido.
+	 * @param idProtocolo {@link Long} id do protocolo.
+	 */
+	@Transactional
+	private void cadastrarPedidoProtocolo(PedidoProtocoloCmd pedido, long idProtocolo) {
+
+		Set<ConstraintViolation<PedidoProtocoloCmd>> violacoes = validator.validate(pedido);
+
+		if (violacoes.isEmpty()) {
+			pedido.setIdProtocolo(idProtocolo);
+			protocoloDao.cadastrarPedidoProtocolo(pedido);
+		} else {
+			throw new ExcecaoNegocio(violacoes.stream().findFirst().get().getMessage());
+		}
+	}
 }

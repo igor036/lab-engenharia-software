@@ -66,7 +66,19 @@ public class UtilServico {
 	 * 
 	 * @return id {@link Long}
 	 */
+	@PreAuthorize("@autorizacaoServico.isAutenticado()")
 	public long getIdStatusInicialProtocolo() {
 		return utilDao.getIdStatusPorDescricao(env.getProperty("protocolo.status.inicial"));
+	}
+	
+	/**
+	 * Retorna o id do status por descricao.
+	 * 
+	 * @param descricao {@link String}
+	 * @return id {@link Long}
+	 */
+	@PreAuthorize("@autorizacaoServico.isAutenticado()")
+	public long getIdStatusPorDescricao(String descricao) {
+		return utilDao.getIdStatusPorDescricao(descricao);
 	}
 }
