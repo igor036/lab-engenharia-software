@@ -97,6 +97,10 @@
     	) RETURNING ID_PARECER
     </entry>
     
+    <entry key="com.linecode.protocolo.dao.ProtocoloDao.excluirAvaliadorProtocolo">
+    	DELETE FROM TAB_PARECER WHERE FK_ID_PROTOCOLO = ?
+    </entry>
+    
     <entry key="com.linecode.protocolo.dao.ProtocoloDao.atualizarStatusProtocolo">
     	UPDATE TAB_PROTOCOLO SET
     		FK_ID_STATUS = ?

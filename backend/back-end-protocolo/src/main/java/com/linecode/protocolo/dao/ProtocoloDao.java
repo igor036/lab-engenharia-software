@@ -76,6 +76,12 @@ public class ProtocoloDao {
 				idStatus, idProtocolo) > 0;
 	}
 
+	@Transactional
+	public boolean excluirAvaliadorProtocolo(long idProtocolo) {
+		return jdbcTemplate.update(env.getProperty("com.linecode.protocolo.dao.ProtocoloDao.excluirAvaliadorProtocolo"),
+				idProtocolo) > 0;
+	}
+
 	@Transactional(readOnly = true)
 	public long getIdEmissorProtocolo(long idProtocolo) {
 		return jdbcTemplate.queryForObject(

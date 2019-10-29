@@ -157,6 +157,7 @@ public class ProtocoloServico {
 				throw new ExcecaoNegocio("O doscente não pode avaliar seu próprio protocolo.");
 			}
 			
+			protocoloDao.excluirAvaliadorProtocolo(cmd.getIdProtocolo());
 			protocoloDao.cadastrarAvaliadorProtocolo(cmd);
 			protocoloDao.atualizarStatusProtocolo(cmd.getIdProtocolo(),
 					utilServico.getIdStatusPorDescricao(env.getProperty("protocolo.status.encaminhado")));
