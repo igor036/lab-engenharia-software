@@ -37,7 +37,7 @@ export class ProtocoloServico {
     }
 
     atribuirParecerista(parecerista: AtribuirParecerista): Observable<string> {
-        return this.httpClient.post(`${URL_CONTROLADOR}/atribuir-parecerista`, parecerista, {
+        return this.httpClient.post(`${URL_CONTROLADOR}/cadastrar-avaliador-protocolo"`, parecerista, {
             responseType: 'text'
         });
     }
