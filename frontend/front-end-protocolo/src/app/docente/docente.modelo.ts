@@ -20,8 +20,13 @@ interface CadastroDocente {
     idPerfil: number;
 }
 
+interface ListarSugestoesDePareceristas {
+    nome: string;
+}
+
 export {
     Login,
     DocenteLogado,
-    CadastroDocente
+    CadastroDocente,
+    ListarSugestoesDePareceristas
 }

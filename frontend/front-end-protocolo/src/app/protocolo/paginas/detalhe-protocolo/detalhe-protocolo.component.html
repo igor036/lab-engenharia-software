@@ -92,12 +92,11 @@
             <div>
               <!--Implementar auto-complete-->
             </div>
-            <app-input-auto-complete 
-              [formControl]="formAtribuirParecerista.controls['nome']"
-              placeholder="Digite o nome do parecerista" 
-              iconeFa="fa fa-search" 
-              [listaSugestoes]="listaSugestoesPareceristas"
-              (mudarValor)="atualizarListaDeSugestaoPareceristas($event)">
+            <app-input-auto-complete [formControl]="formAtribuirParecerista.controls['descricao']"
+              placeholder="Digite o nome do parecerista" iconeFa="fa fa-search"
+              [listaSugestoes]="listaSugestoesPareceristas" (mudarValor)="atualizarListaDeSugestaoPareceristas($event)"
+              (valorSelecionado)="getPareceristaEscolhido($event)">
+
             </app-input-auto-complete>
           </div>
 
@@ -107,8 +106,8 @@
                 <h3 class="docente-header">Docente:</h3>
               </div>
               <div class="docente-internal">
-                <label>Nome:</label><br>
-                <label>Código:</label>
+                <label>Nome: {{ pareceristaEscolhido.descricao }}</label><br>
+                <label>Código: {{ pareceristaEscolhido.valor }}</label>
               </div>
             </div>
           </ng-container>

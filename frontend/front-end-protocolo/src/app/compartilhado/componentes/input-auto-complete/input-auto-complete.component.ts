@@ -37,14 +37,14 @@ export class InputAutoCompleteComponent implements OnInit, ControlValueAccessor 
   @Input() iconeFa?: string;
   @Input() placeholder: string;
   @Input() type: string = 'text';
-  @Input() listaSugestoes: Array<ListarSugestoesInput> = [];  
+  @Input() listaSugestoes: Array<ListarSugestoesInput> = [];
 
   @Output() mudarValor: EventEmitter<string> = new EventEmitter<string>();
   @Output() valorSelecionado: EventEmitter<any> = new EventEmitter<any>();
 
   public clicado: boolean = false;
 
-  private valor: string;
+  private valor: string = '';
   private onChange: Function;
   private onTouched: Function;
 
@@ -73,19 +73,20 @@ export class InputAutoCompleteComponent implements OnInit, ControlValueAccessor 
     this.onTouched = funcao;
   }
 
-  enviarDados(value: string) {
-    this.mudarValor.emit(value);
-  }
-
   exibirCampoSugestao(): boolean {
-    return this.listaSugestoes.length > 0 || this.clicado === true;
+    if (this.listaSugestoes.length > 0) {
+      return true;
+    }
+
+    if (this.formControl.updateOn) {
+      return false;
+    }
   }
 
-  selecionarValorSugestao(sugestao: ListarSugestoesInput): boolean{
+  selecionarValorSugestao(sugestao: ListarSugestoesInput): void {
     this.formControl.setValue(sugestao.descricao);
-    this.clicado = true;
-    //this.valorSelecionado.emit(sugestao);
-    return true;
+    this.valorSelecionado.emit(sugestao);
+    this.listaSugestoes = [];
   }
 
 }

@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 //modelo
-import { DetalheProtocolo, AtribuirParecerista, ListarSugestoesDePareceristas } from 'src/app/protocolo/protocolo.modelo';
+import { DetalheProtocolo, AtribuirParecerista, Parecerista } from 'src/app/protocolo/protocolo.modelo';
 import { DocenteLogado } from 'src/app/docente/docente.modelo';
 
 //servico
@@ -14,8 +14,8 @@ import { DocenteServico } from 'src/app/docente/docente.servico';
 
 //Constante
 import { Perfil } from 'src/app/app.constante';
-import { REGEXS } from 'src/app/app.constante';
 import { ModalServico } from 'src/app/compartilhado/componentes/modal/modal.servico';
+import { Opcao } from 'src/app/compartilhado/compartilhado.modelo';
 
 
 const OPCAO_RESUMO_PT: string = 'PT';
@@ -33,7 +33,8 @@ export class DetalheProtocoloComponent implements OnInit {
   private docenteLogado: DocenteLogado;
   public detalheProtocolo: DetalheProtocolo;
   public formAtribuirParecerista: FormGroup;
-  public listaSugestoesPareceristas: Array<ListarSugestoesDePareceristas>;
+  public listaSugestoesPareceristas: Array<Opcao>;
+  public pareceristaEscolhido: Parecerista;
 
 
   constructor(
@@ -104,26 +105,43 @@ export class DetalheProtocoloComponent implements OnInit {
   }
 
   exibirDadosParecerista(): boolean {
-    return this.formAtribuirParecerista.valid;
+    return this.pareceristaEscolhido != undefined;
   }
 
   iniciarFormAtribuirParecerista(): void {
     this.formAtribuirParecerista = this.formBuilder.group({
-      nome: this.formBuilder.control('',
+      descricao: this.formBuilder.control('',
         [Validators.required])
     });
   }
 
-  atribuirParecerista(parecerista: AtribuirParecerista): void {
+  atribuirParecerista(): void {
+    let dados: AtribuirParecerista = {
+      idAvaliador: this.pareceristaEscolhido.valor,
+      idProtocolo: this.detalheProtocolo.id
+    };
+
     this.spinnerServico.show();
-    this.protocoloServico.atribuirParecerista(parecerista).subscribe(msg => {
+    this.protocoloServico.atribuirParecerista(dados).subscribe(msg => {
       this.modalServico.exibirSucesso(msg);
       this.spinnerServico.hide();
     })
   }
 
-  liberarBotaoAtribuirParecerista(): boolean{
+  liberarBotaoAtribuirParecerista(): boolean {
     return this.formAtribuirParecerista.valid;
+  }
+
+  atualizarListaDeSugestaoPareceristas(descricao: string): void {
+    if (this.formAtribuirParecerista.value.descricao != '') {
+      this.docenteServico.getListaSugestaoDocente(descricao).subscribe(lista => {
+        this.listaSugestoesPareceristas = lista;
+      });
+    }
+  }
+
+  getPareceristaEscolhido(valor): void {
+    this.pareceristaEscolhido = valor;
   }
 
   private carregarDetalhesProtocoloEDocenteLogado(): void {
@@ -147,9 +165,4 @@ export class DetalheProtocoloComponent implements OnInit {
     });
   }
 
-  atualizarListaDeSugestaoPareceristas(valor: string): void {
-    this.protocoloServico.listarSugestoesDePareceristas(valor).subscribe(lista => {
-      this.listaSugestoesPareceristas = lista;
-    });    
-  }
 }

@@ -7,14 +7,15 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { PROPRIEDADES, URLS_NAMES } from 'src/app/app.constante';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Observer } from 'rxjs';
 
 import {
     DocenteLogado,
     Login,
     CadastroDocente
 } from './docente.modelo';
-
+import { ListarSugestoesDePareceristas } from './docente.modelo';
+import { Opcao } from '../compartilhado/compartilhado.modelo';
 @Injectable()
 export class DocenteServico {
 
@@ -81,5 +82,9 @@ export class DocenteServico {
         localStorage.removeItem(PROPRIEDADES.TOKEN_DOCENTE);
         localStorage.removeItem(PROPRIEDADES.DADOS_DOCENTE_LOGADO);
         this.router.navigate([URLS_NAMES.login]);
+    }
+
+    getListaSugestaoDocente(descricao: string): Observable<Array<Opcao>> {
+        return this.httpClient.get<Array<Opcao>>(`${this.URL_CONTROLADOR}/lista-sugestao-docente/${descricao}`)
     }
 }

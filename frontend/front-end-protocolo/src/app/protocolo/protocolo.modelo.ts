@@ -47,15 +47,16 @@ interface DetalheProtocolo {
     pedidos: Array<DetalhePedidoProtocolo>;
 }
 
-interface AtribuirParecerista{
-    matriculaParecerista: number;
+interface AtribuirParecerista {
+    idAvaliador: number;
     idProtocolo: number;
 }
 
-interface ListarSugestoesDePareceristas {
-    matriculaParecerista: number;
-    descricao: string;
+interface Parecerista {
+    valor: number;
+    nome: string;
 }
+
 
 enum TipoConsultaListaProtocolo {
     OPCAO_TODOS = 'T',
@@ -69,6 +70,7 @@ enum CategoriaProtocoloConsultado {
     OUTROS_DOCENTES = 'OD'
 }
 
+
 export {
     CadastrarProtocolo,
     PedidoProtocolo,
@@ -79,5 +81,5 @@ export {
     DetalheProtocolo,
     CategoriaProtocoloConsultado,
     AtribuirParecerista,
-    ListarSugestoesDePareceristas
+    Parecerista
 }
