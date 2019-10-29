@@ -78,7 +78,8 @@ export class InputAutoCompleteComponent implements OnInit, ControlValueAccessor 
   }
 
   selecionarValorSugestao(sugestao: ListarSugestoesInput): void {
-    this.formControl.setValue(sugestao.descricao);
+    //this.formControl.setValue(sugestao.descricao);
+    this.valor = sugestao.descricao;
     this.valorSelecionado.emit(sugestao);
     this.listaSugestoes = [];
   }

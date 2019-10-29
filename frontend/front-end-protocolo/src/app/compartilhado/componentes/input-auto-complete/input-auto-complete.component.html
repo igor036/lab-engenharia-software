@@ -11,6 +11,7 @@
   <input
     class="input-deco-input" 
     iconeFa="fa-search" 
+    [(value)]="valor"
     [formControl]="formControl" 
     [placeholder]="placeholder"
     [class.input-invalido]="isInvalido()" 
@@ -22,8 +23,8 @@
 <ng-container *ngIf="exibirCampoSugestao()">
   <div class="input-sugestao">
     <ul class="list-group list-group-flush">
-      <li  class="list-group-item list-group-item-action" 
-      *ngFor="let sugestao of listaSugestoes"
+      <li  class="list-group-item list-group-item-action text-align-center" 
+      *ngFor="let sugestao of listaSugestoes" 
       (click)="selecionarValorSugestao(sugestao)">
           {{ sugestao.descricao }}
       </li>

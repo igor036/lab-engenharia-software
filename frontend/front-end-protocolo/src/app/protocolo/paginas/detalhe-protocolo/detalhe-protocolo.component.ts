@@ -133,10 +133,12 @@ export class DetalheProtocoloComponent implements OnInit {
   }
 
   atualizarListaDeSugestaoPareceristas(descricao: string): void {
-    if (this.formAtribuirParecerista.value.descricao != '') {
+    if (this.formAtribuirParecerista.value.descricao) {
       this.docenteServico.getListaSugestaoDocente(descricao).subscribe(lista => {
         this.listaSugestoesPareceristas = lista;
       });
+    } else {
+      this.listaSugestoesPareceristas = [];
     }
   }
 
