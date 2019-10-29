@@ -42,6 +42,8 @@ export class InputAutoCompleteComponent implements OnInit, ControlValueAccessor 
   @Output() mudarValor: EventEmitter<string> = new EventEmitter<string>();
   @Output() valorSelecionado: EventEmitter<any> = new EventEmitter<any>();
 
+  public clicado: boolean = false;
+
   private valor: string;
   private onChange: Function;
   private onTouched: Function;
@@ -76,12 +78,13 @@ export class InputAutoCompleteComponent implements OnInit, ControlValueAccessor 
   }
 
   exibirCampoSugestao(): boolean {
-    return this.listaSugestoes.length > 0;
+    return this.listaSugestoes.length > 0 || this.clicado === true;
   }
 
   selecionarValorSugestao(sugestao: ListarSugestoesInput): boolean{
     this.formControl.setValue(sugestao.descricao);
-    this.valorSelecionado.emit(sugestao);
+    this.clicado = true;
+    //this.valorSelecionado.emit(sugestao);
     return true;
   }
 
