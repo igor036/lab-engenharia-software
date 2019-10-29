@@ -75,4 +75,11 @@ public class ProtocoloDao {
 		return jdbcTemplate.update(env.getProperty("com.linecode.protocolo.dao.ProtocoloDao.atualizarStatusProtocolo"),
 				idStatus, idProtocolo) > 0;
 	}
+
+	@Transactional(readOnly = true)
+	public long getIdEmissorProtocolo(long idProtocolo) {
+		return jdbcTemplate.queryForObject(
+				env.getProperty("com.linecode.protocolo.dao.ProtocoloDao.getIdEmissorProtocolo"), Long.class,
+				idProtocolo);
+	}
 }

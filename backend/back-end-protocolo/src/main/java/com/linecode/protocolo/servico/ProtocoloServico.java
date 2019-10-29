@@ -152,6 +152,11 @@ public class ProtocoloServico {
 		Set<ConstraintViolation<CadastrarAvaliadorProtocoloCmd>> violacoes = validator.validate(cmd);
 
 		if (violacoes.isEmpty()) {
+
+			if (cmd.getIdAvaliador() == protocoloDao.getIdEmissorProtocolo(cmd.getIdProtocolo())) {
+				throw new ExcecaoNegocio("O doscente não pode avaliar seu próprio protocolo.");
+			}
+			
 			protocoloDao.cadastrarAvaliadorProtocolo(cmd);
 			protocoloDao.atualizarStatusProtocolo(cmd.getIdProtocolo(),
 					utilServico.getIdStatusPorDescricao(env.getProperty("protocolo.status.encaminhado")));

@@ -103,4 +103,8 @@
     	WHERE ID_PROTOCOLO = ?
     </entry>
     
+    <entry key="com.linecode.protocolo.dao.ProtocoloDao.getIdEmissorProtocolo">
+    	SELECT FK_MATRICULA FROM TAB_PROTOCOLO WHERE ID_PROTOCOLO = ?
+    </entry>
+    
 </properties>
