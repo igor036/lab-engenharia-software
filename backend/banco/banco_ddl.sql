@@ -2,7 +2,7 @@
 
 -- DROP TABLE public.tab_bioterio;
 
-CREATE TABLE public.tab_bioterio
+CREATE TABLE tab_bioterio
 (
   id_bioterio serial,
   nome character varying(100) NOT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE public.tab_bioterio
 
 -- DROP TABLE public.tab_especie;
 
-CREATE TABLE public.tab_especie
+CREATE TABLE tab_especie
 (
   id_especie serial,
   nome character varying(100) NOT NULL,
@@ -28,7 +28,7 @@ CREATE TABLE public.tab_especie
 
 -- DROP TABLE public.tab_role;
 
-CREATE TABLE public.tab_role
+CREATE TABLE tab_role
 (
   id_role serial,
   nome character varying(100) NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE public.tab_role
 
 -- DROP TABLE public.tab_docente;
 
-CREATE TABLE public.tab_docente
+CREATE TABLE tab_docente
 (
   matricula serial,
   nome character varying(100) NOT NULL,
@@ -59,7 +59,7 @@ CREATE TABLE public.tab_docente
 
 -- DROP TABLE public.tab_status;
 
-CREATE TABLE public.tab_status
+CREATE TABLE tab_status
 (
   id_status serial,
   descricao character varying(50),
@@ -70,7 +70,7 @@ CREATE TABLE public.tab_status
 -- Table: public.tab_protocolo
 
 -- DROP TABLE public.tab_protocolo;
-CREATE TABLE public.tab_protocolo
+CREATE TABLE tab_protocolo
 (
   id_protocolo serial,
   justificativa character varying(500) NOT NULL,
@@ -113,7 +113,7 @@ CREATE TABLE tab_animal_requerido (
 
 -- DROP TABLE public.tab_pedido;
 
-CREATE TABLE public.tab_pedido
+CREATE TABLE tab_pedido
 (
   id_pedido serial,
   quantidade integer NOT NULL,
@@ -140,12 +140,12 @@ CREATE TABLE public.tab_pedido
 
 -- DROP TABLE public.tab_parecer;
 
-CREATE TABLE public.tab_parecer
+CREATE TABLE tab_parecer
 (
   id_parecer serial,
-  obs_parecer character varying(500) NOT NULL,
-  permitir boolean NOT NULL,
-  fk_matricula integer NOT NULL,
+  obs_parecer character varying(500),
+  permitir boolean,
+  fk_matricula integer,
   fk_id_protocolo integer NOT NULL,
 
   CONSTRAINT tab_parecer_pkey PRIMARY KEY (id_parecer),
