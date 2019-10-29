@@ -74,13 +74,7 @@ export class InputAutoCompleteComponent implements OnInit, ControlValueAccessor 
   }
 
   exibirCampoSugestao(): boolean {
-    if (this.listaSugestoes.length > 0) {
-      return true;
-    }
-
-    if (this.formControl.updateOn) {
-      return false;
-    }
+    return this.listaSugestoes.length > 0;
   }
 
   selecionarValorSugestao(sugestao: ListarSugestoesInput): void {
