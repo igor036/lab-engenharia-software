@@ -22,8 +22,7 @@ form{
 }
 
 .external-deco-header{
-  background-color: #361c68;
-  padding: 0.5% 2%;
+  padding: 1% 2%;
   color: white;
 }
 
@@ -145,6 +144,15 @@ form{
   background-color: #3d8af7;
 }
 
-.justificativa-projeto{
-  margin-top: 5%;
+.estilo-cardheader{
+  background-color: #286DA8;
 }
+
+.card-header label{
+  color: white;
+}
+
+.card-header{
+  padding: 1% 2%;
+}
+
