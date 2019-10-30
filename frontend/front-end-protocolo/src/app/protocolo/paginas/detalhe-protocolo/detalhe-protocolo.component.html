@@ -3,8 +3,8 @@
   <form>
 
     <div class="external-deco" style="height: auto;">
-      <div class="external-deco-header">
-        <h2>Resumo do Projeto :</h2>
+      <div class="external-deco-header bg-dark">
+        <h2>Resumo do Projeto:</h2>
       </div>
       <div class="internal-deco">
         <ng-container *ngIf="exibirResumoPortugues()">
@@ -18,22 +18,25 @@
     </div>
 
     <div class="external-deco">
-      <div class="external-deco-header">
-        <h2>Informações do Projeto :</h2>
+      <div class="external-deco-header bg-dark">
+        <h2>Informações do Projeto:</h2>
       </div>
       <div class="internal-deco">
-        <div class="docente-row">
-          <div class="docente-deco">
-            <div class="docente-header">
-              <h3>Docente :</h3>
-            </div>
-            <div class="docente-internal">
-              <label>Codigo: </label>
-              <label>{{ detalheProtocolo?.matriculaDocente }}</label><br>
-              <label>Nome: </label>
-              <label>{{ detalheProtocolo?.nomeDoscente }}</label><br>
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header bg-dark">
+                <label>Docente</label>
+              </div>
+              <div class="card-body">
+                <label>Codigo:&nbsp;</label>
+                <label>{{ detalheProtocolo?.matriculaDocente }}</label><br>
+                <label>Nome:&nbsp;</label>
+                <label>{{ detalheProtocolo?.nomeDoscente }}</label><br>
+              </div>
             </div>
           </div>
+
         </div>
 
         <ng-container *ngIf="exibirAvaliador()">
@@ -52,23 +55,48 @@
           </div>
         </ng-container>
 
-
-        <div>
-          <h3>Justificativa do projeto :</h3>
-          <p>{{ detalheProtocolo?.justificativa }}</p>
+        <div class="row">
+          <div class="col-12">
+            <div class="card" style="margin-top: 5%;">
+              <div class="card-header bg-dark">
+                <label>Justificativa</label>
+              </div>
+              <div class="card-body">
+                <p class="text-justify">{{ detalheProtocolo?.justificativa }}</p>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="docente-deco">
-          <div class="docente-header">
-            <h3>Animais :</h3>
-          </div>
-          <div *ngFor="let pedido of detalheProtocolo?.pedidos" class="docente-internal">
-            <label>Especie:</label>
-            <label>{{ pedido.especie }}</label><br>
-            <label>Quantidade:</label>
-            <label>{{ pedido.quantidade }}</label><br>
-            <label>Biotério:</label>
-            <label>{{ pedido.bioterio }}</label><br>
+        <div class="row mt-4">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header bg-dark">
+                <label>Animais Selecionados</label>
+              </div>
+              <div class="card-body">
+                <div class="row justify-content-center">
+                  <div class="col-10">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th style="width: 33%;">Espécie</th>
+                          <th style="width: 33%;">Origem</th>
+                          <th style="width: 33%;">Qtd</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let pedido of detalheProtocolo?.pedidos" class="docente-internal">
+                          <td>{{ pedido.especie }}</td>
+                          <td>{{ pedido.bioterio }}</td>
+                          <td>{{ pedido.quantidade }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -90,7 +118,7 @@
           <div [formGroup]="formAtribuirParecerista" style="margin-top: 10%;">
             <h3>Atribuir Parecerista:</h3>
             <div>
-              <!--Implementar auto-complete-->
+
             </div>
             <app-input-auto-complete [formControl]="formAtribuirParecerista.controls['descricao']"
               placeholder="Digite o nome do parecerista" iconeFa="fa fa-search"
@@ -101,13 +129,15 @@
           </div>
 
           <ng-container *ngIf="exibirDadosParecerista()">
-            <div class="docente-deco">
-              <div>
-                <h3 class="docente-header">Docente:</h3>
-              </div>
-              <div class="docente-internal">
-                <label>Nome: {{ pareceristaEscolhido.descricao }}</label><br>
-                <label>Código: {{ pareceristaEscolhido.valor }}</label>
+            <div class="container">
+              <div class="card">
+                <div class="card-header bg-dark">
+                  <label>Detalhes do avaliador</label>
+                </div>
+                <div class="card-body">
+                  <label>Código: {{ pareceristaEscolhido.descricao }}</label><br>
+                  <label>Nome: {{ pareceristaEscolhido.valor }}</label>
+                </div>
               </div>
             </div>
           </ng-container>

@@ -22,8 +22,7 @@ form{
 }
 
 .external-deco-header{
-  background-color: #361c68;
-  padding: 0.5% 2%;
+  padding: 1% 2%;
   color: white;
 }
 
@@ -83,14 +82,14 @@ form{
 
 .docente-deco{
   margin-left: 1%;
-  background-color:#3d8af7;
+  //background-color:#3d8af7;
   width: 100%;
 }
 
 .docente-header{
-  background-color: #1b70e9;
-  padding: 0% 2%;
-  color: white;
+  //background-color: #1b70e9;
+  padding: 0% 0%;
+  color: black;
 }
 
 .docente-internal{
@@ -144,3 +143,16 @@ form{
   width: 10%;
   background-color: #3d8af7;
 }
+
+.estilo-cardheader{
+  background-color: #286DA8;
+}
+
+.card-header label{
+  color: white;
+}
+
+.card-header{
+  padding: 1% 2%;
+}
+
