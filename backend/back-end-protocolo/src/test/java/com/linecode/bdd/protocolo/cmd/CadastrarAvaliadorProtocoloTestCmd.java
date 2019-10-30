@@ -1,4 +1,6 @@
-package com.linecode.protocolo.cmd;
+package com.linecode.bdd.protocolo.cmd;
+
+import com.linecode.protocolo.cmd.CadastrarAvaliadorProtocoloCmd;
 
 public class CadastrarAvaliadorProtocoloTestCmd extends CadastrarAvaliadorProtocoloCmd {
 	

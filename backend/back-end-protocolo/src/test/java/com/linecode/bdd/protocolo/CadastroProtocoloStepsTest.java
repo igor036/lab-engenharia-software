@@ -1,4 +1,4 @@
-package com.linecode.protocolo;
+package com.linecode.bdd.protocolo;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
@@ -23,13 +23,13 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.linecode.bdd.protocolo.cmd.CadastroProtocoloTesteCmd;
 import com.linecode.compartilhado.enumerador.PerfilEnumerador;
 import com.linecode.compartilhado.excecao.ExcecaoNegocio;
 import com.linecode.configuracao.ContextoAplicacao;
 import com.linecode.docente.dto.DocenteDto;
 import com.linecode.docente.servico.DocenteServico;
 import com.linecode.protocolo.cmd.CadastroProtocoloCmd;
-import com.linecode.protocolo.cmd.CadastroProtocoloTesteCmd;
 import com.linecode.protocolo.cmd.PedidoProtocoloCmd;
 import com.linecode.protocolo.dao.ProtocoloDao;
 import com.linecode.protocolo.servico.ProtocoloServico;

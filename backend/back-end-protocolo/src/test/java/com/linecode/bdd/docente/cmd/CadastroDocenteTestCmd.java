@@ -1,4 +1,6 @@
-package com.linecode.docente.cmd;
+package com.linecode.bdd.docente.cmd;
+
+import com.linecode.docente.cmd.CadastroDocenteCmd;
 
 public class CadastroDocenteTestCmd extends CadastroDocenteCmd {
 	

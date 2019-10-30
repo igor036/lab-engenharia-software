@@ -1,7 +1,7 @@
-package com.linecode.docente;
+package com.linecode.bdd.docente;
 
-import static org.assertj.core.api.Assertions.fail;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
 
 import java.util.List;
@@ -14,9 +14,9 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 import org.springframework.context.ApplicationContext;
 
+import com.linecode.bdd.docente.cmd.CadastroDocenteTestCmd;
 import com.linecode.compartilhado.excecao.ExcecaoNegocio;
 import com.linecode.configuracao.ContextoAplicacao;
-import com.linecode.docente.cmd.CadastroDocenteTestCmd;
 import com.linecode.docente.servico.DocenteServico;
 
 import cucumber.api.java.pt.Então;

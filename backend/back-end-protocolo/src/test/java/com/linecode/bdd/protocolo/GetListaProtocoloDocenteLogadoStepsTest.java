@@ -1,4 +1,4 @@
-package com.linecode.protocolo;
+package com.linecode.bdd.protocolo;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
@@ -15,10 +15,10 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 import org.springframework.context.ApplicationContext;
 
+import com.linecode.bdd.protocolo.filtro.ConsultaListaProtocoloTestFiltro;
 import com.linecode.compartilhado.excecao.ExcecaoNegocio;
 import com.linecode.configuracao.ContextoAplicacao;
 import com.linecode.protocolo.enumerador.TipoConsultaListaProtocoloEnumerador;
-import com.linecode.protocolo.filtro.ConsultaListaProtocoloTestFiltro;
 import com.linecode.protocolo.servico.ProtocoloServico;
 
 import cucumber.api.java.pt.Então;

@@ -1,7 +1,10 @@
-package com.linecode.protocolo.cmd;
+package com.linecode.bdd.protocolo.cmd;
 
 import java.time.LocalDate;
 import java.util.List;
+
+import com.linecode.protocolo.cmd.CadastroProtocoloCmd;
+import com.linecode.protocolo.cmd.PedidoProtocoloCmd;
 
 public class CadastroProtocoloTesteCmd extends CadastroProtocoloCmd {
 

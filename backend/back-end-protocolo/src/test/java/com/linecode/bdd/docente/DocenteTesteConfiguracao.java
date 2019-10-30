@@ -2,7 +2,7 @@
  * Author: Igor Joaquim dos Santos Lima
  * Data: 15/09/2019
  */
-package com.linecode.docente;
+package com.linecode.bdd.docente;
 
 import org.junit.runner.RunWith;
 

@@ -1,4 +1,4 @@
-package com.linecode.docente;
+package com.linecode.bdd.docente;
 
 import static org.junit.Assert.assertEquals;
 
