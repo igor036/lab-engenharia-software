@@ -28,9 +28,9 @@
               <h3>Docente :</h3>
             </div>
             <div class="docente-internal">
-              <label>Codigo: </label>
+              <label>Codigo:&nbsp;</label>
               <label>{{ detalheProtocolo?.matriculaDocente }}</label><br>
-              <label>Nome: </label>
+              <label>Nome:&nbsp;</label>
               <label>{{ detalheProtocolo?.nomeDoscente }}</label><br>
             </div>
           </div>
@@ -53,24 +53,37 @@
         </ng-container>
 
 
-        <div>
-          <h3>Justificativa do projeto :</h3>
+        <div class="justificativa-projeto">
+          <h3>Justificativa:</h3>
           <p>{{ detalheProtocolo?.justificativa }}</p>
         </div>
 
-        <div class="docente-deco">
-          <div class="docente-header">
-            <h3>Animais :</h3>
-          </div>
-          <div *ngFor="let pedido of detalheProtocolo?.pedidos" class="docente-internal">
-            <label>Especie:</label>
-            <label>{{ pedido.especie }}</label><br>
-            <label>Quantidade:</label>
-            <label>{{ pedido.quantidade }}</label><br>
-            <label>Biotério:</label>
-            <label>{{ pedido.bioterio }}</label><br>
+        <div class="row justify-content-center">
+          <div class="col-10">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th colspan="3">Animais</th>
+                </tr>
+              </thead>
+              <thead>
+                <tr>
+                  <th style="width: 33%;">Espécie</th>
+                  <th style="width: 33%;">Origem</th>
+                  <th style="width: 33%;">Qtd</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let pedido of detalheProtocolo?.pedidos" class="docente-internal">
+                  <td>{{ pedido.especie }}</td>
+                  <td>{{ pedido.bioterio }}</td>
+                  <td>{{ pedido.quantidade }}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
+
 
         <ng-container *ngIf="exibirParecer()">
           <h3>Parecer : </h3>
@@ -90,7 +103,7 @@
           <div [formGroup]="formAtribuirParecerista" style="margin-top: 10%;">
             <h3>Atribuir Parecerista:</h3>
             <div>
-              <!--Implementar auto-complete-->
+
             </div>
             <app-input-auto-complete [formControl]="formAtribuirParecerista.controls['descricao']"
               placeholder="Digite o nome do parecerista" iconeFa="fa fa-search"

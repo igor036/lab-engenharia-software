@@ -83,14 +83,14 @@ form{
 
 .docente-deco{
   margin-left: 1%;
-  background-color:#3d8af7;
+  //background-color:#3d8af7;
   width: 100%;
 }
 
 .docente-header{
-  background-color: #1b70e9;
-  padding: 0% 2%;
-  color: white;
+  //background-color: #1b70e9;
+  padding: 0% 0%;
+  color: black;
 }
 
 .docente-internal{
@@ -143,4 +143,8 @@ form{
   padding: 5px 0%;
   width: 10%;
   background-color: #3d8af7;
+}
+
+.justificativa-projeto{
+  margin-top: 5%;
 }
