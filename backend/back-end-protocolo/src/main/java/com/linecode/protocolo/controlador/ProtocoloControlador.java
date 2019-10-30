@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.linecode.compartilhado.dto.PaginacaoDto;
+import com.linecode.protocolo.cmd.AvaliarProtocoloCmd;
 import com.linecode.protocolo.cmd.CadastrarAvaliadorProtocoloCmd;
 import com.linecode.protocolo.cmd.CadastroProtocoloCmd;
 import com.linecode.protocolo.dto.DetalheProtocoloDto;
@@ -49,5 +50,11 @@ public class ProtocoloControlador {
 	public ResponseEntity<String> cadastrarAvaliadorProtocolo(@RequestBody CadastrarAvaliadorProtocoloCmd cmd) {
 		protocoloServico.cadastrarAvaliadorProtocolo(cmd);
 		return ResponseEntity.ok("Avaliador cadastrado com sucesso!");
+	}
+	
+	@PostMapping("avaliar-protocolo")
+	public ResponseEntity<String> avaliarProtocolo(@RequestBody AvaliarProtocoloCmd avaliacao) {
+		protocoloServico.avaliarProtocolo(avaliacao); 
+		return ResponseEntity.ok("Avaliação efetuada com sucesso!");
 	}
 }

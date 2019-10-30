@@ -107,8 +107,19 @@
     	WHERE ID_PROTOCOLO = ?
     </entry>
     
-    <entry key="com.linecode.protocolo.dao.ProtocoloDao.getIdEmissorProtocolo">
-    	SELECT FK_MATRICULA FROM TAB_PROTOCOLO WHERE ID_PROTOCOLO = ?
+    <entry key="com.linecode.protocolo.dao.ProtocoloDao.isEmissorProtocolo">
+    	SELECT FK_MATRICULA = ? FROM TAB_PROTOCOLO WHERE ID_PROTOCOLO = ?
+    </entry>
+    
+    <entry key="com.linecode.protocolo.dao.ProtocoloDao.isAvaliadorProtocolo">
+    	SELECT FK_MATRICULA = ? FROM TAB_PARECER WHERE FK_ID_PROTOCOLO = ?
+    </entry>
+    
+    <entry key="com.linecode.protocolo.dao.ProtocoloDao.avaliarProtocolo">
+    	UPDATE TAB_PARECER SET
+    		OBS_PARECER = ?, 
+			PERMITIR = ?
+		WHERE FK_ID_PROTOCOLO = ?
     </entry>
     
 </properties>

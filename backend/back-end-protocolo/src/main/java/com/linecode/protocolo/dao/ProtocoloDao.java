@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.linecode.compartilhado.dto.PaginacaoDto;
+import com.linecode.protocolo.cmd.AvaliarProtocoloCmd;
 import com.linecode.protocolo.cmd.CadastrarAvaliadorProtocoloCmd;
 import com.linecode.protocolo.cmd.CadastroProtocoloCmd;
 import com.linecode.protocolo.cmd.PedidoProtocoloCmd;
@@ -83,9 +84,22 @@ public class ProtocoloDao {
 	}
 
 	@Transactional(readOnly = true)
-	public long getIdEmissorProtocolo(long idProtocolo) {
+	public boolean isEmissorProtocolo(long idProtocolo, long idDocente) {
 		return jdbcTemplate.queryForObject(
-				env.getProperty("com.linecode.protocolo.dao.ProtocoloDao.getIdEmissorProtocolo"), Long.class,
+				env.getProperty("com.linecode.protocolo.dao.ProtocoloDao.isEmissorProtocolo"), Boolean.class, idDocente,
 				idProtocolo);
+	}
+
+	@Transactional(readOnly = true)
+	public boolean isAvaliadorProtocolo(long idProtocolo, long idDocente) {
+		return jdbcTemplate.queryForObject(
+				env.getProperty("com.linecode.protocolo.dao.ProtocoloDao.isAvaliadorProtocolo"), Boolean.class,
+				idDocente, idProtocolo);
+	}
+
+	@Transactional
+	public boolean avaliarProtocolo(AvaliarProtocoloCmd avaliacao) {
+		return jdbcTemplate.update(env.getProperty("com.linecode.protocolo.dao.ProtocoloDao.avaliarProtocolo"),
+				avaliacao.getDescricao(), avaliacao.isDeferido(), avaliacao.getIdProtocolo()) > 0;
 	}
 }

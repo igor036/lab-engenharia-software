@@ -20,6 +20,7 @@ import com.linecode.compartilhado.dto.PaginacaoDto;
 import com.linecode.compartilhado.excecao.ExcecaoAplicacao;
 import com.linecode.compartilhado.excecao.ExcecaoNegocio;
 import com.linecode.docente.servico.DocenteServico;
+import com.linecode.protocolo.cmd.AvaliarProtocoloCmd;
 import com.linecode.protocolo.cmd.CadastrarAvaliadorProtocoloCmd;
 import com.linecode.protocolo.cmd.CadastroProtocoloCmd;
 import com.linecode.protocolo.cmd.PedidoProtocoloCmd;
@@ -145,18 +146,18 @@ public class ProtocoloServico {
 	 * @param cadastro - contem o id do avaliador e o id do protocolo
 	 *                 {@link CadastrarAvaliadorProtocoloCmd}
 	 */
-	@PreAuthorize("@autorizacaoServico.isAutorizacaoAdmin()")
 	@Transactional
+	@PreAuthorize("@autorizacaoServico.isAutorizacaoAdmin()")
 	public void cadastrarAvaliadorProtocolo(CadastrarAvaliadorProtocoloCmd cmd) {
 
 		Set<ConstraintViolation<CadastrarAvaliadorProtocoloCmd>> violacoes = validator.validate(cmd);
 
 		if (violacoes.isEmpty()) {
 
-			if (cmd.getIdAvaliador() == protocoloDao.getIdEmissorProtocolo(cmd.getIdProtocolo())) {
+			if (protocoloDao.isEmissorProtocolo(cmd.getIdProtocolo(), cmd.getIdAvaliador())) {
 				throw new ExcecaoNegocio("O doscente não pode avaliar seu próprio protocolo.");
 			}
-			
+
 			protocoloDao.excluirAvaliadorProtocolo(cmd.getIdProtocolo());
 			protocoloDao.cadastrarAvaliadorProtocolo(cmd);
 			protocoloDao.atualizarStatusProtocolo(cmd.getIdProtocolo(),
@@ -165,7 +166,24 @@ public class ProtocoloServico {
 			throw new ExcecaoNegocio(violacoes.stream().findFirst().get().getMessage());
 		}
 	}
-	
+
+	@PreAuthorize("@autorizacaoServico.isAutenticado()")
+	public void avaliarProtocolo(AvaliarProtocoloCmd avaliacao) {
+
+		Set<ConstraintViolation<AvaliarProtocoloCmd>> violacoes = validator.validate(avaliacao);
+
+		if (violacoes.isEmpty()) {
+			if (protocoloDao.isAvaliadorProtocolo(avaliacao.getIdProtocolo(),
+					docenteServico.getDadosDocenteLogado().getMatricula())) {
+				protocoloDao.avaliarProtocolo(avaliacao);
+			} else {
+				throw new ExcecaoNegocio("Você não pode avaliar este protocolo.");
+			}
+		} else {
+			throw new ExcecaoNegocio(violacoes.stream().findFirst().get().getMessage());
+		}
+	}
+
 	/**
 	 * Efetua o cadastro de um determinado pedido para um protocolo
 	 * 
