@@ -173,9 +173,17 @@ public class ProtocoloServico {
 		Set<ConstraintViolation<AvaliarProtocoloCmd>> violacoes = validator.validate(avaliacao);
 
 		if (violacoes.isEmpty()) {
-			if (protocoloDao.isAvaliadorProtocolo(avaliacao.getIdProtocolo(),
-					docenteServico.getDadosDocenteLogado().getMatricula())) {
+			long idDocenteLogado = docenteServico.getDadosDocenteLogado().getMatricula();
+			if (protocoloDao.isAvaliadorProtocolo(avaliacao.getIdProtocolo(), idDocenteLogado)) {
+				
+				String descricaoStatus = avaliacao.isDeferido() ? 
+						env.getProperty("protocolo.status.deferido") :
+						env.getProperty("protocolo.status.indeferido");
+				long idStatus = utilServico.getIdStatusPorDescricao(descricaoStatus);
+				
+				protocoloDao.atualizarStatusProtocolo(avaliacao.getIdProtocolo(), idStatus);
 				protocoloDao.avaliarProtocolo(avaliacao);
+				
 			} else {
 				throw new ExcecaoNegocio("Você não pode avaliar este protocolo.");
 			}
