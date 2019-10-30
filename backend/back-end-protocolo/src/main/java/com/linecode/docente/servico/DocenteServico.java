@@ -115,7 +115,7 @@ public class DocenteServico {
     @PreAuthorize("@autorizacaoServico.isAutenticado()")
     public List<OpcaoDto<Long>> getListaSugestaoDocente(String nome) {
     	
-    	if (StringUtils.isEmpty(nome)) {
+    	if (StringUtils.isEmpty(nome) || StringUtils.isEmpty(nome.trim())) {
     		throw new ExcecaoNegocio("Informe o nome da consulta.");
     	}
     	
