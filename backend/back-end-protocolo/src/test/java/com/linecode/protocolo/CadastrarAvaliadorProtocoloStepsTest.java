@@ -21,7 +21,7 @@ import com.linecode.protocolo.servico.ProtocoloServico;
 import cucumber.api.java.pt.Então;
 import cucumber.api.java.pt.Quando;
 
-public class CadastrarAvaliadorProtocolo {
+public class CadastrarAvaliadorProtocoloStepsTest {
 	
 	private ContextoAplicacao contextoAplicacao = new ContextoAplicacao();
 
@@ -33,7 +33,7 @@ public class CadastrarAvaliadorProtocolo {
 	
 	private List<CadastrarAvaliadorProtocoloTestCmd> dadosCadastro;
 	
-	public CadastrarAvaliadorProtocolo() {
+	public CadastrarAvaliadorProtocoloStepsTest() {
 		MockitoAnnotations.initMocks(this);
 		ApplicationContext applicationContextMock = mock(ApplicationContext.class);
 		contextoAplicacao.setApplicationContext(applicationContextMock);

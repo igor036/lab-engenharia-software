@@ -24,7 +24,7 @@ import com.linecode.protocolo.servico.ProtocoloServico;
 import cucumber.api.java.pt.Então;
 import cucumber.api.java.pt.Quando;
 
-public class GetListaProtocoloDocenteLogado {
+public class GetListaProtocoloDocenteLogadoStepsTest {
 
 	private ContextoAplicacao contextoAplicacao = new ContextoAplicacao();
 
@@ -36,7 +36,7 @@ public class GetListaProtocoloDocenteLogado {
 
 	private List<ConsultaListaProtocoloTestFiltro> filtros = new ArrayList<>();
 
-	public GetListaProtocoloDocenteLogado() {
+	public GetListaProtocoloDocenteLogadoStepsTest() {
 		MockitoAnnotations.initMocks(this);
 		ApplicationContext applicationContextMock = mock(ApplicationContext.class);
 		contextoAplicacao.setApplicationContext(applicationContextMock);
