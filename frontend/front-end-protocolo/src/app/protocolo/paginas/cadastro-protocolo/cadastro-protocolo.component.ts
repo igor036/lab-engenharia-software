@@ -45,6 +45,7 @@ export class CadastroProtocoloComponent implements OnInit {
       this.spinnerServico.hide();
       this.formProtocolo.reset();
       this.modalServico.exibirSucesso(resposta);
+      this.listaPedido = [];
     });
   }
 
