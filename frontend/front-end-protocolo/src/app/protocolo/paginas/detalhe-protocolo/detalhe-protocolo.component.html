@@ -78,13 +78,13 @@
               </div>
               <div class="card-body">
                 <div class="row justify-content-center">
-                  <div class="col-10">
-                    <table class="table table-borderless">
-                      <thead>
+                  <div class="col-12">
+                    <table class="table table-striped">
+                      <thead class="thead-dark">
                         <tr>
                           <th style="width: 33%;">Espécie</th>
                           <th style="width: 33%;">Origem</th>
-                          <th style="width: 33%;">Qtd</th>
+                          <th style="width: 33%;">Quantidade</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -119,14 +119,11 @@
         <ng-container *ngIf="exibirAdicionarParecerista()">
           <div [formGroup]="formAtribuirParecerista" style="margin-top: 10%;">
             <h3>Atribuir Parecerista:</h3>
-            <div>
 
-            </div>
             <app-input-auto-complete [formControl]="formAtribuirParecerista.controls['descricao']"
               placeholder="Digite o nome do parecerista" iconeFa="fa fa-search"
               [listaSugestoes]="listaSugestoesPareceristas" (mudarValor)="atualizarListaDeSugestaoPareceristas($event)"
               (valorSelecionado)="getPareceristaEscolhido($event)">
-
             </app-input-auto-complete>
           </div>
 
