@@ -86,16 +86,16 @@
                     <thead class="thead-dark">
                         <tr>
                             <th>Espécie</th>
-                            <th>Quantidade</th>
                             <th>Biotério</th>
+                            <th>Quantidade</th>
                             <th>Remover</th>
                         </tr>
                     </thead>
                     <tbody *ngIf="exibirListaPedido()">
                         <tr *ngFor="let pedido of listaPedido">
                             <td style="text-align: center">{{  pedido.especie.descricao }}</td>
-                            <td style="text-align: center">{{  pedido.quantidade }}</td>
                             <td style="text-align: center">{{  pedido.bioterio.descricao }}</td>
+                            <td style="text-align: center">{{  pedido.quantidade }}</td>
                             <td style="text-align: center">
                                 <button (click)="removerPedido(pedido)" class="btn">
                                     <i class="fa fa-trash"></i>
