@@ -102,10 +102,7 @@ CREATE TABLE tab_animal_requerido (
 		PRIMARY KEY (fk_protocolo, fk_especie, fk_bioterio),
   CONSTRAINT tab_animal_requerido_fk_protocolo FOREIGN KEY (fk_protocolo)
       REFERENCES public.tab_protocolo (id_protocolo) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE NO ACTION,
-  CONSTRAINT tab_animal_requerido_fk_protocolo FOREIGN KEY (fk_protocolo)
-      REFERENCES public.tab_especie (id_protocolo) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE NO ACTION,
+      ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
 
