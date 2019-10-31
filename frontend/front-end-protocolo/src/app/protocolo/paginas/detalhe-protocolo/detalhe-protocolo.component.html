@@ -109,10 +109,30 @@
           <p>{{ getTextoPermitidoParecer() }}</p>
         </ng-container>
 
-        <ng-container *ngIf="exibirBotoesAvaliar()">
-          <div class="button-row">
-            <button class="button-reject">Indeferir</button>
-            <button class="button">Deferir</button>
+        <ng-container *ngIf="exibirCampoAvaliar()">
+          <div class="row mt-4">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header bg-dark">
+                  <label>Avaliar Protocolo</label> 
+                </div>
+                <div class="card-body">
+                  <h3 class="h5">Observação:</h3>
+
+                  <app-input-area-texto [formControl]="formObservacaoParecer.controls['descricao']" 
+                  placeholder="Digite uma observação" msgErro="Campo obrigatório">
+                  </app-input-area-texto>
+        
+                  <div>
+                    <app-botao iconeFa="" [liberado]="liberarBotoesAvaliar()" (click)=" avaliarProtocolo()"
+                    texto="Deferir" id="btn"></app-botao>
+
+                    <app-botao iconeFa="" [liberado]="liberarBotoesAvaliar()" (click)=" avaliarProtocolo()"
+                    texto="Indeferir" id="btn"></app-botao>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </ng-container>
 

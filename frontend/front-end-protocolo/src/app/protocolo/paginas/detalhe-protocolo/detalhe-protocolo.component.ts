@@ -31,8 +31,10 @@ export class DetalheProtocoloComponent implements OnInit {
   private readonly ID_PROTOCOLO: number;
   private opcaoResumo: string = OPCAO_RESUMO_PT;
   private docenteLogado: DocenteLogado;
+
   public detalheProtocolo: DetalheProtocolo;
   public formAtribuirParecerista: FormGroup;
+  public formObservacaoParecer: FormGroup;
   public listaSugestoesPareceristas: Array<Opcao>;
   public pareceristaEscolhido: Parecerista;
 
@@ -52,6 +54,7 @@ export class DetalheProtocoloComponent implements OnInit {
     this.listaSugestoesPareceristas = [];
     this.carregarDetalhesProtocoloEDocenteLogado();
     this.iniciarFormAtribuirParecerista();
+    this.iniciarFormObservacaoParecer();
   }
 
   getTextoBotaoResumo(): string {
@@ -92,7 +95,7 @@ export class DetalheProtocoloComponent implements OnInit {
     return '';
   }
 
-  exibirBotoesAvaliar(): boolean {
+  exibirCampoAvaliar(): boolean {
     if (this.detalheProtocolo && this.docenteLogado) {
       return this.detalheProtocolo.matriculaDocente != this.docenteLogado.matricula && this.docenteLogado.perfil === Perfil.PROFESSOR;
     }
@@ -108,10 +111,17 @@ export class DetalheProtocoloComponent implements OnInit {
     return this.pareceristaEscolhido != undefined;
   }
 
+
   iniciarFormAtribuirParecerista(): void {
     this.formAtribuirParecerista = this.formBuilder.group({
       descricao: this.formBuilder.control('',
         [Validators.required])
+    });
+  }
+
+  iniciarFormObservacaoParecer(): void {
+    this.formObservacaoParecer = this.formBuilder.group({
+      descricao: this.formBuilder.control('', Validators.required)
     });
   }
 
@@ -128,8 +138,14 @@ export class DetalheProtocoloComponent implements OnInit {
     })
   }
 
+  avaliarProtocolo(): void {}
+
   liberarBotaoAtribuirParecerista(): boolean {
     return this.formAtribuirParecerista.valid;
+  }
+
+  liberarBotoesAvaliar(): boolean {
+    return this.formObservacaoParecer.valid;
   }
 
   atualizarListaDeSugestaoPareceristas(descricao: string): void {
