@@ -1,18 +1,12 @@
-<div class="input-deco">
-    <div class='icon-deco'>
-        <i class="fa {{classeIcone}}" aria-hidden="true"></i>
+<div class="input-group mb-3" style="height: 50px;">
+    <div class="input-group-prepend">
+        <span class="input-group-text bg-primary">
+            <i class="fa {{classeIcone}}" aria-hidden="true"></i>
+        </span>
     </div>
-    <input
-        class="input-deco-input"
-        type="text" 
-        [placeholder]="placeholder" 
-        [class.input-invalido]="isInvalido()" 
-        [formControl]="formControl" 
-        (keyup)="writeValue($event.target.value)"
-        placeholder="Datepicker"
-        bsDatepicker
-        [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"
-    />
+    <input style="height: 50px;" class=" form-control" type="text" [placeholder]="placeholder"
+        [class.input-invalido]="isInvalido()" [formControl]="formControl" (keyup)="writeValue($event.target.value)"
+        placeholder="Datepicker" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" />
 </div>
 <div class="div-msg-erro" *ngIf="isInvalido()">
     * {{ msgErro }}

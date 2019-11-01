@@ -9,6 +9,10 @@ import { PedidoProtocoloVisualizar, CadastrarProtocolo } from 'src/app/protocolo
 import { DocenteServico } from 'src/app/docente/docente.servico';
 import { DocenteLogado } from 'src/app/docente/docente.modelo';
 import { ModalServico } from 'src/app/compartilhado/componentes/modal/modal.servico';
+import { Router } from '@angular/router';
+
+//Constante
+import { URLS_NAMES } from 'src/app/app.constante';
 
 @Component({
   selector: 'app-cadastro-protocolo',
@@ -30,7 +34,8 @@ export class CadastroProtocoloComponent implements OnInit {
     private docenteServico: DocenteServico,
     private protocoloServico: ProtocoloServico,
     private spinnerServico: Ng4LoadingSpinnerService,
-    private modalServico: ModalServico
+    private modalServico: ModalServico,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -46,6 +51,7 @@ export class CadastroProtocoloComponent implements OnInit {
       this.formProtocolo.reset();
       this.modalServico.exibirSucesso(resposta);
       this.listaPedido = [];
+      this.router.navigate([URLS_NAMES.consultaProtocolo]);
     });
   }
 

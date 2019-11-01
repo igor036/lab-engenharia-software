@@ -1,8 +1,8 @@
 <form class="external-prot-deco" [formGroup]="formProtocolo">
 
     <div class="external-deco">
-        <div class="external-deco-header">
-            <h2>Resumo do Projeto :</h2>
+        <div class="external-deco-header bg-dark">
+            <h2>Resumo do Projeto:</h2>
         </div>
         <div class="internal-deco">
             <h3> Resumo</h3>
@@ -19,38 +19,42 @@
     </div>
 
     <div class="external-deco-r">
-        <div class="external-deco-header">
-            <h2>Informações do Projeto :</h2>
+        <div class="external-deco-header bg-dark">
+            <h2>Informações do Projeto:</h2>
         </div>
         <div class="internal-deco">
 
-            <div class="docente-deco">
-                <div class="docente-header">
-                    <h3>Docente :</h3>
-                </div>
-                <div class="docente-internal">
-                    <label>Matrícula:</label>
-                    <label style="padding-left: 2%;">{{ docenteLogado?.matricula }}</label><br>
-                    <label>Nome:</label>
-                    <label style="padding-left: 2%;">{{ docenteLogado?.nome }}</label><br>
-                    <label>E-mail:</label>
-                    <label style="padding-left: 2%;">{{ docenteLogado?.email }}</label><br>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header bg-dark">
+                            <label>Docente solicitante</label>
+                        </div>
+                        <div class="card-body">
+                            <label>Matrícula:</label>
+                            <label style="padding-left: 2%;">{{ docenteLogado?.matricula }}</label><br>
+                            <label>Nome:</label>
+                            <label style="padding-left: 2%;">{{ docenteLogado?.nome }}</label><br>
+                            <label>E-mail:</label>
+                            <label style="padding-left: 2%;">{{ docenteLogado?.email }}</label><br>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div>
-                <h3>Justificativa do projeto :</h3>
+            <div class="mt-4">
+                <h3>Justificativa do projeto:</h3>
                 <app-input-area-texto [formControl]="formProtocolo.controls['justificativa']"
                     placeholder="Digite aqui ..." msgErro="Campo obrigatório">
                 </app-input-area-texto>
             </div>
 
             <div>
-                <h3>Data Inicio :</h3>
+                <h3>Data Início:</h3>
                 <app-input-data [formControl]="formProtocolo.controls['dataInicio']" placeholder="Data Início"
                     msgErro="Campo obrigatório">
                 </app-input-data>
-                <h3>Data Fim :</h3>
+                <h3>Data Fim:</h3>
                 <app-input-data [formControl]="formProtocolo.controls['dataFim']" placeholder="Data Fim"
                     msgErro="Campo obrigatório">
                 </app-input-data>
@@ -62,36 +66,36 @@
             </div>
 
             <form [formGroup]="formPedido">
-                <h3>Adicionar Animais :</h3>
-                <label>Espécie :</label>
+                <h3>Adicionar Animais:</h3>
+                <label>Espécie:</label>
                 <app-selecao-item [formControl]="formPedido.controls['especie']" [listaOpcao]="listaEspecie"
                     placeholder="Selecione a Espécie" classeIcone="fa fa-arrow-right">
                 </app-selecao-item>
-                <label>Quantidade :</label>
+                <label>Quantidade:</label>
                 <app-input-texto [formControl]="formPedido.controls['quantidade']"
                     msgErro="Informe um número maiaor que 0." placeholder="Quantidade" classeIcone="fas fa-list-ol"
                     tipo="number">
                 </app-input-texto>
-                <label>Biotério :</label>
+                <label>Biotério:</label>
                 <app-selecao-item [formControl]="formPedido.controls['bioterio']" [listaOpcao]="listaBioterio"
                     placeholder="Selecione o Biotério" classeIcone="fa fa-arrow-right">
                 </app-selecao-item>
                 <app-botao texto="Adicionar Pedido" [liberado]="formPedido.valid" (eventoclick)="adicionarPedido()">
                 </app-botao>
-                <table class="table table-striped" style="margin-top: 10px;">
-                    <thead>
+                <table class="table table-striped mt-4" style="margin-top: 10px;">
+                    <thead class="thead-dark">
                         <tr>
                             <th>Espécie</th>
-                            <th>Quantidade</th>
                             <th>Biotério</th>
+                            <th>Quantidade</th>
                             <th>Remover</th>
                         </tr>
                     </thead>
                     <tbody *ngIf="exibirListaPedido()">
                         <tr *ngFor="let pedido of listaPedido">
                             <td style="text-align: center">{{  pedido.especie.descricao }}</td>
-                            <td style="text-align: center">{{  pedido.quantidade }}</td>
                             <td style="text-align: center">{{  pedido.bioterio.descricao }}</td>
+                            <td style="text-align: center">{{  pedido.quantidade }}</td>
                             <td style="text-align: center">
                                 <button (click)="removerPedido(pedido)" class="btn">
                                     <i class="fa fa-trash"></i>

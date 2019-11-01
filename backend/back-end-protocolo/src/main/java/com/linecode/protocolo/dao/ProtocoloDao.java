@@ -44,7 +44,7 @@ public class ProtocoloDao {
 	public long cadastrarPedidoProtocolo(PedidoProtocoloCmd cmd) {
 		return jdbcTemplate.queryForObject(
 				env.getProperty("com.linecode.protocolo.dao.ProtocoloDao.cadastrarPedidoProtocolo"), Long.class,
-				cmd.getQuantidade(), cmd.getIdBioterio(), cmd.getIdBioterio(), cmd.getIdProtocolo());
+				cmd.getQuantidade(), cmd.getIdEspecie(), cmd.getIdBioterio(), cmd.getIdProtocolo());
 	}
 
 	@Transactional(readOnly = true)

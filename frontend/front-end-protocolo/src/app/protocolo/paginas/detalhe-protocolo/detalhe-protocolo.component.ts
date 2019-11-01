@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 //modelo
-import { DetalheProtocolo, AtribuirParecerista, Parecerista } from 'src/app/protocolo/protocolo.modelo';
+import { DetalheProtocolo, AtribuirParecerista, Parecerista, AvaliarProtocolo } from 'src/app/protocolo/protocolo.modelo';
 import { DocenteLogado } from 'src/app/docente/docente.modelo';
 
 //servico
@@ -16,6 +17,8 @@ import { DocenteServico } from 'src/app/docente/docente.servico';
 import { Perfil } from 'src/app/app.constante';
 import { ModalServico } from 'src/app/compartilhado/componentes/modal/modal.servico';
 import { Opcao } from 'src/app/compartilhado/compartilhado.modelo';
+import { URLS_NAMES } from 'src/app/app.constante';
+
 
 
 const OPCAO_RESUMO_PT: string = 'PT';
@@ -31,8 +34,10 @@ export class DetalheProtocoloComponent implements OnInit {
   private readonly ID_PROTOCOLO: number;
   private opcaoResumo: string = OPCAO_RESUMO_PT;
   private docenteLogado: DocenteLogado;
+
   public detalheProtocolo: DetalheProtocolo;
   public formAtribuirParecerista: FormGroup;
+  public formObservacaoParecer: FormGroup;
   public listaSugestoesPareceristas: Array<Opcao>;
   public pareceristaEscolhido: Parecerista;
 
@@ -43,7 +48,8 @@ export class DetalheProtocoloComponent implements OnInit {
     private protocoloServico: ProtocoloServico,
     private spinnerServico: Ng4LoadingSpinnerService,
     private formBuilder: FormBuilder,
-    private modalServico: ModalServico
+    private modalServico: ModalServico,
+    private router: Router
   ) {
     this.ID_PROTOCOLO = this.rota.snapshot.params['idProtocolo'];
   }
@@ -52,6 +58,7 @@ export class DetalheProtocoloComponent implements OnInit {
     this.listaSugestoesPareceristas = [];
     this.carregarDetalhesProtocoloEDocenteLogado();
     this.iniciarFormAtribuirParecerista();
+    this.iniciarFormObservacaoParecer();
   }
 
   getTextoBotaoResumo(): string {
@@ -92,7 +99,7 @@ export class DetalheProtocoloComponent implements OnInit {
     return '';
   }
 
-  exibirBotoesAvaliar(): boolean {
+  exibirCampoAvaliar(): boolean {
     if (this.detalheProtocolo && this.docenteLogado) {
       return this.detalheProtocolo.matriculaDocente != this.docenteLogado.matricula && this.docenteLogado.perfil === Perfil.PROFESSOR;
     }
@@ -108,10 +115,17 @@ export class DetalheProtocoloComponent implements OnInit {
     return this.pareceristaEscolhido != undefined;
   }
 
+
   iniciarFormAtribuirParecerista(): void {
     this.formAtribuirParecerista = this.formBuilder.group({
       descricao: this.formBuilder.control('',
         [Validators.required])
+    });
+  }
+
+  iniciarFormObservacaoParecer(): void {
+    this.formObservacaoParecer = this.formBuilder.group({
+      descricao: this.formBuilder.control('', Validators.required)
     });
   }
 
@@ -124,12 +138,35 @@ export class DetalheProtocoloComponent implements OnInit {
     this.spinnerServico.show();
     this.protocoloServico.atribuirParecerista(dados).subscribe(msg => {
       this.modalServico.exibirSucesso(msg);
+      this.router.navigate([URLS_NAMES.consultaProtocolo]);
       this.spinnerServico.hide();
-    })
+    });
+  }
+
+  avaliarProtocolo(valor: boolean): void {
+    let dados: AvaliarProtocolo = {
+      deferido: valor,
+      descricao: this.formObservacaoParecer.value.descricao,
+      idProtocolo: this.detalheProtocolo.id
+    };
+
+    let avaliacao = valor === true ? 'deferir' : 'indeferir';
+    let mensagem: string = "Confirma a avaliação " + avaliacao + "?"
+
+    this.spinnerServico.show();
+    this.protocoloServico.avaliarProtocolo(dados).subscribe(msg => {
+      this.modalServico.exibirSucesso(msg);
+      this.spinnerServico.hide();
+      this.router.navigate([URLS_NAMES.consultaProtocolo]);
+    });
   }
 
   liberarBotaoAtribuirParecerista(): boolean {
     return this.formAtribuirParecerista.valid;
+  }
+
+  liberarBotoesAvaliar(): boolean {
+    return this.formObservacaoParecer.valid;
   }
 
   atualizarListaDeSugestaoPareceristas(descricao: string): void {

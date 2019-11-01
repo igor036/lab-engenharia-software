@@ -57,6 +57,12 @@ interface Parecerista {
     nome: string;
 }
 
+interface AvaliarProtocolo {
+    deferido: boolean;
+    descricao: string;
+    idProtocolo: number;
+}
+
 
 enum TipoConsultaListaProtocolo {
     OPCAO_TODOS = 'T',
@@ -81,5 +87,6 @@ export {
     DetalheProtocolo,
     CategoriaProtocoloConsultado,
     AtribuirParecerista,
-    Parecerista
+    Parecerista,
+    AvaliarProtocolo
 }

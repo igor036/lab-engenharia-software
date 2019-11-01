@@ -11,7 +11,8 @@ import {
     CadastrarProtocolo,
     ConsultaListaProtocolo,
     DetalheProtocolo,
-    AtribuirParecerista
+    AtribuirParecerista,
+    AvaliarProtocolo
 } from './protocolo.modelo';
 
 //utilitarios
@@ -42,8 +43,13 @@ export class ProtocoloServico {
     }
 
     atribuirParecerista(dados: AtribuirParecerista): Observable<string> {
-        console.log('protocolo servico ', dados)
         return this.httpClient.post(`${URL_CONTROLADOR}/cadastrar-avaliador-protocolo`, dados, {
+            responseType: 'text'
+        });
+    }
+
+    avaliarProtocolo(dados: AvaliarProtocolo): Observable<string> {
+        return this.httpClient.post(`${URL_CONTROLADOR}/avaliar-protocolo`, dados, {
             responseType: 'text'
         });
     }

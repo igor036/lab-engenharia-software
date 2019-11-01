@@ -1,27 +1,17 @@
 <div class="external-log-deco">
     <div class='log'>
-        <div class="log-deco">
+        <div class="log-deco bg-dark">
             <h1 class="log-header">Log In</h1>
         </div>
         <div>
             <form class='form-deco' [formGroup]="form">
-                <app-input-texto
-                    [formControl]="form.controls['email']"
-                    msgErro="Informe um e-mail válido."
-                    placeholder="Email"
-                    classeIcone="fa-envelope">
+                <app-input-texto [formControl]="form.controls['email']" msgErro="Informe um e-mail válido."
+                    placeholder="Email" classeIcone="fa-envelope">
                 </app-input-texto>
-                <app-input-texto 
-                    tipo="password"
-                    [formControl]="form.controls['senha']"
-                    msgErro="Informe a senha."
-                    placeholder="Senha"
-                    classeIcone="fa-lock">
+                <app-input-texto tipo="password" [formControl]="form.controls['senha']" msgErro="Informe a senha."
+                    placeholder="Senha" classeIcone="fa-lock">
                 </app-input-texto>
-                <app-botao 
-                    texto="Log In"
-                    [liberado]="form.valid"
-                    (click)="logar()">
+                <app-botao texto="Log In" [liberado]="form.valid" (click)="logar()">
                 </app-botao>
             </form>
             <div class="request-deco">

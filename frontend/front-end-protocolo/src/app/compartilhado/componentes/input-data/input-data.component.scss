@@ -1,29 +1,5 @@
 *{font-family: 'Allerta', sans-serif;}
 
-.input-deco {
-  display: flex;
-  margin-top: 2%;
-  margin-bottom: 2%;
-  padding: 0%;
-  border-style: solid;
-  border-color: #606060;
-  border-width: 2px;
-}
-
-.input-deco-input{
-    flex-grow: 1;
-    border:none;
-    background-color: white !important;
-    text-align: center;
-}
-
-.input-deco-input:hover{
-    flex-grow: 1;
-    border:none;
-    background-color: #606060;
-    text-align: center;
-}
-
 i {
   background-color: transparent;
   color: white;
@@ -32,19 +8,11 @@ i {
   text-align: center;
 }
 
-.icon-deco {
-  padding: 2% 0%;
-  width: 15%;
-  background-color: #3d8af7;
-}
-
-.input-invalido {
-  border-style: solid;
-  border-width: 0.001cm;
-  border-color: red !important;
-}
-
 .div-msg-erro {
   color: red;
   font-size: 0.3cm;
+}
+
+.form-control{
+  height: 43px;
 }

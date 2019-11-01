@@ -21,20 +21,20 @@ INSERT INTO TAB_ESPECIE( NOME) VALUES ('Rato');
 --Professor
 INSERT INTO TAB_DOCENTE(
  nome, email, senha, fk_id_role)
- VALUES ('Professor', 'professor@gmail.com','1234' , fk_id_role(verificar na tab_role));
+ VALUES ('Professor', 'professor@gmail.com','1234' , 2);
 
 --Coordenador
 INSERT INTO TAB_DOCENTE(
  nome, email, senha, fk_id_role)
- VALUES ('Coordenador', 'coordenador@gmail.com','1234' , fk_id_role(verificar na tab_role));
+ VALUES ('Coordenador', 'coordenador@gmail.com','1234' , 3);
 
 --Secretária
 INSERT INTO TAB_DOCENTE(
  nome, email, senha, fk_id_role)
- VALUES ('Secretaria', 'secretaria@gmail.com','1234' , fk_id_role(verificar na tab_role));
+ VALUES ('Secretaria', 'secretaria@gmail.com','1234' , 4);
 
 --Administrador
 INSERT INTO TAB_DOCENTE(
  nome, email, senha, fk_id_role)
- VALUES ('Administrador', 'administrador@gmail.com','1234' , fk_id_role(verificar na tab_role));
+ VALUES ('Administrador', 'administrador@gmail.com','1234' , 1);
 

@@ -2,26 +2,27 @@
   <link href="https://fonts.googleapis.com/css?family=Allerta&display=swap" rel="stylesheet">
 </head>
 
-<div class="corpo-input">
-  <div class="input-deco">
-    <div class='icon-deco'>
+<div class="input-group mb-3" style="height: 50px;">
+  <div class="input-group-prepend">
+    <span class="input-group-text bg-primary">
       <i class="fa {{ iconeFa }}" aria-hidden="true"></i>
-    </div>
-
-    <div class="form-group">
-      <input class="form-control" iconeFa="fa-search" [(value)]="valor" [formControl]="formControl"
-        [placeholder]="placeholder" [class.input-invalido]="isInvalido()" [type]="type"
-        (keyup)="writeValue($event.target.value)" />
-    </div>
-
+    </span>
   </div>
-  <ng-container *ngIf="exibirCampoSugestao()">
-    <div class="input-sugestao">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item list-group-item-action text-center" *ngFor="let sugestao of listaSugestoes"
-          (click)="selecionarValorSugestao(sugestao)">
-          {{ sugestao.descricao }}
-        </li>
-      </ul>
-    </div>
-  </ng-container>
+
+
+  <input style="height: 50px;" class="form-control" iconeFa="fa-search" [(value)]="valor" [formControl]="formControl"
+    [placeholder]="placeholder" [class.input-invalido]="isInvalido()" [type]="type"
+    (keyup)="writeValue($event.target.value)" />
+
+
+</div>
+<ng-container *ngIf="exibirCampoSugestao()">
+  <div class="input-sugestao">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item list-group-item-action text-center" *ngFor="let sugestao of listaSugestoes"
+        (click)="selecionarValorSugestao(sugestao)">
+        {{ sugestao.descricao }}
+      </li>
+    </ul>
+  </div>
+</ng-container>
