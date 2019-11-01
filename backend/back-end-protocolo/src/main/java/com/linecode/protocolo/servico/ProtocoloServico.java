@@ -149,7 +149,9 @@ public class ProtocoloServico {
 	@Transactional
 	@PreAuthorize("@autorizacaoServico.isAutorizacaoAdmin()")
 	public void cadastrarAvaliadorProtocolo(CadastrarAvaliadorProtocoloCmd cmd) {
-
+		
+		Assert.notNull(cmd, "Informe os dados do cadastro de avaliador!");
+		
 		Set<ConstraintViolation<CadastrarAvaliadorProtocoloCmd>> violacoes = validator.validate(cmd);
 
 		if (violacoes.isEmpty()) {
@@ -170,6 +172,8 @@ public class ProtocoloServico {
 	@PreAuthorize("@autorizacaoServico.isAutenticado()")
 	public void avaliarProtocolo(AvaliarProtocoloCmd avaliacao) {
 
+		Assert.notNull(avaliacao, "Informe os dados da avaliação!");
+		
 		Set<ConstraintViolation<AvaliarProtocoloCmd>> violacoes = validator.validate(avaliacao);
 
 		if (violacoes.isEmpty()) {

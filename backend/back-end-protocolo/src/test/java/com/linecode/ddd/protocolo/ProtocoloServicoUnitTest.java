@@ -20,8 +20,11 @@ import com.linecode.compartilhado.excecao.ExcecaoNegocio;
 import com.linecode.configuracao.ContextoAplicacao;
 import com.linecode.docente.dto.DocenteDto;
 import com.linecode.docente.servico.DocenteServico;
+import com.linecode.protocolo.cmd.AvaliarProtocoloCmd;
+import com.linecode.protocolo.cmd.CadastrarAvaliadorProtocoloCmd;
 import com.linecode.protocolo.cmd.CadastroProtocoloCmd;
 import com.linecode.protocolo.dao.ProtocoloDao;
+import com.linecode.protocolo.filtro.ConsultaListaProtocoloFiltro;
 import com.linecode.protocolo.servico.ProtocoloServico;
 import com.linecode.util.servico.UtilServico;
 
@@ -65,6 +68,42 @@ public class ProtocoloServicoUnitTest {
     		fail(MSG_EXCECAO_NAO_LANCADA);
     	} catch (IllegalArgumentException | ExcecaoNegocio e) {
 			assertEquals(e.getMessage(), msgEsperada);
+		}
+    }
+    
+    @Test(dataProvider = "testGetListaProtocoloDataProvider", dataProviderClass = ProtocoloServicoDataProviderUnitTest.class)
+    public void testGetListaProtocolo(ConsultaListaProtocoloFiltro filtro, String msgEsperada) {
+    	try {
+    		protocoloServico.getListaProtocolo(filtro, 1, 1);
+    		fail(MSG_EXCECAO_NAO_LANCADA);
+    	} catch (ExcecaoNegocio | IllegalArgumentException e) {
+			assertEquals(e.getMessage(), msgEsperada);
+		}
+    }
+    
+    @Test(dataProvider = "testCadastrarAvaliadorProtocoloDataProvider", dataProviderClass = ProtocoloServicoDataProviderUnitTest.class)
+    public void testCadastrarAvaliadorProtocolo(CadastrarAvaliadorProtocoloCmd cmd, String msgEsperada) {
+    	try {
+    		protocoloServico.cadastrarAvaliadorProtocolo(cmd);
+    		fail(MSG_EXCECAO_NAO_LANCADA);
+    	} catch (ExcecaoNegocio | IllegalArgumentException e) {
+			assertEquals(e.getMessage(), msgEsperada);
+		}
+    }
+    
+    @Test(dataProvider = "testCadastrarAvaliadorProtocoloAutorDataProvider", dataProviderClass = ProtocoloServicoDataProviderUnitTest.class, expectedExceptions = ExcecaoNegocio.class, expectedExceptionsMessageRegExp = "O doscente não pode avaliar seu próprio protocolo.")
+    public void testCadastrarAvaliadorProtocoloAutor(CadastrarAvaliadorProtocoloCmd cmd) {
+    	when(protocoloDaoMock.isEmissorProtocolo(cmd.getIdProtocolo(), cmd.getIdAvaliador())).thenReturn(true);
+    	protocoloServico.cadastrarAvaliadorProtocolo(cmd);
+    }
+    
+    @Test(dataProvider = "testAvaliarProtocoloDataProvider", dataProviderClass = ProtocoloServicoDataProviderUnitTest.class)
+    public void testAvaliarProtocolo(AvaliarProtocoloCmd cmd, String msgEsperada) {
+    	try {
+    		protocoloServico.avaliarProtocolo(cmd);
+    		fail(MSG_EXCECAO_NAO_LANCADA);
+    	} catch (ExcecaoNegocio | IllegalArgumentException e) {
+    		assertEquals(e.getMessage(), msgEsperada);
 		}
     }
 }

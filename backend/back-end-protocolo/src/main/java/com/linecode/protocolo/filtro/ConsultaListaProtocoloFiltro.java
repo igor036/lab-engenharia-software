@@ -24,7 +24,7 @@ public class ConsultaListaProtocoloFiltro {
 
 	public ConsultaListaProtocoloFiltro(TipoConsultaListaProtocoloEnumerador tipo,
 	        CategoriaProtocoloConsultadoEnumerador categoria,
-	        Long idStatus, long idProtocolo) {
+	        Long idStatus, Long idProtocolo) {
 		this.tipo = tipo;
 		this.idStatus = idStatus;
 		this.idProtocolo = idProtocolo;

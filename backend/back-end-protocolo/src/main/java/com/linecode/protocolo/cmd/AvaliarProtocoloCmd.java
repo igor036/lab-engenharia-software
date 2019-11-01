@@ -1,13 +1,13 @@
 package com.linecode.protocolo.cmd;
 
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 
 public class AvaliarProtocoloCmd {
 
 	private boolean deferido;
 	
-	@NotEmpty(message = "Informe a observação.")
+	@NotBlank(message = "Informe a observação.")
 	private String descricao;
 	
 	@Min(value = 1, message = "ID do protocolo inválido.")

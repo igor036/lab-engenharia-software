@@ -6,7 +6,7 @@
       <class name="com.linecode.ddd.protocolo.ProtocoloServicoUnitTest">
         <methods>
           <include name="configurarContexto"/>
-          <include name="testCadastrarProtocolo" invocation-numbers="16 17 18"/>
+          <include name="testAvaliarProtocolo" invocation-numbers="3"/>
         </methods>
       </class> <!-- com.linecode.ddd.protocolo.ProtocoloServicoUnitTest -->
     </classes>
