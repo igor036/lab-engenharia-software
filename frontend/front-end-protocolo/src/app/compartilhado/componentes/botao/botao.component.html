@@ -1,4 +1,4 @@
-<button (click)="bindClick()" [disabled]="!liberado" class="btn" [class.btn-primary]="!isBloqueado()"
+<button (click)="bindClick()" [disabled]="!liberado" class="btn {{ classeComplementar }}" [class.btn-primary]="!isBloqueado()"
     [class.btn-secondary]="isBloqueado()" [class.bloqueado]="isBloqueado()">
     <ng-container *ngIf="exibirIcone()">
         <i class="fa {{iconeFa}}"></i>

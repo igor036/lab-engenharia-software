@@ -18,7 +18,8 @@ export class BotaoComponent {
 
   @Input() iconeFa?: string = undefined;
   @Input() public texto?: string;
-  @Input() public liberado: boolean = true;
+  @Input() public classeComplementar?: string ='';
+  @Input() public liberado: boolean = true;  
   @Output() public eventoclick: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() { }
