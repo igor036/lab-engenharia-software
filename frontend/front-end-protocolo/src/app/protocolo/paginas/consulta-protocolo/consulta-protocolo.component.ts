@@ -87,6 +87,18 @@ export class ConsultaProtocoloComponent implements OnInit {
     this.router.navigate([URLS_NAMES.detalheProtocolo, idProtocolo]);
   }
 
+  alterarBadgeStatus(status: string): string {
+    if (status === 'DEFERIDO') {
+      return 'badge badge-pill badge-success';
+    } else if (status === 'INDEFERIDO') {
+      return 'badge badge-pill badge-danger';
+    } else if (status === 'ABERTO') {
+      return 'badge badge-pill badge-info';
+    } else {
+      return 'badge badge-pill badge-warning';
+    }
+  }
+
   private iniciarFormPesquisaProtocolo(): void {
     this.formPesquisaProtocolo = this.formBuilder.group({
       tipo: this.formBuilder.control(TipoConsultaListaProtocolo.OPCAO_TODOS),

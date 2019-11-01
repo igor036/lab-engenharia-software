@@ -52,7 +52,11 @@
           <td> {{ protocolo.nomeDocente }} </td>
           <td style="width: 10%; text-align: center;"> {{ protocolo.dataInicio }} </td>
           <td style="width: 10%; text-align: center;"> {{ protocolo.dataFim }} </td>
-          <td style="width: 5%; text-align: center;"> {{ protocolo.status }} </td>
+          <td style="width: 5%; text-align: center;">
+            <span style="width: 105px;" class="{{ alterarBadgeStatus(protocolo.status) }}">
+              {{ protocolo.status }}
+            </span>
+          </td>
           <td style="width: 5%; text-align: center;">
             <button class="btn btn-primary" (click)="verDetalheProtocolo(protocolo.id)">
               <i class="fa fa-eye"></i>
