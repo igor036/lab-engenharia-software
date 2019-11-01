@@ -2,9 +2,10 @@
  * Author: Igor Joaquim dos Santos Lima
  * Data: 23/10/2019
  */
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap';
 import { ModalMensagemComponent } from './modal-mensagem/modal-mensagem.component';
+import { ModalConfirmacaoComponent } from './modal-confirmacao/modal-confirmacao.component';
 
 enum TituloModal {
   ERRO = 'Erro',
@@ -24,8 +25,17 @@ enum ClasseComplementarModal {
 export class ModalServico {
 
   public bsModalRef: BsModalRef;
+  private configPadrao: ModalOptions
 
-  constructor(private modalService: BsModalService) {
+
+  constructor(
+    private modalService: BsModalService,
+    private injector: Injector) {
+    this.configPadrao = {
+      animated: true,
+      keyboard: true,
+      backdrop: "static"
+    }
   }
 
   exibirErro(mensagem: string): void {
@@ -44,8 +54,13 @@ export class ModalServico {
     this.exibirMensagem(TituloModal.ATENCAO, mensagem, ClasseComplementarModal.ATENCAO);
   }
 
+  exibirConfirmacao(mensagem: string, dados: any, funcaoConfirmado: Function, funcaoNaoConfirmado?: Function): void {
+    //this.configurarModalConfirmacao('modal-warning', mensagem, dados, funcaoConfirmado, funcaoNaoConfirmado)
+  }
+
   private exibirMensagem(titulo: string, mensagem: string, classeComplementar: string): void {
     const initialState = { titulo: titulo, mensagem: mensagem, classeComplementar: classeComplementar };
     this.bsModalRef = this.modalService.show(ModalMensagemComponent, { initialState });
   }
+
 }

@@ -23,13 +23,30 @@ interface Paginacao {
     lista?: Array<any>;
 }
 
-interface ListarSugestoesInput{
+interface ListarSugestoesInput {
     id: number;
     descricao: string;
+}
+
+interface ConfigurarModalConfirmacao {
+    titulo: string;
+    mensagem: string;
+    funcaoConfirmado: Function;
+    funcaoNaoConfirmado?: Function;
+    classeComplementar: string;
+    classModal: string;
+}
+
+interface ExibirModal {
+    classModal: string;
+    mensagem: string;
+    modalComponent: any;
 }
 
 export {
     Opcao,
     Paginacao,
-    ListarSugestoesInput
+    ListarSugestoesInput,
+    ConfigurarModalConfirmacao,
+    ExibirModal
 }
