@@ -1,385 +1,319 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" total="16" passed="16">
+<testng-results skipped="0" failed="0" total="19" passed="19">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="873" started-at="2019-10-30T23:36:36Z" finished-at="2019-10-30T23:36:37Z">
+  <suite name="Default suite" duration-ms="1185" started-at="2019-11-01T20:01:23Z" finished-at="2019-11-01T20:01:24Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="873" started-at="2019-10-30T23:36:36Z" finished-at="2019-10-30T23:36:37Z">
-      <class name="com.linecode.ddd.docente.DocenteServicoUnitTest">
-        <test-method status="PASS" signature="configurarContexto()[pri:0, instance:com.linecode.ddd.docente.DocenteServicoUnitTest@4988d8b8]" name="configurarContexto" is-config="true" duration-ms="667" started-at="2019-10-30T20:36:36Z" finished-at="2019-10-30T20:36:36Z">
+    <test name="Default test" duration-ms="1185" started-at="2019-11-01T20:01:23Z" finished-at="2019-11-01T20:01:24Z">
+      <class name="com.linecode.ddd.protocolo.ProtocoloServicoUnitTest">
+        <test-method status="PASS" signature="configurarContexto()[pri:0, instance:com.linecode.ddd.protocolo.ProtocoloServicoUnitTest@6236eb5f]" name="configurarContexto" is-config="true" duration-ms="943" started-at="2019-11-01T17:01:23Z" finished-at="2019-11-01T17:01:24Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- configurarContexto -->
-        <test-method status="PASS" signature="testCadastrarDocente(com.linecode.docente.cmd.CadastroDocenteCmd, java.lang.String)[pri:0, instance:com.linecode.ddd.docente.DocenteServicoUnitTest@4988d8b8]" name="testCadastrarDocente" duration-ms="8" started-at="2019-10-30T20:36:36Z" data-provider="testCadastrarDocenteDataProvider" finished-at="2019-10-30T20:36:36Z">
+        <test-method status="PASS" signature="testCadastrarProtocolo(com.linecode.protocolo.cmd.CadastroProtocoloCmd, java.lang.String)[pri:0, instance:com.linecode.ddd.protocolo.ProtocoloServicoUnitTest@6236eb5f]" name="testCadastrarProtocolo" duration-ms="23" started-at="2019-11-01T17:01:24Z" data-provider="testCadastrarProtocoloDataProvider" finished-at="2019-11-01T17:01:24Z">
           <params>
             <param index="0">
               <value is-null="true"/>
             </param>
             <param index="1">
               <value>
-                <![CDATA[Informe os dados do docente]]>
+                <![CDATA[Informe os dados do protocolo]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testCadastrarDocente -->
-        <test-method status="PASS" signature="testCadastrarDocente(com.linecode.docente.cmd.CadastroDocenteCmd, java.lang.String)[pri:0, instance:com.linecode.ddd.docente.DocenteServicoUnitTest@4988d8b8]" name="testCadastrarDocente" duration-ms="90" started-at="2019-10-30T20:36:36Z" data-provider="testCadastrarDocenteDataProvider" finished-at="2019-10-30T20:36:37Z">
+        </test-method> <!-- testCadastrarProtocolo -->
+        <test-method status="PASS" signature="testCadastrarProtocolo(com.linecode.protocolo.cmd.CadastroProtocoloCmd, java.lang.String)[pri:0, instance:com.linecode.ddd.protocolo.ProtocoloServicoUnitTest@6236eb5f]" name="testCadastrarProtocolo" duration-ms="87" started-at="2019-11-01T17:01:24Z" data-provider="testCadastrarProtocoloDataProvider" finished-at="2019-11-01T17:01:24Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[com.linecode.docente.cmd.CadastroDocenteCmd@338494fa]]>
+                <![CDATA[com.linecode.protocolo.cmd.CadastroProtocoloCmd@71e5f61d]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA[Informe o e-mail./E-mail inválido.]]>
+                <![CDATA[Informe a justificativa.]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testCadastrarDocente -->
-        <test-method status="PASS" signature="testCadastrarDocente(com.linecode.docente.cmd.CadastroDocenteCmd, java.lang.String)[pri:0, instance:com.linecode.ddd.docente.DocenteServicoUnitTest@4988d8b8]" name="testCadastrarDocente" duration-ms="3" started-at="2019-10-30T20:36:37Z" data-provider="testCadastrarDocenteDataProvider" finished-at="2019-10-30T20:36:37Z">
+        </test-method> <!-- testCadastrarProtocolo -->
+        <test-method status="PASS" signature="testCadastrarProtocolo(com.linecode.protocolo.cmd.CadastroProtocoloCmd, java.lang.String)[pri:0, instance:com.linecode.ddd.protocolo.ProtocoloServicoUnitTest@6236eb5f]" name="testCadastrarProtocolo" duration-ms="3" started-at="2019-11-01T17:01:24Z" data-provider="testCadastrarProtocoloDataProvider" finished-at="2019-11-01T17:01:24Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[com.linecode.docente.cmd.CadastroDocenteCmd@4d098f9b]]>
+                <![CDATA[com.linecode.protocolo.cmd.CadastroProtocoloCmd@6ea1bcdc]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA[Informe o e-mail./E-mail inválido.]]>
+                <![CDATA[Informe a justificativa.]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testCadastrarDocente -->
-        <test-method status="PASS" signature="testCadastrarDocente(com.linecode.docente.cmd.CadastroDocenteCmd, java.lang.String)[pri:0, instance:com.linecode.ddd.docente.DocenteServicoUnitTest@4988d8b8]" name="testCadastrarDocente" duration-ms="2" started-at="2019-10-30T20:36:37Z" data-provider="testCadastrarDocenteDataProvider" finished-at="2019-10-30T20:36:37Z">
+        </test-method> <!-- testCadastrarProtocolo -->
+        <test-method status="PASS" signature="testCadastrarProtocolo(com.linecode.protocolo.cmd.CadastroProtocoloCmd, java.lang.String)[pri:0, instance:com.linecode.ddd.protocolo.ProtocoloServicoUnitTest@6236eb5f]" name="testCadastrarProtocolo" duration-ms="3" started-at="2019-11-01T17:01:24Z" data-provider="testCadastrarProtocoloDataProvider" finished-at="2019-11-01T17:01:24Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[com.linecode.docente.cmd.CadastroDocenteCmd@7fc44dec]]>
+                <![CDATA[com.linecode.protocolo.cmd.CadastroProtocoloCmd@53499d85]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA[Informe o e-mail./E-mail inválido.]]>
+                <![CDATA[Informe a justificativa.]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testCadastrarDocente -->
-        <test-method status="PASS" signature="testCadastrarDocente(com.linecode.docente.cmd.CadastroDocenteCmd, java.lang.String)[pri:0, instance:com.linecode.ddd.docente.DocenteServicoUnitTest@4988d8b8]" name="testCadastrarDocente" duration-ms="18" started-at="2019-10-30T20:36:37Z" data-provider="testCadastrarDocenteDataProvider" finished-at="2019-10-30T20:36:37Z">
+        </test-method> <!-- testCadastrarProtocolo -->
+        <test-method status="PASS" signature="testCadastrarProtocolo(com.linecode.protocolo.cmd.CadastroProtocoloCmd, java.lang.String)[pri:0, instance:com.linecode.ddd.protocolo.ProtocoloServicoUnitTest@6236eb5f]" name="testCadastrarProtocolo" duration-ms="0" started-at="2019-11-01T17:01:24Z" data-provider="testCadastrarProtocoloDataProvider" finished-at="2019-11-01T17:01:24Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[com.linecode.docente.cmd.CadastroDocenteCmd@2692b61e]]>
+                <![CDATA[com.linecode.protocolo.cmd.CadastroProtocoloCmd@46c670a6]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA[Informe o nome do docente]]>
+                <![CDATA[Informe o resumo em português.]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testCadastrarDocente -->
-        <test-method status="PASS" signature="testCadastrarDocente(com.linecode.docente.cmd.CadastroDocenteCmd, java.lang.String)[pri:0, instance:com.linecode.ddd.docente.DocenteServicoUnitTest@4988d8b8]" name="testCadastrarDocente" duration-ms="3" started-at="2019-10-30T20:36:37Z" data-provider="testCadastrarDocenteDataProvider" finished-at="2019-10-30T20:36:37Z">
+        </test-method> <!-- testCadastrarProtocolo -->
+        <test-method status="PASS" signature="testCadastrarProtocolo(com.linecode.protocolo.cmd.CadastroProtocoloCmd, java.lang.String)[pri:0, instance:com.linecode.ddd.protocolo.ProtocoloServicoUnitTest@6236eb5f]" name="testCadastrarProtocolo" duration-ms="3" started-at="2019-11-01T17:01:24Z" data-provider="testCadastrarProtocoloDataProvider" finished-at="2019-11-01T17:01:24Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[com.linecode.docente.cmd.CadastroDocenteCmd@4f2613d1]]>
+                <![CDATA[com.linecode.protocolo.cmd.CadastroProtocoloCmd@5ae81e1]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA[Informe o nome do docente]]>
+                <![CDATA[Informe o resumo em português.]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testCadastrarDocente -->
-        <test-method status="PASS" signature="testCadastrarDocente(com.linecode.docente.cmd.CadastroDocenteCmd, java.lang.String)[pri:0, instance:com.linecode.ddd.docente.DocenteServicoUnitTest@4988d8b8]" name="testCadastrarDocente" duration-ms="3" started-at="2019-10-30T20:36:37Z" data-provider="testCadastrarDocenteDataProvider" finished-at="2019-10-30T20:36:37Z">
+        </test-method> <!-- testCadastrarProtocolo -->
+        <test-method status="PASS" signature="testCadastrarProtocolo(com.linecode.protocolo.cmd.CadastroProtocoloCmd, java.lang.String)[pri:0, instance:com.linecode.ddd.protocolo.ProtocoloServicoUnitTest@6236eb5f]" name="testCadastrarProtocolo" duration-ms="2" started-at="2019-11-01T17:01:24Z" data-provider="testCadastrarProtocoloDataProvider" finished-at="2019-11-01T17:01:24Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[com.linecode.docente.cmd.CadastroDocenteCmd@65a4798f]]>
+                <![CDATA[com.linecode.protocolo.cmd.CadastroProtocoloCmd@5ae76500]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA[Informe o nome do docente]]>
+                <![CDATA[Informe o resumo em português.]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testCadastrarDocente -->
-        <test-method status="PASS" signature="testGetDocentePorEmailSenha(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.linecode.ddd.docente.DocenteServicoUnitTest@4988d8b8]" name="testGetDocentePorEmailSenha" duration-ms="7" started-at="2019-10-30T20:36:37Z" data-provider="testGetDocentePorEmailSenhaDataProvider" finished-at="2019-10-30T20:36:37Z">
-          <params>
-            <param index="0">
-              <value is-null="true"/>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[mofusenha]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[Informe o email para efetuar o login]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testGetDocentePorEmailSenha -->
-        <test-method status="PASS" signature="testGetDocentePorEmailSenha(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.linecode.ddd.docente.DocenteServicoUnitTest@4988d8b8]" name="testGetDocentePorEmailSenha" duration-ms="3" started-at="2019-10-30T20:36:37Z" data-provider="testGetDocentePorEmailSenhaDataProvider" finished-at="2019-10-30T20:36:37Z">
+        </test-method> <!-- testCadastrarProtocolo -->
+        <test-method status="PASS" signature="testCadastrarProtocolo(com.linecode.protocolo.cmd.CadastroProtocoloCmd, java.lang.String)[pri:0, instance:com.linecode.ddd.protocolo.ProtocoloServicoUnitTest@6236eb5f]" name="testCadastrarProtocolo" duration-ms="3" started-at="2019-11-01T17:01:24Z" data-provider="testCadastrarProtocoloDataProvider" finished-at="2019-11-01T17:01:24Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[]]>
+                <![CDATA[com.linecode.protocolo.cmd.CadastroProtocoloCmd@1133ec6e]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA[mofusenha]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[Informe o email para efetuar o login]]>
+                <![CDATA[Informe o resumo em inglês.]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testGetDocentePorEmailSenha -->
-        <test-method status="PASS" signature="testGetDocentePorEmailSenha(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.linecode.ddd.docente.DocenteServicoUnitTest@4988d8b8]" name="testGetDocentePorEmailSenha" duration-ms="2" started-at="2019-10-30T20:36:37Z" data-provider="testGetDocentePorEmailSenhaDataProvider" finished-at="2019-10-30T20:36:37Z">
+        </test-method> <!-- testCadastrarProtocolo -->
+        <test-method status="PASS" signature="testCadastrarProtocolo(com.linecode.protocolo.cmd.CadastroProtocoloCmd, java.lang.String)[pri:0, instance:com.linecode.ddd.protocolo.ProtocoloServicoUnitTest@6236eb5f]" name="testCadastrarProtocolo" duration-ms="3" started-at="2019-11-01T17:01:24Z" data-provider="testCadastrarProtocoloDataProvider" finished-at="2019-11-01T17:01:24Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[   ]]>
+                <![CDATA[com.linecode.protocolo.cmd.CadastroProtocoloCmd@54709809]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA[mofusenha]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[Informe o email para efetuar o login]]>
+                <![CDATA[Informe o resumo em inglês.]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testGetDocentePorEmailSenha -->
-        <test-method status="PASS" signature="testGetDocentePorEmailSenha(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.linecode.ddd.docente.DocenteServicoUnitTest@4988d8b8]" name="testGetDocentePorEmailSenha" duration-ms="1" started-at="2019-10-30T20:36:37Z" data-provider="testGetDocentePorEmailSenhaDataProvider" finished-at="2019-10-30T20:36:37Z">
+        </test-method> <!-- testCadastrarProtocolo -->
+        <test-method status="PASS" signature="testCadastrarProtocolo(com.linecode.protocolo.cmd.CadastroProtocoloCmd, java.lang.String)[pri:0, instance:com.linecode.ddd.protocolo.ProtocoloServicoUnitTest@6236eb5f]" name="testCadastrarProtocolo" duration-ms="1" started-at="2019-11-01T17:01:24Z" data-provider="testCadastrarProtocoloDataProvider" finished-at="2019-11-01T17:01:24Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[mofu@gmail.com]]>
-              </value>
-            </param>
-            <param index="1">
-              <value is-null="true"/>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[Informe a senha para efetuar o login]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testGetDocentePorEmailSenha -->
-        <test-method status="PASS" signature="testGetDocentePorEmailSenha(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.linecode.ddd.docente.DocenteServicoUnitTest@4988d8b8]" name="testGetDocentePorEmailSenha" duration-ms="1" started-at="2019-10-30T20:36:37Z" data-provider="testGetDocentePorEmailSenhaDataProvider" finished-at="2019-10-30T20:36:37Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[mofu@gmail.com]]>
+                <![CDATA[com.linecode.protocolo.cmd.CadastroProtocoloCmd@24f360b2]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[Informe a senha para efetuar o login]]>
+                <![CDATA[Informe o resumo em inglês.]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testGetDocentePorEmailSenha -->
-        <test-method status="PASS" signature="testGetDocentePorEmailSenha(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:com.linecode.ddd.docente.DocenteServicoUnitTest@4988d8b8]" name="testGetDocentePorEmailSenha" duration-ms="1" started-at="2019-10-30T20:36:37Z" data-provider="testGetDocentePorEmailSenhaDataProvider" finished-at="2019-10-30T20:36:37Z">
+        </test-method> <!-- testCadastrarProtocolo -->
+        <test-method status="PASS" signature="testCadastrarProtocolo(com.linecode.protocolo.cmd.CadastroProtocoloCmd, java.lang.String)[pri:0, instance:com.linecode.ddd.protocolo.ProtocoloServicoUnitTest@6236eb5f]" name="testCadastrarProtocolo" duration-ms="9" started-at="2019-11-01T17:01:24Z" data-provider="testCadastrarProtocoloDataProvider" finished-at="2019-11-01T17:01:24Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[mofu@gmail.com]]>
+                <![CDATA[com.linecode.protocolo.cmd.CadastroProtocoloCmd@302fec27]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA[   ]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[Informe a senha para efetuar o login]]>
+                <![CDATA[Informe a data de inicio.]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testGetDocentePorEmailSenha -->
-        <test-method status="PASS" signature="testGetListaSugestaoDocente(java.lang.String)[pri:0, instance:com.linecode.ddd.docente.DocenteServicoUnitTest@4988d8b8]" name="testGetListaSugestaoDocente" duration-ms="3" started-at="2019-10-30T20:36:37Z" data-provider="testGetListaSugestaoDocenteDataProvider" finished-at="2019-10-30T20:36:37Z">
-          <params>
-            <param index="0">
-              <value is-null="true"/>
-            </param>
-          </params>
-          <exception class="com.linecode.compartilhado.excecao.ExcecaoNegocio">
-            <message>
-              <![CDATA[Informe o nome da consulta.]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[com.linecode.compartilhado.excecao.ExcecaoNegocio: Informe o nome da consulta.
-	at com.linecode.docente.servico.DocenteServico.getListaSugestaoDocente(DocenteServico.java:119)
-	at com.linecode.ddd.docente.DocenteServicoUnitTest.testGetListaSugestaoDocente(DocenteServicoUnitTest.java:68)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at org.testng.TestRunner.privateRun(TestRunner.java:767)
-	at org.testng.TestRunner.run(TestRunner.java:617)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
-	at org.testng.TestNG.run(TestNG.java:1057)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-]]>
-            </full-stacktrace>
-          </exception> <!-- com.linecode.compartilhado.excecao.ExcecaoNegocio -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testGetListaSugestaoDocente -->
-        <test-method status="PASS" signature="testGetListaSugestaoDocente(java.lang.String)[pri:0, instance:com.linecode.ddd.docente.DocenteServicoUnitTest@4988d8b8]" name="testGetListaSugestaoDocente" duration-ms="4" started-at="2019-10-30T20:36:37Z" data-provider="testGetListaSugestaoDocenteDataProvider" finished-at="2019-10-30T20:36:37Z">
+        </test-method> <!-- testCadastrarProtocolo -->
+        <test-method status="PASS" signature="testCadastrarProtocolo(com.linecode.protocolo.cmd.CadastroProtocoloCmd, java.lang.String)[pri:0, instance:com.linecode.ddd.protocolo.ProtocoloServicoUnitTest@6236eb5f]" name="testCadastrarProtocolo" duration-ms="1" started-at="2019-11-01T17:01:24Z" data-provider="testCadastrarProtocoloDataProvider" finished-at="2019-11-01T17:01:24Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[]]>
+                <![CDATA[com.linecode.protocolo.cmd.CadastroProtocoloCmd@48c40605]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Informe a data fim.]]>
               </value>
             </param>
           </params>
-          <exception class="com.linecode.compartilhado.excecao.ExcecaoNegocio">
-            <message>
-              <![CDATA[Informe o nome da consulta.]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[com.linecode.compartilhado.excecao.ExcecaoNegocio: Informe o nome da consulta.
-	at com.linecode.docente.servico.DocenteServico.getListaSugestaoDocente(DocenteServico.java:119)
-	at com.linecode.ddd.docente.DocenteServicoUnitTest.testGetListaSugestaoDocente(DocenteServicoUnitTest.java:68)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at org.testng.TestRunner.privateRun(TestRunner.java:767)
-	at org.testng.TestRunner.run(TestRunner.java:617)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
-	at org.testng.TestNG.run(TestNG.java:1057)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-]]>
-            </full-stacktrace>
-          </exception> <!-- com.linecode.compartilhado.excecao.ExcecaoNegocio -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testGetListaSugestaoDocente -->
-        <test-method status="PASS" signature="testGetListaSugestaoDocente(java.lang.String)[pri:0, instance:com.linecode.ddd.docente.DocenteServicoUnitTest@4988d8b8]" name="testGetListaSugestaoDocente" duration-ms="2" started-at="2019-10-30T20:36:37Z" data-provider="testGetListaSugestaoDocenteDataProvider" finished-at="2019-10-30T20:36:37Z">
+        </test-method> <!-- testCadastrarProtocolo -->
+        <test-method status="PASS" signature="testCadastrarProtocolo(com.linecode.protocolo.cmd.CadastroProtocoloCmd, java.lang.String)[pri:0, instance:com.linecode.ddd.protocolo.ProtocoloServicoUnitTest@6236eb5f]" name="testCadastrarProtocolo" duration-ms="4" started-at="2019-11-01T17:01:24Z" data-provider="testCadastrarProtocoloDataProvider" finished-at="2019-11-01T17:01:24Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[   ]]>
+                <![CDATA[com.linecode.protocolo.cmd.CadastroProtocoloCmd@1b11ef33]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Período de tempo inválido. A data fim deve ser maior que a data início.]]>
               </value>
             </param>
           </params>
-          <exception class="com.linecode.compartilhado.excecao.ExcecaoNegocio">
-            <message>
-              <![CDATA[Informe o nome da consulta.]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[com.linecode.compartilhado.excecao.ExcecaoNegocio: Informe o nome da consulta.
-	at com.linecode.docente.servico.DocenteServico.getListaSugestaoDocente(DocenteServico.java:119)
-	at com.linecode.ddd.docente.DocenteServicoUnitTest.testGetListaSugestaoDocente(DocenteServicoUnitTest.java:68)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at org.testng.TestRunner.privateRun(TestRunner.java:767)
-	at org.testng.TestRunner.run(TestRunner.java:617)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
-	at org.testng.TestNG.run(TestNG.java:1057)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-]]>
-            </full-stacktrace>
-          </exception> <!-- com.linecode.compartilhado.excecao.ExcecaoNegocio -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testGetListaSugestaoDocente -->
-      </class> <!-- com.linecode.ddd.docente.DocenteServicoUnitTest -->
+        </test-method> <!-- testCadastrarProtocolo -->
+        <test-method status="PASS" signature="testCadastrarProtocolo(com.linecode.protocolo.cmd.CadastroProtocoloCmd, java.lang.String)[pri:0, instance:com.linecode.ddd.protocolo.ProtocoloServicoUnitTest@6236eb5f]" name="testCadastrarProtocolo" duration-ms="9" started-at="2019-11-01T17:01:24Z" data-provider="testCadastrarProtocoloDataProvider" finished-at="2019-11-01T17:01:24Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[com.linecode.protocolo.cmd.CadastroProtocoloCmd@6cea706c]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[A data de início deve ser maior que a data atual.]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testCadastrarProtocolo -->
+        <test-method status="PASS" signature="testCadastrarProtocolo(com.linecode.protocolo.cmd.CadastroProtocoloCmd, java.lang.String)[pri:0, instance:com.linecode.ddd.protocolo.ProtocoloServicoUnitTest@6236eb5f]" name="testCadastrarProtocolo" duration-ms="3" started-at="2019-11-01T17:01:24Z" data-provider="testCadastrarProtocoloDataProvider" finished-at="2019-11-01T17:01:24Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[com.linecode.protocolo.cmd.CadastroProtocoloCmd@2f2bf0e2]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Informe ao menos um pedido]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testCadastrarProtocolo -->
+        <test-method status="PASS" signature="testCadastrarProtocolo(com.linecode.protocolo.cmd.CadastroProtocoloCmd, java.lang.String)[pri:0, instance:com.linecode.ddd.protocolo.ProtocoloServicoUnitTest@6236eb5f]" name="testCadastrarProtocolo" duration-ms="7" started-at="2019-11-01T17:01:24Z" data-provider="testCadastrarProtocoloDataProvider" finished-at="2019-11-01T17:01:24Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[com.linecode.protocolo.cmd.CadastroProtocoloCmd@21ec5d87]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Informe ao menos um pedido]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testCadastrarProtocolo -->
+        <test-method status="PASS" signature="testCadastrarProtocolo(com.linecode.protocolo.cmd.CadastroProtocoloCmd, java.lang.String)[pri:0, instance:com.linecode.ddd.protocolo.ProtocoloServicoUnitTest@6236eb5f]" name="testCadastrarProtocolo" duration-ms="17" started-at="2019-11-01T17:01:24Z" data-provider="testCadastrarProtocoloDataProvider" finished-at="2019-11-01T17:01:24Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[com.linecode.protocolo.cmd.CadastroProtocoloCmd@59aa20b3]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Id espécie inválido.]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testCadastrarProtocolo -->
+        <test-method status="PASS" signature="testCadastrarProtocolo(com.linecode.protocolo.cmd.CadastroProtocoloCmd, java.lang.String)[pri:0, instance:com.linecode.ddd.protocolo.ProtocoloServicoUnitTest@6236eb5f]" name="testCadastrarProtocolo" duration-ms="1" started-at="2019-11-01T17:01:24Z" data-provider="testCadastrarProtocoloDataProvider" finished-at="2019-11-01T17:01:24Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[com.linecode.protocolo.cmd.CadastroProtocoloCmd@43ed0ff3]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Quantidade espécie inválida.]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testCadastrarProtocolo -->
+        <test-method status="PASS" signature="testCadastrarProtocolo(com.linecode.protocolo.cmd.CadastroProtocoloCmd, java.lang.String)[pri:0, instance:com.linecode.ddd.protocolo.ProtocoloServicoUnitTest@6236eb5f]" name="testCadastrarProtocolo" duration-ms="2" started-at="2019-11-01T17:01:24Z" data-provider="testCadastrarProtocoloDataProvider" finished-at="2019-11-01T17:01:24Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[com.linecode.protocolo.cmd.CadastroProtocoloCmd@6691490c]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Id biotério inválido.]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testCadastrarProtocolo -->
+      </class> <!-- com.linecode.ddd.protocolo.ProtocoloServicoUnitTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
