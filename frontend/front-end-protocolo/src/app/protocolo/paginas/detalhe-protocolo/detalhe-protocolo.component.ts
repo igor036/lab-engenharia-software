@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 //modelo
 import { DetalheProtocolo, AtribuirParecerista, Parecerista, AvaliarProtocolo } from 'src/app/protocolo/protocolo.modelo';
@@ -16,6 +17,8 @@ import { DocenteServico } from 'src/app/docente/docente.servico';
 import { Perfil } from 'src/app/app.constante';
 import { ModalServico } from 'src/app/compartilhado/componentes/modal/modal.servico';
 import { Opcao } from 'src/app/compartilhado/compartilhado.modelo';
+import { URLS_NAMES } from 'src/app/app.constante';
+
 
 
 const OPCAO_RESUMO_PT: string = 'PT';
@@ -45,7 +48,8 @@ export class DetalheProtocoloComponent implements OnInit {
     private protocoloServico: ProtocoloServico,
     private spinnerServico: Ng4LoadingSpinnerService,
     private formBuilder: FormBuilder,
-    private modalServico: ModalServico
+    private modalServico: ModalServico,
+    private router: Router
   ) {
     this.ID_PROTOCOLO = this.rota.snapshot.params['idProtocolo'];
   }
@@ -134,6 +138,7 @@ export class DetalheProtocoloComponent implements OnInit {
     this.spinnerServico.show();
     this.protocoloServico.atribuirParecerista(dados).subscribe(msg => {
       this.modalServico.exibirSucesso(msg);
+      this.router.navigate([URLS_NAMES.consultaProtocolo]);
       this.spinnerServico.hide();
     });
   }
@@ -149,6 +154,7 @@ export class DetalheProtocoloComponent implements OnInit {
     this.protocoloServico.avaliarProtocolo(dados).subscribe(msg => {
       this.modalServico.exibirSucesso(msg);
       this.spinnerServico.hide();
+      this.router.navigate([URLS_NAMES.consultaProtocolo]);
     });
   }
 
