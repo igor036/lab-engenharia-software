@@ -153,13 +153,11 @@ export class DetalheProtocoloComponent implements OnInit {
     let avaliacao = valor === true ? 'deferir' : 'indeferir';
     let mensagem: string = "Confirma a avaliação " + avaliacao + "?"
 
-    this.modalServico.exibirConfirmacao(mensagem, null, () => {
-      this.spinnerServico.show();
-      this.protocoloServico.avaliarProtocolo(dados).subscribe(msg => {
-        this.modalServico.exibirSucesso(msg);
-        this.spinnerServico.hide();
-        this.router.navigate([URLS_NAMES.consultaProtocolo]);
-      });
+    this.spinnerServico.show();
+    this.protocoloServico.avaliarProtocolo(dados).subscribe(msg => {
+      this.modalServico.exibirSucesso(msg);
+      this.spinnerServico.hide();
+      this.router.navigate([URLS_NAMES.consultaProtocolo]);
     });
   }
 
