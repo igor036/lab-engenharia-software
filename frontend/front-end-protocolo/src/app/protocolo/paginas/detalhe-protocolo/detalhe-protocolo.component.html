@@ -26,7 +26,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header bg-dark">
-                <label>Docente</label>
+                <label>Docente Solicitante</label>
               </div>
               <div class="card-body">
                 <label>Código:&nbsp;</label>
@@ -44,7 +44,7 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-header bg-dark">
-                  <label>Avaliador</label>
+                  <label>Docente Avaliador</label>
                 </div>
                 <div class="card-body">
                   <label>Código:&nbsp;</label>
@@ -114,21 +114,25 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-header bg-dark">
-                  <label>Avaliar Protocolo</label> 
+                  <label>Avaliar Protocolo</label>
                 </div>
                 <div class="card-body">
                   <h3 class="h5">Observação:</h3>
 
-                  <app-input-area-texto [formControl]="formObservacaoParecer.controls['descricao']" 
-                  placeholder="Digite uma observação" msgErro="Campo obrigatório">
+                  <app-input-area-texto [formControl]="formObservacaoParecer.controls['descricao']"
+                    placeholder="Digite uma observação" msgErro="Campo obrigatório">
                   </app-input-area-texto>
-        
-                  <div>
-                    <app-botao iconeFa="" [liberado]="liberarBotoesAvaliar()" (click)=" avaliarProtocolo(true)"
-                    texto="Deferir" id="btn"></app-botao>
 
-                    <app-botao iconeFa="" [liberado]="liberarBotoesAvaliar()" (click)=" avaliarProtocolo(false)"
-                    texto="Indeferir" id="btn"></app-botao>
+                  <div class="row">
+                    <div class="col-6">
+                      <app-botao iconeFa="" [liberado]="liberarBotoesAvaliar()" (click)=" avaliarProtocolo(true)"
+                        texto="Deferir" id="btn" classeComplementar="btn-success"></app-botao>
+
+                    </div>
+                    <div class="col-6">
+                      <app-botao iconeFa="" [liberado]="liberarBotoesAvaliar()" (click)=" avaliarProtocolo(false)"
+                        texto="Indeferir" id="btn" classeComplementar="btn-danger"></app-botao>
+                    </div>
                   </div>
                 </div>
               </div>
