@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 //modelo
-import { DetalheProtocolo, AtribuirParecerista, Parecerista } from 'src/app/protocolo/protocolo.modelo';
+import { DetalheProtocolo, AtribuirParecerista, Parecerista, AvaliarProtocolo } from 'src/app/protocolo/protocolo.modelo';
 import { DocenteLogado } from 'src/app/docente/docente.modelo';
 
 //servico
@@ -135,10 +135,22 @@ export class DetalheProtocoloComponent implements OnInit {
     this.protocoloServico.atribuirParecerista(dados).subscribe(msg => {
       this.modalServico.exibirSucesso(msg);
       this.spinnerServico.hide();
-    })
+    });
   }
 
-  avaliarProtocolo(): void {}
+  avaliarProtocolo(valor: boolean): void {
+    let dados: AvaliarProtocolo = {
+      deferido: valor,
+      descricao: this.formObservacaoParecer.value.descricao,
+      idProtocolo: this.detalheProtocolo.id 
+    };
+
+    this.spinnerServico.show();
+    this.protocoloServico.avaliarProtocolo(dados).subscribe(msg => {
+      this.modalServico.exibirSucesso(msg);
+      this.spinnerServico.hide();
+    });
+  }
 
   liberarBotaoAtribuirParecerista(): boolean {
     return this.formAtribuirParecerista.valid;
