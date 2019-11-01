@@ -103,10 +103,21 @@
         </div>
 
         <ng-container *ngIf="exibirParecer()">
-          <h3>Parecer : </h3>
-          <p>{{ detalheProtocolo?.observacaoParecer}}</p>
-          <h3>Permitido : </h3>
-          <p>{{ getTextoPermitidoParecer() }}</p>
+          <div class="row mt-4">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header bg-dark">
+                  <label>Resultado da Avaliação</label>
+                </div>
+                <div class="card-body">
+                  <h3>Parecer: </h3>
+                  <p>{{ detalheProtocolo?.observacaoParecer}}</p>
+                  <h3>Permitido: </h3>
+                  <p>{{ getTextoPermitidoParecer() }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </ng-container>
 
         <ng-container *ngIf="exibirCampoAvaliar()">
