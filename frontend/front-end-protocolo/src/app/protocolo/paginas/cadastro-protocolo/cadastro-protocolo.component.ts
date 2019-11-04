@@ -13,6 +13,9 @@ import { Router } from '@angular/router';
 
 //Constante
 import { URLS_NAMES } from 'src/app/app.constante';
+import * as moment from "moment";
+import { start } from 'repl';
+import { stringify } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-cadastro-protocolo',
@@ -93,6 +96,24 @@ export class CadastroProtocoloComponent implements OnInit {
     let dataFim: Date = this.formProtocolo.controls['dataFim'].value as Date;
 
     return datInicioValida && dataFimValida && dataInicio > dataFim;
+  }
+
+  exibirMensagemDataInicioInvalida(): boolean {
+    let dataInicial = this.formProtocolo.value.dataInicio;
+    let dataAtual = moment().toDate();
+
+    if (dataInicial) {
+      return dataInicial < dataAtual;
+    }
+  }
+
+  exibirMensagemDataFimInvalida(): boolean {
+    let dataAtual = moment().toDate();
+    let dataFim = this.formProtocolo.value.dataFim;
+
+    if (dataFim) {
+      return dataFim < dataAtual;
+    }
   }
 
   liberarBotaoCriarNovoProtocolo(): boolean {

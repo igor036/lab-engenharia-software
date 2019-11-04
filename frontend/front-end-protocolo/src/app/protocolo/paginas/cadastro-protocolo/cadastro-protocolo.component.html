@@ -54,10 +54,22 @@
                 <app-input-data [formControl]="formProtocolo.controls['dataInicio']" placeholder="Data Início"
                     msgErro="Campo obrigatório">
                 </app-input-data>
+                <ng-container *ngIf="exibirMensagemDataInicioInvalida()">
+                    <label style="color: red;">
+                        * A data de início deve ser maior que a data atual!
+                    </label>
+                </ng-container>
+
                 <h3>Data Fim:</h3>
                 <app-input-data [formControl]="formProtocolo.controls['dataFim']" placeholder="Data Fim"
                     msgErro="Campo obrigatório">
                 </app-input-data>
+                <ng-container *ngIf="exibirMensagemDataFimInvalida()">
+                    <label style="color: red;">
+                        * A data de fim deve ser maior que a data atual!
+                    </label>
+                </ng-container>
+
                 <ng-container *ngIf="exibirMensagemPeriodoInvalido()">
                     <label style="color: red;">
                         * A data início não pode ser maior que a data fim!
