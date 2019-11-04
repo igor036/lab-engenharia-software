@@ -19,3 +19,12 @@ i {
   color: red;
   font-size: 0.3cm;
 }
+
+.input-group-prepend{
+  min-width: 50px !important;
+  min-height: 50px !important;  
+}
+
+span{
+  width: 100%;
+}
