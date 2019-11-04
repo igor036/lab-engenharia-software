@@ -20,44 +20,99 @@
 	</properties>
 	
 	<profiles>
-        <profile>
-            <id>dev</id>
-            <properties>
-                <activatedProperties>dev</activatedProperties>
-            </properties>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-        </profile>
-        
-        <profile>
-         <id>prod</id>
-         <build>
-            <plugins>
-               <plugin>
-                  <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-antrun-plugin</artifactId>
-                  <version>1.1</version>
-                  <executions>
-                     <execution>
-                        <phase>test</phase>
-                        <goals>
-                           <goal>run</goal>
-                        </goals>
-                        <configuration>
-                           <tasks>
-                              <echo>Gerando buil de producao</echo>
-                              <copy file="src/main/resources/application-prod.properties"
-                                 tofile="${project.build.outputDirectory}
-                                 /application.properties"/>
-                           </tasks>
-                        </configuration>
-                     </execution>
-                  </executions>
-               </plugin>
-            </plugins>
-         </build>
-      </profile>
+       <!-- produção --> 
+       <profile>
+	     <id>prod</id>
+	     <build>
+	       <defaultGoal>install</defaultGoal>
+	       <plugins>
+	         <plugin>
+	           <artifactId>maven-antrun-plugin</artifactId>
+	           <executions>
+	             <execution>
+	               <phase>test</phase>
+	               <goals>
+	                 <goal>run</goal>
+	               </goals>
+	               <configuration>
+	                 <tasks>
+	                   <delete file="${project.build.outputDirectory}/application.properties"/>
+	                   <copy file="src/main/resources/application-prod.properties"
+	                         tofile="${project.build.outputDirectory}/application.properties"/>
+	                 </tasks>
+	               </configuration>
+	             </execution>
+	           </executions>
+	         </plugin>
+	         <plugin>
+	           <artifactId>maven-surefire-plugin</artifactId>
+	           <configuration>
+	             <skip>true</skip>
+	           </configuration>
+	         </plugin>
+	         <plugin>
+	           <artifactId>maven-jar-plugin</artifactId>
+	           <executions>
+	             <execution>
+	               <phase>package</phase>
+	               <goals>
+	                 <goal>jar</goal>
+	               </goals>
+	               <configuration>
+	                 <classifier>test</classifier>
+	               </configuration>
+	             </execution>
+	           </executions>
+	         </plugin>
+	       </plugins>
+	     </build>
+	   </profile>
+	   <!-- desenvilvimento -->
+	   <profile>
+	     <id>dev</id>
+	     <build>
+	       <plugins>
+	         <plugin>
+	           <artifactId>maven-antrun-plugin</artifactId>
+	           <executions>
+	             <execution>
+	               <phase>test</phase>
+	               <goals>
+	                 <goal>run</goal>
+	               </goals>
+	               <configuration>
+	                 <tasks>
+	                   <delete file="${project.build.outputDirectory}/application.properties"/>
+	                   <copy file="src/main/resources/application-dev.properties"
+	                         tofile="${project.build.outputDirectory}/application.properties"/>
+	                 </tasks>
+	               </configuration>
+	             </execution>
+	           </executions>
+	         </plugin>
+	         <plugin>
+	           <artifactId>maven-surefire-plugin</artifactId>
+	           <configuration>
+	             <skip>true</skip>
+	           </configuration>
+	         </plugin>
+	         <plugin>
+	           <artifactId>maven-jar-plugin</artifactId>
+	           <executions>
+	             <execution>
+	               <phase>package</phase>
+	               <goals>
+	                 <goal>jar</goal>
+	               </goals>
+	               <configuration>
+	                 <classifier>test</classifier>
+	               </configuration>
+	             </execution>
+	           </executions>
+	         </plugin>
+	       </plugins>
+	     </build>
+	   </profile>
     </profiles>
 
 	<dependencies>
