@@ -1,1 +1,1 @@
-export const URL_BASE = 'http://experimentoanimais-env-1.4gym6dyxyw.us-east-1.elasticbeanstalk.com:8383/';
+export const URL_BASE = 'http://experimentoanimais-env-1.4gym6dyxyw.us-east-1.elasticbeanstalk.com/';
