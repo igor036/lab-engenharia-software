@@ -38,3 +38,20 @@
   background-color: #303030;
 }
 
+footer span{
+  padding: 0;
+  color: black;
+  //margin-bottom: 40px;
+  font-size: 13px;
+  text-align: center;
+}
+
+footer{
+  height: 50px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #d3ded6;
+  z-index: 1;
+}
+

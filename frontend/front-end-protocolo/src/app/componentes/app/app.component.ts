@@ -24,12 +24,12 @@ import { Subscription } from 'rxjs';
 })
 export class AppComponent implements OnInit {
 
-  docenteLogado: DocenteLogado;
+  public docenteLogado: DocenteLogado;
   private inscricaoEventoRota: Subscription;
 
   constructor(
     private router: Router,
-    private docenteServico: DocenteServico,
+    public docenteServico: DocenteServico,
     private spinnerServico: Ng4LoadingSpinnerService
   ) { }
 
@@ -38,6 +38,7 @@ export class AppComponent implements OnInit {
    * ele sera redirecionado para a tela de login.
    */
   ngOnInit(): void {
+
 
     if (!this.docenteServico.isLogado()) {
       this.router.navigate([URLS_NAMES.login]);
@@ -52,7 +53,9 @@ export class AppComponent implements OnInit {
         });
       }
     });
+
   }
+
 
   mostrarMenu(): boolean {
     return this.docenteServico.isLogado();

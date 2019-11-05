@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="https://unpkg.com/ngx-bootstrap/datepicker/bs-datepicker.css">
 </head>
 
-<div class="navbar-menu bg-dark" *ngIf="mostrarMenu()">
+<div class="navbar-menu bg-dark" *ngIf="mostrarMenu()" style="z-index: 2;">
     <ng-container *ngIf="mostrarMenuCoordenadorSecretaria()">
         <div>
             <i class="fa fa-plus-square" aria-hidden="true"></i>
@@ -26,6 +26,19 @@
         <a [routerLink]='' (click)="deslogar()">Logout</a>
     </div>
 </div>
+
+
+
+<ng-container *ngIf="docenteServico.isLogado()">
+    <footer class="page-footer font-small blue">
+        <div class="footer-copyright text-center py-3" style="margin-left: 150px;">
+            <span class="align-middle">Usuário: {{ docenteLogado?.nome }},</span>
+            <span class="align-middle"> Perfil: {{ docenteLogado?.perfil }}</span>
+        </div>
+    </footer>
+</ng-container>
+
+
 
 <ng4-loading-spinner> </ng4-loading-spinner>
 <router-outlet></router-outlet>
