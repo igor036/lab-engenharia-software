@@ -101,7 +101,6 @@ export class DetalheProtocoloComponent implements OnInit {
 
   exibirCampoAvaliar(): boolean {
     if (this.detalheProtocolo && this.docenteLogado) {
-      console.log('status: ', this.detalheProtocolo.permitido);
       return this.detalheProtocolo.matriculaDocente != this.docenteLogado.matricula && this.docenteLogado.perfil === Perfil.PROFESSOR && this.detalheProtocolo.permitido === null;
 
     }
@@ -146,21 +145,23 @@ export class DetalheProtocoloComponent implements OnInit {
   }
 
   avaliarProtocolo(valor: boolean): void {
-    let dados: AvaliarProtocolo = {
-      deferido: valor,
-      descricao: this.formObservacaoParecer.value.descricao,
-      idProtocolo: this.detalheProtocolo.id
-    };
+    if (this.docenteLogado.matricula !== this.pareceristaEscolhido.valor) {
+      let dados: AvaliarProtocolo = {
+        deferido: valor,
+        descricao: this.formObservacaoParecer.value.descricao,
+        idProtocolo: this.detalheProtocolo.id
+      };
 
-    let avaliacao = valor === true ? 'deferir' : 'indeferir';
-    let mensagem: string = "Confirma a avaliação " + avaliacao + "?"
+      let avaliacao = valor === true ? 'deferir' : 'indeferir';
+      let mensagem: string = "Confirma a avaliação " + avaliacao + "?"
 
-    this.spinnerServico.show();
-    this.protocoloServico.avaliarProtocolo(dados).subscribe(msg => {
-      this.modalServico.exibirSucesso(msg);
-      this.spinnerServico.hide();
-      this.router.navigate([URLS_NAMES.consultaProtocolo]);
-    });
+      this.spinnerServico.show();
+      this.protocoloServico.avaliarProtocolo(dados).subscribe(msg => {
+        this.modalServico.exibirSucesso(msg);
+        this.spinnerServico.hide();
+        this.router.navigate([URLS_NAMES.consultaProtocolo]);
+      });
+    }
   }
 
   liberarBotaoAtribuirParecerista(): boolean {
