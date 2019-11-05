@@ -1,3 +1,1 @@
-export const environment = {
-  production: true
-};
+export const URL_BASE = 'http://experimentoanimais.us-east-1.elasticbeanstalk.com:8383/';

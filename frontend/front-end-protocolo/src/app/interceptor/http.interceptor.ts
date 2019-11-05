@@ -10,9 +10,9 @@ import {
     HttpRequest,
 } from '@angular/common/http';
 
-import { PROPRIEDADES } from 'src/app/app.constante';
 import { DocenteServico } from 'src/app/docente/docente.servico';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { URL_BASE } from 'src/environments/environment';
 
 @Injectable()
 export class HttpInterceptorCore implements HttpInterceptor {
@@ -29,11 +29,11 @@ export class HttpInterceptorCore implements HttpInterceptor {
     private getRequisicaoAutorizacao(req: HttpRequest<any>): any {
         this.spinnerServico.hide();
         if (req.url == "login") {
-            return req.clone({ url: PROPRIEDADES.URL_BASE + req.url });
+            return req.clone({ url: URL_BASE + req.url });
         }
 
         return req.clone({
-            url: PROPRIEDADES.URL_BASE + req.url,
+            url: URL_BASE + req.url,
             setHeaders: {
                 Authorization: this.docenteSerico.getTokenLogado()
             },

@@ -7,7 +7,6 @@ import { Paginacao } from './compartilhado/compartilhado.modelo';
 export const PROPRIEDADES = {
     TOKEN_DOCENTE: 'token-docente',
     DADOS_DOCENTE_LOGADO: 'dados-docente-logado',
-    URL_BASE: 'http://localhost:8383/'
 };
 
 export const URLS_NAMES = {
