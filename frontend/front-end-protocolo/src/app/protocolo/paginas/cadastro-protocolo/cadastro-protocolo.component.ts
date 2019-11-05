@@ -14,8 +14,6 @@ import { Router } from '@angular/router';
 //Constante
 import { URLS_NAMES } from 'src/app/app.constante';
 import * as moment from "moment";
-import { start } from 'repl';
-import { stringify } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-cadastro-protocolo',

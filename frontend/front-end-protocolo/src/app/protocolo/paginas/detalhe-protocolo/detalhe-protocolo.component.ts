@@ -101,7 +101,9 @@ export class DetalheProtocoloComponent implements OnInit {
 
   exibirCampoAvaliar(): boolean {
     if (this.detalheProtocolo && this.docenteLogado) {
-      return this.detalheProtocolo.matriculaDocente != this.docenteLogado.matricula && this.docenteLogado.perfil === Perfil.PROFESSOR;
+      console.log('status: ', this.detalheProtocolo.permitido);
+      return this.detalheProtocolo.matriculaDocente != this.docenteLogado.matricula && this.docenteLogado.perfil === Perfil.PROFESSOR && this.detalheProtocolo.permitido === null;
+
     }
     return false;
   }
