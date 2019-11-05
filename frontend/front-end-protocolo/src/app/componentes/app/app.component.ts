@@ -53,9 +53,15 @@ export class AppComponent implements OnInit {
         });
       }
     });
-
   }
 
+  formatarDescricaoPerfil(): string {
+    if(this.docenteLogado){
+      let nomePerfil = this.docenteLogado.perfil;
+      nomePerfil =  nomePerfil[0].toUpperCase() + nomePerfil.slice(1).toLocaleLowerCase();
+      return nomePerfil;
+    }
+  }
 
   mostrarMenu(): boolean {
     return this.docenteServico.isLogado();
