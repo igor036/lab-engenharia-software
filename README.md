@@ -33,7 +33,7 @@ Somente professores da universidade pode emitir protocolo ou solicitar o uso de 
 
 ## Top contribuidores:
 
-<div align="center" style="display:flex;">
+<div style="display:flex; justify-content: flex-start">
   <a href="https://github.com/igor036"><img src="https://avatars0.githubusercontent.com/u/20947860?s=60&v=4" width="50px", style="border-radius: 25px;"/></a>
  <a href="https://github.com/kelvinmuriilo"><img src="https://avatars0.githubusercontent.com/u/41491555?s=60&v=4" width="50px", style="border-radius: 25px;"/></a>
  <a href="https://github.com/pablo-vieira-59"><img src="https://avatars0.githubusercontent.com/u/46230565?s=60&v=4" width="50px", style="border-radius: 25px;"/></a>
