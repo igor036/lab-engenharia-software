@@ -31,3 +31,14 @@ Os protocolos, depois de emitidos, permanecem no estado “aguardando envio para
 
 Somente professores da universidade pode emitir protocolo ou solicitar o uso de animais, o parecer não pode ser emitido pelo mesmo professor que solicitou os animais.
 
+## Top contribuidores:
+
+<div align="center" style="display:flex;">
+  <a href="https://github.com/igor036"><img src="https://avatars0.githubusercontent.com/u/20947860?s=60&v=4" width="50px", style="border-radius: 25px;"/></a>
+ <a href="https://github.com/kelvinmuriilo"><img src="https://avatars0.githubusercontent.com/u/41491555?s=60&v=4" width="50px", style="border-radius: 25px;"/></a>
+ <a href="https://github.com/pablo-vieira-59"><img src="https://avatars0.githubusercontent.com/u/46230565?s=60&v=4" width="50px", style="border-radius: 25px;"/></a>
+ <a href="https://github.com/Werliney"><img src="https://avatars1.githubusercontent.com/u/44244657?s=60&v=4" width="50px", style="border-radius: 25px;"/></a>
+ <a href="https://github.com/DoisLucas"><img src="https://avatars2.githubusercontent.com/u/28634141?s=60&v=4" width="50px", style="border-radius: 25px;"/></a>
+</div>
+
+
