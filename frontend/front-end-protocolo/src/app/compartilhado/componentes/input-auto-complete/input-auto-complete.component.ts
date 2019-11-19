@@ -44,7 +44,7 @@ export class InputAutoCompleteComponent implements OnInit, ControlValueAccessor 
 
   public clicado: boolean = false;
 
-  private valor: string = '';
+  public valor: string = '';
   private onChange: Function;
   private onTouched: Function;
 

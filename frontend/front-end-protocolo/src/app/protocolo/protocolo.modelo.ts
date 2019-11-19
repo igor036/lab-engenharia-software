@@ -54,7 +54,7 @@ interface AtribuirParecerista {
 
 interface Parecerista {
     valor: number;
-    nome: string;
+    descricao: string;
 }
 
 interface AvaliarProtocolo {
