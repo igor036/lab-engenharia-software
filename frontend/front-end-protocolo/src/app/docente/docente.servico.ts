@@ -52,15 +52,7 @@ export class DocenteServico {
     }
 
     getTokenlogar(login: Login): Observable<string> {
-
-        const body = new HttpParams()
-            .set("email", login.email)
-            .set("senha", login.senha);
-
-        return this.httpClient.post('login', body.toString(), {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
+        return this.httpClient.post('login', JSON.stringify(login), {
             responseType: 'text'
         });
     }
